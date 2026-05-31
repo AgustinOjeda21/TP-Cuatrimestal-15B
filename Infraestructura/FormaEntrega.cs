@@ -12,19 +12,17 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class FormaEntrega
+    public partial class EntityFormaEntrega
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FormaEntrega()
+
+        public EntityFormaEntrega()
         {
-            this.DetallePedido = new HashSet<DetallePedido>();
+            this.DetallePedido = new HashSet<EntityDetallePedido>();
         }
     
         public int idFormaEntrega { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetallePedido> DetallePedido { get; set; }
+        public virtual ICollection<EntityDetallePedido> DetallePedido { get; set; }
     }
 }

@@ -12,13 +12,13 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductoCarrito
+    public partial class EntityProductoCarrito
     {
         public int Producto_idProducto { get; set; }
         public int Cantidad { get; set; }
         public int Carrito_idCarrito { get; set; }
     
-        public virtual Carrito Carrito { get; set; }
-        public virtual Producto Producto { get; set; }
+        public virtual EntityCarrito Carrito { get; set; }
+        public virtual EntityProducto Producto { get; set; }
     }
 }

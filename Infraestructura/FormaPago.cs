@@ -12,19 +12,15 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class FormaPago
+    public partial class EntityFormaPago
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FormaPago()
-        {
-            this.DetallePedido = new HashSet<DetallePedido>();
+        public EntityFormaPago()
+        { 
         }
     
         public int idFormaPago { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetallePedido> DetallePedido { get; set; }
+        public virtual ICollection<EntityDetallePedido> DetallePedido { get; set; }
     }
 }

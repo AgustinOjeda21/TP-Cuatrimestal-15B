@@ -12,19 +12,17 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Categoria
+    public partial class EntityCategoria
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categoria()
+        
+        public EntityCategoria()
         {
-            this.Producto = new HashSet<Producto>();
+            this.Producto = new HashSet<EntityProducto>();
         }
     
         public int idCategoria { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Producto> Producto { get; set; }
+        public virtual ICollection<EntityProducto> Producto { get; set; }
     }
 }

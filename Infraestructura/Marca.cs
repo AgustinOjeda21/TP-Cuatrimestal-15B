@@ -12,21 +12,20 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Marca
+    public partial class EntityMarca
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Marca()
+    
+        public EntityMarca()
         {
-            this.Producto = new HashSet<Producto>();
-            this.Imagen = new HashSet<Imagen>();
+         
         }
     
         public int idMarca { get; set; }
         public string Nombre { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Producto> Producto { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Imagen> Imagen { get; set; }
+        
+        public virtual ICollection<EntityProducto> Producto { get; set; }
+       
+        public virtual ICollection<EntityImagen> Imagen { get; set; }
     }
 }

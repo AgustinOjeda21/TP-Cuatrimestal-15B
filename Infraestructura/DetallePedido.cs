@@ -12,7 +12,7 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class DetallePedido
+    public partial class EntityDetallePedido
     {
         public int Pedido_idPedido { get; set; }
         public System.DateTime FechaPedido { get; set; }
@@ -21,9 +21,9 @@ namespace Infraestructura
         public int FormaPago_idFormaPago { get; set; }
         public Nullable<int> Direccion_idDireccion { get; set; }
     
-        public virtual Direccion Direccion { get; set; }
-        public virtual FormaEntrega FormaEntrega { get; set; }
-        public virtual FormaPago FormaPago { get; set; }
-        public virtual Pedido Pedido { get; set; }
+        public virtual EntityDireccion Direccion { get; set; }
+        public virtual EntityFormaEntrega FormaEntrega { get; set; }
+        public virtual EntityFormaPago FormaPago { get; set; }
+        public virtual EntityPedido Pedido { get; set; }
     }
 }

@@ -12,16 +12,16 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Pedido
+    public partial class EntityPedido
     {
         public int idPedido { get; set; }
         public int Persona_idPersona { get; set; }
         public int EstadoPedido_idEstadoPedido { get; set; }
         public int Carrito_idCarrito { get; set; }
     
-        public virtual Carrito Carrito { get; set; }
-        public virtual DetallePedido DetallePedido { get; set; }
-        public virtual EstadoPedido EstadoPedido { get; set; }
-        public virtual Persona Persona { get; set; }
+        public virtual EntityCarrito Carrito { get; set; }
+        public virtual EntityDetallePedido DetallePedido { get; set; }
+        public virtual EntityEstadoPedido EstadoPedido { get; set; }
+        public virtual EntityPersona Persona { get; set; }
     }
 }

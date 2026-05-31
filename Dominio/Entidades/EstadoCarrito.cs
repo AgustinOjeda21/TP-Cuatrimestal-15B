@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entidades
 {
-    class Class5
+    public class EstadoCarrito
     {
+        public EstadoCarrito() { }
+        public EstadoCarrito(int idEstadoCarrito,string nombre,ICollection<Carrito> carritos)
+        {
+            IdEstadoCarrito = idEstadoCarrito;
+            Nombre = nombre;
+            Carrito = carritos;
+        }
+
+        public int IdEstadoCarrito { get; set; }
+        public string Nombre { get; set; }
+        public virtual ICollection<Carrito> Carrito { get; set; }
     }
 }

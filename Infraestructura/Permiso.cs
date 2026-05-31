@@ -12,18 +12,18 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Permiso
+    public partial class EntityPermiso
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Permiso()
+
+        public EntityPermiso()
         {
-            this.Rol = new HashSet<Rol>();
+           
         }
     
         public int idPermiso { get; set; }
         public string Nombre { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rol> Rol { get; set; }
+
+        public virtual ICollection<EntityRol> Rol { get; set; }
     }
 }

@@ -12,12 +12,12 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class EntityUsuario
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
+        
+        public EntityUsuario()
         {
-            this.Persona = new HashSet<Persona>();
+            
         }
     
         public int idUsuario { get; set; }
@@ -26,8 +26,8 @@ namespace Infraestructura
         public bool Estado { get; set; }
         public int Rol_idRol { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Persona { get; set; }
-        public virtual Rol Rol { get; set; }
+       
+        public virtual ICollection<EntityPersona> Persona { get; set; }
+        public virtual EntityRol Rol { get; set; }
     }
 }

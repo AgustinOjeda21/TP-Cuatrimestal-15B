@@ -12,19 +12,19 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class EstadoPedido
+    public partial class EntityEstadoPedido
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EstadoPedido()
+  
+        public EntityEstadoPedido()
         {
-            this.Pedido = new HashSet<Pedido>();
+            
         }
     
         public int idEstadoPedido { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedido { get; set; }
+
+        public virtual ICollection<EntityPedido> Pedido { get; set; }
     }
 }

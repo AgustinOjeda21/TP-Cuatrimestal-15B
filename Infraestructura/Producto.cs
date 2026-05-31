@@ -12,15 +12,12 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Producto
+    public partial class EntityProducto
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Producto()
+        
+        public EntityProducto()
         {
-            this.ProductoCarrito = new HashSet<ProductoCarrito>();
-            this.Imagen = new HashSet<Imagen>();
-            this.Categoria = new HashSet<Categoria>();
-            this.Proveedor = new HashSet<Proveedor>();
+            
         }
     
         public int idProducto { get; set; }
@@ -31,14 +28,14 @@ namespace Infraestructura
         public bool Estado { get; set; }
         public int Marca_idMarca { get; set; }
     
-        public virtual Marca Marca { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductoCarrito> ProductoCarrito { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Imagen> Imagen { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Categoria> Categoria { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Proveedor> Proveedor { get; set; }
+        public virtual EntityMarca Marca { get; set; }
+     
+        public virtual ICollection<EntityProductoCarrito> ProductoCarrito { get; set; }
+     
+        public virtual ICollection<EntityImagen> Imagen { get; set; }
+      
+        public virtual ICollection<EntityCategoria> Categoria { get; set; }
+       
+        public virtual ICollection<EntityProveedor> Proveedor { get; set; }
     }
 }

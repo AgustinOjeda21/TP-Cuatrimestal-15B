@@ -12,13 +12,12 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Persona
+    public partial class EntityPersona
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Persona()
+  
+        public EntityPersona()
         {
-            this.Pedido = new HashSet<Pedido>();
-            this.Direccion = new HashSet<Direccion>();
+            
         }
     
         public int idPersona { get; set; }
@@ -28,10 +27,10 @@ namespace Infraestructura
         public string Telefono { get; set; }
         public int Usuario_idUsuario { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedido { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Direccion> Direccion { get; set; }
+
+        public virtual ICollection<EntityPedido> Pedido { get; set; }
+        public virtual EntityUsuario Usuario { get; set; }
+   
+        public virtual ICollection<EntityDireccion> Direccion { get; set; }
     }
 }

@@ -12,21 +12,20 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Rol
+    public partial class EntityRol
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rol()
+        
+        public EntityRol()
         {
-            this.Usuario = new HashSet<Usuario>();
-            this.Permiso = new HashSet<Permiso>();
+           
         }
     
         public int idRol { get; set; }
         public string Nombre { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Permiso> Permiso { get; set; }
+        
+        public virtual ICollection<EntityUsuario> Usuario { get; set; }
+       
+        public virtual ICollection<EntityPermiso> Permiso { get; set; }
     }
 }

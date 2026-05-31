@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entidades
 {
-    class Class2
+    public class FormaPago
     {
+        public FormaPago() { }
+        public FormaPago(int idFormaPago,string nombre, string descripcion,ICollection<DetallePedido> detalles)
+        {
+            IdFormaPago = idFormaPago;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            DetallePedido = detalles;
+        }
+
+        public int IdFormaPago { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public virtual ICollection<DetallePedido> DetallePedido { get; set; }
     }
 }

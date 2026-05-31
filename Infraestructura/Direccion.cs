@@ -12,10 +12,10 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Direccion
+    public partial class EntityDireccion
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Direccion()
+       
+        public EntityDireccion()
         {
             this.DetallePedido = new HashSet<DetallePedido>();
             this.Proveedor = new HashSet<Proveedor>();
@@ -29,11 +29,9 @@ namespace Infraestructura
         public string CodigoPostal { get; set; }
         public string Observaciones { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetallePedido> DetallePedido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Proveedor> Proveedor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Persona { get; set; }
+        public virtual ICollection<EntityDetallePedido> DetallePedido { get; set; }
+        public virtual ICollection<EntityProveedor> Proveedor { get; set; }
+       
+        public virtual ICollection<EntityPersona> Persona { get; set; }
     }
 }

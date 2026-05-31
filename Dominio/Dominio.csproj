@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>aa260b99-dd4d-42dc-bed3-422d0f17044e</ProjectGuid>
+    <ProjectGuid>{AA260B99-DD4D-42DC-BED3-422D0F17044E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dominio</RootNamespace>
@@ -31,24 +31,45 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Entidades\Carrito.cs" />
+    <Compile Include="Entidades\Categoria.cs" />
+    <Compile Include="Entidades\DetallePedido.cs" />
+    <Compile Include="Entidades\Direccion.cs" />
+    <Compile Include="Entidades\EstadoCarrito.cs" />
+    <Compile Include="Entidades\EstadoPedido.cs" />
+    <Compile Include="Entidades\FormaEntrega.cs" />
+    <Compile Include="Entidades\FormaPago.cs" />
+    <Compile Include="Entidades\Imagen.cs" />
+    <Compile Include="Entidades\Marca.cs" />
+    <Compile Include="Entidades\Pedido.cs" />
+    <Compile Include="Entidades\Permiso.cs" />
+    <Compile Include="Entidades\Persona.cs" />
+    <Compile Include="Entidades\Producto.cs" />
+    <Compile Include="Entidades\ProductoCarrito.cs" />
+    <Compile Include="Entidades\Proveedor.cs" />
+    <Compile Include="Entidades\Rol.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\Dominio.csproj.AssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

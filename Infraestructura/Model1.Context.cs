@@ -25,23 +25,23 @@ namespace Infraestructura
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Carrito> Carrito { get; set; }
-        public virtual DbSet<Categoria> Categoria { get; set; }
-        public virtual DbSet<DetallePedido> DetallePedido { get; set; }
-        public virtual DbSet<Direccion> Direccion { get; set; }
-        public virtual DbSet<EstadoCarrito> EstadoCarrito { get; set; }
-        public virtual DbSet<EstadoPedido> EstadoPedido { get; set; }
-        public virtual DbSet<FormaEntrega> FormaEntrega { get; set; }
-        public virtual DbSet<FormaPago> FormaPago { get; set; }
-        public virtual DbSet<Imagen> Imagen { get; set; }
-        public virtual DbSet<Marca> Marca { get; set; }
-        public virtual DbSet<Pedido> Pedido { get; set; }
-        public virtual DbSet<Permiso> Permiso { get; set; }
-        public virtual DbSet<Persona> Persona { get; set; }
-        public virtual DbSet<Producto> Producto { get; set; }
-        public virtual DbSet<ProductoCarrito> ProductoCarrito { get; set; }
-        public virtual DbSet<Proveedor> Proveedor { get; set; }
-        public virtual DbSet<Rol> Rol { get; set; }
-        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<EntityCarrito> Carrito { get; set; }
+        public virtual DbSet<EntityCategoria> Categoria { get; set; }
+        public virtual DbSet<EntityDetallePedido> DetallePedido { get; set; }
+        public virtual DbSet<EntityDireccion> Direccion { get; set; }
+        public virtual DbSet<EntityEstadoCarrito> EstadoCarrito { get; set; }
+        public virtual DbSet<EntityEstadoPedido> EstadoPedido { get; set; }
+        public virtual DbSet<EntityFormaEntrega> FormaEntrega { get; set; }
+        public virtual DbSet<EntityFormaPago> FormaPago { get; set; }
+        public virtual DbSet<EntityImagen> Imagen { get; set; }
+        public virtual DbSet<EntityMarca> Marca { get; set; }
+        public virtual DbSet<EntityPedido> Pedido { get; set; }
+        public virtual DbSet<EntityPermiso> Permiso { get; set; }
+        public virtual DbSet<EntityPersona> Persona { get; set; }
+        public virtual DbSet<EntityProducto> Producto { get; set; }
+        public virtual DbSet<EntityProductoCarrito> ProductoCarrito { get; set; }
+        public virtual DbSet<EntityProveedor> Proveedor { get; set; }
+        public virtual DbSet<EntityRol> Rol { get; set; }
+        public virtual DbSet<EntityUsuario> Usuario { get; set; }
     }
 }

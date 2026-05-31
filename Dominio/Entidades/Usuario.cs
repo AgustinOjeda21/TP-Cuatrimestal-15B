@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entidades
 {
-    class Class10
+    public class Usuario
     {
+        public Usuario() { }
+        public Usuario(int idUsuario,string nombreUsuario,string contraseña, bool estado, ICollection<Persona> persona, Rol rol)
+        {
+            IdUsuario = idUsuario;
+            NombreUsuario = nombreUsuario;
+            Contraseña = contraseña;
+            Estado = estado;
+            Persona = persona;
+            Rol = rol;
+        }
+
+        public int IdUsuario { get; set; }
+        public string NombreUsuario { get; set; }
+        public string Contraseña { get; set; }
+        public bool Estado { get; set; }
+        public virtual ICollection<Persona> Persona { get; set; }
+        public virtual Rol Rol { get; set; }
     }
 }

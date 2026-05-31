@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entidades
 {
-    class Class12
+    public class Proveedor
     {
+        public Proveedor() { }
+        public Proveedor(int idProveedor, string nombre, string telefono, string mail, bool estado, Direccion direccion, ICollection<Producto> productos)
+        {
+            IdProveedor = idProveedor;
+            Nombre = nombre;
+            Telefono = telefono;
+            Mail = mail;
+            Estado = estado;
+            Direccion = direccion;
+            Producto = productos;
+        }
+
+        public int IdProveedor { get; set; }
+        public string Nombre { get; set; }
+        public string Telefono { get; set; }
+        public string Mail { get; set; }
+        public bool Estado { get; set; }
+        public Direccion Direccion { get; set; }
+        public ICollection<Producto> Producto { get; set; }
     }
 }

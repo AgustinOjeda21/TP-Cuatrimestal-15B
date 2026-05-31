@@ -12,18 +12,15 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class EstadoCarrito
+    public partial class EntityEstadoCarrito
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EstadoCarrito()
+        public EntityEstadoCarrito()
         {
-            this.Carrito = new HashSet<Carrito>();
+           
         }
     
         public int idEstadoCarrito { get; set; }
         public string Nombre { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Carrito> Carrito { get; set; }
+        public virtual ICollection<EntityCarrito> Carrito { get; set; }
     }
 }

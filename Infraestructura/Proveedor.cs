@@ -12,12 +12,12 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     
-    public partial class Proveedor
+    public partial class EntityProveedor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Proveedor()
+ 
+        public EntityProveedor()
         {
-            this.Producto = new HashSet<Producto>();
+           
         }
     
         public int idProveedor { get; set; }
@@ -27,8 +27,8 @@ namespace Infraestructura
         public bool Estado { get; set; }
         public int Direccion_idDireccion { get; set; }
     
-        public virtual Direccion Direccion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Producto> Producto { get; set; }
+        public virtual EntityDireccion Direccion { get; set; }
+    
+        public virtual ICollection<EntityProducto> Producto { get; set; }
     }
 }
