@@ -201,6 +201,7 @@
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.CopyComplete" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.CoreCompileInputs.cache" />
     <Content Include="Inicio.aspx" />
+    <Content Include="ListaProducto.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.dll" />
@@ -295,6 +296,13 @@
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaProducto.aspx.cs">
+      <DependentUpon>ListaProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaProducto.aspx.designer.cs">
+      <DependentUpon>ListaProducto.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
