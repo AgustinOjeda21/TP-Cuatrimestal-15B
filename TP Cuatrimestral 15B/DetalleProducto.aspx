@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListaProducto.aspx.cs" Inherits="TP_Cuatrimestral_15B.ListaProducto" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetalleProducto.aspx.cs" Inherits="TP_Cuatrimestral_15B.DetalleProducto" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat ="server">
-        <title>Lista Productos</title>
+        <title>Detalle Producto</title>
         <style>
             .navbar {
             background-color: brown;
@@ -43,33 +43,34 @@
                 display: flex;
                 gap: 20px;
                 justify-content: center;
+                overflow-x: auto;
+            }
+
+            .detalleProducto {
+                display:flex;
+                gap: 40px;
+                margin: 30px;
+            }
+
+            .productoimg {
+                width: 400px;
+                height: 400px;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                background-color:lightgray;
+            }
+            .infoProducto{
+                max-width: 600px;
             }
 
             .producto {
-                width: 250px;
-                border: 1px solid #ccc;
-                border-radius: 10px;
-                padding: 15px;
-                text-align: center;
-            }
-
-            .producto img {
-                width: 100%;
-                height: 180px;
-                object-fit: cover;
-            }
-            .categorias {
-                margin: 20px;
-                padding: 20px;
-                border-radius: 10px;
-                background-color: #f2f2f2;
-            }
-
-            .contenedorCategorias {
-                display: flex;
-                gap: 10px;
-                margin-top: 10px;
-            }
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
         </style>
 
     </head>
@@ -86,20 +87,41 @@
                    <asp:Button ID ="btnCarrito" runat="server" Text="Mi carrito"></asp:Button>
             </nav>
         </div>
-        <div id ="TodasCategorias" class = "categorias">
-            <h2>
-                TODAS LAS CATEGORIAS
-            </h2>
-            <div>
-                <asp:Button ID="btnTodas" runat="server" Text="Todas" />
-                <asp:Button ID="btnElectronica" runat="server" Text="Electrónica" />
-                <asp:Button ID="btnHogar" runat="server" Text="Hogar" />
-                <asp:Button ID="btnGaming" runat="server" Text="Gaming" />
+        <div id ="Producto" class = "detalleProducto">
+            <div class = "productoimg">
+                IMAGEN
+            </div>
+            <div class = "infoProducto">
+                <h1>Notebook HP 15"</h1>
+
+                <p><b>Categoría:</b> Electrónica</p>
+
+                <p><b>Precio:</b> $850.000</p>
+
+                <p><b>Stock:</b> 12 unidades</p>
+
+                <h3>Descripción</h3>
+
+                <p>
+                    Notebook HP con procesador Intel i5,
+                    16GB RAM y SSD de 512GB.
+                </p>
+
+                <asp:TextBox
+                    ID="txtCantidad"
+                    runat="server"
+                    Text="1">
+                </asp:TextBox>
+
+                <asp:Button
+                    ID="btnAgregarCarrito"
+                    runat="server"
+                    Text="Agregar al carrito" />
             </div>
         </div>
         <div class="productosDestacados">
     
-    <h2>CATALOGO DE PRODUCTOS</h2>
+    <h2>PRODUCTOS RELACIONADOS</h2>
 
     <div class="contenedorProductos">
 
@@ -123,13 +145,9 @@
             <p>$70.000</p>
             <asp:Button ID="btnVer3" runat="server" Text="Ver Detalle" />
         </div>
-
     </div>
 
 </div>
     </form>
 </body>
 </html>
-
-
-
