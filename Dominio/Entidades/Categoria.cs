@@ -9,17 +9,17 @@ namespace Dominio.Entidades
     public class Categoria
     {
         public Categoria() { }
-        public Categoria(int idCategoria, string nombre, string descripcion, ICollection<Producto> productos)
+        public Categoria(int idCategoria, string nombre, string descripcion)
         {
             IdCategoria = idCategoria;
             Nombre = nombre;
             Descripcion = descripcion;
-            Producto = productos;
+           
         }
 
         public int IdCategoria { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public virtual ICollection<Producto> Producto { get; set; }
+       
     }
 }

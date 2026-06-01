@@ -14,11 +14,15 @@ namespace Infraestructura
     
     public partial class EntityFormaPago
     {
-        public EntityFormaPago()
-        { 
+        public EntityFormaPago() { }
+        public EntityFormaPago(int idFormaPago, string nombre, string descripcion)
+        {
+            IdFormaPago = idFormaPago;
+            Nombre = nombre;
+            Descripcion = descripcion;
         }
-    
-        public int idFormaPago { get; set; }
+
+        public int IdFormaPago { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public virtual ICollection<EntityDetallePedido> DetallePedido { get; set; }

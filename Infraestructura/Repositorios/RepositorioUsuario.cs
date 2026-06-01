@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dominio.Entidades;
+using Infraestructura.Mappers;
+using System.Data.Entity;
+using Aplicacion.Interfaces.Repositorios;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioUsuario
+    class RepositorioUsuario : IRepositorioUsuario
     {
         private readonly mydbEntities context;
         public RepositorioUsuario(mydbEntities context)
@@ -15,36 +18,36 @@ namespace Infraestructura.Repositorios
             this.context = context;
         }
 
-        public async Task<List<Autor>> ObtenerAutores()
+        public async Task<List<Usuario>> ObtenerUsuarioes()
         {
-            var Resultado = await context.Autors.ToListAsync();
-            return Resultado.Select(e => new Autor(e.IdAutor, e.Nombre)).ToList();
+            var Resultado = await context.Usuario.ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
         }
-        public async Task InsertarAutor(Autor aut)
+        public async Task InsertarUsuario(Usuario aut)
         {
-            EntityAutor Eaut = new EntityAutor(aut.GetIdAutor(), aut.GetNombre());
-            context.Autors.Add(Eaut);
+            EntityUsuario Eaut = aut.ToEntity();
+            context.Usuario.Add(Eaut);
             await context.SaveChangesAsync();
         }
 
-        public async Task<Autor> CapturarAutor(int id)
+        public async Task<Usuario> CapturarUsuario(int id)
         {
-            EntityAutor Eaut = await context.Autors.FindAsync(id);
+            EntityUsuario Eaut = await context.Usuario.FindAsync(id);
             if (Eaut == null)
             {
                 return null;
             }
-            Autor aut = new Autor(Eaut.IdAutor, Eaut.Nombre);
+            Usuario aut = Eaut.ToDomain();
             return aut;
         }
-        public async Task Actualizar(Autor obj)
+        public async Task Actualizar(Usuario obj)
         {
-            var entity = await context.Autors.FindAsync(obj.GetIdAutor());
+            var entity = await context.Usuario.FindAsync(obj.IdUsuario);
             if (entity == null)
             {
                 return;
             }
-            entity.Mapeo(obj);
+            entity = obj.ToEntity();
             await context.SaveChangesAsync();
         }
     }

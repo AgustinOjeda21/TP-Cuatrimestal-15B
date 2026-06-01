@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dominio.Entidades;
+using Infraestructura.Mappers;
+using System.Data.Entity;
 using System.Text;
+using Aplicacion.Interfaces.Repositorios;
 using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioFormaEntrega
+    class RepositorioFormaEntrega : IRepositorioFormaEntrega
     {
         private readonly mydbEntities context;
         public RepositorioFormaEntrega(mydbEntities context)
@@ -17,34 +20,34 @@ namespace Infraestructura.Repositorios
 
         public async Task<List<FormaEntrega>> ObtenerFormaEntregaes()
         {
-            var Resultado = await context.FormaEntregas.ToListAsync();
-            return Resultado.Select(e => new FormaEntrega(e.IdFormaEntrega, e.Nombre)).ToList();
+            var Resultado = await context.FormaEntrega.ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
         }
         public async Task InsertarFormaEntrega(FormaEntrega aut)
         {
-            EntityFormaEntrega Eaut = new EntityFormaEntrega(aut.GetIdFormaEntrega(), aut.GetNombre());
-            context.FormaEntregas.Add(Eaut);
+            EntityFormaEntrega Eaut = aut.ToEntity();
+            context.FormaEntrega.Add(Eaut);
             await context.SaveChangesAsync();
         }
 
         public async Task<FormaEntrega> CapturarFormaEntrega(int id)
         {
-            EntityFormaEntrega Eaut = await context.FormaEntregas.FindAsync(id);
+            EntityFormaEntrega Eaut = await context.FormaEntrega.FindAsync(id);
             if (Eaut == null)
             {
                 return null;
             }
-            FormaEntrega aut = new FormaEntrega(Eaut.IdFormaEntrega, Eaut.Nombre);
+            FormaEntrega aut = Eaut.ToDomain();
             return aut;
         }
         public async Task Actualizar(FormaEntrega obj)
         {
-            var entity = await context.FormaEntregas.FindAsync(obj.GetIdFormaEntrega());
+            var entity = await context.FormaEntrega.FindAsync(obj.IdFormaEntrega);
             if (entity == null)
             {
                 return;
             }
-            entity.Mapeo(obj);
+            entity = obj.ToEntity();
             await context.SaveChangesAsync();
         }
     }

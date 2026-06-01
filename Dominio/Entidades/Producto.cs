@@ -9,7 +9,7 @@ namespace Dominio.Entidades
     public class Producto
     {
         public Producto() { }
-        public Producto(int idProducto, string nombre, string descripcion, decimal precio, int stock, bool estado, Marca marca, ICollection<ProductoCarrito> productoCarritos, ICollection<Imagen> imagens, ICollection<Categoria> categorias, ICollection<Proveedor> proveedors)
+        public Producto(int idProducto, string nombre, string descripcion, decimal precio, int stock, bool estado, Marca marca)
         {
             IdProducto = idProducto;
             Nombre = nombre;
@@ -18,10 +18,6 @@ namespace Dominio.Entidades
             Stock = stock;
             Estado = estado;
             Marca = marca;
-            ProductoCarrito = productoCarritos;
-            Imagen = imagens;
-            Categoria = categorias;
-            Proveedor = proveedors;
         }
 
         public int IdProducto { get; set; }
@@ -31,9 +27,6 @@ namespace Dominio.Entidades
         public int Stock { get; set; }
         public bool Estado { get; set; }
         public virtual Marca Marca { get; set; }
-        public virtual ICollection<ProductoCarrito> ProductoCarrito { get; set; }
-        public virtual ICollection<Imagen> Imagen { get; set; }
-        public virtual ICollection<Categoria> Categoria { get; set; }
-        public virtual ICollection<Proveedor> Proveedor { get; set; }
+        
     }
 }

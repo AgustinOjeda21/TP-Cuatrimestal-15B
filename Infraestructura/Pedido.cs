@@ -14,11 +14,18 @@ namespace Infraestructura
     
     public partial class EntityPedido
     {
-        public int idPedido { get; set; }
+        public EntityPedido() { }
+        public EntityPedido(int idPedido, int carrito, int estado, int persona)
+        {
+            IdPedido = idPedido;
+            Carrito_idCarrito = carrito;
+            EstadoPedido_idEstadoPedido = estado;
+            Persona_idPersona = persona;
+        }
+        public int IdPedido { get; set; }
         public int Persona_idPersona { get; set; }
         public int EstadoPedido_idEstadoPedido { get; set; }
         public int Carrito_idCarrito { get; set; }
-    
         public virtual EntityCarrito Carrito { get; set; }
         public virtual EntityDetallePedido DetallePedido { get; set; }
         public virtual EntityEstadoPedido EstadoPedido { get; set; }

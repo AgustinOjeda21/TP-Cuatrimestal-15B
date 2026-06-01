@@ -9,7 +9,7 @@ namespace Dominio.Entidades
     public class Direccion
     {
         public Direccion() { }
-        public Direccion(int idDireccion, string calle, string numero, string localidad, string codigo, string observaciones, ICollection<DetallePedido> detalles, ICollection<Proveedor> proveedors, ICollection<Persona> personas)
+        public Direccion(int idDireccion, string calle, string numero, string localidad, string codigo, string observaciones)
         {
             IdDireccion = idDireccion;
             Calle = calle;
@@ -17,9 +17,6 @@ namespace Dominio.Entidades
             Localidad = localidad;
             CodigoPostal = codigo;
             Observaciones = observaciones;
-            DetallePedido = detalles;
-            Proveedor = proveedors;
-            Persona = personas;
         }
 
         public int IdDireccion { get; set; }
@@ -28,8 +25,5 @@ namespace Dominio.Entidades
         public string Localidad { get; set; }
         public string CodigoPostal { get; set; }
         public string Observaciones { get; set; }
-        public virtual ICollection<DetallePedido> DetallePedido { get; set; }
-        public virtual ICollection<Proveedor> Proveedor { get; set; }
-        public virtual ICollection<Persona> Persona { get; set; }
     }
 }

@@ -9,15 +9,15 @@ namespace Dominio.Entidades
     public class EstadoCarrito
     {
         public EstadoCarrito() { }
-        public EstadoCarrito(int idEstadoCarrito,string nombre,ICollection<Carrito> carritos)
+        public EstadoCarrito(int idEstadoCarrito,string nombre)
         {
             IdEstadoCarrito = idEstadoCarrito;
             Nombre = nombre;
-            Carrito = carritos;
+           
         }
 
         public int IdEstadoCarrito { get; set; }
         public string Nombre { get; set; }
-        public virtual ICollection<Carrito> Carrito { get; set; }
+        
     }
 }

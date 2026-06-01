@@ -14,13 +14,17 @@ namespace Infraestructura
     
     public partial class EntityImagen
     {
-        
-        public Imagen()
+
+        public EntityImagen() { }
+        public EntityImagen(int idImagen, string nombre, string descripcion, string Url)
         {
-          
+            IdImagen = idImagen;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            URL = Url;
         }
-    
-        public int idImagen { get; set; }
+
+        public int IdImagen { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string URL { get; set; }

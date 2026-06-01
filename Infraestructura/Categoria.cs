@@ -14,13 +14,16 @@ namespace Infraestructura
     
     public partial class EntityCategoria
     {
-        
-        public EntityCategoria()
+
+        public EntityCategoria() { }
+        public EntityCategoria(int idCategoria, string nombre, string descripcion)
         {
-            this.Producto = new HashSet<EntityProducto>();
+            IdCategoria = idCategoria;
+            Nombre = nombre;
+            Descripcion = descripcion;
         }
-    
-        public int idCategoria { get; set; }
+
+        public int IdCategoria { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public virtual ICollection<EntityProducto> Producto { get; set; }

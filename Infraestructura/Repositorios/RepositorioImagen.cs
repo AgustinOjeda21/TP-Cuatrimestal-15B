@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dominio.Entidades;
+using Infraestructura.Mappers;
+using System.Data.Entity;
 using System.Text;
+using Aplicacion.Interfaces.Repositorios;
 using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioImagen
+    class RepositorioImagen : IRepositorioImagen
     {
         private readonly mydbEntities context;
         public RepositorioImagen(mydbEntities context)
@@ -17,34 +20,34 @@ namespace Infraestructura.Repositorios
 
         public async Task<List<Imagen>> ObtenerImagenes()
         {
-            var Resultado = await context.Imagens.ToListAsync();
-            return Resultado.Select(e => new Imagen(e.IdImagen, e.Nombre)).ToList();
+            var Resultado = await context.Imagen.ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
         }
         public async Task InsertarImagen(Imagen aut)
         {
-            EntityImagen Eaut = new EntityImagen(aut.GetIdImagen(), aut.GetNombre());
-            context.Imagens.Add(Eaut);
+            EntityImagen Eaut = aut.ToEntity();
+            context.Imagen.Add(Eaut);
             await context.SaveChangesAsync();
         }
 
         public async Task<Imagen> CapturarImagen(int id)
         {
-            EntityImagen Eaut = await context.Imagens.FindAsync(id);
+            EntityImagen Eaut = await context.Imagen.FindAsync(id);
             if (Eaut == null)
             {
                 return null;
             }
-            Imagen aut = new Imagen(Eaut.IdImagen, Eaut.Nombre);
+            Imagen aut = Eaut.ToDomain();
             return aut;
         }
         public async Task Actualizar(Imagen obj)
         {
-            var entity = await context.Imagens.FindAsync(obj.GetIdImagen());
+            var entity = await context.Imagen.FindAsync(obj.IdImagen);
             if (entity == null)
             {
                 return;
             }
-            entity.Mapeo(obj);
+            entity = obj.ToEntity();
             await context.SaveChangesAsync();
         }
     }

@@ -14,13 +14,20 @@ namespace Infraestructura
     
     public partial class EntityProducto
     {
-        
-        public EntityProducto()
+
+        public EntityProducto() { }
+        public EntityProducto(int idProducto, string nombre, string descripcion, decimal precio, int stock, bool estado, int marca)
         {
-            
+            IdProducto = idProducto;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            Precio = precio;
+            Stock = stock;
+            Estado = estado;
+            Marca_idMarca = marca;
         }
-    
-        public int idProducto { get; set; }
+
+        public int IdProducto { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }

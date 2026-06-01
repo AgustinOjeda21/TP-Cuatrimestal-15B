@@ -14,13 +14,19 @@ namespace Infraestructura
     
     public partial class EntityProveedor
     {
- 
-        public EntityProveedor()
+
+        public EntityProveedor() { }
+        public EntityProveedor(int idProveedor, string nombre, string telefono, string mail, bool estado, int direccion)
         {
-           
+            IdProveedor = idProveedor;
+            Nombre = nombre;
+            Telefono = telefono;
+            Mail = mail;
+            Estado = estado;
+            Direccion_idDireccion = direccion;
         }
-    
-        public int idProveedor { get; set; }
+
+        public int IdProveedor { get; set; }
         public string Nombre { get; set; }
         public string Telefono { get; set; }
         public string Mail { get; set; }

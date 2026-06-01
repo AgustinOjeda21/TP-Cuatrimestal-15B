@@ -14,13 +14,16 @@ namespace Infraestructura
     
     public partial class EntityEstadoPedido
     {
-  
-        public EntityEstadoPedido()
+
+        public EntityEstadoPedido() { }
+        public EntityEstadoPedido(int idEstadoPedido, string nombre, string descripcion)
         {
-            
+            IdEstadoPedido = idEstadoPedido;
+            Nombre = nombre;
+            Descripcion = descripcion;
         }
-    
-        public int idEstadoPedido { get; set; }
+
+        public int IdEstadoPedido { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
     

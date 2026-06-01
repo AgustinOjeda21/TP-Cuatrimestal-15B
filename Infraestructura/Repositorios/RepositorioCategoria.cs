@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Dominio.Entidades;
 using System.Text;
+using Infraestructura.Mappers;
+using System.Data.Entity;
+using Aplicacion.Interfaces.Repositorios;
 using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioCategoria
+    class RepositorioCategoria : IRepositorioCategoria
     {
         private readonly mydbEntities context;
         public RepositorioCategoria(mydbEntities context)
@@ -17,34 +20,34 @@ namespace Infraestructura.Repositorios
 
         public async Task<List<Categoria>> ObtenerCategoriaes()
         {
-            var Resultado = await context.Categorias.ToListAsync();
-            return Resultado.Select(e => new Categoria(e.IdCategoria, e.Nombre)).ToList();
+            var Resultado = await context.Categoria.ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
         }
         public async Task InsertarCategoria(Categoria aut)
         {
-            EntityCategoria Eaut = new EntityCategoria(aut.GetIdCategoria(), aut.GetNombre());
-            context.Categorias.Add(Eaut);
+            EntityCategoria Eaut = aut.ToEntity();
+            context.Categoria.Add(Eaut);
             await context.SaveChangesAsync();
         }
 
         public async Task<Categoria> CapturarCategoria(int id)
         {
-            EntityCategoria Eaut = await context.Categorias.FindAsync(id);
+            EntityCategoria Eaut = await context.Categoria.FindAsync(id);
             if (Eaut == null)
             {
                 return null;
             }
-            Categoria aut = new Categoria(Eaut.IdCategoria, Eaut.Nombre);
+            Categoria aut = Eaut.ToDomain();
             return aut;
         }
         public async Task Actualizar(Categoria obj)
         {
-            var entity = await context.Categorias.FindAsync(obj.GetIdCategoria());
+            var entity = await context.Categoria.FindAsync(obj.IdCategoria);
             if (entity == null)
             {
                 return;
             }
-            entity.Mapeo(obj);
+            entity = obj.ToEntity();
             await context.SaveChangesAsync();
         }
     }

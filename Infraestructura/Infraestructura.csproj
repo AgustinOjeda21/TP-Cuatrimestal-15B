@@ -131,6 +131,24 @@
     <Compile Include="Imagen.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Mappers\CarritoExtension.cs" />
+    <Compile Include="Mappers\CategoriaExtension.cs" />
+    <Compile Include="Mappers\DetallePedidoExtension.cs" />
+    <Compile Include="Mappers\DireccionExtension.cs" />
+    <Compile Include="Mappers\EstadoCarritoExtension.cs" />
+    <Compile Include="Mappers\EstadoPedidoExtension.cs" />
+    <Compile Include="Mappers\FormaEntregaExtension.cs" />
+    <Compile Include="Mappers\FormaPagoExtension.cs" />
+    <Compile Include="Mappers\ImagenExtension.cs" />
+    <Compile Include="Mappers\MarcaExtension.cs" />
+    <Compile Include="Mappers\PedidoExtension.cs" />
+    <Compile Include="Mappers\PermisoExtension.cs" />
+    <Compile Include="Mappers\PersonaExtension.cs" />
+    <Compile Include="Mappers\ProductoExtension.cs" />
+    <Compile Include="Mappers\ProductoCarritoExtension.cs" />
+    <Compile Include="Mappers\ProveedorExtension.cs" />
+    <Compile Include="Mappers\RolExtension.cs" />
+    <Compile Include="Mappers\UsuarioExtension.cs" />
     <Compile Include="Marca.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -224,6 +242,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aplicacion\Aplicacion.csproj">
+      <Project>{59cc2e80-037d-4d6d-8a73-cae1130b8f4a}</Project>
+      <Name>Aplicacion</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
       <Project>{aa260b99-dd4d-42dc-bed3-422d0f17044e}</Project>
       <Name>Dominio</Name>

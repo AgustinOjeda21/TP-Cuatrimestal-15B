@@ -14,13 +14,16 @@ namespace Infraestructura
     
     public partial class EntityMarca
     {
-    
-        public EntityMarca()
+
+        public EntityMarca() { }
+        public EntityMarca(int idMarca, string nombre)
         {
-         
+            IdMarca = IdMarca;
+            Nombre = nombre;
+        
         }
-    
-        public int idMarca { get; set; }
+
+        public int IdMarca { get; set; }
         public string Nombre { get; set; }
     
         

@@ -9,13 +9,12 @@ namespace Dominio.Entidades
     public class Usuario
     {
         public Usuario() { }
-        public Usuario(int idUsuario,string nombreUsuario,string contraseña, bool estado, ICollection<Persona> persona, Rol rol)
+        public Usuario(int idUsuario,string nombreUsuario,string contraseña, bool estado, Rol rol)
         {
             IdUsuario = idUsuario;
             NombreUsuario = nombreUsuario;
             Contraseña = contraseña;
             Estado = estado;
-            Persona = persona;
             Rol = rol;
         }
 
@@ -23,7 +22,6 @@ namespace Dominio.Entidades
         public string NombreUsuario { get; set; }
         public string Contraseña { get; set; }
         public bool Estado { get; set; }
-        public virtual ICollection<Persona> Persona { get; set; }
         public virtual Rol Rol { get; set; }
     }
 }

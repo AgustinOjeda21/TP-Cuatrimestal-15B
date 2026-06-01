@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dominio.Entidades;
+using Infraestructura.Mappers;
+using System.Data.Entity;
 using System.Text;
+using Aplicacion.Interfaces.Repositorios;
 using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioMarca
+    class RepositorioMarca : IRepositorioMarca
     {
         private readonly mydbEntities context;
         public RepositorioMarca(mydbEntities context)
@@ -17,34 +20,34 @@ namespace Infraestructura.Repositorios
 
         public async Task<List<Marca>> ObtenerMarcaes()
         {
-            var Resultado = await context.Marcas.ToListAsync();
-            return Resultado.Select(e => new Marca(e.IdMarca, e.Nombre)).ToList();
+            var Resultado = await context.Marca.ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
         }
         public async Task InsertarMarca(Marca aut)
         {
-            EntityMarca Eaut = new EntityMarca(aut.GetIdMarca(), aut.GetNombre());
-            context.Marcas.Add(Eaut);
+            EntityMarca Eaut = aut.ToEntity();
+            context.Marca.Add(Eaut);
             await context.SaveChangesAsync();
         }
 
         public async Task<Marca> CapturarMarca(int id)
         {
-            EntityMarca Eaut = await context.Marcas.FindAsync(id);
+            EntityMarca Eaut = await context.Marca.FindAsync(id);
             if (Eaut == null)
             {
                 return null;
             }
-            Marca aut = new Marca(Eaut.IdMarca, Eaut.Nombre);
+            Marca aut = Eaut.ToDomain();
             return aut;
         }
         public async Task Actualizar(Marca obj)
         {
-            var entity = await context.Marcas.FindAsync(obj.GetIdMarca());
+            var entity = await context.Marca.FindAsync(obj.IdMarca);
             if (entity == null)
             {
                 return;
             }
-            entity.Mapeo(obj);
+            entity = obj.ToEntity();
             await context.SaveChangesAsync();
         }
     }

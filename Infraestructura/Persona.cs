@@ -14,13 +14,19 @@ namespace Infraestructura
     
     public partial class EntityPersona
     {
-  
-        public EntityPersona()
+
+        public EntityPersona() { }
+        public EntityPersona(int idPersona, string nombre, string apellido, string mail, string telefono, int usuario)
         {
-            
+            IdPersona = idPersona;
+            Nombre = nombre;
+            Mail = mail;
+            Apellido = apellido;
+            Telefono = telefono;
+            Usuario_idUsuario = usuario;
         }
-    
-        public int idPersona { get; set; }
+
+        public int IdPersona { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Mail { get; set; }

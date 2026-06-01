@@ -41,7 +41,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Gestores\Class1.cs" />
+    <Compile Include="Gestores\Class10.cs" />
+    <Compile Include="Gestores\Class11.cs" />
+    <Compile Include="Gestores\Class12.cs" />
+    <Compile Include="Gestores\Class13.cs" />
+    <Compile Include="Gestores\Class14.cs" />
+    <Compile Include="Gestores\Class15.cs" />
+    <Compile Include="Gestores\Class16.cs" />
+    <Compile Include="Gestores\Class17.cs" />
+    <Compile Include="Gestores\Class18.cs" />
+    <Compile Include="Gestores\Class2.cs" />
+    <Compile Include="Gestores\Class3.cs" />
+    <Compile Include="Gestores\Class4.cs" />
+    <Compile Include="Gestores\Class5.cs" />
+    <Compile Include="Gestores\Class6.cs" />
+    <Compile Include="Gestores\Class7.cs" />
+    <Compile Include="Gestores\Class8.cs" />
+    <Compile Include="Gestores\Class9.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioCarrito.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioCategoria.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioDetallePedido.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioDireccion.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioEstadoPedido.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioEstadoCarrito.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioFormaEntrega.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioFormaPago.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioImagen.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioMarca.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioPedido.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioPermiso.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioPersona.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioProducto.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioProductoCarrito.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioProveedor.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioRol.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioUsuario.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +87,12 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{aa260b99-dd4d-42dc-bed3-422d0f17044e}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

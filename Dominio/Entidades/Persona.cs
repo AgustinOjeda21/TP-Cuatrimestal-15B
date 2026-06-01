@@ -9,16 +9,14 @@ namespace Dominio.Entidades
     public class Persona
     {
         public Persona() { }
-        public Persona(int idPersona,string nombre, string apellido, string mail, string telefono, ICollection<Pedido> pedidos, Usuario usuario, ICollection<Direccion> direccions)
+        public Persona(int idPersona,string nombre, string apellido, string mail, string telefono,Usuario usuario)
         {
             IdPersona = idPersona;
             Nombre = nombre;
             Mail = mail;
             Apellido = apellido;
             Telefono = telefono;
-            Pedido = pedidos;
             Usuario = usuario;
-            Direccion = direccions;
         }
 
         public int IdPersona { get; set; }
@@ -26,8 +24,6 @@ namespace Dominio.Entidades
         public string Apellido { get; set; }
         public string Mail { get; set; }
         public string Telefono { get; set; }
-        public virtual ICollection<Pedido> Pedido { get; set; }
         public virtual Usuario Usuario { get; set; }
-        public virtual ICollection<Direccion> Direccion { get; set; }
     }
 }

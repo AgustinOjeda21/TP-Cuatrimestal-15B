@@ -14,6 +14,13 @@ namespace Infraestructura
     
     public partial class EntityProductoCarrito
     {
+        public EntityProductoCarrito() { }
+        public EntityProductoCarrito(int cantidad, int carrito, int producto)
+        {
+            Cantidad = cantidad;
+            Carrito_idCarrito= carrito;
+            Producto_idProducto = producto;
+        }
         public int Producto_idProducto { get; set; }
         public int Cantidad { get; set; }
         public int Carrito_idCarrito { get; set; }

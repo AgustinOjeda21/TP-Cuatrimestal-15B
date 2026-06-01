@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Gestores
 {
-    public class Class1
+    class Class16
     {
     }
 }

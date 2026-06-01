@@ -14,12 +14,15 @@ namespace Infraestructura
     
     public partial class EntityCarrito
     {
-        public EntityCarrito()
+        public EntityCarrito() { }
+        public EntityCarrito(int idCarrito, decimal total, int estado)
         {
-   
+            IdCarrito = idCarrito;
+            Total = total;
+            EstadoCarrito_idEstadoCarrito = estado;
         }
-    
-        public int idCarrito { get; set; }
+
+        public int IdCarrito { get; set; }
         public decimal Total { get; set; }
         public int EstadoCarrito_idEstadoCarrito { get; set; }
 

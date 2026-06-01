@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aplicacion.Interfaces.Repositorios;
 using Dominio.Entidades;
+using Infraestructura.Mappers;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioRol
+    class RepositorioRol : IRepositorioRol
     {
         private readonly mydbEntities context;
         public RepositorioRol(mydbEntities context)
@@ -17,19 +20,19 @@ namespace Infraestructura.Repositorios
 
         public async Task<List<Rol>> ObtenerRoles()
         {
-            var Resultado = await context.Rols.ToListAsync();
-            return Resultado.Select(e => new Rol(e.IdRol, e.Nombre)).ToList();
+            var Resultado = await context.Rol.ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
         }
         public async Task InsertarRol(Rol aut)
         {
-            EntityRol Eaut = new EntityRol(aut.GetIdRol(), aut.GetNombre());
-            context.Rols.Add(Eaut);
+            EntityRol Eaut = aut.ToEntity();
+            context.Rol.Add(Eaut);
             await context.SaveChangesAsync();
         }
 
         public async Task<Rol> CapturarRol(int id)
         {
-            EntityRol Eaut = await context.Rols.FindAsync(id);
+            EntityRol Eaut = await context.Rol.FindAsync(id);
             if (Eaut == null)
             {
                 return null;
@@ -39,12 +42,12 @@ namespace Infraestructura.Repositorios
         }
         public async Task Actualizar(Rol obj)
         {
-            var entity = await context.Rols.FindAsync(obj.GetIdRol());
+            var entity = await context.Rol.FindAsync(obj.IdRol);
             if (entity == null)
             {
                 return;
             }
-            entity.Mapeo(obj);
+            entity = obj.ToEntity();
             await context.SaveChangesAsync();
         }
     }

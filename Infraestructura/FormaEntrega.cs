@@ -15,12 +15,15 @@ namespace Infraestructura
     public partial class EntityFormaEntrega
     {
 
-        public EntityFormaEntrega()
+        public EntityFormaEntrega() { }
+        public EntityFormaEntrega(int idFormaEntrega, string nombre, string descripcion)
         {
-            this.DetallePedido = new HashSet<EntityDetallePedido>();
+            IdFormaEntrega = idFormaEntrega;
+            Nombre = nombre;
+            Descripcion = descripcion;
         }
-    
-        public int idFormaEntrega { get; set; }
+
+        public int IdFormaEntrega { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public virtual ICollection<EntityDetallePedido> DetallePedido { get; set; }

@@ -14,18 +14,17 @@ namespace Infraestructura
     
     public partial class EntityRol
     {
-        
-        public EntityRol()
+
+        public EntityRol() { }
+        public EntityRol(int idRol, string nombre)
         {
-           
+            IdRol = idRol;
+            Nombre = nombre;
         }
-    
-        public int idRol { get; set; }
+
+        public int IdRol { get; set; }
         public string Nombre { get; set; }
-    
-        
         public virtual ICollection<EntityUsuario> Usuario { get; set; }
-       
         public virtual ICollection<EntityPermiso> Permiso { get; set; }
     }
 }

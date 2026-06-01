@@ -14,13 +14,22 @@ namespace Infraestructura
     
     public partial class EntityDetallePedido
     {
+        public EntityDetallePedido() { }
+        public EntityDetallePedido(DateTime Fechapedido, DateTime Fechaentrega, int direccion, int formaEntrega, int formaPago, int pedido)
+        {
+            FechaPedido = Fechapedido;
+            FechaEntrega = Fechaentrega;
+            Direccion_idDireccion = direccion;
+            FormaEntrega_idFormaEntrega = formaEntrega;
+            FormaPago_idFormaPago = formaPago;
+            Pedido_idPedido = pedido;
+        }
         public int Pedido_idPedido { get; set; }
         public System.DateTime FechaPedido { get; set; }
         public System.DateTime FechaEntrega { get; set; }
         public int FormaEntrega_idFormaEntrega { get; set; }
         public int FormaPago_idFormaPago { get; set; }
         public Nullable<int> Direccion_idDireccion { get; set; }
-    
         public virtual EntityDireccion Direccion { get; set; }
         public virtual EntityFormaEntrega FormaEntrega { get; set; }
         public virtual EntityFormaPago FormaPago { get; set; }

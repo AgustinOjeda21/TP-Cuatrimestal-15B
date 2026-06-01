@@ -14,13 +14,18 @@ namespace Infraestructura
     
     public partial class EntityUsuario
     {
-        
-        public EntityUsuario()
+
+        public EntityUsuario() { }
+        public EntityUsuario(int idUsuario, string nombreUsuario, string contraseña, bool estado, int rol)
         {
-            
+            IdUsuario = idUsuario;
+            NombreUsuario = nombreUsuario;
+            Contraseña = contraseña;
+            Estado = estado;
+            Rol_idRol = rol;
         }
-    
-        public int idUsuario { get; set; }
+
+        public int IdUsuario { get; set; }
         public string NombreUsuario { get; set; }
         public string Contraseña { get; set; }
         public bool Estado { get; set; }

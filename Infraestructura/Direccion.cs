@@ -14,24 +14,26 @@ namespace Infraestructura
     
     public partial class EntityDireccion
     {
-       
-        public EntityDireccion()
+
+        public EntityDireccion() { }
+        public EntityDireccion(int idDireccion, string calle, string numero, string localidad, string codigo, string observaciones)
         {
-            this.DetallePedido = new HashSet<DetallePedido>();
-            this.Proveedor = new HashSet<Proveedor>();
-            this.Persona = new HashSet<Persona>();
+            IdDireccion = idDireccion;
+            Calle = calle;
+            Numero = numero;
+            Localidad = localidad;
+            CodigoPostal = codigo;
+            Observaciones = observaciones;
         }
-    
-        public int idDireccion { get; set; }
+
+        public int IdDireccion { get; set; }
         public string Calle { get; set; }
         public string Numero { get; set; }
         public string Localidad { get; set; }
         public string CodigoPostal { get; set; }
         public string Observaciones { get; set; }
-    
         public virtual ICollection<EntityDetallePedido> DetallePedido { get; set; }
         public virtual ICollection<EntityProveedor> Proveedor { get; set; }
-       
         public virtual ICollection<EntityPersona> Persona { get; set; }
     }
 }

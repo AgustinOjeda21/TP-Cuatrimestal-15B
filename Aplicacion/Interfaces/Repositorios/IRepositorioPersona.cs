@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Dominio.Entidades;
+using System.Threading.Tasks;
+
+namespace Aplicacion.Interfaces.Repositorios
+{
+    public interface IRepositorioPersona
+    {
+        Task<List<Persona>> ObtenerPersonaes();
+
+        Task InsertarPersona(Persona aut);
+
+
+        Task<Persona> CapturarPersona(int id);
+
+        Task Actualizar(Persona obj);
+       
+    }
+}

@@ -14,12 +14,14 @@ namespace Infraestructura
     
     public partial class EntityEstadoCarrito
     {
-        public EntityEstadoCarrito()
+        public EntityEstadoCarrito() { }
+        public EntityEstadoCarrito(int idEstadoCarrito, string nombre)
         {
-           
+            IdEstadoCarrito = idEstadoCarrito;
+            Nombre = nombre;
         }
-    
-        public int idEstadoCarrito { get; set; }
+
+        public int IdEstadoCarrito { get; set; }
         public string Nombre { get; set; }
         public virtual ICollection<EntityCarrito> Carrito { get; set; }
     }

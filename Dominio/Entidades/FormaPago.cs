@@ -9,17 +9,17 @@ namespace Dominio.Entidades
     public class FormaPago
     {
         public FormaPago() { }
-        public FormaPago(int idFormaPago,string nombre, string descripcion,ICollection<DetallePedido> detalles)
+        public FormaPago(int idFormaPago,string nombre, string descripcion)
         {
             IdFormaPago = idFormaPago;
             Nombre = nombre;
             Descripcion = descripcion;
-            DetallePedido = detalles;
+            
         }
 
         public int IdFormaPago { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public virtual ICollection<DetallePedido> DetallePedido { get; set; }
+     
     }
 }

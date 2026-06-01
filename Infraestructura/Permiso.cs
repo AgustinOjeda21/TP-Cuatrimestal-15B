@@ -15,12 +15,14 @@ namespace Infraestructura
     public partial class EntityPermiso
     {
 
-        public EntityPermiso()
+        public EntityPermiso() { }
+        public EntityPermiso(int idPermiso, string nombre)
         {
-           
+            IdPermiso = idPermiso;
+            Nombre = nombre;
         }
-    
-        public int idPermiso { get; set; }
+
+        public int IdPermiso { get; set; }
         public string Nombre { get; set; }
     
 

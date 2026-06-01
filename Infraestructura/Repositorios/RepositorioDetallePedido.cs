@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dominio.Entidades;
+using Infraestructura.Mappers;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
+using Aplicacion.Interfaces.Repositorios;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioDetallePedido
+    class RepositorioDetallePedido : IRepositorioDetallePedido
     {
         private readonly mydbEntities context;
         public RepositorioDetallePedido(mydbEntities context)
@@ -17,34 +20,34 @@ namespace Infraestructura.Repositorios
 
         public async Task<List<DetallePedido>> ObtenerDetallePedidoes()
         {
-            var Resultado = await context.DetallePedidos.ToListAsync();
-            return Resultado.Select(e => new DetallePedido(e.IdDetallePedido, e.Nombre)).ToList();
+            var Resultado = await context.DetallePedido.ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
         }
         public async Task InsertarDetallePedido(DetallePedido aut)
         {
-            EntityDetallePedido Eaut = new EntityDetallePedido(aut.GetIdDetallePedido(), aut.GetNombre());
-            context.DetallePedidos.Add(Eaut);
+            EntityDetallePedido Eaut = aut.ToEntity();
+            context.DetallePedido.Add(Eaut);
             await context.SaveChangesAsync();
         }
 
         public async Task<DetallePedido> CapturarDetallePedido(int id)
         {
-            EntityDetallePedido Eaut = await context.DetallePedidos.FindAsync(id);
+            EntityDetallePedido Eaut = await context.DetallePedido.FindAsync(id);
             if (Eaut == null)
             {
                 return null;
             }
-            DetallePedido aut = new DetallePedido(Eaut.IdDetallePedido, Eaut.Nombre);
+            DetallePedido aut = Eaut.ToDomain();
             return aut;
         }
         public async Task Actualizar(DetallePedido obj)
         {
-            var entity = await context.DetallePedidos.FindAsync(obj.GetIdDetallePedido());
+            var entity = await context.DetallePedido.FindAsync(obj.Pedido.IdPedido);
             if (entity == null)
             {
                 return;
             }
-            entity.Mapeo(obj);
+            entity = obj.ToEntity();
             await context.SaveChangesAsync();
         }
     }

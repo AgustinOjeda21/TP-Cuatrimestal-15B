@@ -9,7 +9,7 @@ namespace Dominio.Entidades
     public class Proveedor
     {
         public Proveedor() { }
-        public Proveedor(int idProveedor, string nombre, string telefono, string mail, bool estado, Direccion direccion, ICollection<Producto> productos)
+        public Proveedor(int idProveedor, string nombre, string telefono, string mail, bool estado, Direccion direccion)
         {
             IdProveedor = idProveedor;
             Nombre = nombre;
@@ -17,7 +17,6 @@ namespace Dominio.Entidades
             Mail = mail;
             Estado = estado;
             Direccion = direccion;
-            Producto = productos;
         }
 
         public int IdProveedor { get; set; }
@@ -26,6 +25,6 @@ namespace Dominio.Entidades
         public string Mail { get; set; }
         public bool Estado { get; set; }
         public Direccion Direccion { get; set; }
-        public ICollection<Producto> Producto { get; set; }
+
     }
 }
