@@ -200,6 +200,7 @@
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.CopyComplete" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.CoreCompileInputs.cache" />
+    <Content Include="Inicio.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.dll" />
@@ -287,6 +288,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

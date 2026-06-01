@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,24 +42,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gestores\Class1.cs" />
-    <Compile Include="Gestores\Class10.cs" />
-    <Compile Include="Gestores\Class11.cs" />
-    <Compile Include="Gestores\Class12.cs" />
-    <Compile Include="Gestores\Class13.cs" />
-    <Compile Include="Gestores\Class14.cs" />
-    <Compile Include="Gestores\Class15.cs" />
-    <Compile Include="Gestores\Class16.cs" />
-    <Compile Include="Gestores\Class17.cs" />
-    <Compile Include="Gestores\Class18.cs" />
-    <Compile Include="Gestores\Class2.cs" />
-    <Compile Include="Gestores\Class3.cs" />
-    <Compile Include="Gestores\Class4.cs" />
-    <Compile Include="Gestores\Class5.cs" />
-    <Compile Include="Gestores\Class6.cs" />
-    <Compile Include="Gestores\Class7.cs" />
-    <Compile Include="Gestores\Class8.cs" />
-    <Compile Include="Gestores\Class9.cs" />
+    <Compile Include="Gestores\GestorCarrito.cs" />
+    <Compile Include="Gestores\GestorCategoria.cs" />
+    <Compile Include="Gestores\GestorDetallePedido.cs" />
+    <Compile Include="Gestores\GestorDireccion.cs" />
+    <Compile Include="Gestores\GestorEstadoCarrito.cs" />
+    <Compile Include="Gestores\GestorEstadoPedido.cs" />
+    <Compile Include="Gestores\GestorFormaEntrega.cs" />
+    <Compile Include="Gestores\GestorFormaPago.cs" />
+    <Compile Include="Gestores\GestorImagen.cs" />
+    <Compile Include="Gestores\GestorMarca.cs" />
+    <Compile Include="Gestores\GestorPedido.cs" />
+    <Compile Include="Gestores\GestorPerniso.cs" />
+    <Compile Include="Gestores\GestorPersona.cs" />
+    <Compile Include="Gestores\GestorProducto.cs" />
+    <Compile Include="Gestores\GestorProductoCarrito.cs" />
+    <Compile Include="Gestores\GestorProveedor.cs" />
+    <Compile Include="Gestores\GestorRol.cs" />
+    <Compile Include="Gestores\GestorUsuario.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorCategoria.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorCarrito.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorDetallePedido.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorDireccion.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorEstadoCarrito.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorEstadoPedido.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorFormaEntrega.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorFormaPago.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorImagen.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorMarca.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorPedido.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorPermiso.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorPersona.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorProducto.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorProductoCarrito.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorProveedor.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorRol.cs" />
+    <Compile Include="Interfaces\Gestores\IGestorUsuario.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioCarrito.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioCategoria.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioDetallePedido.cs" />
@@ -79,6 +98,7 @@
     <Compile Include="Interfaces\Repositorios\IRepositorioUsuario.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="obj\Debug\Aplicacion.csproj.AssemblyReference.cache" />

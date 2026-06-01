@@ -5,40 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Services.Description;
 
-namespace Aplicacion
-{
-    public static class Result<T>
+
+    public class Result<T>
     {
-        public static bool Success { get; set; }
-        public static string Message { get; set; }
-        public static T Value { get; set; }
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public T Value { get; set; }
 
-        public Result<T>(bool success, string message, T value)
+        public Result(bool success, string message, T value)
         {
-            Success = Success;
-            Message = Message;
-            Value = Value;
-        }
-
-        public static void EjecucionCorrecta(this Result<T> result)
-        {
-            result.Success = true;
-            Message = "Ejecucion Correcta";
-            Value = default;
-            return result
-        }
-        public static void Ok(T value)
-        {
-            Success = true;
-            Message = "";
-            Value = value;
-        }
-
-        public static void Fail(string message)
-        {
-            Success = false;
+            Success = success;
             Message = message;
-            Value = default;
+            Value = value;
+            
+        }
+
+        public static Result<T> EjecucionCorrecta()
+        {
+            return new Result<T>(true, "Ejecucion correcta", default);
+        }
+        public static Result<T> Ok(T value)
+        {
+            return new Result<T>(true, "", value);
+        }
+
+        public static Result<T> Fail(string message)
+        {
+            return new Result<T>(false,message, default);
         }
     }
-}
+
