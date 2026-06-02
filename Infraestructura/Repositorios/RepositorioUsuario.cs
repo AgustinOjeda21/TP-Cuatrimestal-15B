@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioUsuario : IRepositorioUsuario
+    public class RepositorioUsuario : IRepositorioUsuario
     {
         private readonly mydbEntities context;
         public RepositorioUsuario(mydbEntities context)
@@ -20,7 +20,7 @@ namespace Infraestructura.Repositorios
 
         public async Task<List<Usuario>> ObtenerUsuarios()
         {
-            var Resultado = await context.Usuario.ToListAsync();
+            var Resultado = await context.Usuario.Include("Rol").ToListAsync();
             return Resultado.Select(e => e.ToDomain()).ToList();
         }
         public async Task InsertarUsuario(Usuario aut)
@@ -52,3 +52,4 @@ namespace Infraestructura.Repositorios
         }
     }
 }
+

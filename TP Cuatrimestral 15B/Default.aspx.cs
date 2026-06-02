@@ -11,7 +11,7 @@ namespace TP_Cuatrimestral_15B
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Inicio.aspx");
         }
     }
 }

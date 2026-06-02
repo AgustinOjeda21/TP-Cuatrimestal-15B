@@ -8,7 +8,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    public class GestorRol
+    public class GestorRol : Aplicacion.Interfaces.Gestores.IGestorRol
     {
         IRepositorioRol repo;
 

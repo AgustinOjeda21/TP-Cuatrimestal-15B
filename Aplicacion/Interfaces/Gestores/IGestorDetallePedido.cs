@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.Interfaces.Gestores
 {
-    interface IGestorDetallePedido
+    public interface IGestorDetallePedido
     {
     }
 }
+

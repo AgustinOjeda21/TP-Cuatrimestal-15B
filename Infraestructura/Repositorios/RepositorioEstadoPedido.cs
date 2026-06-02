@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioEstadoPedido : IRepositorioEstadoPedido
+    public class RepositorioEstadoPedido : IRepositorioEstadoPedido
     {
         private readonly mydbEntities context;
         public RepositorioEstadoPedido(mydbEntities context)
@@ -52,3 +52,4 @@ namespace Infraestructura.Repositorios
         }
     }
 }
+

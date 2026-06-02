@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioFormaEntrega : IRepositorioFormaEntrega
+    public class RepositorioFormaEntrega : IRepositorioFormaEntrega
     {
         private readonly mydbEntities context;
         public RepositorioFormaEntrega(mydbEntities context)
@@ -52,3 +52,4 @@ namespace Infraestructura.Repositorios
         }
     }
 }
+

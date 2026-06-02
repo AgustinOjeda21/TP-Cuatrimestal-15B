@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Aplicacion.Interfaces.Repositorios;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioRol : IRepositorioRol
+    public class RepositorioRol : IRepositorioRol
     {
         private readonly mydbEntities context;
         public RepositorioRol(mydbEntities context)
@@ -23,6 +23,7 @@ namespace Infraestructura.Repositorios
             var Resultado = await context.Rol.ToListAsync();
             return Resultado.Select(e => e.ToDomain()).ToList();
         }
+
         public async Task InsertarRol(Rol aut)
         {
             EntityRol Eaut = aut.ToEntity();
@@ -40,6 +41,7 @@ namespace Infraestructura.Repositorios
             Rol aut = new Rol(Eaut.IdRol, Eaut.Nombre);
             return aut;
         }
+
         public async Task Actualizar(Rol obj)
         {
             var entity = await context.Rol.FindAsync(obj.IdRol);

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.Interfaces.Gestores
 {
-    interface IGestorPersona
+    public interface IGestorPersona
     {
         Task<Result<Persona>> CargarPersona(Persona edi);
 
 
         Task<Persona> CapturarPersona(int id);
 
-        Task<List<Persona>> DevolverPersonaes();
+        Task<List<Persona>> DevolverPersonas();
 
 
         Task<Result<Persona>> ModificarNombre(string Nombre, int id);
@@ -33,4 +33,5 @@ namespace Aplicacion.Interfaces.Gestores
         
     }
 }
+
 

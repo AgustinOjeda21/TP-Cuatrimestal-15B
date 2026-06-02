@@ -10,7 +10,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioDetallePedido : IRepositorioDetallePedido
+    public class RepositorioDetallePedido : IRepositorioDetallePedido
     {
         private readonly mydbEntities context;
         public RepositorioDetallePedido(mydbEntities context)
@@ -52,3 +52,4 @@ namespace Infraestructura.Repositorios
         }
     }
 }
+

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioEstadoCarrito : IRepositorioEstadoCarrito
+    public class RepositorioEstadoCarrito : IRepositorioEstadoCarrito
     {
         private readonly mydbEntities context;
         public RepositorioEstadoCarrito(mydbEntities context)
@@ -52,3 +52,4 @@ namespace Infraestructura.Repositorios
         }
     }
 }
+

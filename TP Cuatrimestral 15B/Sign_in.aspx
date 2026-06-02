@@ -75,7 +75,8 @@
             <asp:Button
             ID="btnRegistrarse"
             runat="server"
-            Text="Registrarse" />
+            Text="Registrarse"
+            OnClick="btnRegistrarse_Click" />
 
             <asp:HyperLink
             ID="lnkLogin"

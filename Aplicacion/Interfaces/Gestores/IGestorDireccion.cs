@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.Interfaces.Gestores
 {
-    interface IGestorDireccion
+    public interface IGestorDireccion
     {
         Task<Result<Direccion>> CargarDireccion(Direccion edi);
         Task<Direccion> CapturarDireccion(int id);
@@ -26,3 +26,4 @@ namespace Aplicacion.Interfaces.Gestores
         
     }
 }
+

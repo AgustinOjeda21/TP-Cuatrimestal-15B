@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.Interfaces.Gestores
 {
-    interface IGestorUsuario
+    public interface IGestorUsuario
     {
         Task<Result<Usuario>> CargarUsuario(Usuario edi, Persona persona);
 
@@ -36,3 +36,4 @@ namespace Aplicacion.Interfaces.Gestores
        
     }
 }
+

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioFormaPago : IRepositorioFormaPago
+    public class RepositorioFormaPago : IRepositorioFormaPago
     {
         private readonly mydbEntities context;
         public RepositorioFormaPago(mydbEntities context)
@@ -52,3 +52,4 @@ namespace Infraestructura.Repositorios
         }
     }
 }
+

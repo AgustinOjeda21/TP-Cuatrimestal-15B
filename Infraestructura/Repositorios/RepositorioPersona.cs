@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
 {
-    class RepositorioPersona : IRepositorioPersona
+    public class RepositorioPersona : IRepositorioPersona
     {
         private readonly mydbEntities context;
         public RepositorioPersona(mydbEntities context)
@@ -52,3 +52,4 @@ namespace Infraestructura.Repositorios
         }
     }
 }
+

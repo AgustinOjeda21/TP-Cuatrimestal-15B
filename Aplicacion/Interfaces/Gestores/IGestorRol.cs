@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.Interfaces.Gestores
 {
-    interface IGestorRol
+    public interface IGestorRol
     {
         Task<Result<Rol>> CargarRol(Rol edi);
 
@@ -32,3 +32,4 @@ namespace Aplicacion.Interfaces.Gestores
        
     }
 }
+

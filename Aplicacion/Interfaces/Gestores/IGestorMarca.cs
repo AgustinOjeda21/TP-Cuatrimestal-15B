@@ -7,14 +7,14 @@ using Dominio.Entidades;
 
 namespace Aplicacion.Interfaces.Gestores
 {
-    interface IGestorMarca
+    public interface IGestorMarca
     {
         Task<Result<Marca>> CargarMarca(Marca edi);
 
 
         Task<Marca> CapturarMarca(int id);
 
-        Task<List<Marca>> DevolverMarcaes();
+        Task<List<Marca>> DevolverMarcas();
 
 
         Task<Result<Marca>> ModificarNombre(string Nombre, int id);
@@ -26,3 +26,4 @@ namespace Aplicacion.Interfaces.Gestores
        
     }
 }
+

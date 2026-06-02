@@ -8,7 +8,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    public class GestorPersona
+    public class GestorPersona : Aplicacion.Interfaces.Gestores.IGestorPersona
     {
         IRepositorioPersona repo;
 
