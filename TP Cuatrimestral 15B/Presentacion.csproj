@@ -205,6 +205,13 @@
     <Content Include="DetalleProducto.aspx" />
     <Content Include="Sign_in.aspx" />
     <Content Include="Log_in.aspx" />
+    <Content Include="Admin\Inicio.aspx" />
+    <Content Include="Admin\Productos.aspx" />
+    <Content Include="Admin\Categorias.aspx" />
+    <Content Include="Admin\FormasPago.aspx" />
+    <Content Include="Admin\FormasEntrega.aspx" />
+    <Content Include="Admin\Pedidos.aspx" />
+    <Content Include="Admin\DetallePedido.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.dll" />
@@ -327,6 +334,55 @@
     </Compile>
     <Compile Include="Log_in.aspx.designer.cs">
       <DependentUpon>Log_in.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Productos.aspx.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Productos.aspx.designer.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Categorias.aspx.cs">
+      <DependentUpon>Categorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Categorias.aspx.designer.cs">
+      <DependentUpon>Categorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormasPago.aspx.cs">
+      <DependentUpon>FormasPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FormasPago.aspx.designer.cs">
+      <DependentUpon>FormasPago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormasEntrega.aspx.cs">
+      <DependentUpon>FormasEntrega.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FormasEntrega.aspx.designer.cs">
+      <DependentUpon>FormasEntrega.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\DetallePedido.aspx.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DetallePedido.aspx.designer.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
