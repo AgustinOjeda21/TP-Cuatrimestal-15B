@@ -8,7 +8,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorRol
+    public class GestorRol
     {
         IRepositorioRol repo;
 
@@ -56,7 +56,7 @@ namespace Aplicacion.Gestores
             Rol obj = await repo.CapturarRol(id);
             if (obj is null)
             {
-                return Result<Rol>.Fail("La Rol ingresada no existe");
+                return Result<Rol>.Fail("El Rol ingresado no existe");
             }
             return Result<Rol>.Ok(obj);
         }

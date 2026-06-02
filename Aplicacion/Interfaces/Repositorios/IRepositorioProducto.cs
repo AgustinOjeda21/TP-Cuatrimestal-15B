@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioProducto
     {
-        Task<List<Producto>> ObtenerProductoes();
+        Task<List<Producto>> ObtenerProductos();
 
         Task InsertarProducto(Producto aut);
 

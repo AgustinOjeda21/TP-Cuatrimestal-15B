@@ -8,7 +8,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorMarca
+    public class GestorMarca
     {
         IRepositorioMarca repo;
 
@@ -28,9 +28,9 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarMarca(id);
             return edi;
         }
-        public async Task<List<Marca>> DevolverMarcaes()
+        public async Task<List<Marca>> DevolverMarcas()
         {
-            return await repo.ObtenerMarcaes();
+            return await repo.ObtenerMarcas();
         }
 
         public async Task<Result<Marca>> ModificarNombre(string Nombre, int id)

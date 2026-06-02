@@ -8,7 +8,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorPermiso
+    public class GestorPermiso
     {
         IRepositorioPermiso repo;
 
@@ -28,7 +28,7 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarPermiso(id);
             return edi;
         }
-        public async Task<List<Permiso>> DevolverPermisoes()
+        public async Task<List<Permiso>> DevolverPermisos()
         {
             return await repo.ObtenerPermisos();
         }
@@ -55,7 +55,7 @@ namespace Aplicacion.Gestores
             Permiso obj = await repo.CapturarPermiso(id);
             if (obj is null)
             {
-                return Result<Permiso>.Fail("La Permiso ingresada no existe");
+                return Result<Permiso>.Fail("El Permiso ingresado no existe");
             }
             return Result<Permiso>.Ok(obj);
         }

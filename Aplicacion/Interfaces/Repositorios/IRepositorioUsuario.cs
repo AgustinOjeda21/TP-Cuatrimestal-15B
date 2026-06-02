@@ -10,7 +10,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioUsuario
     {
-        Task<List<Usuario>> ObtenerUsuarioes();
+        Task<List<Usuario>> ObtenerUsuarios();
         Task InsertarUsuario(Usuario aut);
         Task<Usuario> CapturarUsuario(int id);
         Task Actualizar(Usuario obj);

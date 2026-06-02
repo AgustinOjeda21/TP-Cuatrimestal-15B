@@ -18,7 +18,7 @@ namespace Infraestructura.Repositorios
             this.context = context;
         }
 
-        public async Task<List<Marca>> ObtenerMarcaes()
+        public async Task<List<Marca>> ObtenerMarcas()
         {
             var Resultado = await context.Marca.ToListAsync();
             return Resultado.Select(e => e.ToDomain()).ToList();
@@ -47,7 +47,7 @@ namespace Infraestructura.Repositorios
             {
                 return;
             }
-            entity = obj.ToEntity();
+            context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
         }
     }

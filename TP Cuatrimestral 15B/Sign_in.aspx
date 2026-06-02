@@ -80,7 +80,7 @@
             <asp:HyperLink
             ID="lnkLogin"
             runat="server"
-            NavigateUrl="~/Login.aspx">
+            NavigateUrl="~/Log_in.aspx">
             Ya tengo cuenta
             </asp:HyperLink>
         </div>

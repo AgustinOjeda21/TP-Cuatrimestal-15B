@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioPersona
     {
-        Task<List<Persona>> ObtenerPersonaes();
+        Task<List<Persona>> ObtenerPersonas();
 
         Task InsertarPersona(Persona aut);
 

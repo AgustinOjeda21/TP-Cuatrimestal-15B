@@ -8,7 +8,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorFormaEntrega
+    public class GestorFormaEntrega
     {
         IRepositorioFormaEntrega repo;
 
@@ -28,9 +28,9 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarFormaEntrega(id);
             return edi;
         }
-        public async Task<List<FormaEntrega>> DevolverFormaEntregaes()
+        public async Task<List<FormaEntrega>> DevolverFormasEntrega()
         {
-            return await repo.ObtenerFormaEntregaes();
+            return await repo.ObtenerFormasEntrega();
         }
 
         public async Task<Result<FormaEntrega>> ModificarNombre(string Nombre, int id)

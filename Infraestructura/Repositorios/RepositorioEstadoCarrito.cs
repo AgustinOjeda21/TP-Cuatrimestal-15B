@@ -18,7 +18,7 @@ namespace Infraestructura.Repositorios
             this.context = context;
         }
 
-        public async Task<List<EstadoCarrito>> ObtenerEstadoCarritoes()
+        public async Task<List<EstadoCarrito>> ObtenerEstadosCarrito()
         {
             var Resultado = await context.EstadoCarrito.ToListAsync();
             return Resultado.Select(e => e.ToDomain()).ToList();
@@ -47,7 +47,7 @@ namespace Infraestructura.Repositorios
             {
                 return;
             }
-            entity = obj.ToEntity();
+            context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
         }
     }

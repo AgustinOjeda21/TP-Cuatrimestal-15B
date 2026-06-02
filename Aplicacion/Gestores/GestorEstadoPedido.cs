@@ -8,7 +8,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorEstadoPedido
+    public class GestorEstadoPedido
     {
         IRepositorioEstadoPedido repo;
 
@@ -28,9 +28,9 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarEstadoPedido(id);
             return edi;
         }
-        public async Task<List<EstadoPedido>> DevolverEstadoPedidoes()
+        public async Task<List<EstadoPedido>> DevolverEstadosPedido()
         {
-            return await repo.ObtenerEstadoPedidoes();
+            return await repo.ObtenerEstadosPedido();
         }
 
         public async Task<Result<EstadoPedido>> ModificarNombre(string Nombre, int id)

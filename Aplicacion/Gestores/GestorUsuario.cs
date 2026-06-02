@@ -9,7 +9,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorUsuario
+    public class GestorUsuario
     {
         IRepositorioUsuario repo;
         IGestorRol gestorRol;
@@ -40,9 +40,9 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarUsuario(id);
             return edi;
         }
-        public async Task<List<Usuario>> DevolverUsuarioes()
+        public async Task<List<Usuario>> DevolverUsuarios()
         {
-            return await repo.ObtenerUsuarioes();
+            return await repo.ObtenerUsuarios();
         }
 
         public async Task<Result<Usuario>> ModificarNombre(string Nombre, int id)
@@ -97,7 +97,7 @@ namespace Aplicacion.Gestores
             Usuario obj = await repo.CapturarUsuario(id);
             if (obj is null)
             {
-                return Result<Usuario>.Fail("La Usuario ingresada no existe");
+                return Result<Usuario>.Fail("El Usuario ingresado no existe");
             }
             return Result<Usuario>.Ok(obj);
         }

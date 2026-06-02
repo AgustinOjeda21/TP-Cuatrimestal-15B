@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioFormaEntrega
     {
-        Task<List<FormaEntrega>> ObtenerFormaEntregaes();
+        Task<List<FormaEntrega>> ObtenerFormasEntrega();
 
         Task InsertarFormaEntrega(FormaEntrega aut);
 

@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioEstadoPedido
     {
-        Task<List<EstadoPedido>> ObtenerEstadoPedidoes();
+        Task<List<EstadoPedido>> ObtenerEstadosPedido();
 
         Task InsertarEstadoPedido(EstadoPedido aut);
 

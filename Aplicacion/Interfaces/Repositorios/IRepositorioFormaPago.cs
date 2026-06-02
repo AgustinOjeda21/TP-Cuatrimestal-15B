@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioFormaPago
     {
-        Task<List<FormaPago>> ObtenerFormaPagoes();
+        Task<List<FormaPago>> ObtenerFormasPago();
 
         Task InsertarFormaPago(FormaPago aut);
 

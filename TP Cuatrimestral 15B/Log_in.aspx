@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sign_in.aspx.cs" Inherits="TP_Cuatrimestral_15B.Log_in" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Log_in.aspx.cs" Inherits="TP_Cuatrimestral_15B.Log_in" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -54,7 +54,7 @@
             <asp:HyperLink
             ID="lnkLogin"
             runat="server"
-            NavigateUrl="~/Login.aspx">
+            NavigateUrl="~/Sign_in.aspx">
             No tengo cuenta
             </asp:HyperLink>
         </div>

@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioPermiso
     {
-        Task<List<Permiso>> ObtenerPermisoes();
+        Task<List<Permiso>> ObtenerPermisos();
 
         Task InsertarPermiso(Permiso aut);
 

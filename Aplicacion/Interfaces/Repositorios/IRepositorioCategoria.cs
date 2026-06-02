@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioCategoria
     {
-        Task<List<Categoria>> ObtenerCategoriaes();
+        Task<List<Categoria>> ObtenerCategorias();
         Task InsertarCategoria(Categoria aut);
         Task<Categoria> CapturarCategoria(int id);
         Task Actualizar(Categoria obj);

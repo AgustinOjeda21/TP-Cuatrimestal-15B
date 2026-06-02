@@ -18,7 +18,7 @@ namespace Infraestructura.Repositorios
             this.context = context;
         }
 
-        public async Task<List<Usuario>> ObtenerUsuarioes()
+        public async Task<List<Usuario>> ObtenerUsuarios()
         {
             var Resultado = await context.Usuario.ToListAsync();
             return Resultado.Select(e => e.ToDomain()).ToList();
@@ -47,7 +47,7 @@ namespace Infraestructura.Repositorios
             {
                 return;
             }
-            entity = obj.ToEntity();
+            context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
         }
     }

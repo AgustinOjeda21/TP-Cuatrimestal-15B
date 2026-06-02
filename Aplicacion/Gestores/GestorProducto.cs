@@ -9,7 +9,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorProducto
+    public class GestorProducto
     {
         IRepositorioProducto repo;
         IGestorMarca gestorMarca;
@@ -36,9 +36,9 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarProducto(id);
             return edi;
         }
-        public async Task<List<Producto>> DevolverProductoes()
+        public async Task<List<Producto>> DevolverProductos()
         {
-            return await repo.ObtenerProductoes();
+            return await repo.ObtenerProductos();
         }
 
         public async Task<Result<Producto>> ModificarNombre(string Nombre, int id)

@@ -9,7 +9,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorProveedor
+    public class GestorProveedor
     {
         IRepositorioProveedor repo;
         IGestorDireccion gestorDireccion;
@@ -115,7 +115,7 @@ namespace Aplicacion.Gestores
             Proveedor obj = await repo.CapturarProveedor(id);
             if (obj is null)
             {
-                return Result<Proveedor>.Fail("La Proveedor ingresada no existe");
+                return Result<Proveedor>.Fail("El Proveedor ingresado no existe");
             }
             return Result<Proveedor>.Ok(obj);
         }

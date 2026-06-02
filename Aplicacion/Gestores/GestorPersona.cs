@@ -8,7 +8,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorPersona
+    public class GestorPersona
     {
         IRepositorioPersona repo;
 
@@ -28,9 +28,9 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarPersona(id);
             return edi;
         }
-        public async Task<List<Persona>> DevolverPersonaes()
+        public async Task<List<Persona>> DevolverPersonas()
         {
-            return await repo.ObtenerPersonaes();
+            return await repo.ObtenerPersonas();
         }
 
         public async Task<Result<Persona>> ModificarNombre(string Nombre, int id)

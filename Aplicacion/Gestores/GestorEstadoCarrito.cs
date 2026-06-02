@@ -8,7 +8,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    class GestorEstadoCarrito
+    public class GestorEstadoCarrito
     {
         IRepositorioEstadoCarrito repo;
 
@@ -28,9 +28,9 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarEstadoCarrito(id);
             return edi;
         }
-        public async Task<List<EstadoCarrito>> DevolverEstadoCarritoes()
+        public async Task<List<EstadoCarrito>> DevolverEstadosCarrito()
         {
-            return await repo.ObtenerEstadoCarritoes();
+            return await repo.ObtenerEstadosCarrito();
         }
 
         public async Task<Result<EstadoCarrito>> ModificarNombre(string Nombre, int id)

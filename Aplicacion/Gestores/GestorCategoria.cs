@@ -28,9 +28,9 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarCategoria(id);
             return edi;
         }
-        public async Task<List<Categoria>> DevolverCategoriaes()
+        public async Task<List<Categoria>> DevolverCategorias()
         {
-            return await repo.ObtenerCategoriaes();
+            return await repo.ObtenerCategorias();
         }
 
         public async Task<Result<Categoria>> ModificarNombre(string Nombre, int id)

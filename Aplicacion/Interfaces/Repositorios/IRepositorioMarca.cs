@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioMarca
     {
-        Task<List<Marca>> ObtenerMarcaes();
+        Task<List<Marca>> ObtenerMarcas();
 
         Task InsertarMarca(Marca aut);
 
