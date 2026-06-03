@@ -5,8 +5,12 @@ using Dominio.Entidades;
 using Infraestructura.Mappers;
 using System.Data.Entity;
 using System.Text;
+using Aplicacion.Busqueda;
 using Aplicacion.Interfaces.Repositorios;
 using System.Threading.Tasks;
+using Infraestructura.Especificaciones;
+using AutoMapper.Extensions.ExpressionMapping;
+using AutoMapper;
 
 namespace Infraestructura.Repositorios
 {
@@ -49,6 +53,42 @@ namespace Infraestructura.Repositorios
             }
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
+        }
+        public async Task<List<Persona>> Buscar<Tprop>(Busqueda<Persona> busqueda)
+        {
+            IMapper mapper = config();
+            Especificacion<EntityPersona> Spec = null;
+            foreach (var filtro in busqueda.Filtros)
+            {
+                var filtroEntity = FiltroTraductor.Traducir<Persona, EntityPersona>(filtro, mapper);
+                Especificacion<EntityPersona> SpecActual = EspecificacionFactory<EntityPersona>.CrearSpec(filtroEntity);
+                Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityPersona>(Spec, SpecActual);
+            }
+            var Resultado = await context.Persona.Where(Spec.ToExpression()).ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
+        }
+        private IMapper config()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+                cfg.CreateMap<Persona, EntityPersona>()
+                   .ForMember(
+                       dest => dest.Usuario_idUsuario,
+                       opt => opt.MapFrom(src => src.Usuario)
+                   )
+                   .ForMember(dest => dest.Usuario, opt => opt.Ignore())
+                   .ForMember(dest => dest.Pedido, opt => opt.Ignore())
+                   .ForMember(dest => dest.Direccion, opt => opt.Ignore());
+
+                cfg.CreateMap<EntityPersona, Persona>()
+                   .ForMember(
+                       dest => dest.Usuario,
+                       opt => opt.MapFrom(src => src.Usuario.ToDomain())
+                   );
+            });
+            return config.CreateMapper();
         }
     }
 }

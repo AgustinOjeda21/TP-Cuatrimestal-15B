@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Busqueda\Busqueda.cs" />
+    <Compile Include="Busqueda\FiltroBusqueda.cs" />
+    <Compile Include="Busqueda\IFiltroBusqueda.cs" />
+    <Compile Include="Busqueda\OperadorBusqueda.cs" />
     <Compile Include="Entidades\Carrito.cs" />
     <Compile Include="Entidades\Categoria.cs" />
     <Compile Include="Entidades\DetallePedido.cs" />
@@ -59,6 +63,19 @@
     <Compile Include="Entidades\Proveedor.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Especificaciones\AndEspecificacion.cs" />
+    <Compile Include="Especificaciones\BuscarStringEspecificacion.cs" />
+    <Compile Include="Especificaciones\EntreEspecificacion.cs" />
+    <Compile Include="Especificaciones\EsIgualEspecificacion.cs" />
+    <Compile Include="Especificaciones\Especificacion.cs" />
+    <Compile Include="Especificaciones\EspecificacionFactory.cs" />
+    <Compile Include="Especificaciones\ExpressionCombiner.cs" />
+    <Compile Include="Especificaciones\MayorEspecificacion.cs" />
+    <Compile Include="Especificaciones\MayorMenorEspecificacion.cs" />
+    <Compile Include="Especificaciones\MenorEspecificacion.cs" />
+    <Compile Include="Especificaciones\NotEspecificacion.cs" />
+    <Compile Include="Especificaciones\OrderEspecificacion.cs" />
+    <Compile Include="Especificaciones\OrEspecificacion.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

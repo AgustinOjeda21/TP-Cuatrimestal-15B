@@ -6,7 +6,11 @@ using Dominio.Entidades;
 using Infraestructura.Mappers;
 using System.Data.Entity;
 using System.Text;
+using Aplicacion.Busqueda;
 using System.Threading.Tasks;
+using Infraestructura.Especificaciones;
+using AutoMapper.Extensions.ExpressionMapping;
+using AutoMapper;
 
 namespace Infraestructura.Repositorios
 {
@@ -51,6 +55,34 @@ namespace Infraestructura.Repositorios
             }
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
+        }
+        public async Task<List<Rol>> Buscar<Tprop>(Busqueda<Rol> busqueda)
+        {
+            IMapper mapper = config();
+            Especificacion<EntityRol> Spec = null;
+            foreach (var filtro in busqueda.Filtros)
+            {
+                var filtroEntity = FiltroTraductor.Traducir<Rol, EntityRol>(filtro, mapper);
+                Especificacion<EntityRol> SpecActual = EspecificacionFactory<EntityRol>.CrearSpec(filtroEntity);
+                Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityRol>(Spec, SpecActual);
+            }
+            var Resultado = await context.Rol.Where(Spec.ToExpression()).ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
+        }
+        private IMapper config()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+                cfg.CreateMap<Rol, EntityRol>()
+                   .ForMember(dest => dest.Usuario, opt => opt.Ignore())
+                   .ForMember(dest => dest.Permiso, opt => opt.Ignore());
+
+                cfg.CreateMap<EntityRol, Rol>();
+
+            });
+            return config.CreateMapper();
         }
     }
 }

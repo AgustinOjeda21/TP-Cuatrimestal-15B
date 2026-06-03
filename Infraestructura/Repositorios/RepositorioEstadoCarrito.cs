@@ -6,6 +6,10 @@ using Dominio.Entidades;
 using Aplicacion.Interfaces.Repositorios;
 using System.Data.Entity;
 using Infraestructura.Mappers;
+using Aplicacion.Busqueda;
+using Infraestructura.Especificaciones;
+using AutoMapper.Extensions.ExpressionMapping;
+using AutoMapper;
 using System.Threading.Tasks;
 
 namespace Infraestructura.Repositorios
@@ -49,6 +53,33 @@ namespace Infraestructura.Repositorios
             }
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
+        }
+        public async Task<List<EstadoCarrito>> Buscar<Tprop>(Busqueda<EstadoCarrito> busqueda)
+        {
+            IMapper mapper = config();
+            Especificacion<EntityEstadoCarrito> Spec = null;
+            foreach (var filtro in busqueda.Filtros)
+            {
+                var filtroEntity = FiltroTraductor.Traducir<EstadoCarrito, EntityEstadoCarrito>(filtro, mapper);
+                Especificacion<EntityEstadoCarrito> SpecActual = EspecificacionFactory<EntityEstadoCarrito>.CrearSpec(filtroEntity);
+                Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityEstadoCarrito>(Spec, SpecActual);
+            }
+            var Resultado = await context.EstadoCarrito.Where(Spec.ToExpression()).ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
+        }
+        private IMapper config()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+                cfg.CreateMap<EstadoCarrito, EntityEstadoCarrito>()
+                   .ForMember(dest => dest.Carrito, opt => opt.Ignore());
+
+                cfg.CreateMap<EntityEstadoCarrito, EstadoCarrito>();
+
+            });
+            return config.CreateMapper();
         }
     }
 }

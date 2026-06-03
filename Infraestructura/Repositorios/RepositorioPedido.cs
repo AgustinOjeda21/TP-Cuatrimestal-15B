@@ -4,9 +4,14 @@ using System.Linq;
 using Dominio.Entidades;
 using Infraestructura.Mappers;
 using System.Data.Entity;
+using Aplicacion.Busqueda;
 using System.Text;
 using Aplicacion.Interfaces.Repositorios;
 using System.Threading.Tasks;
+
+using Infraestructura.Especificaciones;
+using AutoMapper.Extensions.ExpressionMapping;
+using AutoMapper;
 
 namespace Infraestructura.Repositorios
 {
@@ -49,6 +54,63 @@ namespace Infraestructura.Repositorios
             }
             entity = obj.ToEntity();
             await context.SaveChangesAsync();
+        }
+        public async Task<List<Pedido>> Buscar<Tprop>(Busqueda<Pedido> busqueda)
+        {
+            IMapper mapper = config();
+            Especificacion<EntityPedido> Spec = null;
+            foreach (var filtro in busqueda.Filtros)
+            {
+                var filtroEntity = FiltroTraductor.Traducir<Pedido, EntityPedido>(filtro, mapper);
+                Especificacion<EntityPedido> SpecActual = EspecificacionFactory<EntityPedido>.CrearSpec(filtroEntity);
+                Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityPedido>(Spec, SpecActual);
+            }
+            var Resultado = await context.Pedido.Where(Spec.ToExpression()).ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
+        }
+        private IMapper config()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+                cfg.CreateMap<Pedido, EntityPedido>()
+                   .ForMember(
+                       dest => dest.EstadoPedido_idEstadoPedido,
+                       opt => opt.MapFrom(src => src.EstadoPedido.IdEstadoPedido)
+                   )
+                   .ForMember(
+                       dest => dest.Carrito_idCarrito,
+                       opt => opt.MapFrom(src => src.Carrito.IdCarrito)
+                   )
+                   .ForMember(
+                       dest => dest.Persona_idPersona,
+                       opt => opt.MapFrom(src => src.Persona.IdPersona)
+                   )
+                   .ForMember(dest => dest.EstadoPedido, opt => opt.Ignore())
+                   .ForMember(dest => dest.DetallePedido, opt => opt.Ignore())
+                   .ForMember(dest => dest.Carrito, opt => opt.Ignore())
+                    .ForMember(dest => dest.Persona, opt => opt.Ignore());
+
+                cfg.CreateMap<EntityPedido, Pedido>()
+                   .ForMember(
+                       dest => dest.EstadoPedido,
+                       opt => opt.MapFrom(src => src.EstadoPedido.ToDomain())
+                   )
+                   .ForMember(
+                       dest => dest.Carrito,
+                       opt => opt.MapFrom(src => src.Carrito.ToDomain())
+                   )
+                    .ForMember(
+                       dest => dest.DetallePedido,
+                       opt => opt.MapFrom(src => src.DetallePedido.ToDomain())
+                   )
+                    .ForMember(
+                       dest => dest.Persona,
+                       opt => opt.MapFrom(src => src.Persona.ToDomain())
+                   );
+            });
+            return config.CreateMapper();
         }
     }
 }

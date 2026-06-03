@@ -7,6 +7,10 @@ using System.Data.Entity;
 using System.Text;
 using Aplicacion.Interfaces.Repositorios;
 using System.Threading.Tasks;
+using Aplicacion.Busqueda;
+using Infraestructura.Especificaciones;
+using AutoMapper.Extensions.ExpressionMapping;
+using AutoMapper;
 
 namespace Infraestructura.Repositorios
 {
@@ -49,6 +53,32 @@ namespace Infraestructura.Repositorios
             }
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
+        }
+        public async Task<List<FormaEntrega>> Buscar<Tprop>(Busqueda<FormaEntrega> busqueda)
+        {
+            IMapper mapper = config();
+            Especificacion<EntityFormaEntrega> Spec = null;
+            foreach (var filtro in busqueda.Filtros)
+            {
+                var filtroEntity = FiltroTraductor.Traducir<FormaEntrega, EntityFormaEntrega>(filtro, mapper);
+                Especificacion<EntityFormaEntrega> SpecActual = EspecificacionFactory<EntityFormaEntrega>.CrearSpec(filtroEntity);
+                Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityFormaEntrega>(Spec, SpecActual);
+            }
+            var Resultado = await context.FormaEntrega.Where(Spec.ToExpression()).ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
+        }
+        private IMapper config()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+                cfg.CreateMap<FormaEntrega, EntityFormaEntrega>()
+                   .ForMember(dest => dest.DetallePedido, opt => opt.Ignore());
+
+                cfg.CreateMap<EntityFormaEntrega, FormaEntrega>();
+            });
+            return config.CreateMapper();
         }
     }
 }

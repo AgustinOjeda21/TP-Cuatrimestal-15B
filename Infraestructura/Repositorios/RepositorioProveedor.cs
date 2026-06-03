@@ -5,8 +5,12 @@ using Dominio.Entidades;
 using Infraestructura.Mappers;
 using System.Data.Entity;
 using System.Text;
+using Aplicacion.Busqueda;
 using Aplicacion.Interfaces.Repositorios;
 using System.Threading.Tasks;
+using Infraestructura.Especificaciones;
+using AutoMapper.Extensions.ExpressionMapping;
+using AutoMapper;
 
 namespace Infraestructura.Repositorios
 {
@@ -49,6 +53,41 @@ namespace Infraestructura.Repositorios
             }
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
+        }
+        public async Task<List<Proveedor>> Buscar<Tprop>(Busqueda<Proveedor> busqueda)
+        {
+            IMapper mapper = config();
+            Especificacion<EntityProveedor> Spec = null;
+            foreach (var filtro in busqueda.Filtros)
+            {
+                var filtroEntity = FiltroTraductor.Traducir<Proveedor, EntityProveedor>(filtro, mapper);
+                Especificacion<EntityProveedor> SpecActual = EspecificacionFactory<EntityProveedor>.CrearSpec(filtroEntity);
+                Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityProveedor>(Spec, SpecActual);
+            }
+            var Resultado = await context.Proveedor.Where(Spec.ToExpression()).ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
+        }
+        private IMapper config()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+                cfg.CreateMap<Proveedor, EntityProveedor>()
+                   .ForMember(
+                       dest => dest.Direccion_idDireccion,
+                       opt => opt.MapFrom(src => src.Direccion.IdDireccion)
+                   )
+                   .ForMember(dest => dest.Direccion, opt => opt.Ignore())
+                   .ForMember(dest => dest.Producto, opt => opt.Ignore());
+
+                cfg.CreateMap<EntityProveedor, Proveedor>()
+                   .ForMember(
+                       dest => dest.Direccion,
+                       opt => opt.MapFrom(src => src.Direccion.ToDomain())
+                   );
+            });
+            return config.CreateMapper();
         }
     }
 }

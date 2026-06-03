@@ -5,8 +5,13 @@ using Dominio.Entidades;
 using Infraestructura.Mappers;
 using System.Data.Entity;
 using System.Text;
+using Aplicacion.Busqueda;
 using Aplicacion.Interfaces.Repositorios;
 using System.Threading.Tasks;
+using Aplicacion.Busqueda;
+using Infraestructura.Especificaciones;
+using AutoMapper.Extensions.ExpressionMapping;
+using AutoMapper;
 
 namespace Infraestructura.Repositorios
 {
@@ -49,6 +54,32 @@ namespace Infraestructura.Repositorios
             }
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
+        }
+        public async Task<List<Permiso>> Buscar<Tprop>(Busqueda<Permiso> busqueda)
+        {
+            IMapper mapper = config();
+            Especificacion<EntityPermiso> Spec = null;
+            foreach (var filtro in busqueda.Filtros)
+            {
+                var filtroEntity = FiltroTraductor.Traducir<Permiso, EntityPermiso>(filtro, mapper);
+                Especificacion<EntityPermiso> SpecActual = EspecificacionFactory<EntityPermiso>.CrearSpec(filtroEntity);
+                Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityPermiso>(Spec, SpecActual);
+            }
+            var Resultado = await context.Permiso.Where(Spec.ToExpression()).ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
+        }
+        private IMapper config()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+                cfg.CreateMap<Permiso, EntityPermiso>()
+                   .ForMember(dest => dest.Rol, opt => opt.Ignore());
+                cfg.CreateMap<EntityPermiso, Permiso>();
+
+            });
+            return config.CreateMapper();
         }
     }
 }

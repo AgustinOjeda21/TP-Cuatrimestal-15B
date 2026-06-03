@@ -18,6 +18,6 @@ namespace Dominio.Entidades
 
         public int IdCarrito { get; set; }
         public decimal Total { get; set; }
-        public virtual EstadoCarrito EstadoCarrito { get; set; }
+        public EstadoCarrito EstadoCarrito { get; set; }
     }
 }

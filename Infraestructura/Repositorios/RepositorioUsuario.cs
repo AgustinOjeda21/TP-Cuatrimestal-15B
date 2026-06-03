@@ -6,7 +6,11 @@ using Infraestructura.Mappers;
 using System.Data.Entity;
 using Aplicacion.Interfaces.Repositorios;
 using System.Text;
+using Aplicacion.Busqueda;
 using System.Threading.Tasks;
+using Infraestructura.Especificaciones;
+using AutoMapper.Extensions.ExpressionMapping;
+using AutoMapper;
 
 namespace Infraestructura.Repositorios
 {
@@ -49,6 +53,41 @@ namespace Infraestructura.Repositorios
             }
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
+        }
+        public async Task<List<Usuario>> Buscar<Tprop>(Busqueda<Usuario> busqueda)
+        {
+            IMapper mapper = config();
+            Especificacion<EntityUsuario> Spec = null;
+            foreach(var filtro in busqueda.Filtros)
+            {
+                var filtroEntity = FiltroTraductor.Traducir<Usuario,EntityUsuario>(filtro, mapper);
+                Especificacion<EntityUsuario> SpecActual = EspecificacionFactory<EntityUsuario>.CrearSpec(filtroEntity);
+                Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityUsuario>(Spec, SpecActual);
+            }
+            var Resultado = await context.Usuario.Where(Spec.ToExpression()).ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
+        }
+        private IMapper config()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+                cfg.CreateMap<Usuario, EntityUsuario>()
+                   .ForMember(
+                       dest => dest.Rol_idRol,
+                       opt => opt.MapFrom(src => src.Rol.IdRol)
+                   )
+                   .ForMember(dest => dest.Persona, opt => opt.Ignore())
+                   .ForMember(dest => dest.Rol, opt => opt.Ignore());
+
+                cfg.CreateMap<EntityUsuario, Usuario>()
+                   .ForMember(
+                       dest => dest.Rol,
+                       opt => opt.MapFrom(src => src.Rol.ToDomain())
+                   );
+            });
+            return config.CreateMapper();
         }
     }
 }

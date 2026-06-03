@@ -6,7 +6,11 @@ using Infraestructura.Mappers;
 using System.Data.Entity;
 using Aplicacion.Interfaces.Repositorios;
 using System.Text;
+using Aplicacion.Busqueda;
 using System.Threading.Tasks;
+using Infraestructura.Especificaciones;
+using AutoMapper.Extensions.ExpressionMapping;
+using AutoMapper;
 
 namespace Infraestructura.Repositorios
 {
@@ -49,6 +53,44 @@ namespace Infraestructura.Repositorios
             }
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
+        }
+        public async Task<List<Producto>> Buscar<Tprop>(Busqueda<Producto> busqueda)
+        {
+            IMapper mapper = config();
+            Especificacion<EntityProducto> Spec = null;
+            foreach (var filtro in busqueda.Filtros)
+            {
+                var filtroEntity = FiltroTraductor.Traducir<Producto, EntityProducto>(filtro, mapper);
+                Especificacion<EntityProducto> SpecActual = EspecificacionFactory<EntityProducto>.CrearSpec(filtroEntity);
+                Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityProducto>(Spec, SpecActual);
+            }
+            var Resultado = await context.Producto.Where(Spec.ToExpression()).ToListAsync();
+            return Resultado.Select(e => e.ToDomain()).ToList();
+        }
+        private IMapper config()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+                cfg.CreateMap<Producto, EntityProducto>()
+                   .ForMember(
+                       dest => dest.Marca_idMarca,
+                       opt => opt.MapFrom(src => src.Marca.IdMarca)
+                   )
+                   .ForMember(dest => dest.Marca, opt => opt.Ignore())
+                   .ForMember(dest => dest.ProductoCarrito, opt => opt.Ignore())
+                   .ForMember(dest => dest.Imagen, opt => opt.Ignore())
+                   .ForMember(dest => dest.Categoria, opt => opt.Ignore())
+                   .ForMember(dest => dest.Proveedor, opt => opt.Ignore());
+
+                cfg.CreateMap<EntityProducto, Producto>()
+                   .ForMember(
+                       dest => dest.Marca,
+                       opt => opt.MapFrom(src => src.Marca.ToDomain())
+                   );
+            });
+            return config.CreateMapper();
         }
     }
 }
