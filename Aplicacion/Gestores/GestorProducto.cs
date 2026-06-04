@@ -137,5 +137,18 @@ namespace Aplicacion.Gestores
             }
             return Result<Producto>.Ok(obj);
         }
+        public async Task<Result<Producto>> ValidarProductoActivo(int id)
+        {
+            Producto obj = await repo.CapturarProducto(id);
+            if (obj is null)
+            {
+                return Result<Producto>.Fail("El Producto ingresado no existe");
+            }
+            if(!obj.Estado)
+            {
+                return Result<Producto>.Fail("El producto ingresado esta dado de baja");
+            }
+            return Result<Producto>.Ok(obj);
+        }
     }
 }

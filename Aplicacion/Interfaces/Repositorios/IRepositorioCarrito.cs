@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Repositorios
 {
     public interface IRepositorioCarrito
     {
-        Task<List<Carrito>> ObtenerCarritoes();
+        Task<List<Carrito>> ObtenerCarritos();
         Task InsertarCarrito(Carrito aut);
         Task<Carrito> CapturarCarrito(int id);
         Task Actualizar(Carrito obj);

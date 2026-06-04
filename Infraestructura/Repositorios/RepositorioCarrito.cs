@@ -24,7 +24,7 @@ namespace Infraestructura.Repositorios
             this.context = context;
         }
 
-        public async Task<List<Carrito>> ObtenerCarritoes()
+        public async Task<List<Carrito>> ObtenerCarritos()
         {
             var Resultado = await context.Carrito.ToListAsync();
             return Resultado.Select(e => e.ToDomain()).ToList();

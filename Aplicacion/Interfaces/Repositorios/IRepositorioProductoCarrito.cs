@@ -13,8 +13,8 @@ namespace Aplicacion.Interfaces.Repositorios
 
         Task InsertarProductoCarrito(ProductoCarrito aut);
 
-
-        Task<ProductoCarrito> CapturarProductoCarrito(int id);
+        Task EliminarProductoCarrito(ProductoCarrito aut);
+        Task<ProductoCarrito> CapturarProductoCarrito(int idCarrito, int idProducto);
 
         Task Actualizar(ProductoCarrito obj);
         

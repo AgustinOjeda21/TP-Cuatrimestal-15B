@@ -33,10 +33,16 @@ namespace Infraestructura.Repositorios
             context.ProductoCarrito.Add(Eaut);
             await context.SaveChangesAsync();
         }
-
-        public async Task<ProductoCarrito> CapturarProductoCarrito(int id)
+        public async Task EliminarProductoCarrito(ProductoCarrito aut)
         {
-            EntityProductoCarrito Eaut = await context.ProductoCarrito.FindAsync(id);
+            EntityProductoCarrito Eaut = aut.ToEntity();
+            context.ProductoCarrito.Remove(Eaut);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<ProductoCarrito> CapturarProductoCarrito(int idCarrito,int idProducto)
+        {
+            EntityProductoCarrito Eaut = await context.ProductoCarrito.FirstOrDefaultAsync(obj=>obj.Producto_idProducto==idProducto && obj.Carrito_idCarrito==idCarrito);
             if (Eaut == null)
             {
                 return null;
