@@ -9,29 +9,24 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    public class GestorUsuario
+    public class GestorUsuario : IGestorUsuario
     {
         IRepositorioUsuario repo;
-        IGestorRol gestorRol;
         IGestorPersona gestorPersona;
 
-        public GestorUsuario(IRepositorioUsuario repo, IGestorRol gestorRol, IGestorPersona gestorPersona)
+        public GestorUsuario(IRepositorioUsuario repo, IGestorPersona gestorPersona)
         {
             this.repo = repo;
-            this.gestorRol = gestorRol;
             this.gestorPersona = gestorPersona;
         }
 
-        public async Task<Result<Usuario>> CargarUsuario(Usuario edi,Persona persona)// Lo ideal seria crear un DTO donde vengan los datos que le correspondad al usuario y a la persona asociada a el que se valla a crear
+        public async Task<Result<Usuario>> CargarUsuario(Usuario edi,Persona persona,Direccion direccion)
         {
-            var resultado = await gestorRol.ExisteRol(edi.Rol.IdRol);
-            if (!resultado.Success)
-            {
-                return Result<Usuario>.Fail("El Rol ingresado no existe");
-            }
             // Hashear Contraseña
-            await gestorPersona.CargarPersona(persona);
-            await repo.InsertarUsuario(edi);
+            var idusuario = await repo.InsertarUsuario(edi);
+            edi.IdUsuario = idusuario;
+            persona.Usuario = edi;
+            await gestorPersona.CargarPersona(persona, direccion);
             return Result<Usuario>.EjecucionCorrecta();
         }
 
@@ -54,6 +49,18 @@ namespace Aplicacion.Gestores
             }
             var edi = resultado.Value;
             edi.NombreUsuario = Nombre;
+            await repo.Actualizar(edi);
+            return Result<Usuario>.EjecucionCorrecta();
+        }
+        public async Task<Result<Usuario>> ModificarRol(Usuario.Roles rol, int id)
+        {
+            var resultado = await ExisteUsuario(id);
+            if (!resultado.Success)
+            {
+                return resultado;
+            }
+            var edi = resultado.Value;
+            edi.Rol = rol;
             await repo.Actualizar(edi);
             return Result<Usuario>.EjecucionCorrecta();
         }

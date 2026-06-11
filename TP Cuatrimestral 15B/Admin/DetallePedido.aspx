@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallePedido.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.AdminDetallePedido" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallePedido.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.AdminDetallePedido" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -41,6 +41,16 @@
             <asp:HyperLink ID="linkFormasPago" runat="server" NavigateUrl="~/Admin/FormasPago.aspx">Formas de Pago</asp:HyperLink>
             <asp:HyperLink ID="linkFormasEntrega" runat="server" NavigateUrl="~/Admin/FormasEntrega.aspx">Formas de Entrega</asp:HyperLink>
             <asp:HyperLink ID="linkPedidos" runat="server" NavigateUrl="~/Admin/Pedidos.aspx">Pedidos</asp:HyperLink>
+            <asp:HyperLink ID="linkDetallePedido" runat="server" NavigateUrl="~/Admin/DetallePedido.aspx">Detalle Pedido</asp:HyperLink>
+            <asp:HyperLink ID="linkDirecciones" runat="server" NavigateUrl="~/Admin/Direcciones.aspx">Direcciones</asp:HyperLink>
+            <asp:HyperLink ID="linkEstadosPedido" runat="server" NavigateUrl="~/Admin/EstadosPedido.aspx">Estados Pedido</asp:HyperLink>
+            <asp:HyperLink ID="linkEstadosCarrito" runat="server" NavigateUrl="~/Admin/EstadosCarrito.aspx">Estados Carrito</asp:HyperLink>
+            <asp:HyperLink ID="linkImagenes" runat="server" NavigateUrl="~/Admin/Imagenes.aspx">Imagenes</asp:HyperLink>
+            <asp:HyperLink ID="linkMarcas" runat="server" NavigateUrl="~/Admin/Marcas.aspx">Marcas</asp:HyperLink>
+            <asp:HyperLink ID="linkPersonas" runat="server" NavigateUrl="~/Admin/Personas.aspx">Personas</asp:HyperLink>
+            <asp:HyperLink ID="linkProveedores" runat="server" NavigateUrl="~/Admin/Proveedores.aspx">Proveedores</asp:HyperLink>
+            <asp:HyperLink ID="linkUsuarios" runat="server" NavigateUrl="~/Admin/Usuarios.aspx">Usuarios</asp:HyperLink>
+            <asp:HyperLink ID="linkProductosCarrito" runat="server" NavigateUrl="~/Admin/ProductosCarrito.aspx">Productos Carrito</asp:HyperLink>
         </div>
         <div class="nav-right">
             <asp:HyperLink ID="linkTienda" runat="server" NavigateUrl="~/Inicio.aspx">Ver Tienda</asp:HyperLink>

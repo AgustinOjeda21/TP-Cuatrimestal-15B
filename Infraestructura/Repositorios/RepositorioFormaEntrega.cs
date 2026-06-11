@@ -16,8 +16,8 @@ namespace Infraestructura.Repositorios
 {
     public class RepositorioFormaEntrega : IRepositorioFormaEntrega
     {
-        private readonly mydbEntities context;
-        public RepositorioFormaEntrega(mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioFormaEntrega(mydbEntities1 context)
         {
             this.context = context;
         }

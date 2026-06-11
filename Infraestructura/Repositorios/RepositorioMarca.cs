@@ -16,8 +16,8 @@ namespace Infraestructura.Repositorios
 {
     public class RepositorioMarca : IRepositorioMarca
     {
-        private readonly mydbEntities context;
-        public RepositorioMarca(mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioMarca(mydbEntities1 context)
         {
             this.context = context;
         }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pedidos.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.AdminPedidos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pedidos.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.AdminPedidos" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -37,6 +37,16 @@
             <asp:HyperLink ID="linkFormasPago" runat="server" NavigateUrl="~/Admin/FormasPago.aspx">Formas de Pago</asp:HyperLink>
             <asp:HyperLink ID="linkFormasEntrega" runat="server" NavigateUrl="~/Admin/FormasEntrega.aspx">Formas de Entrega</asp:HyperLink>
             <asp:HyperLink ID="linkPedidos" runat="server" NavigateUrl="~/Admin/Pedidos.aspx">Pedidos</asp:HyperLink>
+            <asp:HyperLink ID="linkDetallePedido" runat="server" NavigateUrl="~/Admin/DetallePedido.aspx">Detalle Pedido</asp:HyperLink>
+            <asp:HyperLink ID="linkDirecciones" runat="server" NavigateUrl="~/Admin/Direcciones.aspx">Direcciones</asp:HyperLink>
+            <asp:HyperLink ID="linkEstadosPedido" runat="server" NavigateUrl="~/Admin/EstadosPedido.aspx">Estados Pedido</asp:HyperLink>
+            <asp:HyperLink ID="linkEstadosCarrito" runat="server" NavigateUrl="~/Admin/EstadosCarrito.aspx">Estados Carrito</asp:HyperLink>
+            <asp:HyperLink ID="linkImagenes" runat="server" NavigateUrl="~/Admin/Imagenes.aspx">Imagenes</asp:HyperLink>
+            <asp:HyperLink ID="linkMarcas" runat="server" NavigateUrl="~/Admin/Marcas.aspx">Marcas</asp:HyperLink>
+            <asp:HyperLink ID="linkPersonas" runat="server" NavigateUrl="~/Admin/Personas.aspx">Personas</asp:HyperLink>
+            <asp:HyperLink ID="linkProveedores" runat="server" NavigateUrl="~/Admin/Proveedores.aspx">Proveedores</asp:HyperLink>
+            <asp:HyperLink ID="linkUsuarios" runat="server" NavigateUrl="~/Admin/Usuarios.aspx">Usuarios</asp:HyperLink>
+            <asp:HyperLink ID="linkProductosCarrito" runat="server" NavigateUrl="~/Admin/ProductosCarrito.aspx">Productos Carrito</asp:HyperLink>
         </div>
         <div class="nav-right">
             <asp:HyperLink ID="linkTienda" runat="server" NavigateUrl="~/Inicio.aspx">Ver Tienda</asp:HyperLink>
@@ -65,10 +75,18 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody id="tbodyPedidos" runat="server">
-                <tr>
-                    <td colspan="8" style="text-align:center; color:#888;">Sin datos</td>
-                </tr>
+            <tbody>
+                <asp:Repeater ID="rptPedido" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td><%# Eval("IdPedido") %></td>
+                            <td><%# Eval("Persona.IdPersona") %></td>
+                            <td><%# Eval("FechaPedido") %></td>
+                            <td><%# Eval("Estado") %></td>
+                            <td><%# Eval("Rol") %></td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </tbody>
         </table>
     </div>

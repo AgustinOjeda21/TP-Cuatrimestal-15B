@@ -18,38 +18,48 @@ namespace TP_Cuatrimestral_15B
 
         protected async void btnRegistrarse_Click(object sender, EventArgs e)
         {
-            mydbEntities context = new mydbEntities();
-            RepositorioRol repoRol = new RepositorioRol(context);
+            mydbEntities1 context = new mydbEntities1();
             RepositorioPersona repoPersona = new RepositorioPersona(context);
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            GestorRol gestorRol = new GestorRol(repoRol);
-            GestorPersona gestorPersona = new GestorPersona(repoPersona);
-            GestorUsuario gestorUsuario = new GestorUsuario(repoUsuario, gestorRol, gestorPersona);
+            RepositorioDireccion repositorioDireccion = new RepositorioDireccion(context);
+            GestorDireccion gestorDireccion = new GestorDireccion(repositorioDireccion);
+            GestorPersona gestorPersona = new GestorPersona(repoPersona,gestorDireccion);
+            GestorUsuario gestorUsuario = new GestorUsuario(repoUsuario, gestorPersona);
 
-            var roles = await gestorRol.DevolverRoles();
-            var rolCliente = roles.FirstOrDefault(r => r.Nombre == "Cliente");
-
-            if (rolCliente == null)
-                return;
 
             Usuario usuario = new Usuario
             {
-                NombreUsuario = txtEmail.Text.Trim(),
+                NombreUsuario = txtEmail.Text,
                 Contraseña = txtPassword.Text,
                 Estado = true,
-                Rol = rolCliente
+                Rol = Usuario.Roles.Administrador
+            };
+            string Obs = txtObservaciones.Text;
+            if(txtObservaciones.Text is null)
+            {
+                Obs = "Sin observaciones";
+            }
+            Direccion direccion = new Direccion
+            {
+                Calle = txtCalle.Text,
+                Numero = txtNumero.Text,
+                Localidad = txtLocalidad.Text,
+                CodigoPostal = txtCodigoPostal.Text,
+                Observaciones = Obs
             };
 
             Persona persona = new Persona
             {
-                Nombre = txtNombre.Text.Trim(),
-                Apellido = txtApellido.Text.Trim(),
-                Mail = txtEmail.Text.Trim(),
-                Telefono = txtTelefono.Text.Trim(),
-                Usuario = usuario
+                Nombre = txtNombre.Text,
+                Apellido = txtApellido.Text,
+                Mail = txtEmail.Text,
+                Telefono = txtTelefono.Text,
+                Usuario = usuario,
+                Direcciones = new System.Collections.Generic.List<Direccion>()
+                
             };
 
-            await gestorUsuario.CargarUsuario(usuario, persona);
+            await gestorUsuario.CargarUsuario(usuario, persona,direccion);
             Response.Redirect("~/Log_in.aspx");
         }
     }

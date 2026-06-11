@@ -16,8 +16,8 @@ namespace Infraestructura.Repositorios
 {
     public class RepositorioImagen : IRepositorioImagen
     {
-        private readonly mydbEntities context;
-        public RepositorioImagen(mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioImagen(mydbEntities1 context)
         {
             this.context = context;
         }

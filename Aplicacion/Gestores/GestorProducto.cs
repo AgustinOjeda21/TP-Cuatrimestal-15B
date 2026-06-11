@@ -9,7 +9,7 @@ using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
 {
-    public class GestorProducto
+    public class GestorProducto : IGestorProducto
     {
         IRepositorioProducto repo;
         IGestorMarca gestorMarca;

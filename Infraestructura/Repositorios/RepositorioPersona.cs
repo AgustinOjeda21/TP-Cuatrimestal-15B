@@ -16,8 +16,8 @@ namespace Infraestructura.Repositorios
 {
     public class RepositorioPersona : IRepositorioPersona
     {
-        private readonly mydbEntities context;
-        public RepositorioPersona(mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioPersona(mydbEntities1 context)
         {
             this.context = context;
         }
@@ -78,14 +78,21 @@ namespace Infraestructura.Repositorios
                        dest => dest.Usuario_idUsuario,
                        opt => opt.MapFrom(src => src.Usuario)
                    )
+                   .ForMember(
+                       dest => dest.Direccion,
+                       opt => opt.MapFrom(src => src.Direcciones.Select(obj=>obj.ToEntity()).ToList())
+                   )
                    .ForMember(dest => dest.Usuario, opt => opt.Ignore())
-                   .ForMember(dest => dest.Pedido, opt => opt.Ignore())
-                   .ForMember(dest => dest.Direccion, opt => opt.Ignore());
+                   .ForMember(dest => dest.Pedido, opt => opt.Ignore());
 
                 cfg.CreateMap<EntityPersona, Persona>()
                    .ForMember(
                        dest => dest.Usuario,
                        opt => opt.MapFrom(src => src.Usuario.ToDomain())
+                   )
+                   .ForMember(
+                       dest => dest.Direcciones,
+                       opt => opt.MapFrom(src => src.Direccion.Select(obj => obj.ToDomain()).ToList())
                    );
             });
             return config.CreateMapper();

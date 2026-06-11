@@ -127,6 +127,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
@@ -149,31 +150,52 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Carrito.cs">
+    <Compile Include="EntityCarrito.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Categoria.cs">
+    <Compile Include="EntityCategoria.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DetallePedido.cs">
+    <Compile Include="EntityDetallePedido.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Direccion.cs">
+    <Compile Include="EntityDireccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EstadoCarrito.cs">
+    <Compile Include="EntityEstadoCarrito.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EstadoPedido.cs">
+    <Compile Include="EntityEstadoPedido.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="FormaEntrega.cs">
+    <Compile Include="EntityFormaEntrega.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="FormaPago.cs">
+    <Compile Include="EntityFormaPago.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imagen.cs">
+    <Compile Include="EntityImagen.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityMarca.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityPedido.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityPersona.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityProducto.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityProductoCarrito.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityProveedor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityUsuario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Mappers\CarritoExtension.cs" />
@@ -187,47 +209,28 @@
     <Compile Include="Mappers\ImagenExtension.cs" />
     <Compile Include="Mappers\MarcaExtension.cs" />
     <Compile Include="Mappers\PedidoExtension.cs" />
-    <Compile Include="Mappers\PermisoExtension.cs" />
     <Compile Include="Mappers\PersonaExtension.cs" />
     <Compile Include="Mappers\ProductoExtension.cs" />
     <Compile Include="Mappers\ProductoCarritoExtension.cs" />
     <Compile Include="Mappers\ProveedorExtension.cs" />
-    <Compile Include="Mappers\RolExtension.cs" />
     <Compile Include="Mappers\UsuarioExtension.cs" />
-    <Compile Include="Marca.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Context.cs" />
-    <Compile Include="Model1.Context1.cs">
+    <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model11.Designer.cs">
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
-    <Compile Include="Pedido.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Permiso.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persona.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Producto.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProductoCarrito.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proveedor.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Repositorios\FiltroTraductor.cs" />
     <Compile Include="Repositorios\RepositorioCarrito.cs" />
     <Compile Include="Repositorios\RepositorioCategoria.cs" />
@@ -240,17 +243,12 @@
     <Compile Include="Repositorios\RepositorioImagen.cs" />
     <Compile Include="Repositorios\RepositorioMarca.cs" />
     <Compile Include="Repositorios\RepositorioPedido.cs" />
-    <Compile Include="Repositorios\RepositorioPermiso.cs" />
     <Compile Include="Repositorios\RepositorioPersona.cs" />
     <Compile Include="Repositorios\RepositorioProducto.cs" />
     <Compile Include="Repositorios\RepositorioProductoCarrito.cs" />
     <Compile Include="Repositorios\RepositorioProveedor.cs" />
-    <Compile Include="Repositorios\RepositorioRol.cs" />
     <Compile Include="Repositorios\RepositorioUsuario.cs" />
-    <Compile Include="Rol.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Usuario.cs">
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -258,7 +256,7 @@
     <None Include="App.config" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model11.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -270,11 +268,13 @@
   <ItemGroup>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context1.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model11.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="obj\Debug\TempPE\Model1.Context.cs.dll" />
     <Content Include="obj\Debug\TempPE\Model1.cs.dll" />

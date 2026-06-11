@@ -11,13 +11,14 @@ using Infraestructura.Especificaciones;
 using AutoMapper.Extensions.ExpressionMapping;
 using AutoMapper;
 using System.Threading.Tasks;
+using System.Data.Entity.Validation;
 
 namespace Infraestructura.Repositorios
 {
     public class RepositorioDireccion : IRepositorioDireccion
     {
-        private readonly mydbEntities context;
-        public RepositorioDireccion(mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioDireccion(mydbEntities1 context)
         {
             this.context = context;
         }
@@ -31,7 +32,18 @@ namespace Infraestructura.Repositorios
         {
             EntityDireccion Eaut = aut.ToEntity();
             context.Direccion.Add(Eaut);
-            await context.SaveChangesAsync();
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var errores = string.Join("\n", ex.EntityValidationErrors
+                    .SelectMany(e => e.ValidationErrors)
+                    .Select(e => e.PropertyName + ": " + e.ErrorMessage));
+
+                throw new Exception(errores); // ← ahora el mensaje del error te dice exactamente qué campo falla
+            }
         }
 
         public async Task<Direccion> CapturarDireccion(int id)

@@ -16,22 +16,23 @@ namespace Infraestructura.Repositorios
 {
     public class RepositorioUsuario : IRepositorioUsuario
     {
-        private readonly mydbEntities context;
-        public RepositorioUsuario(mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioUsuario(mydbEntities1 context)
         {
             this.context = context;
         }
 
         public async Task<List<Usuario>> ObtenerUsuarios()
         {
-            var Resultado = await context.Usuario.Include("Rol").ToListAsync();
+            var Resultado = await context.Usuario.ToListAsync();
             return Resultado.Select(e => e.ToDomain()).ToList();
         }
-        public async Task InsertarUsuario(Usuario aut)
+        public async Task<int> InsertarUsuario(Usuario aut)
         {
             EntityUsuario Eaut = aut.ToEntity();
             context.Usuario.Add(Eaut);
             await context.SaveChangesAsync();
+            return Eaut.IdUsuario;
         }
 
         public async Task<Usuario> CapturarUsuario(int id)
@@ -74,18 +75,12 @@ namespace Infraestructura.Repositorios
                 cfg.AddExpressionMapping();
 
                 cfg.CreateMap<Usuario, EntityUsuario>()
-                   .ForMember(
-                       dest => dest.Rol_idRol,
-                       opt => opt.MapFrom(src => src.Rol.IdRol)
-                   )
+                  
                    .ForMember(dest => dest.Persona, opt => opt.Ignore())
                    .ForMember(dest => dest.Rol, opt => opt.Ignore());
 
-                cfg.CreateMap<EntityUsuario, Usuario>()
-                   .ForMember(
-                       dest => dest.Rol,
-                       opt => opt.MapFrom(src => src.Rol.ToDomain())
-                   );
+                cfg.CreateMap<EntityUsuario, Usuario>();
+                   
             });
             return config.CreateMapper();
         }

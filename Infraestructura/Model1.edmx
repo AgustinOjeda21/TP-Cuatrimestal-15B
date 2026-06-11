@@ -115,13 +115,6 @@
           <Property Name="EstadoPedido_idEstadoPedido" Type="int" Nullable="false" />
           <Property Name="Carrito_idCarrito" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Permiso">
-          <Key>
-            <PropertyRef Name="idPermiso" />
-          </Key>
-          <Property Name="idPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
         <EntityType Name="Persona">
           <Key>
             <PropertyRef Name="idPersona" />
@@ -189,20 +182,15 @@
           <Property Name="Estado" Type="bit" Nullable="false" />
           <Property Name="Direccion_idDireccion" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Rol">
+        <EntityType Name="sysdiagrams">
           <Key>
-            <PropertyRef Name="idRol" />
+            <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="idRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RolPermiso">
-          <Key>
-            <PropertyRef Name="Rol_idRol" />
-            <PropertyRef Name="Permiso_idPermiso" />
-          </Key>
-          <Property Name="Rol_idRol" Type="int" Nullable="false" />
-          <Property Name="Permiso_idPermiso" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -212,7 +200,7 @@
           <Property Name="NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Contraseña" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
-          <Property Name="Rol_idRol" Type="int" Nullable="false" />
+          <Property Name="Rol" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="fk_Carrito_EstadoCarrito1">
           <End Role="EstadoCarrito" Type="Self.EstadoCarrito" Multiplicity="1" />
@@ -490,42 +478,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_RolPermiso_Permiso1">
-          <End Role="Permiso" Type="Self.Permiso" Multiplicity="1" />
-          <End Role="RolPermiso" Type="Self.RolPermiso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Permiso">
-              <PropertyRef Name="idPermiso" />
-            </Principal>
-            <Dependent Role="RolPermiso">
-              <PropertyRef Name="Permiso_idPermiso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_RolPermiso_Rol1">
-          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
-          <End Role="RolPermiso" Type="Self.RolPermiso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="idRol" />
-            </Principal>
-            <Dependent Role="RolPermiso">
-              <PropertyRef Name="Rol_idRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Usuario_Rol1">
-          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="idRol" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="Rol_idRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="mydbModelStoreContainer">
           <EntitySet Name="Carrito" EntityType="Self.Carrito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
@@ -540,7 +492,6 @@
           <EntitySet Name="ImagenProducto" EntityType="Self.ImagenProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaDireccion" EntityType="Self.PersonaDireccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
@@ -548,8 +499,7 @@
           <EntitySet Name="ProductoCategoria" EntityType="Self.ProductoCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductoProveedor" EntityType="Self.ProductoProveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RolPermiso" EntityType="Self.RolPermiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_Carrito_EstadoCarrito1" Association="Self.fk_Carrito_EstadoCarrito1">
             <End Role="EstadoCarrito" EntitySet="EstadoCarrito" />
@@ -643,45 +593,33 @@
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="Proveedor" EntitySet="Proveedor" />
           </AssociationSet>
-          <AssociationSet Name="fk_RolPermiso_Permiso1" Association="Self.fk_RolPermiso_Permiso1">
-            <End Role="Permiso" EntitySet="Permiso" />
-            <End Role="RolPermiso" EntitySet="RolPermiso" />
-          </AssociationSet>
-          <AssociationSet Name="fk_RolPermiso_Rol1" Association="Self.fk_RolPermiso_Rol1">
-            <End Role="Rol" EntitySet="Rol" />
-            <End Role="RolPermiso" EntitySet="RolPermiso" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Usuario_Rol1" Association="Self.fk_Usuario_Rol1">
-            <End Role="Rol" EntitySet="Rol" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Carrito">
+        <EntityType Name="EntityCarrito">
           <Key>
-            <PropertyRef Name="idCarrito" />
+            <PropertyRef Name="IdCarrito" />
           </Key>
-          <Property Name="idCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="EstadoCarrito_idEstadoCarrito" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EstadoCarrito" Relationship="Self.fk_Carrito_EstadoCarrito1" FromRole="Carrito" ToRole="EstadoCarrito" />
           <NavigationProperty Name="Pedido" Relationship="Self.fk_Pedido_Carrito1" FromRole="Carrito" ToRole="Pedido" />
           <NavigationProperty Name="ProductoCarrito" Relationship="Self.fk_ProductoCarrito_Carrito1" FromRole="Carrito" ToRole="ProductoCarrito" />
         </EntityType>
-        <EntityType Name="Categoria">
+        <EntityType Name="EntityCategoria">
           <Key>
-            <PropertyRef Name="idCategoria" />
+            <PropertyRef Name="IdCategoria" />
           </Key>
-          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Producto" Relationship="Self.ProductoCategoria" FromRole="Categoria" ToRole="Producto" />
         </EntityType>
-        <EntityType Name="DetallePedido">
+        <EntityType Name="EntityDetallePedido">
           <Key>
             <PropertyRef Name="Pedido_idPedido" />
           </Key>
@@ -696,11 +634,11 @@
           <NavigationProperty Name="FormaPago" Relationship="Self.fk_DetallePedido_FormaPago1" FromRole="DetallePedido" ToRole="FormaPago" />
           <NavigationProperty Name="Pedido" Relationship="Self.fk_DetallePedido_Pedido1" FromRole="DetallePedido" ToRole="Pedido" />
         </EntityType>
-        <EntityType Name="Direccion">
+        <EntityType Name="EntityDireccion">
           <Key>
-            <PropertyRef Name="idDireccion" />
+            <PropertyRef Name="IdDireccion" />
           </Key>
-          <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Localidad" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
@@ -710,66 +648,66 @@
           <NavigationProperty Name="Proveedor" Relationship="Self.fk_Proveedor_Direccion1" FromRole="Direccion" ToRole="Proveedor" />
           <NavigationProperty Name="Persona" Relationship="Self.PersonaDireccion" FromRole="Direccion" ToRole="Persona" />
         </EntityType>
-        <EntityType Name="EstadoCarrito">
+        <EntityType Name="EntityEstadoCarrito">
           <Key>
-            <PropertyRef Name="idEstadoCarrito" />
+            <PropertyRef Name="IdEstadoCarrito" />
           </Key>
-          <Property Name="idEstadoCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEstadoCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Carrito" Relationship="Self.fk_Carrito_EstadoCarrito1" FromRole="EstadoCarrito" ToRole="Carrito" />
         </EntityType>
-        <EntityType Name="EstadoPedido">
+        <EntityType Name="EntityEstadoPedido">
           <Key>
-            <PropertyRef Name="idEstadoPedido" />
+            <PropertyRef Name="IdEstadoPedido" />
           </Key>
-          <Property Name="idEstadoPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEstadoPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Pedido" Relationship="Self.fk_Pedido_EstadoPedido1" FromRole="EstadoPedido" ToRole="Pedido" />
         </EntityType>
-        <EntityType Name="FormaEntrega">
+        <EntityType Name="EntityFormaEntrega">
           <Key>
-            <PropertyRef Name="idFormaEntrega" />
+            <PropertyRef Name="IdFormaEntrega" />
           </Key>
-          <Property Name="idFormaEntrega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFormaEntrega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="DetallePedido" Relationship="Self.fk_DetallePedido_FormaEntrega1" FromRole="FormaEntrega" ToRole="DetallePedido" />
         </EntityType>
-        <EntityType Name="FormaPago">
+        <EntityType Name="EntityFormaPago">
           <Key>
-            <PropertyRef Name="idFormaPago" />
+            <PropertyRef Name="IdFormaPago" />
           </Key>
-          <Property Name="idFormaPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFormaPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="DetallePedido" Relationship="Self.fk_DetallePedido_FormaPago1" FromRole="FormaPago" ToRole="DetallePedido" />
         </EntityType>
-        <EntityType Name="Imagen">
+        <EntityType Name="EntityImagen">
           <Key>
-            <PropertyRef Name="idImagen" />
+            <PropertyRef Name="IdImagen" />
           </Key>
-          <Property Name="idImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Marca" Relationship="Self.ImagenMarca" FromRole="Imagen" ToRole="Marca" />
           <NavigationProperty Name="Producto" Relationship="Self.ImagenProducto" FromRole="Imagen" ToRole="Producto" />
         </EntityType>
-        <EntityType Name="Marca">
+        <EntityType Name="EntityMarca">
           <Key>
-            <PropertyRef Name="idMarca" />
+            <PropertyRef Name="IdMarca" />
           </Key>
-          <Property Name="idMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Producto" Relationship="Self.fk_Producto_Marca1" FromRole="Marca" ToRole="Producto" />
           <NavigationProperty Name="Imagen" Relationship="Self.ImagenMarca" FromRole="Marca" ToRole="Imagen" />
         </EntityType>
-        <EntityType Name="Pedido">
+        <EntityType Name="EntityPedido">
           <Key>
-            <PropertyRef Name="idPedido" />
+            <PropertyRef Name="IdPedido" />
           </Key>
-          <Property Name="idPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Persona_idPersona" Type="Int32" Nullable="false" />
           <Property Name="EstadoPedido_idEstadoPedido" Type="Int32" Nullable="false" />
           <Property Name="Carrito_idCarrito" Type="Int32" Nullable="false" />
@@ -778,19 +716,11 @@
           <NavigationProperty Name="EstadoPedido" Relationship="Self.fk_Pedido_EstadoPedido1" FromRole="Pedido" ToRole="EstadoPedido" />
           <NavigationProperty Name="Persona" Relationship="Self.fk_Pedido_Cliente1" FromRole="Pedido" ToRole="Persona" />
         </EntityType>
-        <EntityType Name="Permiso">
+        <EntityType Name="EntityPersona">
           <Key>
-            <PropertyRef Name="idPermiso" />
+            <PropertyRef Name="IdPersona" />
           </Key>
-          <Property Name="idPermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Rol" Relationship="Self.RolPermiso" FromRole="Permiso" ToRole="Rol" />
-        </EntityType>
-        <EntityType Name="Persona">
-          <Key>
-            <PropertyRef Name="idPersona" />
-          </Key>
-          <Property Name="idPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
@@ -800,11 +730,11 @@
           <NavigationProperty Name="Usuario" Relationship="Self.fk_Cliente_Usuario1" FromRole="Persona" ToRole="Usuario" />
           <NavigationProperty Name="Direccion" Relationship="Self.PersonaDireccion" FromRole="Persona" ToRole="Direccion" />
         </EntityType>
-        <EntityType Name="Producto">
+        <EntityType Name="EntityProducto">
           <Key>
-            <PropertyRef Name="idProducto" />
+            <PropertyRef Name="IdProducto" />
           </Key>
-          <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
@@ -817,7 +747,7 @@
           <NavigationProperty Name="Categoria" Relationship="Self.ProductoCategoria" FromRole="Producto" ToRole="Categoria" />
           <NavigationProperty Name="Proveedor" Relationship="Self.ProductoProveedor" FromRole="Producto" ToRole="Proveedor" />
         </EntityType>
-        <EntityType Name="ProductoCarrito">
+        <EntityType Name="EntityProductoCarrito">
           <Key>
             <PropertyRef Name="Producto_idProducto" />
             <PropertyRef Name="Carrito_idCarrito" />
@@ -828,11 +758,11 @@
           <NavigationProperty Name="Carrito" Relationship="Self.fk_ProductoCarrito_Carrito1" FromRole="ProductoCarrito" ToRole="Carrito" />
           <NavigationProperty Name="Producto" Relationship="Self.fk_ProductoCarrito_Producto1" FromRole="ProductoCarrito" ToRole="Producto" />
         </EntityType>
-        <EntityType Name="Proveedor">
+        <EntityType Name="EntityProveedor">
           <Key>
-            <PropertyRef Name="idProveedor" />
+            <PropertyRef Name="IdProveedor" />
           </Key>
-          <Property Name="idProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -841,33 +771,33 @@
           <NavigationProperty Name="Direccion" Relationship="Self.fk_Proveedor_Direccion1" FromRole="Proveedor" ToRole="Direccion" />
           <NavigationProperty Name="Producto" Relationship="Self.ProductoProveedor" FromRole="Proveedor" ToRole="Producto" />
         </EntityType>
-        <EntityType Name="Rol">
+        <EntityType Name="sysdiagrams">
           <Key>
-            <PropertyRef Name="idRol" />
+            <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.fk_Usuario_Rol1" FromRole="Rol" ToRole="Usuario" />
-          <NavigationProperty Name="Permiso" Relationship="Self.RolPermiso" FromRole="Rol" ToRole="Permiso" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Usuario">
+        <EntityType Name="EntityUsuario">
           <Key>
-            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="IdUsuario" />
           </Key>
-          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Contraseña" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <Property Name="Rol_idRol" Type="Int32" Nullable="false" />
+          <Property Name="Rol" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="Self.fk_Cliente_Usuario1" FromRole="Usuario" ToRole="Persona" />
-          <NavigationProperty Name="Rol" Relationship="Self.fk_Usuario_Rol1" FromRole="Usuario" ToRole="Rol" />
         </EntityType>
         <Association Name="fk_Carrito_EstadoCarrito1">
-          <End Role="EstadoCarrito" Type="Self.EstadoCarrito" Multiplicity="1" />
-          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+          <End Role="EstadoCarrito" Type="mydbModel.EntityEstadoCarrito" Multiplicity="1" />
+          <End Role="Carrito" Type="mydbModel.EntityCarrito" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EstadoCarrito">
-              <PropertyRef Name="idEstadoCarrito" />
+              <PropertyRef Name="IdEstadoCarrito" />
             </Principal>
             <Dependent Role="Carrito">
               <PropertyRef Name="EstadoCarrito_idEstadoCarrito" />
@@ -875,11 +805,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Pedido_Carrito1">
-          <End Role="Carrito" Type="Self.Carrito" Multiplicity="1" />
-          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <End Role="Carrito" Type="mydbModel.EntityCarrito" Multiplicity="1" />
+          <End Role="Pedido" Type="mydbModel.EntityPedido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Carrito">
-              <PropertyRef Name="idCarrito" />
+              <PropertyRef Name="IdCarrito" />
             </Principal>
             <Dependent Role="Pedido">
               <PropertyRef Name="Carrito_idCarrito" />
@@ -887,11 +817,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ProductoCarrito_Carrito1">
-          <End Role="Carrito" Type="Self.Carrito" Multiplicity="1" />
-          <End Role="ProductoCarrito" Type="Self.ProductoCarrito" Multiplicity="*" />
+          <End Role="Carrito" Type="mydbModel.EntityCarrito" Multiplicity="1" />
+          <End Role="ProductoCarrito" Type="mydbModel.EntityProductoCarrito" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Carrito">
-              <PropertyRef Name="idCarrito" />
+              <PropertyRef Name="IdCarrito" />
             </Principal>
             <Dependent Role="ProductoCarrito">
               <PropertyRef Name="Carrito_idCarrito" />
@@ -899,11 +829,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_DetallePedido_Direccion1">
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
-          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <End Role="Direccion" Type="mydbModel.EntityDireccion" Multiplicity="0..1" />
+          <End Role="DetallePedido" Type="mydbModel.EntityDetallePedido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Direccion">
-              <PropertyRef Name="idDireccion" />
+              <PropertyRef Name="IdDireccion" />
             </Principal>
             <Dependent Role="DetallePedido">
               <PropertyRef Name="Direccion_idDireccion" />
@@ -911,11 +841,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_DetallePedido_FormaEntrega1">
-          <End Role="FormaEntrega" Type="Self.FormaEntrega" Multiplicity="1" />
-          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <End Role="FormaEntrega" Type="mydbModel.EntityFormaEntrega" Multiplicity="1" />
+          <End Role="DetallePedido" Type="mydbModel.EntityDetallePedido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FormaEntrega">
-              <PropertyRef Name="idFormaEntrega" />
+              <PropertyRef Name="IdFormaEntrega" />
             </Principal>
             <Dependent Role="DetallePedido">
               <PropertyRef Name="FormaEntrega_idFormaEntrega" />
@@ -923,11 +853,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_DetallePedido_FormaPago1">
-          <End Role="FormaPago" Type="Self.FormaPago" Multiplicity="1" />
-          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <End Role="FormaPago" Type="mydbModel.EntityFormaPago" Multiplicity="1" />
+          <End Role="DetallePedido" Type="mydbModel.EntityDetallePedido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FormaPago">
-              <PropertyRef Name="idFormaPago" />
+              <PropertyRef Name="IdFormaPago" />
             </Principal>
             <Dependent Role="DetallePedido">
               <PropertyRef Name="FormaPago_idFormaPago" />
@@ -935,11 +865,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_DetallePedido_Pedido1">
-          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
-          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="0..1" />
+          <End Role="Pedido" Type="mydbModel.EntityPedido" Multiplicity="1" />
+          <End Role="DetallePedido" Type="mydbModel.EntityDetallePedido" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Pedido">
-              <PropertyRef Name="idPedido" />
+              <PropertyRef Name="IdPedido" />
             </Principal>
             <Dependent Role="DetallePedido">
               <PropertyRef Name="Pedido_idPedido" />
@@ -947,11 +877,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Proveedor_Direccion1">
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
-          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
+          <End Role="Direccion" Type="mydbModel.EntityDireccion" Multiplicity="1" />
+          <End Role="Proveedor" Type="mydbModel.EntityProveedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Direccion">
-              <PropertyRef Name="idDireccion" />
+              <PropertyRef Name="IdDireccion" />
             </Principal>
             <Dependent Role="Proveedor">
               <PropertyRef Name="Direccion_idDireccion" />
@@ -959,11 +889,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Pedido_EstadoPedido1">
-          <End Role="EstadoPedido" Type="Self.EstadoPedido" Multiplicity="1" />
-          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <End Role="EstadoPedido" Type="mydbModel.EntityEstadoPedido" Multiplicity="1" />
+          <End Role="Pedido" Type="mydbModel.EntityPedido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EstadoPedido">
-              <PropertyRef Name="idEstadoPedido" />
+              <PropertyRef Name="IdEstadoPedido" />
             </Principal>
             <Dependent Role="Pedido">
               <PropertyRef Name="EstadoPedido_idEstadoPedido" />
@@ -971,11 +901,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Producto_Marca1">
-          <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <End Role="Marca" Type="mydbModel.EntityMarca" Multiplicity="1" />
+          <End Role="Producto" Type="mydbModel.EntityProducto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Marca">
-              <PropertyRef Name="idMarca" />
+              <PropertyRef Name="IdMarca" />
             </Principal>
             <Dependent Role="Producto">
               <PropertyRef Name="Marca_idMarca" />
@@ -983,11 +913,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Pedido_Cliente1">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <End Role="Persona" Type="mydbModel.EntityPersona" Multiplicity="1" />
+          <End Role="Pedido" Type="mydbModel.EntityPedido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
-              <PropertyRef Name="idPersona" />
+              <PropertyRef Name="IdPersona" />
             </Principal>
             <Dependent Role="Pedido">
               <PropertyRef Name="Persona_idPersona" />
@@ -995,11 +925,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Cliente_Usuario1">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <End Role="Usuario" Type="mydbModel.EntityUsuario" Multiplicity="1" />
+          <End Role="Persona" Type="mydbModel.EntityPersona" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
-              <PropertyRef Name="idUsuario" />
+              <PropertyRef Name="IdUsuario" />
             </Principal>
             <Dependent Role="Persona">
               <PropertyRef Name="Usuario_idUsuario" />
@@ -1007,72 +937,55 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ProductoCarrito_Producto1">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
-          <End Role="ProductoCarrito" Type="Self.ProductoCarrito" Multiplicity="*" />
+          <End Role="Producto" Type="mydbModel.EntityProducto" Multiplicity="1" />
+          <End Role="ProductoCarrito" Type="mydbModel.EntityProductoCarrito" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
-              <PropertyRef Name="idProducto" />
+              <PropertyRef Name="IdProducto" />
             </Principal>
             <Dependent Role="ProductoCarrito">
               <PropertyRef Name="Producto_idProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Usuario_Rol1">
-          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="idRol" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="Rol_idRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="ImagenMarca">
-          <End Role="Imagen" Type="Self.Imagen" Multiplicity="*" />
-          <End Role="Marca" Type="Self.Marca" Multiplicity="*" />
+          <End Role="Imagen" Type="mydbModel.EntityImagen" Multiplicity="*" />
+          <End Role="Marca" Type="mydbModel.EntityMarca" Multiplicity="*" />
         </Association>
         <Association Name="ImagenProducto">
-          <End Role="Imagen" Type="Self.Imagen" Multiplicity="*" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <End Role="Imagen" Type="mydbModel.EntityImagen" Multiplicity="*" />
+          <End Role="Producto" Type="mydbModel.EntityProducto" Multiplicity="*" />
         </Association>
         <Association Name="PersonaDireccion">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <End Role="Persona" Type="mydbModel.EntityPersona" Multiplicity="*" />
+          <End Role="Direccion" Type="mydbModel.EntityDireccion" Multiplicity="*" />
         </Association>
         <Association Name="ProductoCategoria">
-          <End Role="Categoria" Type="Self.Categoria" Multiplicity="*" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <End Role="Categoria" Type="mydbModel.EntityCategoria" Multiplicity="*" />
+          <End Role="Producto" Type="mydbModel.EntityProducto" Multiplicity="*" />
         </Association>
         <Association Name="ProductoProveedor">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
-          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
+          <End Role="Producto" Type="mydbModel.EntityProducto" Multiplicity="*" />
+          <End Role="Proveedor" Type="mydbModel.EntityProveedor" Multiplicity="*" />
         </Association>
-        <Association Name="RolPermiso">
-          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
-          <End Role="Rol" Type="Self.Rol" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="mydbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Carrito" EntityType="Self.Carrito" />
-          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
-          <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" />
-          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
-          <EntitySet Name="EstadoCarrito" EntityType="Self.EstadoCarrito" />
-          <EntitySet Name="EstadoPedido" EntityType="Self.EstadoPedido" />
-          <EntitySet Name="FormaEntrega" EntityType="Self.FormaEntrega" />
-          <EntitySet Name="FormaPago" EntityType="Self.FormaPago" />
-          <EntitySet Name="Imagen" EntityType="Self.Imagen" />
-          <EntitySet Name="Marca" EntityType="Self.Marca" />
-          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
-          <EntitySet Name="Permiso" EntityType="Self.Permiso" />
-          <EntitySet Name="Persona" EntityType="Self.Persona" />
-          <EntitySet Name="Producto" EntityType="Self.Producto" />
-          <EntitySet Name="ProductoCarrito" EntityType="Self.ProductoCarrito" />
-          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
-          <EntitySet Name="Rol" EntityType="Self.Rol" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+        <EntityContainer Name="mydbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carrito" EntityType="mydbModel.EntityCarrito" />
+          <EntitySet Name="Categoria" EntityType="mydbModel.EntityCategoria" />
+          <EntitySet Name="DetallePedido" EntityType="mydbModel.EntityDetallePedido" />
+          <EntitySet Name="Direccion" EntityType="mydbModel.EntityDireccion" />
+          <EntitySet Name="EstadoCarrito" EntityType="mydbModel.EntityEstadoCarrito" />
+          <EntitySet Name="EstadoPedido" EntityType="mydbModel.EntityEstadoPedido" />
+          <EntitySet Name="FormaEntrega" EntityType="mydbModel.EntityFormaEntrega" />
+          <EntitySet Name="FormaPago" EntityType="mydbModel.EntityFormaPago" />
+          <EntitySet Name="Imagen" EntityType="mydbModel.EntityImagen" />
+          <EntitySet Name="Marca" EntityType="mydbModel.EntityMarca" />
+          <EntitySet Name="Pedido" EntityType="mydbModel.EntityPedido" />
+          <EntitySet Name="Persona" EntityType="mydbModel.EntityPersona" />
+          <EntitySet Name="Producto" EntityType="mydbModel.EntityProducto" />
+          <EntitySet Name="ProductoCarrito" EntityType="mydbModel.EntityProductoCarrito" />
+          <EntitySet Name="Proveedor" EntityType="mydbModel.EntityProveedor" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuario" EntityType="mydbModel.EntityUsuario" />
           <AssociationSet Name="fk_Carrito_EstadoCarrito1" Association="Self.fk_Carrito_EstadoCarrito1">
             <End Role="EstadoCarrito" EntitySet="EstadoCarrito" />
             <End Role="Carrito" EntitySet="Carrito" />
@@ -1125,10 +1038,6 @@
             <End Role="Producto" EntitySet="Producto" />
             <End Role="ProductoCarrito" EntitySet="ProductoCarrito" />
           </AssociationSet>
-          <AssociationSet Name="fk_Usuario_Rol1" Association="Self.fk_Usuario_Rol1">
-            <End Role="Rol" EntitySet="Rol" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
           <AssociationSet Name="ImagenMarca" Association="Self.ImagenMarca">
             <End Role="Imagen" EntitySet="Imagen" />
             <End Role="Marca" EntitySet="Marca" />
@@ -1149,37 +1058,33 @@
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Proveedor" EntitySet="Proveedor" />
           </AssociationSet>
-          <AssociationSet Name="RolPermiso" Association="Self.RolPermiso">
-            <End Role="Permiso" EntitySet="Permiso" />
-            <End Role="Rol" EntitySet="Rol" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="mydbModelStoreContainer" CdmEntityContainer="mydbEntities">
+        <EntityContainerMapping StorageEntityContainer="mydbModelStoreContainer" CdmEntityContainer="mydbEntities1">
           <EntitySetMapping Name="Carrito">
-            <EntityTypeMapping TypeName="mydbModel.Carrito">
+            <EntityTypeMapping TypeName="mydbModel.EntityCarrito">
               <MappingFragment StoreEntitySet="Carrito">
-                <ScalarProperty Name="idCarrito" ColumnName="idCarrito" />
+                <ScalarProperty Name="IdCarrito" ColumnName="idCarrito" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="EstadoCarrito_idEstadoCarrito" ColumnName="EstadoCarrito_idEstadoCarrito" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categoria">
-            <EntityTypeMapping TypeName="mydbModel.Categoria">
+            <EntityTypeMapping TypeName="mydbModel.EntityCategoria">
               <MappingFragment StoreEntitySet="Categoria">
-                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="IdCategoria" ColumnName="idCategoria" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DetallePedido">
-            <EntityTypeMapping TypeName="mydbModel.DetallePedido">
+            <EntityTypeMapping TypeName="mydbModel.EntityDetallePedido">
               <MappingFragment StoreEntitySet="DetallePedido">
                 <ScalarProperty Name="Pedido_idPedido" ColumnName="Pedido_idPedido" />
                 <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
@@ -1191,9 +1096,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Direccion">
-            <EntityTypeMapping TypeName="mydbModel.Direccion">
+            <EntityTypeMapping TypeName="mydbModel.EntityDireccion">
               <MappingFragment StoreEntitySet="Direccion">
-                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="IdDireccion" ColumnName="idDireccion" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="Localidad" ColumnName="Localidad" />
@@ -1203,44 +1108,44 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EstadoCarrito">
-            <EntityTypeMapping TypeName="mydbModel.EstadoCarrito">
+            <EntityTypeMapping TypeName="mydbModel.EntityEstadoCarrito">
               <MappingFragment StoreEntitySet="EstadoCarrito">
-                <ScalarProperty Name="idEstadoCarrito" ColumnName="idEstadoCarrito" />
+                <ScalarProperty Name="IdEstadoCarrito" ColumnName="idEstadoCarrito" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EstadoPedido">
-            <EntityTypeMapping TypeName="mydbModel.EstadoPedido">
+            <EntityTypeMapping TypeName="mydbModel.EntityEstadoPedido">
               <MappingFragment StoreEntitySet="EstadoPedido">
-                <ScalarProperty Name="idEstadoPedido" ColumnName="idEstadoPedido" />
+                <ScalarProperty Name="IdEstadoPedido" ColumnName="idEstadoPedido" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FormaEntrega">
-            <EntityTypeMapping TypeName="mydbModel.FormaEntrega">
+            <EntityTypeMapping TypeName="mydbModel.EntityFormaEntrega">
               <MappingFragment StoreEntitySet="FormaEntrega">
-                <ScalarProperty Name="idFormaEntrega" ColumnName="idFormaEntrega" />
+                <ScalarProperty Name="IdFormaEntrega" ColumnName="idFormaEntrega" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FormaPago">
-            <EntityTypeMapping TypeName="mydbModel.FormaPago">
+            <EntityTypeMapping TypeName="mydbModel.EntityFormaPago">
               <MappingFragment StoreEntitySet="FormaPago">
-                <ScalarProperty Name="idFormaPago" ColumnName="idFormaPago" />
+                <ScalarProperty Name="IdFormaPago" ColumnName="idFormaPago" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Imagen">
-            <EntityTypeMapping TypeName="mydbModel.Imagen">
+            <EntityTypeMapping TypeName="mydbModel.EntityImagen">
               <MappingFragment StoreEntitySet="Imagen">
-                <ScalarProperty Name="idImagen" ColumnName="idImagen" />
+                <ScalarProperty Name="IdImagen" ColumnName="idImagen" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
@@ -1248,35 +1153,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Marca">
-            <EntityTypeMapping TypeName="mydbModel.Marca">
+            <EntityTypeMapping TypeName="mydbModel.EntityMarca">
               <MappingFragment StoreEntitySet="Marca">
-                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="IdMarca" ColumnName="idMarca" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pedido">
-            <EntityTypeMapping TypeName="mydbModel.Pedido">
+            <EntityTypeMapping TypeName="mydbModel.EntityPedido">
               <MappingFragment StoreEntitySet="Pedido">
-                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="IdPedido" ColumnName="idPedido" />
                 <ScalarProperty Name="Persona_idPersona" ColumnName="Persona_idPersona" />
                 <ScalarProperty Name="EstadoPedido_idEstadoPedido" ColumnName="EstadoPedido_idEstadoPedido" />
                 <ScalarProperty Name="Carrito_idCarrito" ColumnName="Carrito_idCarrito" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Permiso">
-            <EntityTypeMapping TypeName="mydbModel.Permiso">
-              <MappingFragment StoreEntitySet="Permiso">
-                <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Persona">
-            <EntityTypeMapping TypeName="mydbModel.Persona">
+            <EntityTypeMapping TypeName="mydbModel.EntityPersona">
               <MappingFragment StoreEntitySet="Persona">
-                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="IdPersona" ColumnName="idPersona" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
@@ -1286,9 +1183,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
-            <EntityTypeMapping TypeName="mydbModel.Producto">
+            <EntityTypeMapping TypeName="mydbModel.EntityProducto">
               <MappingFragment StoreEntitySet="Producto">
-                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="IdProducto" ColumnName="idProducto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
@@ -1299,7 +1196,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductoCarrito">
-            <EntityTypeMapping TypeName="mydbModel.ProductoCarrito">
+            <EntityTypeMapping TypeName="mydbModel.EntityProductoCarrito">
               <MappingFragment StoreEntitySet="ProductoCarrito">
                 <ScalarProperty Name="Producto_idProducto" ColumnName="Producto_idProducto" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
@@ -1308,9 +1205,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Proveedor">
-            <EntityTypeMapping TypeName="mydbModel.Proveedor">
+            <EntityTypeMapping TypeName="mydbModel.EntityProveedor">
               <MappingFragment StoreEntitySet="Proveedor">
-                <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
+                <ScalarProperty Name="IdProveedor" ColumnName="idProveedor" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
@@ -1319,71 +1216,66 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Rol">
-            <EntityTypeMapping TypeName="mydbModel.Rol">
-              <MappingFragment StoreEntitySet="Rol">
-                <ScalarProperty Name="idRol" ColumnName="idRol" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="mydbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="mydbModel.Usuario">
+            <EntityTypeMapping TypeName="mydbModel.EntityUsuario">
               <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
                 <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Rol_idRol" ColumnName="Rol_idRol" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="ImagenMarca" TypeName="mydbModel.ImagenMarca" StoreEntitySet="ImagenMarca">
             <EndProperty Name="Imagen">
-              <ScalarProperty Name="idImagen" ColumnName="Imagen_idImagen" />
+              <ScalarProperty Name="IdImagen" ColumnName="Imagen_idImagen" />
             </EndProperty>
             <EndProperty Name="Marca">
-              <ScalarProperty Name="idMarca" ColumnName="Marca_idMarca" />
+              <ScalarProperty Name="IdMarca" ColumnName="Marca_idMarca" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ImagenProducto" TypeName="mydbModel.ImagenProducto" StoreEntitySet="ImagenProducto">
             <EndProperty Name="Imagen">
-              <ScalarProperty Name="idImagen" ColumnName="Imagen_idImagen" />
+              <ScalarProperty Name="IdImagen" ColumnName="Imagen_idImagen" />
             </EndProperty>
             <EndProperty Name="Producto">
-              <ScalarProperty Name="idProducto" ColumnName="Producto_idProducto" />
+              <ScalarProperty Name="IdProducto" ColumnName="Producto_idProducto" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="PersonaDireccion" TypeName="mydbModel.PersonaDireccion" StoreEntitySet="PersonaDireccion">
             <EndProperty Name="Persona">
-              <ScalarProperty Name="idPersona" ColumnName="Persona_idPersona" />
+              <ScalarProperty Name="IdPersona" ColumnName="Persona_idPersona" />
             </EndProperty>
             <EndProperty Name="Direccion">
-              <ScalarProperty Name="idDireccion" ColumnName="Direccion_idDireccion" />
+              <ScalarProperty Name="IdDireccion" ColumnName="Direccion_idDireccion" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ProductoCategoria" TypeName="mydbModel.ProductoCategoria" StoreEntitySet="ProductoCategoria">
             <EndProperty Name="Categoria">
-              <ScalarProperty Name="idCategoria" ColumnName="Categoria_idCategoria" />
+              <ScalarProperty Name="IdCategoria" ColumnName="Categoria_idCategoria" />
             </EndProperty>
             <EndProperty Name="Producto">
-              <ScalarProperty Name="idProducto" ColumnName="Producto_idProducto" />
+              <ScalarProperty Name="IdProducto" ColumnName="Producto_idProducto" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ProductoProveedor" TypeName="mydbModel.ProductoProveedor" StoreEntitySet="ProductoProveedor">
             <EndProperty Name="Producto">
-              <ScalarProperty Name="idProducto" ColumnName="Producto_idProducto" />
+              <ScalarProperty Name="IdProducto" ColumnName="Producto_idProducto" />
             </EndProperty>
             <EndProperty Name="Proveedor">
-              <ScalarProperty Name="idProveedor" ColumnName="Proveedor_idProveedor" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="RolPermiso" TypeName="mydbModel.RolPermiso" StoreEntitySet="RolPermiso">
-            <EndProperty Name="Permiso">
-              <ScalarProperty Name="idPermiso" ColumnName="Permiso_idPermiso" />
-            </EndProperty>
-            <EndProperty Name="Rol">
-              <ScalarProperty Name="idRol" ColumnName="Rol_idRol" />
+              <ScalarProperty Name="IdProveedor" ColumnName="Proveedor_idProveedor" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

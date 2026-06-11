@@ -11,11 +11,11 @@ namespace Infraestructura.Mappers
     {
         public static Persona ToDomain(this EntityPersona persona)
         {
-            return new Persona(persona.IdPersona, persona.Nombre, persona.Apellido, persona.Mail, persona.Telefono, persona.Usuario.ToDomain());
+            return new Persona(persona.IdPersona, persona.Nombre, persona.Apellido, persona.Mail, persona.Telefono, persona.Usuario.ToDomain(),persona.Direccion.Select(obj=>obj.ToDomain()).ToList());
         }
         public static EntityPersona ToEntity(this Persona persona)
         {
-            return new EntityPersona(persona.IdPersona, persona.Nombre, persona.Apellido, persona.Mail, persona.Telefono, persona.Usuario.IdUsuario);
+            return new EntityPersona(persona.IdPersona, persona.Nombre, persona.Apellido, persona.Mail, persona.Telefono, persona.Usuario.IdUsuario,persona.Direcciones.Select(obj=>obj.ToEntity()).ToList());
         }
     }
 }

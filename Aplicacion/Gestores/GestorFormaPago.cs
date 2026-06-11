@@ -5,10 +5,11 @@ using System.Text;
 using Dominio.Entidades;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
+using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
 {
-    public class GestorFormaPago
+    public class GestorFormaPago : IGestorFormaPago
     {
         IRepositorioFormaPago repo;
 

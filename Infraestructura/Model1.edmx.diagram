@@ -4,25 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="335ea7f7978246f6a1ea823577ec12d9" Name="Diagram1">
-        <EntityTypeShape EntityType="mydbModel.Carrito" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Categoria" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.DetallePedido" Width="1.5" PointX="9.75" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Direccion" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.EstadoCarrito" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.EstadoPedido" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.FormaEntrega" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.FormaPago" Width="1.5" PointX="7.5" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Imagen" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Marca" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Pedido" Width="1.5" PointX="7.5" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Permiso" Width="1.5" PointX="1.5" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Persona" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Producto" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.ProductoCarrito" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Proveedor" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Rol" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="mydbModel.Usuario" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+      <Diagram DiagramId="f568401e50064f88a0529875dc320e8d" Name="Diagram1">
+        <EntityTypeShape EntityType="mydbModel.EntityCarrito" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityCategoria" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityDetallePedido" Width="1.5" PointX="9.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityDireccion" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityEstadoCarrito" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityEstadoPedido" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityFormaEntrega" Width="1.5" PointX="7.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityFormaPago" Width="1.5" PointX="7.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityImagen" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityMarca" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityPedido" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityPersona" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityProducto" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityProductoCarrito" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityProveedor" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.EntityUsuario" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
         <AssociationConnector Association="mydbModel.fk_Carrito_EstadoCarrito1" ManuallyRouted="false" />
         <AssociationConnector Association="mydbModel.fk_Pedido_Carrito1" ManuallyRouted="false" />
         <AssociationConnector Association="mydbModel.fk_ProductoCarrito_Carrito1" ManuallyRouted="false" />
@@ -36,13 +35,11 @@
         <AssociationConnector Association="mydbModel.fk_Pedido_Cliente1" ManuallyRouted="false" />
         <AssociationConnector Association="mydbModel.fk_Cliente_Usuario1" ManuallyRouted="false" />
         <AssociationConnector Association="mydbModel.fk_ProductoCarrito_Producto1" ManuallyRouted="false" />
-        <AssociationConnector Association="mydbModel.fk_Usuario_Rol1" ManuallyRouted="false" />
         <AssociationConnector Association="mydbModel.ImagenMarca" ManuallyRouted="false" />
         <AssociationConnector Association="mydbModel.ImagenProducto" ManuallyRouted="false" />
         <AssociationConnector Association="mydbModel.PersonaDireccion" ManuallyRouted="false" />
         <AssociationConnector Association="mydbModel.ProductoCategoria" ManuallyRouted="false" />
         <AssociationConnector Association="mydbModel.ProductoProveedor" ManuallyRouted="false" />
-        <AssociationConnector Association="mydbModel.RolPermiso" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -53,12 +53,10 @@
     <Compile Include="Gestores\GestorImagen.cs" />
     <Compile Include="Gestores\GestorMarca.cs" />
     <Compile Include="Gestores\GestorPedido.cs" />
-    <Compile Include="Gestores\GestorPerniso.cs" />
     <Compile Include="Gestores\GestorPersona.cs" />
     <Compile Include="Gestores\GestorProducto.cs" />
     <Compile Include="Gestores\GestorProductoCarrito.cs" />
     <Compile Include="Gestores\GestorProveedor.cs" />
-    <Compile Include="Gestores\GestorRol.cs" />
     <Compile Include="Gestores\GestorUsuario.cs" />
     <Compile Include="Interfaces\Gestores\IGestorCategoria.cs" />
     <Compile Include="Interfaces\Gestores\IGestorCarrito.cs" />
@@ -71,12 +69,10 @@
     <Compile Include="Interfaces\Gestores\IGestorImagen.cs" />
     <Compile Include="Interfaces\Gestores\IGestorMarca.cs" />
     <Compile Include="Interfaces\Gestores\IGestorPedido.cs" />
-    <Compile Include="Interfaces\Gestores\IGestorPermiso.cs" />
     <Compile Include="Interfaces\Gestores\IGestorPersona.cs" />
     <Compile Include="Interfaces\Gestores\IGestorProducto.cs" />
     <Compile Include="Interfaces\Gestores\IGestorProductoCarrito.cs" />
     <Compile Include="Interfaces\Gestores\IGestorProveedor.cs" />
-    <Compile Include="Interfaces\Gestores\IGestorRol.cs" />
     <Compile Include="Interfaces\Gestores\IGestorUsuario.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioCarrito.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioCategoria.cs" />
@@ -89,12 +85,10 @@
     <Compile Include="Interfaces\Repositorios\IRepositorioImagen.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioMarca.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioPedido.cs" />
-    <Compile Include="Interfaces\Repositorios\IRepositorioPermiso.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioPersona.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioProducto.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioProductoCarrito.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioProveedor.cs" />
-    <Compile Include="Interfaces\Repositorios\IRepositorioRol.cs" />
     <Compile Include="Interfaces\Repositorios\IRepositorioUsuario.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Log_in.aspx.cs" Inherits="TP_Cuatrimestral_15B.Log_in" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Log_in.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Log_in" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">

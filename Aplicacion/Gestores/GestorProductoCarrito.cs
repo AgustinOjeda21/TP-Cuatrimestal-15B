@@ -9,7 +9,7 @@ using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
 {
-    class GestorProductoCarrito
+    public class GestorProductoCarrito : IGestorProductoCarrito
     {
         IRepositorioProductoCarrito repo;
         IGestorCarrito gestorCarrito;

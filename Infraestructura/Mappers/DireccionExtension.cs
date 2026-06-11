@@ -11,11 +11,11 @@ namespace Infraestructura.Mappers
     {
         public static Direccion ToDomain(this EntityDireccion direccion)
         {
-            return new Direccion(direccion.IdDireccion, direccion.Calle, direccion.Numero, direccion.Localidad, direccion.Calle, direccion.Observaciones);
+            return new Direccion(direccion.IdDireccion, direccion.Calle, direccion.Numero, direccion.Localidad, direccion.CodigoPostal, direccion.Observaciones);
         }
         public static EntityDireccion ToEntity(this Direccion direccion)
         {
-            return new EntityDireccion(direccion.IdDireccion, direccion.Calle, direccion.Numero, direccion.Localidad, direccion.Calle, direccion.Observaciones);
+            return new EntityDireccion(direccion.IdDireccion, direccion.Calle, direccion.Numero, direccion.Localidad, direccion.CodigoPostal, direccion.Observaciones);
         }
     }
 }

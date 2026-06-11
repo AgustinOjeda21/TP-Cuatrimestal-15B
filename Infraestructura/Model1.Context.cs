@@ -13,10 +13,10 @@ namespace Infraestructura
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class mydbEntities : DbContext
+    public partial class mydbEntities1 : DbContext
     {
-        public mydbEntities()
-            : base("name=mydbEntities")
+        public mydbEntities1()
+            : base("name=mydbEntities1")
         {
         }
     
@@ -36,12 +36,11 @@ namespace Infraestructura
         public virtual DbSet<EntityImagen> Imagen { get; set; }
         public virtual DbSet<EntityMarca> Marca { get; set; }
         public virtual DbSet<EntityPedido> Pedido { get; set; }
-        public virtual DbSet<EntityPermiso> Permiso { get; set; }
         public virtual DbSet<EntityPersona> Persona { get; set; }
         public virtual DbSet<EntityProducto> Producto { get; set; }
         public virtual DbSet<EntityProductoCarrito> ProductoCarrito { get; set; }
         public virtual DbSet<EntityProveedor> Proveedor { get; set; }
-        public virtual DbSet<EntityRol> Rol { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<EntityUsuario> Usuario { get; set; }
     }
 }

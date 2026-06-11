@@ -18,8 +18,8 @@ namespace Infraestructura.Repositorios
     {
         
 
-        private readonly mydbEntities context;
-        public RepositorioCarrito (mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioCarrito (mydbEntities1 context)
         {
             this.context = context;
         }

@@ -18,16 +18,17 @@ namespace TP_Cuatrimestral_15B
 
         protected async void btnRegistrarse_Click(object sender, EventArgs e)
         {
-            mydbEntities context = new mydbEntities();
-            RepositorioRol repoRol = new RepositorioRol(context);
+            mydbEntities1 context = new mydbEntities1();
+ 
             RepositorioPersona repoPersona = new RepositorioPersona(context);
             RepositorioUsuario repoUsuario = new RepositorioUsuario(context);
-            GestorRol gestorRol = new GestorRol(repoRol);
-            GestorPersona gestorPersona = new GestorPersona(repoPersona);
-            GestorUsuario gestorUsuario = new GestorUsuario(repoUsuario, gestorRol, gestorPersona);
+            RepositorioDireccion repositorioDireccion = new RepositorioDireccion(context);
+            GestorDireccion gestorDireccion = new GestorDireccion(repositorioDireccion);
+            GestorPersona gestorPersona = new GestorPersona(repoPersona, gestorDireccion);
+            GestorUsuario gestorUsuario = new GestorUsuario(repoUsuario, gestorPersona);
 
             var usuarios = await gestorUsuario.DevolverUsuarios();
-            var usuario = usuarios.FirstOrDefault(u => u.NombreUsuario == txtNombreUsuario.Text.Trim() && u.Contraseña == txtContraseña.Text);
+            var usuario = usuarios.FirstOrDefault(u => u.NombreUsuario == txtNombreUsuario.Text && u.Contraseña == txtContraseña.Text);
 
             if (usuario == null)
             {
@@ -37,7 +38,7 @@ namespace TP_Cuatrimestral_15B
 
             Session["Usuario"] = usuario;
 
-            if (usuario.Rol != null && usuario.Rol.Nombre == "Admin")
+            if (usuario.Rol== Usuario.Roles.Administrador)
                 Response.Redirect("~/Admin/Inicio.aspx");
             else
                 Response.Redirect("~/Inicio.aspx");

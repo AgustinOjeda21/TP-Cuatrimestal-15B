@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio.Entidades;
 using Aplicacion.Interfaces.Repositorios;
+using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
 {
-    public class GestorFormaEntrega
+    public class GestorFormaEntrega : IGestorFormaEntrega
     {
         IRepositorioFormaEntrega repo;
 

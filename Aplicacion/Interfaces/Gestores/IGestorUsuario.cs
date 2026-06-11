@@ -9,12 +9,12 @@ namespace Aplicacion.Interfaces.Gestores
 {
     public interface IGestorUsuario
     {
-        Task<Result<Usuario>> CargarUsuario(Usuario edi, Persona persona);
+        Task<Result<Usuario>> CargarUsuario(Usuario edi, Persona persona,Direccion direccion);
 
         Task<Usuario> CapturarUsuario(int id);
 
 
-        Task<List<Usuario>> DevolverUsuarioes();
+        Task<List<Usuario>> DevolverUsuarios();
 
 
 

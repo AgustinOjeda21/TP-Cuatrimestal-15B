@@ -16,8 +16,8 @@ namespace Infraestructura.Repositorios
 {
     public class RepositorioProducto : IRepositorioProducto
     {
-        private readonly mydbEntities context;
-        public RepositorioProducto(mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioProducto(mydbEntities1 context)
         {
             this.context = context;
         }
@@ -78,16 +78,38 @@ namespace Infraestructura.Repositorios
                        dest => dest.Marca_idMarca,
                        opt => opt.MapFrom(src => src.Marca.IdMarca)
                    )
+                   .ForMember(
+                       dest => dest.Categoria,
+                       opt => opt.MapFrom(src => src.Categorias.Select(obj => obj.ToEntity()).ToList())
+                   )
+                   .ForMember(
+                       dest => dest.Imagen,
+                       opt => opt.MapFrom(src => src.Imagenes.Select(obj => obj.ToEntity()).ToList())
+                   )
+                   .ForMember(
+                       dest => dest.Proveedor,
+                       opt => opt.MapFrom(src => src.Proveedores.Select(obj => obj.ToEntity()).ToList())
+                   )
                    .ForMember(dest => dest.Marca, opt => opt.Ignore())
-                   .ForMember(dest => dest.ProductoCarrito, opt => opt.Ignore())
-                   .ForMember(dest => dest.Imagen, opt => opt.Ignore())
-                   .ForMember(dest => dest.Categoria, opt => opt.Ignore())
-                   .ForMember(dest => dest.Proveedor, opt => opt.Ignore());
+                   .ForMember(dest => dest.ProductoCarrito, opt => opt.Ignore());
+
 
                 cfg.CreateMap<EntityProducto, Producto>()
                    .ForMember(
                        dest => dest.Marca,
                        opt => opt.MapFrom(src => src.Marca.ToDomain())
+                   )
+                    .ForMember(
+                       dest => dest.Categorias,
+                       opt => opt.MapFrom(src => src.Categoria.Select(obj => obj.ToDomain()).ToList())
+                   )
+                   .ForMember(
+                       dest => dest.Imagenes,
+                       opt => opt.MapFrom(src => src.Imagen.Select(obj => obj.ToDomain()).ToList())
+                   )
+                   .ForMember(
+                       dest => dest.Proveedores,
+                       opt => opt.MapFrom(src => src.Proveedor.Select(obj => obj.ToDomain()).ToList())
                    );
             });
             return config.CreateMapper();

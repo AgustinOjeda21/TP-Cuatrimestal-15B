@@ -11,11 +11,11 @@ namespace Infraestructura.Mappers
     {
         public static Usuario ToDomain(this EntityUsuario usuario)
         {
-            return new Usuario(usuario.IdUsuario, usuario.NombreUsuario, usuario.Contraseña, usuario.Estado, usuario.Rol.ToDomain());
+            return new Usuario(usuario.IdUsuario, usuario.NombreUsuario, usuario.Contraseña, usuario.Estado, usuario.Rol);
         }
         public static EntityUsuario ToEntity(this Usuario usuario)
         {
-            return new EntityUsuario(usuario.IdUsuario, usuario.NombreUsuario, usuario.Contraseña, usuario.Estado, usuario.Rol.IdRol);
+            return new EntityUsuario(usuario.IdUsuario, usuario.NombreUsuario, usuario.Contraseña, usuario.Estado, (int)usuario.Rol);
         }
     }
 }

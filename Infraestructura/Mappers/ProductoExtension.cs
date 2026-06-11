@@ -11,11 +11,16 @@ namespace Infraestructura.Mappers
     {
         public static Producto ToDomain(this EntityProducto producto)
         {
-            return new Producto(producto.IdProducto, producto.Nombre, producto.Descripcion, producto.Precio, producto.Stock, producto.Estado, producto.Marca.ToDomain());
+            return new Producto(producto.IdProducto, producto.Nombre, producto.Descripcion, producto.Precio, producto.Stock, producto.Estado, producto.Marca.ToDomain(),
+                producto.Imagen.Select(obj=>obj.ToDomain()).ToList(),
+                producto.Categoria.Select(obj => obj.ToDomain()).ToList(),
+                producto.Proveedor.Select(obj => obj.ToDomain()).ToList());
         }
         public static EntityProducto ToEntity(this Producto producto)
         {
-            return new EntityProducto(producto.IdProducto, producto.Nombre, producto.Descripcion, producto.Precio, producto.Stock, producto.Estado, producto.Marca.IdMarca);
+            return new EntityProducto(producto.IdProducto, producto.Nombre, producto.Descripcion, producto.Precio, producto.Stock, producto.Estado, producto.Marca.IdMarca,producto.Imagenes.Select(obj=>obj.ToEntity()).ToList(),
+                producto.Categorias.Select(obj => obj.ToEntity()).ToList(),
+                producto.Proveedores.Select(obj => obj.ToEntity()).ToList());
         }
     }
 }

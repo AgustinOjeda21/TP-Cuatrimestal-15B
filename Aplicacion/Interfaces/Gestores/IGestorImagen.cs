@@ -11,8 +11,6 @@ namespace Aplicacion.Interfaces.Gestores
     {
         Task<Result<Imagen>> CargarImagen(Imagen edi);
 
-
-
         Task<Imagen> CapturarImagen(int id);
 
 

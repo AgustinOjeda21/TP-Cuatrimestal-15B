@@ -16,8 +16,8 @@ namespace Infraestructura.Repositorios
 {
     public class RepositorioFormaPago : IRepositorioFormaPago
     {
-        private readonly mydbEntities context;
-        public RepositorioFormaPago(mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioFormaPago(mydbEntities1 context)
         {
             this.context = context;
         }

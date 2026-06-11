@@ -56,12 +56,10 @@
     <Compile Include="Entidades\Imagen.cs" />
     <Compile Include="Entidades\Marca.cs" />
     <Compile Include="Entidades\Pedido.cs" />
-    <Compile Include="Entidades\Permiso.cs" />
     <Compile Include="Entidades\Persona.cs" />
     <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\ProductoCarrito.cs" />
     <Compile Include="Entidades\Proveedor.cs" />
-    <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Especificaciones\AndEspecificacion.cs" />
     <Compile Include="Especificaciones\BuscarStringEspecificacion.cs" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.AdminInicio" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.AdminInicio" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -30,6 +30,16 @@
             <asp:HyperLink ID="linkFormasPago" runat="server" NavigateUrl="~/Admin/FormasPago.aspx">Formas de Pago</asp:HyperLink>
             <asp:HyperLink ID="linkFormasEntrega" runat="server" NavigateUrl="~/Admin/FormasEntrega.aspx">Formas de Entrega</asp:HyperLink>
             <asp:HyperLink ID="linkPedidos" runat="server" NavigateUrl="~/Admin/Pedidos.aspx">Pedidos</asp:HyperLink>
+            <asp:HyperLink ID="linkDetallePedido" runat="server" NavigateUrl="~/Admin/DetallePedido.aspx">Detalle Pedido</asp:HyperLink>
+            <asp:HyperLink ID="linkDirecciones" runat="server" NavigateUrl="~/Admin/Direcciones.aspx">Direcciones</asp:HyperLink>
+            <asp:HyperLink ID="linkEstadosPedido" runat="server" NavigateUrl="~/Admin/EstadosPedido.aspx">Estados Pedido</asp:HyperLink>
+            <asp:HyperLink ID="linkEstadosCarrito" runat="server" NavigateUrl="~/Admin/EstadosCarrito.aspx">Estados Carrito</asp:HyperLink>
+            <asp:HyperLink ID="linkImagenes" runat="server" NavigateUrl="~/Admin/Imagenes.aspx">Imagenes</asp:HyperLink>
+            <asp:HyperLink ID="linkMarcas" runat="server" NavigateUrl="~/Admin/Marcas.aspx">Marcas</asp:HyperLink>
+            <asp:HyperLink ID="linkPersonas" runat="server" NavigateUrl="~/Admin/Personas.aspx">Personas</asp:HyperLink>
+            <asp:HyperLink ID="linkProveedores" runat="server" NavigateUrl="~/Admin/Proveedores.aspx">Proveedores</asp:HyperLink>
+            <asp:HyperLink ID="linkUsuarios" runat="server" NavigateUrl="~/Admin/Usuarios.aspx">Usuario</asp:HyperLink>
+            <asp:HyperLink ID="linkProductosCarrito" runat="server" NavigateUrl="~/Admin/ProductosCarrito.aspx">Productos Carrito</asp:HyperLink>
         </div>
         <div class="nav-right">
             <asp:HyperLink ID="linkTienda" runat="server" NavigateUrl="~/Inicio.aspx">Ver Tienda</asp:HyperLink>
@@ -44,6 +54,17 @@
             <a href="FormasPago.aspx" class="card"><h3>Formas de Pago</h3><p>Gestionar pagos</p></a>
             <a href="FormasEntrega.aspx" class="card"><h3>Formas de Entrega</h3><p>Gestionar entregas</p></a>
             <a href="Pedidos.aspx" class="card"><h3>Pedidos</h3><p>Ver y gestionar pedidos</p></a>
+            <a href="Productos.aspx" class="card"><h3>Productos</h3><p>Gestionar catálogo</p></a>
+            <a href="DetallePedido.aspx" class="card"><h3>Detalle Pedido</h3><p>Gestionar el detalle de un pedido</p></a>
+            <a href="Direcciones.aspx" class="card"><h3>Direcciones</h3><p>Gestionar Direcciones</p></a>
+            <a href="EstadosPedido.aspx" class="card"><h3>Estados Pedido</h3><p>Gestionar Los estados de pedido</p></a>
+            <a href="EstadosCarrito.aspx" class="card"><h3>Estados Carrito</h3><p>Gestionar los estados de carrito</p></a>
+            <a href="Imagenes.aspx" class="card"><h3>Imagenes</h3><p>Gestionar imagenes</p></a>
+            <a href="Marcas.aspx" class="card"><h3>Marcas</h3><p>Gestionar Marcas</p></a>
+            <a href="Personas.aspx" class="card"><h3>Personas</h3><p>Gestionar personas</p></a>
+            <a href="Proveedores.aspx" class="card"><h3>Proveedores</h3><p>Gestionar proveedores</p></a>
+            <a href="Usuarios.aspx" class="card"><h3>Usuarios</h3><p>Gestionar usuarios</p></a>
+            <a href="ProductosCarrito.aspx" class="card"><h3>Productos Carrito</h3><p>Gestionar los productos de un carrito</p></a>
         </div>
     </div>
 </form>

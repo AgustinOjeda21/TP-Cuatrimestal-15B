@@ -5,10 +5,11 @@ using Dominio.Entidades;
 using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
+using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
 {
-    public class GestorCategoria
+    public class GestorCategoria : IGestorCategoria
     {
         IRepositorioCategoria repo;
 

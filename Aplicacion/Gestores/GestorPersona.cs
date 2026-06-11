@@ -5,20 +5,25 @@ using Dominio.Entidades;
 using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
+using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
 {
-    public class GestorPersona : Aplicacion.Interfaces.Gestores.IGestorPersona
+    public class GestorPersona : IGestorPersona
     {
         IRepositorioPersona repo;
+        IGestorDireccion GestorDireccion;
 
-        public GestorPersona(IRepositorioPersona repo)
+        public GestorPersona(IRepositorioPersona repo, IGestorDireccion GestorDireccion)
         {
             this.repo = repo;
+            this.GestorDireccion = GestorDireccion;
         }
 
-        public async Task<Result<Persona>> CargarPersona(Persona edi)
+        public async Task<Result<Persona>> CargarPersona(Persona edi, Direccion direccion)
         {
+            await GestorDireccion.CargarDireccion(direccion);
+            edi.Direcciones.Add(direccion);
             await repo.InsertarPersona(edi);
             return Result<Persona>.EjecucionCorrecta();
         }

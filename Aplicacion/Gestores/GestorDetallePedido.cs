@@ -9,7 +9,7 @@ using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
 {
-    class GestorDetallePedido
+    public class GestorDetallePedido : IGestorDetallePedido
     {
         IRepositorioDetallePedido repo;
         IGestorPedido gestorPedido;
@@ -17,9 +17,13 @@ namespace Aplicacion.Gestores
         IGestorFormaEntrega gestorFormaEntrega;
         IGestorDireccion gestorDireccion;
 
-        public GestorDetallePedido(IRepositorioDetallePedido repo)
+        public GestorDetallePedido(IRepositorioDetallePedido repo,IGestorPedido gestorPedido,IGestorFormaPago gestorFormaPago,IGestorFormaEntrega gestorFormaEntrega,IGestorDireccion gestorDireccion)
         {
             this.repo = repo;
+            this.gestorPedido = gestorPedido;
+            this.gestorFormaPago = gestorFormaPago;
+            this.gestorFormaEntrega = gestorFormaEntrega;
+            this.gestorDireccion = gestorDireccion;
         }
 
         public async Task<Result<DetallePedido>> CargarDetallePedido(DetallePedido edi)

@@ -17,8 +17,8 @@ namespace Infraestructura.Repositorios
 {
     public class RepositorioPedido : IRepositorioPedido
     {
-        private readonly mydbEntities context;
-        public RepositorioPedido(mydbEntities context)
+        private readonly mydbEntities1 context;
+        public RepositorioPedido(mydbEntities1 context)
         {
             this.context = context;
         }

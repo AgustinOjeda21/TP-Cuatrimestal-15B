@@ -5,10 +5,11 @@ using System.Text;
 using Dominio.Entidades;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
+using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
 {
-    class GestorImagen
+    public class GestorImagen : IGestorImagen
     {
         IRepositorioImagen repo;
 
