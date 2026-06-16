@@ -178,15 +178,39 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Admin\Direcciones.aspx" />
-    <Content Include="Admin\EstadosPedido.aspx" />
-    <Content Include="Admin\EstadosCarrito.aspx" />
-    <Content Include="Admin\Imagenes.aspx" />
-    <Content Include="Admin\Marcas.aspx" />
-    <Content Include="Admin\Personas.aspx" />
-    <Content Include="Admin\Proveedores.aspx" />
-    <Content Include="Admin\Usuarios.aspx" />
-    <Content Include="Admin\ProductosCarrito.aspx" />
+    <Content Include="Admin\Categoria\AgregarCategoria.aspx" />
+    <Content Include="Admin\Categoria\ModificarCategoria.aspx" />
+    <Content Include="Admin\Direccion\Direcciones.aspx" />
+    <Content Include="Admin\Direccion\AgregarDireccion.aspx" />
+    <Content Include="Admin\Direccion\ModificarDireccion.aspx" />
+    <Content Include="Admin\EstadoCarrito\AgregarEstadoCarrito.aspx" />
+    <Content Include="Admin\EstadoCarrito\ModificarEstadoCarrito.aspx" />
+    <Content Include="Admin\EstadoPedido\EstadosPedido.aspx" />
+    <Content Include="Admin\EstadoCarrito\EstadosCarrito.aspx" />
+    <Content Include="Admin\EstadoPedido\AgregarEstadoPedido.aspx" />
+    <Content Include="Admin\EstadoPedido\ModificarEstadoPedido.aspx" />
+    <Content Include="Admin\FormaEntrega\AgregarFormaEntrega.aspx" />
+    <Content Include="Admin\FormaEntrega\ModificarFormaEntrega.aspx" />
+    <Content Include="Admin\FormaPago\AgregarFormaPago.aspx" />
+    <Content Include="Admin\FormaPago\ModificarFormaPago.aspx" />
+    <Content Include="Admin\Imagen\Imagenes.aspx" />
+    <Content Include="Admin\Imagen\ModificarImagen.aspx" />
+    <Content Include="Admin\Marca\Marcas.aspx" />
+    <Content Include="Admin\Marca\AgregarMarca.aspx" />
+    <Content Include="Admin\Marca\ModificarMarca.aspx" />
+    <Content Include="Admin\Pedido\ModificarPedido.aspx" />
+    <Content Include="Admin\Persona\ModificarPersona.aspx" />
+    <Content Include="Admin\Persona\Personas.aspx" />
+    <Content Include="Admin\ProductoCarrito\ModificarProductoCarrito.aspx" />
+    <Content Include="Admin\Producto\AgregarProducto.aspx" />
+    <Content Include="Admin\Producto\ModificarProducto.aspx" />
+    <Content Include="Admin\Proveedor\ModificarProveedor.aspx" />
+    <Content Include="Admin\Proveedor\Proveedores.aspx" />
+    <Content Include="Admin\Proveedor\AgregarProveedor.aspx" />
+    <Content Include="Admin\Usuario\ModificarUsuario.aspx" />
+    <Content Include="Admin\Usuario\Usuarios.aspx" />
+    <Content Include="Admin\ProductoCarrito\ProductosCarrito.aspx" />
+    <Content Include="Admin\Usuario\AgregarUsuario.aspx" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\AspNet.ScriptManager.bootstrap.dll" />
@@ -287,12 +311,12 @@
     <Content Include="Sign_in.aspx" />
     <Content Include="Log_in.aspx" />
     <Content Include="Admin\Inicio.aspx" />
-    <Content Include="Admin\Productos.aspx" />
-    <Content Include="Admin\Categorias.aspx" />
-    <Content Include="Admin\FormasPago.aspx" />
-    <Content Include="Admin\FormasEntrega.aspx" />
-    <Content Include="Admin\Pedidos.aspx" />
-    <Content Include="Admin\DetallePedido.aspx" />
+    <Content Include="Admin\Producto\Productos.aspx" />
+    <Content Include="Admin\Categoria\Categorias.aspx" />
+    <Content Include="Admin\FormaPago\FormasPago.aspx" />
+    <Content Include="Admin\FormaEntrega\FormasEntrega.aspx" />
+    <Content Include="Admin\Pedido\Pedidos.aspx" />
+    <Content Include="Admin\DetallePedido\DetallePedido.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.dll" />
@@ -326,74 +350,248 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Usuario\Carrito.aspx" />
+    <Content Include="Usuario\Checkout.aspx" />
+    <Content Include="Usuario\MisCompras.aspx" />
+    <Content Include="Usuario\DetallePedido.aspx" />
+    <Content Include="Usuario\MisDirecciones.aspx" />
+    <Content Include="Usuario\MiPerfil.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Direcciones.aspx.cs">
+    <Compile Include="Admin\Categoria\AgregarCategoria.aspx.cs">
+      <DependentUpon>AgregarCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Categoria\AgregarCategoria.aspx.designer.cs">
+      <DependentUpon>AgregarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Categoria\ModificarCategoria.aspx.cs">
+      <DependentUpon>ModificarCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Categoria\ModificarCategoria.aspx.designer.cs">
+      <DependentUpon>ModificarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Direccion\Direcciones.aspx.cs">
       <DependentUpon>Direcciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Direcciones.aspx.designer.cs">
+    <Compile Include="Admin\Direccion\Direcciones.aspx.designer.cs">
       <DependentUpon>Direcciones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\EstadosPedido.aspx.cs">
+    <Compile Include="Admin\Direccion\AgregarDireccion.aspx.cs">
+      <DependentUpon>AgregarDireccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Direccion\AgregarDireccion.aspx.designer.cs">
+      <DependentUpon>AgregarDireccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Direccion\ModificarDireccion.aspx.cs">
+      <DependentUpon>ModificarDireccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Direccion\ModificarDireccion.aspx.designer.cs">
+      <DependentUpon>ModificarDireccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EstadoCarrito\AgregarEstadoCarrito.aspx.cs">
+      <DependentUpon>AgregarEstadoCarrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EstadoCarrito\AgregarEstadoCarrito.aspx.designer.cs">
+      <DependentUpon>AgregarEstadoCarrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EstadoCarrito\ModificarEstadoCarrito.aspx.cs">
+      <DependentUpon>ModificarEstadoCarrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EstadoCarrito\ModificarEstadoCarrito.aspx.designer.cs">
+      <DependentUpon>ModificarEstadoCarrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EstadoPedido\EstadosPedido.aspx.cs">
       <DependentUpon>EstadosPedido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\EstadosPedido.aspx.designer.cs">
+    <Compile Include="Admin\EstadoPedido\EstadosPedido.aspx.designer.cs">
       <DependentUpon>EstadosPedido.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\EstadosCarrito.aspx.cs">
+    <Compile Include="Admin\EstadoCarrito\EstadosCarrito.aspx.cs">
       <DependentUpon>EstadosCarrito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\EstadosCarrito.aspx.designer.cs">
+    <Compile Include="Admin\EstadoCarrito\EstadosCarrito.aspx.designer.cs">
       <DependentUpon>EstadosCarrito.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Imagenes.aspx.cs">
+    <Compile Include="Admin\EstadoPedido\AgregarEstadoPedido.aspx.cs">
+      <DependentUpon>AgregarEstadoPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EstadoPedido\AgregarEstadoPedido.aspx.designer.cs">
+      <DependentUpon>AgregarEstadoPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EstadoPedido\ModificarEstadoPedido.aspx.cs">
+      <DependentUpon>ModificarEstadoPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EstadoPedido\ModificarEstadoPedido.aspx.designer.cs">
+      <DependentUpon>ModificarEstadoPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormaEntrega\AgregarFormaEntrega.aspx.cs">
+      <DependentUpon>AgregarFormaEntrega.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FormaEntrega\AgregarFormaEntrega.aspx.designer.cs">
+      <DependentUpon>AgregarFormaEntrega.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormaEntrega\ModificarFormaEntrega.aspx.cs">
+      <DependentUpon>ModificarFormaEntrega.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FormaEntrega\ModificarFormaEntrega.aspx.designer.cs">
+      <DependentUpon>ModificarFormaEntrega.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormaPago\AgregarFormaPago.aspx.cs">
+      <DependentUpon>AgregarFormaPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FormaPago\AgregarFormaPago.aspx.designer.cs">
+      <DependentUpon>AgregarFormaPago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormaPago\ModificarFormaPago.aspx.cs">
+      <DependentUpon>ModificarFormaPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FormaPago\ModificarFormaPago.aspx.designer.cs">
+      <DependentUpon>ModificarFormaPago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Imagen\Imagenes.aspx.cs">
       <DependentUpon>Imagenes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Imagenes.aspx.designer.cs">
+    <Compile Include="Admin\Imagen\Imagenes.aspx.designer.cs">
       <DependentUpon>Imagenes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Marcas.aspx.cs">
+    <Compile Include="Admin\Imagen\ModificarImagen.aspx.cs">
+      <DependentUpon>ModificarImagen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Imagen\ModificarImagen.aspx.designer.cs">
+      <DependentUpon>ModificarImagen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Marca\Marcas.aspx.cs">
       <DependentUpon>Marcas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Marcas.aspx.designer.cs">
+    <Compile Include="Admin\Marca\Marcas.aspx.designer.cs">
       <DependentUpon>Marcas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Personas.aspx.cs">
+    <Compile Include="Admin\Marca\AgregarMarca.aspx.cs">
+      <DependentUpon>AgregarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Marca\AgregarMarca.aspx.designer.cs">
+      <DependentUpon>AgregarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Marca\ModificarMarca.aspx.cs">
+      <DependentUpon>ModificarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Marca\ModificarMarca.aspx.designer.cs">
+      <DependentUpon>ModificarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pedido\ModificarPedido.aspx.cs">
+      <DependentUpon>ModificarPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pedido\ModificarPedido.aspx.designer.cs">
+      <DependentUpon>ModificarPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Persona\ModificarPersona.aspx.cs">
+      <DependentUpon>ModificarPersona.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Persona\ModificarPersona.aspx.designer.cs">
+      <DependentUpon>ModificarPersona.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Persona\Personas.aspx.cs">
       <DependentUpon>Personas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Personas.aspx.designer.cs">
+    <Compile Include="Admin\Persona\Personas.aspx.designer.cs">
       <DependentUpon>Personas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Proveedores.aspx.cs">
+    <Compile Include="Admin\ProductoCarrito\ModificarProductoCarrito.aspx.cs">
+      <DependentUpon>ModificarProductoCarrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProductoCarrito\ModificarProductoCarrito.aspx.designer.cs">
+      <DependentUpon>ModificarProductoCarrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Producto\AgregarProducto.aspx.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Producto\AgregarProducto.aspx.designer.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Producto\ModificarProducto.aspx.cs">
+      <DependentUpon>ModificarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Producto\ModificarProducto.aspx.designer.cs">
+      <DependentUpon>ModificarProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Proveedor\ModificarProveedor.aspx.cs">
+      <DependentUpon>ModificarProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Proveedor\ModificarProveedor.aspx.designer.cs">
+      <DependentUpon>ModificarProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Proveedor\Proveedores.aspx.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Proveedores.aspx.designer.cs">
+    <Compile Include="Admin\Proveedor\Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Usuarios.aspx.cs">
+    <Compile Include="Admin\Proveedor\AgregarProveedor.aspx.cs">
+      <DependentUpon>AgregarProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Proveedor\AgregarProveedor.aspx.designer.cs">
+      <DependentUpon>AgregarProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Usuario\ModificarUsuario.aspx.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Usuario\ModificarUsuario.aspx.designer.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Usuario\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Usuarios.aspx.designer.cs">
+    <Compile Include="Admin\Usuario\Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ProductosCarrito.aspx.cs">
+    <Compile Include="Admin\ProductoCarrito\ProductosCarrito.aspx.cs">
       <DependentUpon>ProductosCarrito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ProductosCarrito.aspx.designer.cs">
+    <Compile Include="Admin\ProductoCarrito\ProductosCarrito.aspx.designer.cs">
       <DependentUpon>ProductosCarrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Usuario\AgregarUsuario.aspx.cs">
+      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Usuario\AgregarUsuario.aspx.designer.cs">
+      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -436,6 +634,48 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario\Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\MisCompras.aspx.cs">
+      <DependentUpon>MisCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario\MisCompras.aspx.designer.cs">
+      <DependentUpon>MisCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\DetallePedido.aspx.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario\DetallePedido.aspx.designer.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\MisDirecciones.aspx.cs">
+      <DependentUpon>MisDirecciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario\MisDirecciones.aspx.designer.cs">
+      <DependentUpon>MisDirecciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\MiPerfil.aspx.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario\MiPerfil.aspx.designer.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -486,46 +726,46 @@
     <Compile Include="Admin\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Productos.aspx.cs">
+    <Compile Include="Admin\Producto\Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Productos.aspx.designer.cs">
+    <Compile Include="Admin\Producto\Productos.aspx.designer.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Categorias.aspx.cs">
+    <Compile Include="Admin\Categoria\Categorias.aspx.cs">
       <DependentUpon>Categorias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Categorias.aspx.designer.cs">
+    <Compile Include="Admin\Categoria\Categorias.aspx.designer.cs">
       <DependentUpon>Categorias.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\FormasPago.aspx.cs">
+    <Compile Include="Admin\FormaPago\FormasPago.aspx.cs">
       <DependentUpon>FormasPago.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\FormasPago.aspx.designer.cs">
+    <Compile Include="Admin\FormaPago\FormasPago.aspx.designer.cs">
       <DependentUpon>FormasPago.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\FormasEntrega.aspx.cs">
+    <Compile Include="Admin\FormaEntrega\FormasEntrega.aspx.cs">
       <DependentUpon>FormasEntrega.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\FormasEntrega.aspx.designer.cs">
+    <Compile Include="Admin\FormaEntrega\FormasEntrega.aspx.designer.cs">
       <DependentUpon>FormasEntrega.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Pedidos.aspx.cs">
+    <Compile Include="Admin\Pedido\Pedidos.aspx.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Pedidos.aspx.designer.cs">
+    <Compile Include="Admin\Pedido\Pedidos.aspx.designer.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\DetallePedido.aspx.cs">
+    <Compile Include="Admin\DetallePedido\DetallePedido.aspx.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\DetallePedido.aspx.designer.cs">
+    <Compile Include="Admin\DetallePedido\DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

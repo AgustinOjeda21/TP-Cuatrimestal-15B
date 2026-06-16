@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.AdminInicio" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FormasEntrega.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.AdminFormasEntrega" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
-    <title>Admin - Inicio</title>
+    <title>Admin - Formas de Entrega</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
         .navbar { background-color: brown; color: white; padding: 15px 30px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
@@ -12,12 +12,13 @@
         .nav-links { display: flex; gap: 20px; }
         .nav-right { margin-left: auto; display: flex; gap: 15px; align-items: center; }
         .contenido { margin: 30px; }
-        h2 { color: #333; margin-bottom: 25px; }
-        .cards { display: flex; gap: 20px; flex-wrap: wrap; }
-        .card { background: white; border-radius: 10px; padding: 25px 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333; min-width: 180px; text-align: center; transition: box-shadow 0.2s; }
-        .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
-        .card h3 { margin: 0 0 8px 0; font-size: 18px; color: brown; }
-        .card p { margin: 0; font-size: 13px; color: #888; }
+        h2 { color: #333; margin-bottom: 20px; }
+        .acciones-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .tabla-admin { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .tabla-admin th { background-color: brown; color: white; padding: 12px 15px; text-align: left; font-size: 13px; }
+        .tabla-admin td { padding: 12px 15px; border-bottom: 1px solid #eee; font-size: 14px; }
+        .tabla-admin tr:last-child td { border-bottom: none; }
+        .tabla-admin tr:hover td { background-color: #f5f5f5; }
     </style>
 </head>
 <body>
@@ -47,25 +48,32 @@
         </div>
     </div>
     <div class="contenido">
-        <h2>Bienvenido al Panel de Administración</h2>
-        <div class="cards">
-            <a href="Producto/Productos.aspx" class="card"><h3>Productos</h3><p>Gestionar catálogo</p></a>
-            <a href="Categoria/Categorias.aspx" class="card"><h3>Categorías</h3><p>Gestionar categorías</p></a>
-            <a href="FormaPago/FormasPago.aspx" class="card"><h3>Formas de Pago</h3><p>Gestionar pagos</p></a>
-            <a href="FormaEntrega/FormasEntrega.aspx" class="card"><h3>Formas de Entrega</h3><p>Gestionar entregas</p></a>
-            <a href="Pedido/Pedidos.aspx" class="card"><h3>Pedidos</h3><p>Ver y gestionar pedidos</p></a>
-            <a href="Producto/Productos.aspx" class="card"><h3>Productos</h3><p>Gestionar catálogo</p></a>
-            <a href="DetallePedido/DetallePedido.aspx" class="card"><h3>Detalle Pedido</h3><p>Gestionar el detalle de un pedido</p></a>
-            <a href="Direccion/Direcciones.aspx" class="card"><h3>Direcciones</h3><p>Gestionar Direcciones</p></a>
-            <a href="EstadoPedido/EstadosPedido.aspx" class="card"><h3>Estados Pedido</h3><p>Gestionar Los estados de pedido</p></a>
-            <a href="EstadoCarrito/EstadosCarrito.aspx" class="card"><h3>Estados Carrito</h3><p>Gestionar los estados de carrito</p></a>
-            <a href="Imagen/Imagenes.aspx" class="card"><h3>Imagenes</h3><p>Gestionar imagenes</p></a>
-            <a href="Marca/Marcas.aspx" class="card"><h3>Marcas</h3><p>Gestionar Marcas</p></a>
-            <a href="Persona/Personas.aspx" class="card"><h3>Personas</h3><p>Gestionar personas</p></a>
-            <a href="Proveedor/Proveedores.aspx" class="card"><h3>Proveedores</h3><p>Gestionar proveedores</p></a>
-            <a href="Usuario/Usuarios.aspx" class="card"><h3>Usuarios</h3><p>Gestionar usuarios</p></a>
-            <a href="ProductoCarrito/ProductosCarrito.aspx" class="card"><h3>Productos Carrito</h3><p>Gestionar los productos de un carrito</p></a>
+        <h2>Gestión de Formas de Entrega</h2>
+        <div class="acciones-top">
+            <asp:TextBox ID="txtBuscar" runat="server" placeholder="Buscar..."></asp:TextBox>
+            <asp:Button ID="btnAgregar" runat="server" Text="+ Agregar forma de entrega" PostBackUrl="~/Admin/FormaEntrega/AgregarFormaEntrega.aspx" />
+            <asp:Button ID="btnModificar" runat="server" Text="Modificar forma de entrega" PostBackUrl="~/Admin/FormaEntrega/ModificarFormaEntrega.aspx" />
         </div>
+        <table class="tabla-admin">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="rptFormaEntrega" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td><%# Eval("IdFormaEntrega") %></td>
+                            <td><%# Eval("Nombre") %></td>
+                            <td><%# Eval("Descripcion") %></td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>
     </div>
 </form>
 </body>

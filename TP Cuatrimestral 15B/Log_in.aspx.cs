@@ -38,7 +38,7 @@ namespace TP_Cuatrimestral_15B
 
             Session["Usuario"] = usuario;
 
-            if (usuario.Rol== Usuario.Roles.Administrador)
+            if (usuario.Rol==Dominio.Entidades.Usuario.Roles.Administrador)
                 Response.Redirect("~/Admin/Inicio.aspx");
             else
                 Response.Redirect("~/Inicio.aspx");

@@ -27,12 +27,12 @@ namespace TP_Cuatrimestral_15B
             GestorUsuario gestorUsuario = new GestorUsuario(repoUsuario, gestorPersona);
 
 
-            Usuario usuario = new Usuario
+            Dominio.Entidades.Usuario usuario = new Dominio.Entidades.Usuario
             {
                 NombreUsuario = txtEmail.Text,
                 Contraseña = txtPassword.Text,
                 Estado = true,
-                Rol = Usuario.Roles.Administrador
+                Rol = Dominio.Entidades.Usuario.Roles.Administrador
             };
             string Obs = txtObservaciones.Text;
             if(txtObservaciones.Text is null)
