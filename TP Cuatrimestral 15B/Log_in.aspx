@@ -3,46 +3,25 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat ="server">
-        <title>Inicio</title>
-        <style>
-            .registro {
-            width: 500px;
-            margin: 30px auto;
-            padding: 30px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f5f5f5;
-            }
-
-            .campo {
-                width: 100%;
-                height: 35px;
-                margin-bottom: 10px;
-                padding-left: 10px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-            }
-            .botones {
-                text-align: center;
-                margin-top: 20px;
-            }
-            .registro h2{
-                text-align: center;
-            }
-        </style>
+        
+    <meta charset="utf-8" />
+<title>Inicio</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+        
 
     </head>
 
 <body>
     <form id="form1" runat="server">
         <div class = "registro">
-            <h2>Iniciar sesion</h2>
+            <h2>Iniciar sesión</h2>
 
             <nav>
-            <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="campo" placeholder="Nombre usuario"></asp:TextBox>
+            <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="form-control campo" placeholder="Nombre usuario"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtContraseña" runat="server" CssClass="campo" placeholder="Contraseña"></asp:TextBox>
+            <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control campo" placeholder="Contraseña"></asp:TextBox>
             </nav>
         </div>
         <div class =" botones">
@@ -51,13 +30,21 @@
             ID="btnRegistrarse"
             runat="server"
             Text="Log in"
-            OnClick="btnRegistrarse_Click" />
+            OnClick="btnRegistrarse_Click" CssClass="btn btn-default" />
 
             <asp:HyperLink
             ID="lnkLogin"
             runat="server"
             NavigateUrl="~/Sign_in.aspx">
             No tengo cuenta
+            </asp:HyperLink>
+
+            <asp:HyperLink
+            ID="lnkVolverTienda"
+            runat="server"
+            NavigateUrl="~/Inicio.aspx"
+            CssClass="btn btn-default">
+            Volver a tienda
             </asp:HyperLink>
         </div>
     </form>

@@ -3,30 +3,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat ="server">
-        <title>Inicio</title>
-        <style>
-            .registro {
-            width: 500px;
-            margin: 30px auto;
-            padding: 30px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f5f5f5;
-            }
-
-            .campo {
-                width: 100%;
-                height: 35px;
-                margin-bottom: 10px;
-                padding-left: 10px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-            }
-            .botones {
-                text-align: center;
-                margin-top: 20px;
-            }
-        </style>
+        
+    <meta charset="utf-8" />
+<title>Inicio</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+        
 
     </head>
 
@@ -36,39 +18,39 @@
             <h1>Crear Cuenta</h1>
 
             <nav>
-            <asp:TextBox ID="txtNombre" runat="server" CssClass="campo" placeholder="Nombre"></asp:TextBox>
+            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control campo" placeholder="Nombre"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtApellido" runat="server" CssClass="campo" placeholder="Apellido"></asp:TextBox>
+            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control campo" placeholder="Apellido"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtEmail" runat="server" CssClass="campo" placeholder="Email"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control campo" placeholder="Email"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtTelefono" runat="server" CssClass="campo" placeholder="Teléfono"></asp:TextBox>
+            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control campo" placeholder="Teléfono"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtPassword" runat="server" CssClass="campo" TextMode="Password" placeholder="Contraseña"> </asp:TextBox>
+            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control campo" TextMode="Password" placeholder="Contraseña"> </asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtConfirmarPassword" runat="server" CssClass="campo" TextMode="Password" placeholder="Confirmar Contraseña"> </asp:TextBox>
+            <asp:TextBox ID="txtConfirmarPassword" runat="server" CssClass="form-control campo" TextMode="Password" placeholder="Confirmar Contraseña"> </asp:TextBox>
             </nav>
 
             <h2>Dirección</h2>
             <nav>
-            <asp:TextBox ID="txtCalle" runat="server" CssClass="campo" placeholder="Calle"></asp:TextBox>
+            <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control campo" placeholder="Calle"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtNumero" runat="server" CssClass="campo" placeholder="Número"></asp:TextBox>
+            <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control campo" placeholder="Número"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtLocalidad" runat="server" CssClass="campo" placeholder="Localidad"></asp:TextBox>
+            <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control campo" placeholder="Localidad"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtCodigoPostal" runat="server" CssClass="campo" placeholder="Código Postal"></asp:TextBox>
+            <asp:TextBox ID="txtCodigoPostal" runat="server" CssClass="form-control campo" placeholder="Código Postal"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtObservaciones" runat="server" CssClass="campo" TextMode="MultiLine" Rows="3" placeholder="Observaciones"> </asp:TextBox>
+            <asp:TextBox ID="txtObservaciones" runat="server" CssClass="form-control campo" TextMode="MultiLine" Rows="3" placeholder="Observaciones"> </asp:TextBox>
             </nav>
         </div>
         <div class =" botones">
@@ -76,13 +58,21 @@
             ID="btnRegistrarse"
             runat="server"
             Text="Registrarse"
-            OnClick="btnRegistrarse_Click" />
+            OnClick="btnRegistrarse_Click" CssClass="btn btn-default" />
 
             <asp:HyperLink
             ID="lnkLogin"
             runat="server"
             NavigateUrl="~/Log_in.aspx">
             Ya tengo cuenta
+            </asp:HyperLink>
+
+            <asp:HyperLink
+            ID="lnkVolverTienda"
+            runat="server"
+            NavigateUrl="~/Inicio.aspx"
+            CssClass="btn btn-default">
+            Volver a tienda
             </asp:HyperLink>
         </div>
     </form>

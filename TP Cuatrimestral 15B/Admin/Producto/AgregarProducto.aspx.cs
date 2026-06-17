@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +13,8 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        protected Label lblError;
+        protected Label lblConfirmacion;
         private readonly mydbEntities1 context;
         private readonly RepositorioProducto repositorioProducto;
         private readonly GestorProducto gestorProducto;
@@ -62,7 +64,7 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
                 var categorias = Session["Categorias"] as List<Dominio.Entidades.Categoria>;
                 if (categorias != null)
                 {
-                    gvCategorias.DataSource = imagenes;
+                    gvCategorias.DataSource = categorias;
                     gvCategorias.DataBind();
                 }
                 var proveedores = Session["Proveedores"] as List<Dominio.Entidades.Proveedor>;
@@ -75,15 +77,55 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         }
         protected async void btnGuardar_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblConfirmacion.Visible = false;
             var imagenes = Session["Imagenes"] as List<Dominio.Entidades.Imagen> ?? new List<Dominio.Entidades.Imagen>();
             var categorias = Session["Categorias"] as List<Dominio.Entidades.Categoria> ?? new List<Dominio.Entidades.Categoria>();
             var proveedores = Session["Proveedores"] as List<Dominio.Entidades.Proveedor> ?? new List<Dominio.Entidades.Proveedor>();
+            decimal precio;
+            int stock;
+            if (txtNombre.Text == "" || txtPrecio.Text == "" || txtStock.Text == "" || txtDescripcion.Text == "")
+            {
+                lblError.Text = "Completá nombre, precio, stock y descripción";
+                lblError.Visible = true;
+                return;
+            }
+            if (!decimal.TryParse(txtPrecio.Text, out precio))
+            {
+                lblError.Text = "El precio debe ser un número";
+                lblError.Visible = true;
+                return;
+            }
+            if (!int.TryParse(txtStock.Text, out stock))
+            {
+                lblError.Text = "El stock debe ser un número";
+                lblError.Visible = true;
+                return;
+            }
+            if (ddlMarca.SelectedValue == "")
+            {
+                lblError.Text = "Seleccioná una marca";
+                lblError.Visible = true;
+                return;
+            }
+            if (categorias.Count == 0)
+            {
+                lblError.Text = "Agregá al menos una categoría";
+                lblError.Visible = true;
+                return;
+            }
+            if (proveedores.Count == 0)
+            {
+                lblError.Text = "Agregá al menos un proveedor";
+                lblError.Visible = true;
+                return;
+            }
             var marca = await gestorMarca.CapturarMarca(int.Parse(ddlMarca.SelectedValue));
             Dominio.Entidades.Producto Producto = new Dominio.Entidades.Producto
             {
                 Nombre = txtNombre.Text,
-                Precio = decimal.Parse(txtPrecio.Text),
-                Stock = int.Parse(txtPrecio.Text),
+                Precio = precio,
+                Stock = stock,
                 Estado = true,
                 Descripcion = txtDescripcion.Text,
                 Categorias = categorias,
@@ -91,6 +133,8 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
                 Marca = marca
             };
             await gestorProducto.CargarProducto(Producto,imagenes);
+            lblConfirmacion.Text = "Producto agregado correctamente";
+            lblConfirmacion.Visible = true;
         }
         private async void CargarDatos()
         {
@@ -125,6 +169,14 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
 
         protected void btnAgregarImagen_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblConfirmacion.Visible = false;
+            if (txtNombreImagen.Text == "" || txtUrlImagen.Text == "")
+            {
+                lblError.Text = "Completá nombre y URL de la imagen";
+                lblError.Visible = true;
+                return;
+            }
             var imagenes = Session["Imagenes"] as List<Dominio.Entidades.Imagen> ?? new List<Dominio.Entidades.Imagen>();
             Dominio.Entidades.Imagen imagen = new Dominio.Entidades.Imagen
             {
@@ -138,24 +190,46 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
 
             gvImagenes.DataSource = imagenes;
             gvImagenes.DataBind();
+            lblConfirmacion.Text = "Imagen agregada correctamente";
+            lblConfirmacion.Visible = true;
         }
         protected async void btnAgregarProveedor_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblConfirmacion.Visible = false;
+            if (ddlProveedores.SelectedValue == "")
+            {
+                lblError.Text = "Seleccioná un proveedor";
+                lblError.Visible = true;
+                return;
+            }
             var proveedores = Session["Proveedores"] as List<Dominio.Entidades.Proveedor> ?? new List<Dominio.Entidades.Proveedor>();
             var pro = await gestorProveedor.CapturarProveedor(int.Parse(ddlProveedores.SelectedValue));
             proveedores.Add(pro);
             Session["Proveedores"] = proveedores;
             gvProveedores.DataSource = proveedores;
             gvProveedores.DataBind();
+            lblConfirmacion.Text = "Proveedor agregado correctamente";
+            lblConfirmacion.Visible = true;
         }
         protected async void btnAgregarCategoria_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblConfirmacion.Visible = false;
+            if (ddlCategorias.SelectedValue == "")
+            {
+                lblError.Text = "Seleccioná una categoría";
+                lblError.Visible = true;
+                return;
+            }
             var categorias = Session["Categorias"] as List<Dominio.Entidades.Categoria> ?? new List<Dominio.Entidades.Categoria>();
             var cat = await gestorCategoria.CapturarCategoria(int.Parse(ddlCategorias.SelectedValue));
             categorias.Add(cat);
             Session["Categorias"] = categorias;
             gvCategorias.DataSource = categorias;
             gvCategorias.DataBind();
+            lblConfirmacion.Text = "Categoría agregada correctamente";
+            lblConfirmacion.Visible = true;
         }
         protected void gvImagenes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -199,7 +273,7 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
                 if (categorias != null)
                 {
                     categorias.RemoveAt(indice);
-                    Session["Categoria"] = categorias;
+                    Session["Categorias"] = categorias;
                     gvCategorias.DataSource = categorias;
                     gvCategorias.DataBind();
                 }

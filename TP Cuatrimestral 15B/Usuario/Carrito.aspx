@@ -4,44 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Mi Carrito</title>
-    <style>
-        .tarjetaCarrito {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    background-color: #f9f9f9;
-    }
-
-    .imagenProducto {
-        width: 120px;
-        height: 120px;
-        background-color: lightgray;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .infoProducto {
-        flex: 1;
-        margin-left: 20px;
-    }
-
-    .acciones {
-        margin-left: 20px;
-    }
-    .navbar {
-            background-color: brown;
-            color: white;
-            padding: 30px;
-            align-items: center;
-            display: flex;
-            }
-    </style>
+    
+    <meta charset="utf-8" />
+<title>Mi Carrito</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+    
 </head>
 <body>
     <form id="form2" runat="server">
@@ -63,7 +31,7 @@
         <asp:Button
             ID="btnEliminar1"
             runat="server"
-            Text="Eliminar" />
+            Text="Eliminar" CssClass="btn btn-default" />
     </div>
 
 </div>

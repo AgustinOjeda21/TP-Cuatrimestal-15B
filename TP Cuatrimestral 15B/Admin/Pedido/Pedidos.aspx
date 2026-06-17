@@ -4,28 +4,9 @@
 <head runat="server">
     <meta charset="utf-8" />
     <title>Admin - Pedidos</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
-        .navbar { background-color: brown; color: white; padding: 15px 30px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .navbar a { color: white; text-decoration: none; font-size: 14px; }
-        .Titulo { font-size: 22px; font-weight: bold; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-right { margin-left: auto; display: flex; gap: 15px; align-items: center; }
-        .contenido { margin: 30px; }
-        h2 { color: #333; margin-bottom: 20px; }
-        .filtros { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
-        .filtros input, .filtros select { padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
-        .tabla-admin { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .tabla-admin th { background-color: brown; color: white; padding: 12px 15px; text-align: left; font-size: 13px; }
-        .tabla-admin td { padding: 12px 15px; border-bottom: 1px solid #eee; font-size: 14px; }
-        .tabla-admin tr:last-child td { border-bottom: none; }
-        .tabla-admin tr:hover td { background-color: #f5f5f5; }
-        .badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
-        .badge-pendiente { background-color: #fff3cd; color: #856404; }
-        .badge-pagado { background-color: #d4edda; color: #155724; }
-        .badge-enviado { background-color: #cce5ff; color: #004085; }
-        .badge-cancelado { background-color: #f8d7da; color: #721c24; }
-    </style>
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/Site.css" rel="stylesheet" />
+    
 </head>
 <body>
 <form id="form1" runat="server">
@@ -41,7 +22,7 @@
             <asp:HyperLink ID="linkDirecciones" runat="server" NavigateUrl="~/Admin/Direccion/Direcciones.aspx">Direcciones</asp:HyperLink>
             <asp:HyperLink ID="linkEstadosPedido" runat="server" NavigateUrl="~/Admin/EstadoPedido/EstadosPedido.aspx">Estados Pedido</asp:HyperLink>
             <asp:HyperLink ID="linkEstadosCarrito" runat="server" NavigateUrl="~/Admin/EstadoCarrito/EstadosCarrito.aspx">Estados Carrito</asp:HyperLink>
-            <asp:HyperLink ID="linkImagenes" runat="server" NavigateUrl="~/Admin/Imagen/Imagenes.aspx">Imagenes</asp:HyperLink>
+            <asp:HyperLink ID="linkImagenes" runat="server" NavigateUrl="~/Admin/Imagen/Imagenes.aspx">Imágenes</asp:HyperLink>
             <asp:HyperLink ID="linkMarcas" runat="server" NavigateUrl="~/Admin/Marca/Marcas.aspx">Marcas</asp:HyperLink>
             <asp:HyperLink ID="linkPersonas" runat="server" NavigateUrl="~/Admin/Persona/Personas.aspx">Personas</asp:HyperLink>
             <asp:HyperLink ID="linkProveedores" runat="server" NavigateUrl="~/Admin/Proveedor/Proveedores.aspx">Proveedores</asp:HyperLink>
@@ -56,14 +37,14 @@
     <div class="contenido">
         <h2>Gestión de Pedidos</h2>
         <div class="filtros">
-            <asp:TextBox ID="txtBuscarCliente" runat="server" placeholder="Buscar por cliente..."></asp:TextBox>
-            <asp:TextBox ID="txtEstado" runat="server" placeholder="Estado..."></asp:TextBox>
-            <asp:TextBox ID="txtFechaDesde" runat="server" placeholder="Desde (dd/mm/aaaa)"></asp:TextBox>
-            <asp:TextBox ID="txtFechaHasta" runat="server" placeholder="Hasta (dd/mm/aaaa)"></asp:TextBox>
-            <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" />
-            <asp:Button ID="btnModificar" runat="server" Text="Modificar Pedido"  PostBackUrl="~/Admin/Pedido/ModificarPedido.aspx"/>
+            <asp:TextBox ID="txtBuscarCliente" runat="server" placeholder="Buscar por cliente..." CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtEstado" runat="server" placeholder="Estado..." CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtFechaDesde" runat="server" placeholder="Desde (dd/mm/aaaa)" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtFechaHasta" runat="server" placeholder="Hasta (dd/mm/aaaa)" CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" CssClass="btn btn-default" />
+            <asp:Button ID="btnModificar" runat="server" Text="Modificar Pedido"  PostBackUrl="~/Admin/Pedido/ModificarPedido.aspx" CssClass="btn btn-default" />
         </div>
-        <table class="tabla-admin">
+        <table class="table table-striped table-hover tabla-admin">
             <thead>
                 <tr>
                     <th>ID</th>

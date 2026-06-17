@@ -4,43 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Agregar Estado de carrito</title>
-    <style>
-        .formulario-admin {
-        max-width: 600px;
-        margin: 30px auto;
-        background-color: white;
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .formulario-admin label {
-        display: block;
-        margin-top: 15px;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
-
-    .campo {
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-    }
-
-    .botones {
-        margin-top: 20px;
-        display: flex;
-        gap: 10px;
-    }
-    .navbar {
-            background-color: brown;
-            color: white;
-            padding: 30px;
-            align-items: center;
-            display: flex;
-            }
-    </style>
+    
+    <meta charset="utf-8" />
+<title>Agregar Estado de carrito</title>
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/Site.css" rel="stylesheet" />
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -51,20 +20,23 @@
         <h2>Agregar Estado de carrito</h2>
 
         <label>Nombre</label>
-        <asp:TextBox ID="txtNombre" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control campo" />
+
+        <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <asp:Label ID="lblConfirmacion" runat="server" ForeColor="Green" Visible="false"></asp:Label>
 
         <div class="botones">
             <asp:Button
                 ID="btnGuardar"
                 runat="server"
                 Text="Guardar"
-                OnClick="btnGuardar_Click"/>
+                OnClick="btnGuardar_Click" CssClass="btn btn-default" />
 
             <asp:Button
                 ID="btnCancelar"
                 runat="server"
                 Text="Cancelar"
-                PostBackUrl="~/Admin/EstadoCarrito/EstadosCarrito.aspx" />
+                PostBackUrl="~/Admin/EstadoCarrito/EstadosCarrito.aspx" CssClass="btn btn-default" />
         </div>
     </div>
 </div>
