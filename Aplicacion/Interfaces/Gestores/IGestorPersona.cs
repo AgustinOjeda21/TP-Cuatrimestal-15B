@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Gestores
 {
     public interface IGestorPersona
     {
-        Task<Result<Persona>> CargarPersona(Persona edi,Direccion direccion);
+        Task<Result<Persona>> CargarPersona(Persona edi, List<Direccion> direcciones);
 
 
         Task<Persona> CapturarPersona(int id);

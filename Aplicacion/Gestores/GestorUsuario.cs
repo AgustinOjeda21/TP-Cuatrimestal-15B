@@ -20,13 +20,13 @@ namespace Aplicacion.Gestores
             this.gestorPersona = gestorPersona;
         }
 
-        public async Task<Result<Usuario>> CargarUsuario(Usuario edi,Persona persona,Direccion direccion)
+        public async Task<Result<Usuario>> CargarUsuario(Usuario edi,Persona persona, List<Direccion> direcciones)
         {
             // Hashear Contraseña
             var idusuario = await repo.InsertarUsuario(edi);
             edi.IdUsuario = idusuario;
             persona.Usuario = edi;
-            await gestorPersona.CargarPersona(persona, direccion);
+            await gestorPersona.CargarPersona(persona, direcciones);
             return Result<Usuario>.EjecucionCorrecta();
         }
 

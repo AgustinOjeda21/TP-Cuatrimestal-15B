@@ -99,77 +99,7 @@
                 Text="Modificar" />
         </div>
 
-        <div class="fila">
-            <label>Imagen:</label>
-             <label>Nombre de la imagen</label>
-            <asp:TextBox ID="txtNombreImagen"
-                runat="server"
-                CssClass="campo" />
-        </div>
-
-        <div class="fila">
-            <label>Descripción</label>
-            <asp:TextBox ID="txtDescripcionImagen"
-                runat="server"
-                CssClass="campo" />
-        </div>
-
-        <div class="fila">
-            <label>URL</label>
-            <asp:TextBox ID="txtUrlImagen"
-                runat="server"
-                CssClass="campo"
-                placeholder="https://..."/>
-
-        <div class="fila">
-            <asp:Button
-                ID="btnAgregarImagen"
-                runat="server"
-                Text="Agregar Imagen" />
-        </div>
-
-            <br /><br />
-
-            <asp:GridView
-                ID="gvImagenes"
-                runat="server"
-                AutoGenerateColumns="False"
-                CssClass="tablaSeleccion">
-
-                <Columns>
-
-                    <asp:ImageField
-                        DataImageUrlField="Url"
-                        HeaderText="Vista"
-                        ControlStyle-Width="80"
-                        ControlStyle-Height="80" />
-
-                    <asp:BoundField
-                        DataField="Nombre"
-                        HeaderText="Nombre" />
-
-                    <asp:BoundField
-                        DataField="Descripcion"
-                        HeaderText="Descripción" />
-
-                    <asp:BoundField
-                        DataField="Url"
-                        HeaderText="URL" />
-
-                    <asp:ButtonField Text="Quitar" CommandName="Quitar" />
-
-                </Columns>
-
-            </asp:GridView>
-        </div>
-
-        <div class ="fila">
-            <asp:Button
-                ID="btnCancelar"
-                runat="server"
-                Text="Cancelar"
-                PostBackUrl="~/Admin/Categoria/Categorias.aspx" />
-        </div>
+        
 
     </div>
 

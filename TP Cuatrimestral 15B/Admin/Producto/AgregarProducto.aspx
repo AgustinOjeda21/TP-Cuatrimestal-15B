@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarProducto.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Producto.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarProducto.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.Producto.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -92,14 +92,15 @@
         <label>Categoria</label>
         <div class="selector">
             <asp:DropDownList ID="ddlCategorias" runat="server" CssClass="campo"> </asp:DropDownList>
-            <asp:Button ID="btnAgregarCategoria" runat="server" Text="Agregar" />
+            <asp:Button ID="btnAgregarCategoria" runat="server" Text="Agregar" OnClick="btnAgregarCategoria_Click" />
         </div>
 
         <asp:GridView
-            ID="gvCategoriasSeleccionadas"
+            ID="gvCategorias"
             runat="server"
             AutoGenerateColumns="False"
-            CssClass="tablaSeleccion">
+            CssClass="tablaSeleccion"
+            OnRowCommand="gvCategorias_RowCommand">
             <Columns>
                 <asp:BoundField DataField="Nombre" HeaderText="Categoría" />
                 <asp:ButtonField Text="Quitar" CommandName="Quitar" />
@@ -126,7 +127,8 @@
             <asp:Button
                 ID="btnAgregarImagen"
                 runat="server"
-                Text="Agregar Imagen" />
+                Text="Agregar Imagen" 
+                OnClick="btnAgregarImagen_Click"/>
 
             <br /><br />
 
@@ -134,12 +136,13 @@
                 ID="gvImagenes"
                 runat="server"
                 AutoGenerateColumns="False"
-                CssClass="tablaSeleccion">
+                CssClass="tablaSeleccion"
+                OnRowCommand="gvImagenes_RowCommand">
 
                 <Columns>
 
                     <asp:ImageField
-                        DataImageUrlField="Url"
+                        DataImageUrlField="URL"
                         HeaderText="Vista"
                         ControlStyle-Width="80"
                         ControlStyle-Height="80" />
@@ -164,16 +167,17 @@
 
         <label>Proveedor</label>
         <div class="selector">
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="campo"> </asp:DropDownList>
+            <asp:DropDownList ID="ddlProveedores" runat="server" CssClass="campo"> </asp:DropDownList>
 
-            <asp:Button ID="Button1" runat="server" Text="Agregar" />
+            <asp:Button ID="btnAgregarProveedor" runat="server" Text="Agregar" OnClick="btnAgregarProveedor_Click"/>
         </div>
 
         <asp:GridView
-            ID="GridView1"
+            ID="gvProveedores"
             runat="server"
             AutoGenerateColumns="False"
-            CssClass="tablaSeleccion">
+            CssClass="tablaSeleccion"
+            OnRowCommand="gvProveedores_RowCommand">
             <Columns>
                 <asp:BoundField DataField="Nombre" HeaderText="Proveedor" />
                 <asp:ButtonField Text="Quitar" CommandName="Quitar" />
@@ -191,7 +195,8 @@
             <asp:Button
                 ID="btnGuardar"
                 runat="server"
-                Text="Guardar" />
+                Text="Guardar" 
+                OnClick="btnGuardar_Click"/>
 
             <asp:Button
                 ID="btnCancelar"

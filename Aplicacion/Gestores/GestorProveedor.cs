@@ -23,6 +23,7 @@ namespace Aplicacion.Gestores
         public async Task<Result<Proveedor>> CargarProveedor(Proveedor edi,Direccion direccion) //Deberia crear un dto para pasar una sola entidad que contenga la info del proveedor y de la direccion a crear
         {
             await gestorDireccion.CargarDireccion(direccion);
+            edi.Direccion = direccion;
             await repo.InsertarProveedor(edi);
             return Result<Proveedor>.EjecucionCorrecta();
         }

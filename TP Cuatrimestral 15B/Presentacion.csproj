@@ -181,7 +181,6 @@
     <Content Include="Admin\Categoria\AgregarCategoria.aspx" />
     <Content Include="Admin\Categoria\ModificarCategoria.aspx" />
     <Content Include="Admin\Direccion\Direcciones.aspx" />
-    <Content Include="Admin\Direccion\AgregarDireccion.aspx" />
     <Content Include="Admin\Direccion\ModificarDireccion.aspx" />
     <Content Include="Admin\EstadoCarrito\AgregarEstadoCarrito.aspx" />
     <Content Include="Admin\EstadoCarrito\ModificarEstadoCarrito.aspx" />
@@ -382,13 +381,6 @@
     </Compile>
     <Compile Include="Admin\Direccion\Direcciones.aspx.designer.cs">
       <DependentUpon>Direcciones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Direccion\AgregarDireccion.aspx.cs">
-      <DependentUpon>AgregarDireccion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Direccion\AgregarDireccion.aspx.designer.cs">
-      <DependentUpon>AgregarDireccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Direccion\ModificarDireccion.aspx.cs">
       <DependentUpon>ModificarDireccion.aspx</DependentUpon>

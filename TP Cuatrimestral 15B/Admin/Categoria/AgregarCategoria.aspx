@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarCategoria.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Categoria.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarCategoria.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.Categoria.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -40,28 +40,7 @@
             align-items: center;
             display: flex;
             }
-    .tablaSeleccion {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    .tablaSeleccion th {
-        background-color: brown;
-        color: white;
-        padding: 10px;
-    }
-
-    .tablaSeleccion td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        vertical-align: middle;
-    }
-
-    .tablaSeleccion img {
-        border-radius: 5px;
-        object-fit: cover;
-    }
+    
     </style>
 </head>
 <body>
@@ -75,64 +54,6 @@
         <label>Nombre</label>
         <asp:TextBox ID="txtNombre" runat="server" CssClass="campo" />
 
-
-        
-        <label>Imagen</label>
-                    <label>Nombre de la imagen</label>
-            <asp:TextBox ID="txtNombreImagen"
-                runat="server"
-                CssClass="campo" />
-
-            <label>Descripción</label>
-            <asp:TextBox ID="txtDescripcionImagen"
-                runat="server"
-                CssClass="campo" />
-
-            <label>URL</label>
-            <asp:TextBox ID="txtUrlImagen"
-                runat="server"
-                CssClass="campo"
-                placeholder="https://..."/>
-
-            <asp:Button
-                ID="btnAgregarImagen"
-                runat="server"
-                Text="Agregar Imagen" />
-
-            <br /><br />
-
-            <asp:GridView
-                ID="gvImagenes"
-                runat="server"
-                AutoGenerateColumns="False"
-                CssClass="tablaSeleccion">
-
-                <Columns>
-
-                    <asp:ImageField
-                        DataImageUrlField="Url"
-                        HeaderText="Vista"
-                        ControlStyle-Width="80"
-                        ControlStyle-Height="80" />
-
-                    <asp:BoundField
-                        DataField="Nombre"
-                        HeaderText="Nombre" />
-
-                    <asp:BoundField
-                        DataField="Descripcion"
-                        HeaderText="Descripción" />
-
-                    <asp:BoundField
-                        DataField="Url"
-                        HeaderText="URL" />
-
-                    <asp:ButtonField Text="Quitar" CommandName="Quitar" />
-
-                </Columns>
-
-            </asp:GridView>
-
         <label>Descripción</label>
         <asp:TextBox ID="txtDescripcion"
             runat="server"
@@ -144,7 +65,8 @@
             <asp:Button
                 ID="btnGuardar"
                 runat="server"
-                Text="Guardar" />
+                Text="Guardar"
+                OnClick="btnGuardar_Click"/>
 
             <asp:Button
                 ID="btnCancelar"

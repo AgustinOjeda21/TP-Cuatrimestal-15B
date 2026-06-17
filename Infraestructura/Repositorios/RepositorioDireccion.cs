@@ -35,6 +35,7 @@ namespace Infraestructura.Repositorios
             try
             {
                 await context.SaveChangesAsync();
+                aut.IdDireccion = Eaut.IdDireccion;
             }
             catch (DbEntityValidationException ex)
             {

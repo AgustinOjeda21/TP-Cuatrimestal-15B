@@ -20,10 +20,9 @@ namespace Aplicacion.Gestores
             this.GestorDireccion = GestorDireccion;
         }
 
-        public async Task<Result<Persona>> CargarPersona(Persona edi, Direccion direccion)
+        public async Task<Result<Persona>> CargarPersona(Persona edi, List<Direccion> direcciones)
         {
-            await GestorDireccion.CargarDireccion(direccion);
-            edi.Direcciones.Add(direccion);
+            edi.Direcciones = direcciones;
             await repo.InsertarPersona(edi);
             return Result<Persona>.EjecucionCorrecta();
         }

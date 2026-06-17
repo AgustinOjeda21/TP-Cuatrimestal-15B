@@ -20,7 +20,7 @@ namespace Dominio.Entidades
         public int IdCategoria { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public List<Imagen> Imagenes { get; set; }
+        
        
     }
 }

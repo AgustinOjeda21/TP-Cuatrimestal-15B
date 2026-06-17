@@ -78,13 +78,13 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         protected global::System.Web.UI.WebControls.Button btnAgregarCategoria;
 
         /// <summary>
-        /// Control gvCategoriasSeleccionadas.
+        /// Control gvCategorias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCategoriasSeleccionadas;
+        protected global::System.Web.UI.WebControls.GridView gvCategorias;
 
         /// <summary>
         /// Control txtNombreImagen.
@@ -132,31 +132,31 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         protected global::System.Web.UI.WebControls.GridView gvImagenes;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control ddlProveedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProveedores;
 
         /// <summary>
-        /// Control Button1.
+        /// Control btnAgregarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnAgregarProveedor;
 
         /// <summary>
-        /// Control GridView1.
+        /// Control gvProveedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView gvProveedores;
 
         /// <summary>
         /// Control txtDescripcion.

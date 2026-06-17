@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Gestores
 {
     public interface IGestorMarca
     {
-        Task<Result<Marca>> CargarMarca(Marca edi);
+        Task<Result<Marca>> CargarMarca(Marca edi, List<Imagen> imagenes);
 
 
         Task<Marca> CapturarMarca(int id);

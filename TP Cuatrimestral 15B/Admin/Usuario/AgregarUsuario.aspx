@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarUsuario.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Usuario.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarUsuario.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.Usuario.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -70,37 +70,34 @@
         <asp:TextBox ID="txtNombre" runat="server" CssClass="campo" />
 
         <label>Apellido</label>
-        <asp:TextBox ID="TextBox2" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtApellido" runat="server" CssClass="campo" />
     
         <label>Mail</label>
-        <asp:TextBox ID="TextBox3" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtMail" runat="server" CssClass="campo" />
      
         <label>Telefono</label>
-        <asp:TextBox ID="TextBox4" runat="server" CssClass="campo" />
-
-        <label>Rol</label>
-        <asp:DropDownList ID="ddlRoles" runat="server" CssClass="campo"> </asp:DropDownList>
+        <asp:TextBox ID="txtTelefono" runat="server" CssClass="campo" />
     
         <label>Contraseña</label>
-        <asp:TextBox ID="TextBox5" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtContraseña" runat="server" CssClass="campo" />
     
 
       <h2>Agregar Direccion</h2>
 
         <label>Calle</label>
-        <asp:TextBox ID="TextBox6" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtCalle" runat="server" CssClass="campo" />
 
         <label>Numero</label>
-        <asp:TextBox ID="TextBox7" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtNumero" runat="server" CssClass="campo" />
 
         <label>Localidad</label>
-        <asp:TextBox ID="TextBox8" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtLocalidad" runat="server" CssClass="campo" />
 
         <label>Codigo Postal</label>
-        <asp:TextBox ID="TextBox9" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtCodigo" runat="server" CssClass="campo" />
 
         <label>Observaciones</label>
-        <asp:TextBox ID="TextBox10"
+        <asp:TextBox ID="txtObservaciones"
             runat="server"
             CssClass="campo"
             TextMode="MultiLine"
@@ -109,7 +106,8 @@
         <asp:Button
                 ID="btnAgregarDireccion"
                 runat="server"
-                Text="Agregar Direccion" />
+                Text="Agregar Direccion"
+                OnClick="btnAgregarDireccion_Click"/>
 
         <h2>Direcciones Agregadas</h2>
 
@@ -117,7 +115,8 @@
             ID="gvDirecciones"
             runat="server"
             AutoGenerateColumns="False"
-            CssClass="tablaSeleccion">
+            CssClass="tablaSeleccion"
+            OnRowCommand="gvDirecciones_RowCommand">
 
             <Columns>
                 <asp:BoundField DataField="Calle" HeaderText="Calle" />
@@ -134,7 +133,9 @@
             <asp:Button
                 ID="btnGuardar"
                 runat="server"
-                Text="Guardar" />
+                Text="Guardar"
+                OnClick="btnGuardar_Click"
+               />
 
             <asp:Button
                 ID="btnCancelar"

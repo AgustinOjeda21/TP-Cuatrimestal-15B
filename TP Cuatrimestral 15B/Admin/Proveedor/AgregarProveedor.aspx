@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarProveedor.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Proveedor.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarProveedor.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.Proveedor.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -75,64 +75,41 @@
         <label>Mail</label>
         <asp:TextBox ID="txtMail" runat="server" CssClass="campo" />
 
-        <label>Direccion</label>
-        <asp:TextBox ID="txtDireccion" runat="server" CssClass="campo" />
-
         <h2>Agregar Direccion</h2>
 
         <label>Calle</label>
-        <asp:TextBox ID="TextBox6" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtCalle" runat="server" CssClass="campo" />
 
         <label>Numero</label>
-        <asp:TextBox ID="TextBox7" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtNumero" runat="server" CssClass="campo" />
 
         <label>Localidad</label>
-        <asp:TextBox ID="TextBox8" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtLocalida" runat="server" CssClass="campo" />
 
         <label>Codigo Postal</label>
-        <asp:TextBox ID="TextBox9" runat="server" CssClass="campo" />
+        <asp:TextBox ID="txtCodigo" runat="server" CssClass="campo" />
 
         <label>Observaciones</label>
-        <asp:TextBox ID="TextBox10"
+        <asp:TextBox ID="txtObservacion"
             runat="server"
             CssClass="campo"
             TextMode="MultiLine"
             Rows="4" />
 
-        <asp:Button
-                ID="btnAgregarDireccion"
-                runat="server"
-                Text="Agregar Direccion" />
-
-        <h2>Direcciones Agregadas</h2>
-
-        <asp:GridView
-            ID="gvDirecciones"
-            runat="server"
-            AutoGenerateColumns="False"
-            CssClass="tablaSeleccion">
-
-            <Columns>
-                <asp:BoundField DataField="Calle" HeaderText="Calle" />
-                <asp:BoundField DataField="Numero" HeaderText="Número" />
-                <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
-                <asp:BoundField DataField="CodigoPostal" HeaderText="Código Postal" />
-                <asp:ButtonField Text="Quitar" CommandName="Quitar" />
-            </Columns>
-        </asp:GridView>
-
-        <div class="botones">
+                <div class="botones">
             <asp:Button
                 ID="btnGuardar"
                 runat="server"
-                Text="Guardar" />
+                Text="Guardar" 
+                OnClick="btnGuardar_Click"/>
 
             <asp:Button
                 ID="btnCancelar"
                 runat="server"
                 Text="Cancelar"
-                PostBackUrl="~/Admin/Proveedor/Proveedores.aspx" />
+                PostBackUrl="~/Admin/Producto/Productos.aspx" />
         </div>
+
     </div>
 </div>
     </form>

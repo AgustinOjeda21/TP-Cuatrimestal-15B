@@ -11,11 +11,11 @@ namespace Infraestructura.Mappers
     {
         public static Marca ToDomain(this EntityMarca marca)
         {
-            return new Marca(marca.IdMarca, marca.Nombre);
+            return new Marca(marca.IdMarca, marca.Nombre,marca.Imagen.Select(obj=>obj.ToDomain()).ToList());
         }
         public static EntityMarca ToEntity(this Marca marca)
         {
-            return new EntityMarca(marca.IdMarca, marca.Nombre);
+            return new EntityMarca(marca.IdMarca, marca.Nombre, marca.Imagenes.Select(obj => obj.ToEntity()).ToList());
         }
     }
 }

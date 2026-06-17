@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarEstadoCarrito.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.EstadoCarrito.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarEstadoCarrito.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.EstadoCarrito.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -57,7 +57,8 @@
             <asp:Button
                 ID="btnGuardar"
                 runat="server"
-                Text="Guardar" />
+                Text="Guardar"
+                OnClick="btnGuardar_Click"/>
 
             <asp:Button
                 ID="btnCancelar"

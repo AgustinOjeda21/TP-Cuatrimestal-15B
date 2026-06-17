@@ -13,20 +13,23 @@ namespace Aplicacion.Gestores
     {
         IRepositorioProducto repo;
         IGestorMarca gestorMarca;
+        IGestorImagen gestorImagen;
 
-        public GestorProducto(IRepositorioProducto repo, IGestorMarca gestorMarca)
+        public GestorProducto(IRepositorioProducto repo, IGestorMarca gestorMarca,IGestorImagen gestorImagen)
         {
             this.repo = repo;
             this.gestorMarca = gestorMarca;
+            this.gestorImagen = gestorImagen;
         }
 
-        public async Task<Result<Producto>> CargarProducto(Producto edi)
+        public async Task<Result<Producto>> CargarProducto(Producto edi,List<Imagen> imagenes)
         {
             var resultado = await gestorMarca.ExisteMarca(edi.Marca.IdMarca);
             if(!resultado.Success)
             {
                 return Result<Producto>.Fail("La marca ingresada no existe");
             }
+            edi.Imagenes = imagenes;
             await repo.InsertarProducto(edi);
             return Result<Producto>.EjecucionCorrecta();
         }

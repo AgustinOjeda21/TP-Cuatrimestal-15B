@@ -15,10 +15,11 @@ namespace Infraestructura
     public partial class EntityMarca
     {
         public EntityMarca() { }
-        public EntityMarca(int idMarca, string nombre)
+        public EntityMarca(int idMarca, string nombre, List<EntityImagen> imagenes)
         {
             IdMarca = idMarca;
             Nombre = nombre;
+            Imagen = imagenes;
         }
 
         [Column("idMarca")]

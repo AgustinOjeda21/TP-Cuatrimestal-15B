@@ -5,20 +5,24 @@ using Dominio.Entidades;
 using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
+using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
 {
     public class GestorMarca : Aplicacion.Interfaces.Gestores.IGestorMarca
     {
         IRepositorioMarca repo;
+        IGestorImagen gestorImagen;
 
-        public GestorMarca(IRepositorioMarca repo)
+        public GestorMarca(IRepositorioMarca repo, IGestorImagen gestorImagen)
         {
             this.repo = repo;
+            this.gestorImagen = gestorImagen;
         }
 
-        public async Task<Result<Marca>> CargarMarca(Marca edi)
+        public async Task<Result<Marca>> CargarMarca(Marca edi,List<Imagen> imagenes)
         {
+            edi.Imagenes = imagenes;
             await repo.InsertarMarca(edi);
             return Result<Marca>.EjecucionCorrecta();
         }

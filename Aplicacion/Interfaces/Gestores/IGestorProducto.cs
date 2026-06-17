@@ -9,7 +9,7 @@ namespace Aplicacion.Interfaces.Gestores
 {
     public interface IGestorProducto
     {
-        Task<Result<Producto>> CargarProducto(Producto edi);
+        Task<Result<Producto>> CargarProducto(Producto edi, List<Imagen> imagenes);
         Task<Producto> CapturarProducto(int id);
         Task<List<Producto>> DevolverProductos();
         Task<Result<Producto>> ModificarNombre(string Nombre, int id);

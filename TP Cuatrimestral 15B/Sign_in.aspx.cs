@@ -5,6 +5,7 @@ using Aplicacion.Gestores;
 using Infraestructura;
 using Infraestructura.Repositorios;
 using Dominio.Entidades;
+using System.Collections.Generic;
 
 namespace TP_Cuatrimestral_15B
 {
@@ -48,6 +49,9 @@ namespace TP_Cuatrimestral_15B
                 Observaciones = Obs
             };
 
+            List<Direccion> direcciones = new List<Direccion>();
+            direcciones.Add(direccion);
+
             Persona persona = new Persona
             {
                 Nombre = txtNombre.Text,
@@ -55,11 +59,9 @@ namespace TP_Cuatrimestral_15B
                 Mail = txtEmail.Text,
                 Telefono = txtTelefono.Text,
                 Usuario = usuario,
-                Direcciones = new System.Collections.Generic.List<Direccion>()
-                
             };
 
-            await gestorUsuario.CargarUsuario(usuario, persona,direccion);
+            await gestorUsuario.CargarUsuario(usuario, persona,direcciones);
             Response.Redirect("~/Log_in.aspx");
         }
     }
