@@ -78,22 +78,22 @@ namespace TP_Cuatrimestral_15B.Admin.Imagen
         protected global::System.Web.UI.WebControls.Button btnModificarDescripcion;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtUrl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtUrl;
 
         /// <summary>
-        /// Control Button1.
+        /// Control ModificarUrl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button ModificarUrl;
 
         /// <summary>
         /// Control imgVistaPrevia.

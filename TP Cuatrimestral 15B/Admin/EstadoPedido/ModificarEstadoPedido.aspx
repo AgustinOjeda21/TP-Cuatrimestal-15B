@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarEstadoPedido.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.EstadoPedido.ModificarEstadoPedido" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarEstadoPedido.aspx.cs" Async ="true" Inherits="TP_Cuatrimestral_15B.Admin.EstadoPedido.ModificarEstadoPedido" %>
 
 <!DOCTYPE html>
 
@@ -78,25 +78,29 @@
     <div class="buscar">
         <label>ID:</label>
         <asp:TextBox ID="txtIdBuscar" runat="server"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick ="btnBuscar_Click"/>
     </div>
 
     <div class="formulario">
 
         <div class="fila">
             <label>Nombre:</label>
-            <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNombre" runat="server"  Enabled="false"></asp:TextBox>
             <asp:Button ID="btnModificarNombre"
                 runat="server"
-                Text="Modificar" />
+                Text="Modificar"
+                 Enabled="false"
+                OnClick ="btnModificarNombre_Click"/>
         </div>
 
         <div class="fila">
             <label>Descripción:</label>
-            <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtDescripcion" runat="server"  Enabled="false"></asp:TextBox>
             <asp:Button ID="btnModificarDescripcion"
                 runat="server"
-                Text="Modificar" />
+                Text="Modificar"
+                 Enabled="false"
+                OnClick ="btnModificarDescripcion_Click"/>
         </div>
 
         <div>

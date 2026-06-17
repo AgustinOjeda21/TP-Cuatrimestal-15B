@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarDireccion.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Direccion.ModificarDireccion" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarDireccion.aspx.cs" Async ="true" Inherits="TP_Cuatrimestral_15B.Admin.Direccion.ModificarDireccion" %>
 
 <!DOCTYPE html>
 
@@ -78,49 +78,59 @@
     <div class="buscar">
         <label>ID:</label>
         <asp:TextBox ID="txtIdBuscar" runat="server"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick ="btnBuscar_Click" />
     </div>
 
     <div class="formulario">
 
         <div class="fila">
             <label>Calle:</label>
-            <asp:TextBox ID="txtCalle" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtCalle" runat="server" Enabled="false"></asp:TextBox>
             <asp:Button ID="btnModificarCalle"
                 runat="server"
-                Text="Modificar" />
+                Text="Modificar"
+                Enabled="false"
+                OnClick ="btnModificarCalle_Click"/>
         </div>
 
         <div class="fila">
             <label>Numero:</label>
-            <asp:TextBox ID="txtNumero" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNumero" runat="server" Enabled="false"></asp:TextBox>
             <asp:Button ID="btnModificarNumero"
                 runat="server"
-                Text="Modificar" />
+                Text="Modificar"
+                Enabled="false"
+                OnClick ="btnModificarNumero_Click"/>
         </div>
 
         <div class="fila">
             <label>Localidad:</label>
-            <asp:TextBox ID="txtLocalidad" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtLocalidad" runat="server" Enabled="false"></asp:TextBox>
             <asp:Button ID="btnLocalidad"
                 runat="server"
-                Text="Modificar" />
+                Text="Modificar" 
+                Enabled="false"
+                OnClick ="btnLocalidad_Click"/>
         </div>
 
         <div class="fila">
             <label>Codigo Postal:</label>
-            <asp:TextBox ID="txtCodigoPostal" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtCodigoPostal" runat="server" Enabled="false"></asp:TextBox>
             <asp:Button ID="btnCodigoPostal"
                 runat="server"
-                Text="Modificar" />
+                Text="Modificar" 
+                Enabled="false"
+                OnClick ="btnCodigoPostal_Click"/>
         </div>
 
         <div class="fila">
             <label>Observaciones:</label>
-            <asp:TextBox ID="txtObservaciones" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtObservaciones" runat="server" Enabled="false"></asp:TextBox>
             <asp:Button ID="btnObservaciones"
                 runat="server"
-                Text="Modificar" />
+                Text="Modificar" 
+                Enabled="false"
+                OnClick ="btnObservaciones_Click"/>
         </div>
 
         <div>

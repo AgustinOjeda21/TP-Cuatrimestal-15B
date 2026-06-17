@@ -7,8 +7,11 @@ using System.Web.UI.WebControls;
 using Aplicacion.Gestores;
 using Infraestructura;
 using Infraestructura.Repositorios;
-using System.Web.UI.WebControls;
 using System.Threading.Tasks;
+using Infraestructura.Repositorios;
+using Aplicacion.Gestores;
+using Infraestructura;
+using Dominio.Entidades;
 
 namespace TP_Cuatrimestral_15B.Admin
 {
@@ -25,10 +28,9 @@ namespace TP_Cuatrimestral_15B.Admin
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                RegisterAsyncTask(new PageAsyncTask(CargarEstadoCarrito));
-            }
+            
+             RegisterAsyncTask(new PageAsyncTask(CargarEstadoCarrito));
+            
         }
         private async Task CargarEstadoCarrito()
         {

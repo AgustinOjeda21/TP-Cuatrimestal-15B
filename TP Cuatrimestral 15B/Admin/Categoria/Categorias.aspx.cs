@@ -11,15 +11,20 @@ namespace TP_Cuatrimestral_15B.Admin
 {
     public partial class AdminCategorias : Page
     {
-        private static readonly mydbEntities1 context = new mydbEntities1();
-        private static readonly RepositorioCategoria repositorioCategoria = new RepositorioCategoria(context);
-        private GestorCategoria gestorCategoria = new GestorCategoria(repositorioCategoria);
+        private readonly mydbEntities1 context;
+        private readonly RepositorioCategoria repositorioCategoria;
+        private readonly GestorCategoria gestorCategoria;
+        public AdminCategorias()
+        {
+            context = new mydbEntities1();
+            repositorioCategoria = new RepositorioCategoria(context);
+            gestorCategoria = new GestorCategoria(repositorioCategoria);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                RegisterAsyncTask(new PageAsyncTask(CargarCategorias));
-            }
+            
+            RegisterAsyncTask(new PageAsyncTask(CargarCategorias));
+            
         }
         private async Task CargarCategorias()
         {

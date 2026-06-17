@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarEstadoCarrito.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.EstadoCarrito.ModificarEstadoCarrito" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarEstadoCarrito.aspx.cs" Async="true" Inherits="TP_Cuatrimestral_15B.Admin.EstadoCarrito.ModificarEstadoCarrito" %>
 
 <!DOCTYPE html>
 
@@ -78,17 +78,19 @@
     <div class="buscar">
         <label>ID:</label>
         <asp:TextBox ID="txtIdBuscar" runat="server"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick ="btnModificarBuscar_Click"/>
     </div>
 
     <div class="formulario">
 
         <div class="fila">
             <label>Nombre:</label>
-            <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNombre" runat="server" Enabled="false"></asp:TextBox>
             <asp:Button ID="btnModificarNombre"
                 runat="server"
-                Text="Modificar" />
+                Text="Modificar"
+                Enabled="false"
+                OnClick ="btnModificarNombre_Click"/>
         </div>
 
         <div>
