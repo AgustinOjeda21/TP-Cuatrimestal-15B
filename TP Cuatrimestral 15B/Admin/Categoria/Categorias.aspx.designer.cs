@@ -210,6 +210,7 @@ namespace TP_Cuatrimestral_15B.Admin
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
         protected global::System.Web.UI.WebControls.Button btnModificar;
 
         /// <summary>

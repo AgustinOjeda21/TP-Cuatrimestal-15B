@@ -57,24 +57,10 @@ namespace TP_Cuatrimestral_15B.Admin.Categoria
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarNombre;
-
-        /// <summary>
-        /// Control txtDescripcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
 
-        /// <summary>
-        /// Control btnModificarDescripcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarDescripcion;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
+
+        protected global::System.Web.UI.WebControls.Button btnVolver;
     }
 }

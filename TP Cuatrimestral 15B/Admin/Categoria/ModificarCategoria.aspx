@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarCategoria.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Categoria.ModificarCategoria" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarCategoria.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Categoria.ModificarCategoria" Async="true" %>
 
 <!DOCTYPE html>
 
@@ -22,7 +22,7 @@
     <div class="buscar">
         <label>ID:</label>
         <asp:TextBox ID="txtIdBuscar" runat="server" CssClass="form-control"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btnBuscar_Click" />
     </div>
 
     <div class="formulario">
@@ -30,20 +30,17 @@
         <div class="fila">
             <label>Nombre:</label>
             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="btnModificarNombre"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
         </div>
 
         <div class="fila">
             <label>Descripción:</label>
             <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="btnModificarDescripcion"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
         </div>
 
-        
+        <div class="fila">
+            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-default" OnClick="btnGuardar_Click" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" PostBackUrl="~/Admin/Categoria/Categorias.aspx" CssClass="btn btn-default" />
+        </div>
 
     </div>
 

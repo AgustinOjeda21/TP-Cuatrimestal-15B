@@ -1,15 +1,15 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListaProducto.aspx.cs" Inherits="TP_Cuatrimestral_15B.ListaProducto" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListaProducto.aspx.cs" Inherits="TP_Cuatrimestral_15B.ListaProducto" Async="true" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat ="server">
-        
+
     <meta charset="utf-8" />
 <title>Lista Productos</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/Site.css" rel="stylesheet" />
-        
+
 
     </head>
 
@@ -31,37 +31,29 @@
             </h2>
             <div>
                 <asp:Button ID="btnTodas" runat="server" Text="Todas" CssClass="btn btn-default" />
-                <asp:Button ID="btnElectronica" runat="server" Text="Electrónica" CssClass="btn btn-default" />
-                <asp:Button ID="btnHogar" runat="server" Text="Hogar" CssClass="btn btn-default" />
-                <asp:Button ID="btnGaming" runat="server" Text="Gaming" CssClass="btn btn-default" />
+                <asp:Repeater ID="rptCategorias" runat="server">
+                    <ItemTemplate>
+                        <asp:Button ID="btnCategoria" runat="server" Text='<%# Eval("Nombre") %>' CssClass="btn btn-default" />
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
         <div class="productosDestacados">
-    
+
     <h2>CATALOGO DE PRODUCTOS</h2>
 
     <div class="contenedorProductos">
 
-        <div class="producto">
-            <img src="https://via.placeholder.com/250x180" />
-            <h3>Notebook HP</h3>
-            <p>$850.000</p>
-            <asp:Button ID="btnVer1" runat="server" Text="Ver Detalle" PostBackUrl="~/DetalleProducto.aspx" CssClass="btn btn-default" />
-        </div>
-
-        <div class="producto">
-            <img src="https://via.placeholder.com/250x180" />
-            <h3>Mouse Gamer</h3>
-            <p>$25.000</p>
-            <asp:Button ID="btnVer2" runat="server" Text="Ver Detalle" PostBackUrl="~/DetalleProducto.aspx" CssClass="btn btn-default" />
-        </div>
-
-        <div class="producto">
-            <img src="https://via.placeholder.com/250x180" />
-            <h3>Teclado Mecánico</h3>
-            <p>$70.000</p>
-            <asp:Button ID="btnVer3" runat="server" Text="Ver Detalle" PostBackUrl="~/DetalleProducto.aspx" CssClass="btn btn-default" />
-        </div>
+        <asp:Repeater ID="rptProductos" runat="server">
+            <ItemTemplate>
+                <div class="producto">
+                    <img src="https://via.placeholder.com/250x180" />
+                    <h3><%# Eval("Nombre") %></h3>
+                    <p>$<%# Eval("Precio") %></p>
+                    <asp:HyperLink ID="lnkVer" runat="server" NavigateUrl='<%# "~/DetalleProducto.aspx?id=" + Eval("IdProducto") %>' CssClass="btn btn-default">Ver Detalle</asp:HyperLink>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
 
     </div>
 
@@ -69,6 +61,3 @@
     </form>
 </body>
 </html>
-
-
-

@@ -38,6 +38,7 @@
         <h2>Gestión de Categorías</h2>
         <div class="acciones-top">
             <asp:TextBox ID="txtBuscar" runat="server" placeholder="Buscar categoría..." CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btnBuscar_Click" />
             <asp:Button ID="btnAgregar" runat="server" Text="+ Agregar categoría" PostBackUrl="~/Admin/Categoria/AgregarCategoria.aspx" CssClass="btn btn-default" />
             <asp:Button ID="btnModificar" runat="server" Text="Modificar categoría" PostBackUrl="~/Admin/Categoria/ModificarCategoria.aspx" CssClass="btn btn-default" />
         </div>
@@ -47,15 +48,17 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <asp:Repeater ID="rptCategorias" runat="server">
+                <asp:Repeater ID="rptCategorias" runat="server" OnItemCommand="rptCategorias_ItemCommand">
                     <ItemTemplate>
                         <tr>
                             <td><%# Eval("IdCategoria") %></td>
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Descripcion") %></td>
+                            <td><asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("IdCategoria") %>' CssClass="btn btn-default" /></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

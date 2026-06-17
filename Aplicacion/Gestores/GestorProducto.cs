@@ -153,5 +153,9 @@ namespace Aplicacion.Gestores
             }
             return Result<Producto>.Ok(obj);
         }
+        public async Task EliminarProducto(int id)
+        {
+            await repo.Eliminar(id);
+        }
     }
 }

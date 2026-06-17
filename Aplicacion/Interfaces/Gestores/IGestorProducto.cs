@@ -21,6 +21,7 @@ namespace Aplicacion.Interfaces.Gestores
         Task<bool> ValidarProducto(int id);
         Task<Result<Producto>> ExisteProducto(int id);
         Task<Result<Producto>> ValidarProductoActivo(int id);
+        Task EliminarProducto(int id);
 
 
     }
