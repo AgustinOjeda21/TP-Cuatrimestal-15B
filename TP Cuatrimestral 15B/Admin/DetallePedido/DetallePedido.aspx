@@ -4,32 +4,9 @@
 <head runat="server">
     <meta charset="utf-8" />
     <title>Admin - Detalle Pedido</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
-        .navbar { background-color: brown; color: white; padding: 15px 30px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .navbar a { color: white; text-decoration: none; font-size: 14px; }
-        .Titulo { font-size: 22px; font-weight: bold; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-right { margin-left: auto; display: flex; gap: 15px; align-items: center; }
-        .contenido { margin: 30px; }
-        h2 { color: #333; margin-bottom: 20px; }
-        .volver { margin-bottom: 20px; display: inline-block; color: brown; text-decoration: none; font-size: 14px; }
-        .seccion { background: white; border-radius: 8px; padding: 20px 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .seccion h3 { margin: 0 0 15px 0; color: brown; font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .fila { display: flex; gap: 10px; margin-bottom: 10px; font-size: 14px; }
-        .fila label { font-weight: bold; min-width: 160px; color: #555; }
-        .tabla-items { width: 100%; border-collapse: collapse; }
-        .tabla-items th { background-color: #f2f2f2; padding: 10px 15px; text-align: left; font-size: 13px; color: #555; }
-        .tabla-items td { padding: 10px 15px; border-bottom: 1px solid #eee; font-size: 14px; }
-        .estado-section { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-        .tabla-observaciones { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
-        .tabla-observaciones td { padding: 8px; border-bottom: 1px solid #eee; font-size: 13px; }
-        .badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
-        .badge-pendiente { background-color: #fff3cd; color: #856404; }
-        .badge-pagado { background-color: #d4edda; color: #155724; }
-        .badge-enviado { background-color: #cce5ff; color: #004085; }
-        .badge-cancelado { background-color: #f8d7da; color: #721c24; }
-    </style>
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/Site.css" rel="stylesheet" />
+    
 </head>
 <body>
 <form id="form1" runat="server">
@@ -45,7 +22,7 @@
             <asp:HyperLink ID="linkDirecciones" runat="server" NavigateUrl="~/Admin/Direccion/Direcciones.aspx">Direcciones</asp:HyperLink>
             <asp:HyperLink ID="linkEstadosPedido" runat="server" NavigateUrl="~/Admin/EstadoPedido/EstadosPedido.aspx">Estados Pedido</asp:HyperLink>
             <asp:HyperLink ID="linkEstadosCarrito" runat="server" NavigateUrl="~/Admin/EstadoCarrito/EstadosCarrito.aspx">Estados Carrito</asp:HyperLink>
-            <asp:HyperLink ID="linkImagenes" runat="server" NavigateUrl="~/Admin/Imagen/Imagenes.aspx">Imagenes</asp:HyperLink>
+            <asp:HyperLink ID="linkImagenes" runat="server" NavigateUrl="~/Admin/Imagen/Imagenes.aspx">Imágenes</asp:HyperLink>
             <asp:HyperLink ID="linkMarcas" runat="server" NavigateUrl="~/Admin/Marca/Marcas.aspx">Marcas</asp:HyperLink>
             <asp:HyperLink ID="linkPersonas" runat="server" NavigateUrl="~/Admin/Persona/Personas.aspx">Personas</asp:HyperLink>
             <asp:HyperLink ID="linkProveedores" runat="server" NavigateUrl="~/Admin/Proveedor/Proveedores.aspx">Proveedores</asp:HyperLink>
@@ -73,7 +50,7 @@
 
         <div class="seccion">
             <h3>Productos del pedido</h3>
-            <table class="tabla-items">
+            <table class="table table-striped table-bordered tabla-items">
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -92,18 +69,18 @@
             <h3>Estado del pedido</h3>
             <div class="estado-section">
                 <asp:Label ID="lblEstadoActual" runat="server" Text="-"></asp:Label>
-                <asp:TextBox ID="txtNuevoEstado" runat="server" placeholder="Nuevo estado..."></asp:TextBox>
-                <asp:Button ID="btnCambiarEstado" runat="server" Text="Cambiar estado" />
+                <asp:TextBox ID="txtNuevoEstado" runat="server" placeholder="Nuevo estado..." CssClass="form-control"></asp:TextBox>
+                <asp:Button ID="btnCambiarEstado" runat="server" Text="Cambiar estado" CssClass="btn btn-default" />
             </div>
         </div>
 
         <div class="seccion">
             <h3>Observaciones internas</h3>
-            <table class="tabla-observaciones" id="tbodyObservaciones" runat="server">
+            <table class="table table-striped table-bordered tabla-observaciones" id="tbodyObservaciones" runat="server">
                 <tr><td style="color:#888;">Sin observaciones</td></tr>
             </table>
-            <asp:TextBox ID="txtObservacion" runat="server" placeholder="Agregar observación..." Width="400px"></asp:TextBox>
-            <asp:Button ID="btnAgregarObservacion" runat="server" Text="Agregar" />
+            <asp:TextBox ID="txtObservacion" runat="server" placeholder="Agregar observación..." Width="400px" CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnAgregarObservacion" runat="server" Text="Agregar" CssClass="btn btn-default" />
         </div>
     </div>
 </form>

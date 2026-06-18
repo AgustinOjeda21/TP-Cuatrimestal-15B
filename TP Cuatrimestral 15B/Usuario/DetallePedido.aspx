@@ -4,45 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Detalle Pedido</title>
-    <style>
-        .productoPedido {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin: 20px 0;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    }
-
-    .imagenProducto {
-        width: 120px;
-        height: 120px;
-        background-color: lightgray;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .infoProducto {
-        flex: 1;
-    }
-
-    .total {
-        font-size: 24px;
-        font-weight: bold;
-        margin-top: 20px;
-    }
-    .navbar {
-            background-color: brown;
-            color: white;
-            padding: 30px;
-            align-items: center;
-            display: flex;
-            }
-    </style>
+    
+    <meta charset="utf-8" />
+<title>Detalle Pedido</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -90,7 +57,7 @@
         <asp:Button
             ID="btnVolver"
             runat="server"
-            Text="Volver a Mis Compras" />
+            Text="Volver a Mis Compras" CssClass="btn btn-default" />
     </form>
 </body>
 </html>

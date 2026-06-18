@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +13,8 @@ namespace TP_Cuatrimestral_15B.Admin.FormaPago
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        protected Label lblError;
+        protected Label lblConfirmacion;
         private readonly mydbEntities1 context;
         private readonly RepositorioFormaPago repositorioFormaPago;
         private readonly GestorFormaPago gestorFormaPago;
@@ -28,12 +30,22 @@ namespace TP_Cuatrimestral_15B.Admin.FormaPago
         }
         protected async void btnGuardar_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblConfirmacion.Visible = false;
+            if (txtNombre.Text == "" || txtDescripcion.Text == "")
+            {
+                lblError.Text = "Completá nombre y descripción";
+                lblError.Visible = true;
+                return;
+            }
             Dominio.Entidades.FormaPago formaPago = new Dominio.Entidades.FormaPago
             {
                 Nombre = txtNombre.Text,
                 Descripcion = txtDescripcion.Text
             };
             await gestorFormaPago.CargarFormaPago(formaPago);
+            lblConfirmacion.Text = "Forma de pago agregada correctamente";
+            lblConfirmacion.Visible = true;
         }
     }
 }

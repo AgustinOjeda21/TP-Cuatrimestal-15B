@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +13,8 @@ namespace TP_Cuatrimestral_15B.Admin.Usuario
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        protected Label lblError;
+        protected Label lblConfirmacion;
         private readonly mydbEntities1 context;
         private readonly RepositorioUsuario repositorioUsuario;
         private readonly GestorUsuario gestorUsuario;
@@ -52,11 +54,25 @@ namespace TP_Cuatrimestral_15B.Admin.Usuario
         }
         protected async void btnGuardar_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblConfirmacion.Visible = false;
             var direcciones = Session["Direcciones"] as List<Dominio.Entidades.Direccion> ?? new List<Dominio.Entidades.Direccion>();
+            if (txtNombre.Text == "" || txtApellido.Text == "" || txtMail.Text == "" || txtTelefono.Text == "" || txtContrasena.Text == "")
+            {
+                lblError.Text = "Completá nombre, apellido, mail, teléfono y contraseña";
+                lblError.Visible = true;
+                return;
+            }
+            if (direcciones.Count == 0)
+            {
+                lblError.Text = "Agregá al menos una dirección";
+                lblError.Visible = true;
+                return;
+            }
             Dominio.Entidades.Usuario Usuario = new Dominio.Entidades.Usuario
             {
                 NombreUsuario = txtMail.Text,
-                Contraseña = txtContraseña.Text,
+                Contraseña = txtContrasena.Text,
                 Estado = true,
                 Rol = Dominio.Entidades.Usuario.Roles.Empleado
 
@@ -71,6 +87,8 @@ namespace TP_Cuatrimestral_15B.Admin.Usuario
             };
 
             await gestorUsuario.CargarUsuario(Usuario,persona,direcciones);
+            lblConfirmacion.Text = "Usuario agregado correctamente";
+            lblConfirmacion.Visible = true;
         }
 
         private void CargarDatos()
@@ -82,6 +100,14 @@ namespace TP_Cuatrimestral_15B.Admin.Usuario
 
         protected void btnAgregarDireccion_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblConfirmacion.Visible = false;
+            if (txtCalle.Text == "" || txtNumero.Text == "" || txtLocalidad.Text == "" || txtCodigo.Text == "")
+            {
+                lblError.Text = "Completá calle, número, localidad y código postal";
+                lblError.Visible = true;
+                return;
+            }
             var direcciones = Session["Direcciones"] as List<Dominio.Entidades.Direccion> ?? new List<Dominio.Entidades.Direccion>();
             Dominio.Entidades.Direccion direccion = new Dominio.Entidades.Direccion
             {
@@ -97,6 +123,8 @@ namespace TP_Cuatrimestral_15B.Admin.Usuario
 
             gvDirecciones.DataSource = direcciones;
             gvDirecciones.DataBind();
+            lblConfirmacion.Text = "Dirección agregada correctamente";
+            lblConfirmacion.Visible = true;
         }
         protected void gvDirecciones_RowCommand(object sender, GridViewCommandEventArgs e)
         {

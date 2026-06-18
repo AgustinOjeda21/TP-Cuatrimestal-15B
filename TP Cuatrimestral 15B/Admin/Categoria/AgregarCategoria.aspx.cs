@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +14,8 @@ namespace TP_Cuatrimestral_15B.Admin.Categoria
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        protected Label lblError;
+        protected Label lblConfirmacion;
         private readonly mydbEntities1 context;
         private readonly RepositorioCategoria repositorioCategoria;
         private readonly GestorCategoria gestorCategoria;
@@ -30,6 +32,14 @@ namespace TP_Cuatrimestral_15B.Admin.Categoria
         }
         protected async void btnGuardar_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblConfirmacion.Visible = false;
+            if (txtNombre.Text == "" || txtDescripcion.Text == "")
+            {
+                lblError.Text = "Completá nombre y descripción";
+                lblError.Visible = true;
+                return;
+            }
             Dominio.Entidades.Categoria categoria = new Dominio.Entidades.Categoria
             {
                 Nombre = txtNombre.Text,
@@ -37,6 +47,8 @@ namespace TP_Cuatrimestral_15B.Admin.Categoria
                 
             };
             await gestorCategoria.CargarCategoria(categoria);
+            lblConfirmacion.Text = "Categoría agregada correctamente";
+            lblConfirmacion.Visible = true;
         }
     }
 }

@@ -4,22 +4,9 @@
 <head runat="server">
     <meta charset="utf-8" />
     <title>Admin - Categorías</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
-        .navbar { background-color: brown; color: white; padding: 15px 30px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .navbar a { color: white; text-decoration: none; font-size: 14px; }
-        .Titulo { font-size: 22px; font-weight: bold; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-right { margin-left: auto; display: flex; gap: 15px; align-items: center; }
-        .contenido { margin: 30px; }
-        h2 { color: #333; margin-bottom: 20px; }
-        .acciones-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .tabla-admin { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .tabla-admin th { background-color: brown; color: white; padding: 12px 15px; text-align: left; font-size: 13px; }
-        .tabla-admin td { padding: 12px 15px; border-bottom: 1px solid #eee; font-size: 14px; }
-        .tabla-admin tr:last-child td { border-bottom: none; }
-        .tabla-admin tr:hover td { background-color: #f5f5f5; }
-    </style>
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/Site.css" rel="stylesheet" />
+    
 </head>
 <body>
 <form id="form1" runat="server">
@@ -35,7 +22,7 @@
             <asp:HyperLink ID="linkDirecciones" runat="server" NavigateUrl="~/Admin/Direccion/Direcciones.aspx">Direcciones</asp:HyperLink>
             <asp:HyperLink ID="linkEstadosPedido" runat="server" NavigateUrl="~/Admin/EstadoPedido/EstadosPedido.aspx">Estados Pedido</asp:HyperLink>
             <asp:HyperLink ID="linkEstadosCarrito" runat="server" NavigateUrl="~/Admin/EstadoCarrito/EstadosCarrito.aspx">Estados Carrito</asp:HyperLink>
-            <asp:HyperLink ID="linkImagenes" runat="server" NavigateUrl="~/Admin/Imagen/Imagenes.aspx">Imagenes</asp:HyperLink>
+            <asp:HyperLink ID="linkImagenes" runat="server" NavigateUrl="~/Admin/Imagen/Imagenes.aspx">Imágenes</asp:HyperLink>
             <asp:HyperLink ID="linkMarcas" runat="server" NavigateUrl="~/Admin/Marca/Marcas.aspx">Marcas</asp:HyperLink>
             <asp:HyperLink ID="linkPersonas" runat="server" NavigateUrl="~/Admin/Persona/Personas.aspx">Personas</asp:HyperLink>
             <asp:HyperLink ID="linkProveedores" runat="server" NavigateUrl="~/Admin/Proveedor/Proveedores.aspx">Proveedores</asp:HyperLink>
@@ -50,16 +37,17 @@
     <div class="contenido">
         <h2>Gestión de Categorías</h2>
         <div class="acciones-top">
-            <asp:TextBox ID="txtBuscar" runat="server" placeholder="Buscar categoría..."></asp:TextBox>
-            <asp:Button ID="btnAgregar" runat="server" Text="+ Agregar categoría" PostBackUrl="~/Admin/Categoria/AgregarCategoria.aspx" />
-            <asp:Button ID="btnModificar" runat="server" Text="Modificar categoría" PostBackUrl="~/Admin/Categoria/ModificarCategoria.aspx" />
+            <asp:TextBox ID="txtBuscar" runat="server" placeholder="Buscar categoría..." CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnAgregar" runat="server" Text="+ Agregar categoría" PostBackUrl="~/Admin/Categoria/AgregarCategoria.aspx" CssClass="btn btn-default" />
+            <asp:Button ID="btnModificar" runat="server" Text="Modificar categoría" PostBackUrl="~/Admin/Categoria/ModificarCategoria.aspx" CssClass="btn btn-default" />
         </div>
-        <table class="tabla-admin">
+        <table class="table table-striped table-hover tabla-admin">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,6 +57,7 @@
                             <td><%# Eval("IdCategoria") %></td>
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Descripcion") %></td>
+                            <td><asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("IdCategoria") %>' CssClass="btn btn-default" /></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

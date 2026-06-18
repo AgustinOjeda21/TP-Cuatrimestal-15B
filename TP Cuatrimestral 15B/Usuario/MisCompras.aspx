@@ -4,31 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Mis Compras</title>
-    <style>
-        .compra {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin: 20px;
-    }
-
-    .compra h3 {
-        margin-top: 0;
-    }
-
-    .compra p {
-        margin: 8px 0;
-    }
-    .navbar {
-            background-color: brown;
-            color: white;
-            padding: 30px;
-            align-items: center;
-            display: flex;
-            }
-    </style>
+    
+    <meta charset="utf-8" />
+<title>Mis Compras</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+    
 </head>
 <body>
     <form id="form3" runat="server">
@@ -48,7 +29,7 @@
             <asp:Button
                 ID="btnDetalle1"
                 runat="server"
-                Text="Ver detalle" />
+                Text="Ver detalle" CssClass="btn btn-default" />
 
         </div>
 
@@ -65,7 +46,7 @@
             <asp:Button
                 ID="btnDetalle2"
                 runat="server"
-                Text="Ver detalle" />
+                Text="Ver detalle" CssClass="btn btn-default" />
         </div>
     </form>
 </body>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +13,8 @@ namespace TP_Cuatrimestral_15B.Admin.Proveedor
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        protected Label lblError;
+        protected Label lblConfirmacion;
         private readonly mydbEntities1 context;
         private readonly RepositorioProveedor repositorioProveedor;
         private readonly GestorProveedor gestorProveedor;
@@ -35,6 +37,14 @@ namespace TP_Cuatrimestral_15B.Admin.Proveedor
         }
         protected async void btnGuardar_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblConfirmacion.Visible = false;
+            if (txtNombre.Text == "" || txtTelefono.Text == "" || txtMail.Text == "" || txtCalle.Text == "" || txtNumero.Text == "" || txtLocalida.Text == "" || txtCodigo.Text == "")
+            {
+                lblError.Text = "Completá los datos del proveedor y la dirección";
+                lblError.Visible = true;
+                return;
+            }
             Dominio.Entidades.Direccion direccion = new Dominio.Entidades.Direccion
             {
                 Calle = txtCalle.Text,
@@ -50,6 +60,8 @@ namespace TP_Cuatrimestral_15B.Admin.Proveedor
                 Mail = txtMail.Text,
             };
             await gestorProveedor.CargarProveedor(Proveedor,direccion);
+            lblConfirmacion.Text = "Proveedor agregado correctamente";
+            lblConfirmacion.Visible = true;
         }
 
     }

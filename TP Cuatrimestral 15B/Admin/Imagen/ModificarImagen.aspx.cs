@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -41,6 +41,7 @@ namespace TP_Cuatrimestral_15B.Admin.Imagen
                 txtDescripcion.Text = forma.Descripcion;
                 txtNombre.Text = forma.Nombre;
                 txtUrl.Text = forma.URL;
+                imgVistaPrevia.ImageUrl = forma.URL;
                 txtNombre.Enabled = true;
                 txtDescripcion.Enabled = true;
                 txtUrl.Enabled = true;
@@ -76,7 +77,7 @@ namespace TP_Cuatrimestral_15B.Admin.Imagen
         protected async Task ModificarURL()
         {
             int id = Convert.ToInt32(txtIdBuscar.Text);
-            var resultado = await gestorImagen.ModificarURL(txtDescripcion.Text, id);
+            var resultado = await gestorImagen.ModificarURL(txtUrl.Text, id);
         }
     }
 }
