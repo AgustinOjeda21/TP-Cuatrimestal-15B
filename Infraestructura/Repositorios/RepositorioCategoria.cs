@@ -44,6 +44,18 @@ namespace Infraestructura.Repositorios
             Categoria aut = Eaut.ToDomain();
             return aut;
         }
+        public async Task Eliminar(int id)
+        {
+            var entity = await context.Categoria
+                .Include(c => c.Producto)
+                .FirstOrDefaultAsync(c => c.IdCategoria == id);
+            if (entity != null)
+            {
+                entity.Producto.Clear();
+                context.Categoria.Remove(entity);
+                await context.SaveChangesAsync();
+            }
+        }
         public async Task Actualizar(Categoria obj)
         {
             var entity = await context.Categoria.FindAsync(obj.IdCategoria);

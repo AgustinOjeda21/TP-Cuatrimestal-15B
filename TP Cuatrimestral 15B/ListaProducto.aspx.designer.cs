@@ -10,11 +10,7 @@ namespace TP_Cuatrimestral_15B
         protected global::System.Web.UI.WebControls.HyperLink linkSignin;
         protected global::System.Web.UI.WebControls.Button btnCarrito;
         protected global::System.Web.UI.WebControls.Button btnTodas;
-        protected global::System.Web.UI.WebControls.Button btnElectronica;
-        protected global::System.Web.UI.WebControls.Button btnHogar;
-        protected global::System.Web.UI.WebControls.Button btnGaming;
-        protected global::System.Web.UI.WebControls.Button btnVer1;
-        protected global::System.Web.UI.WebControls.Button btnVer2;
-        protected global::System.Web.UI.WebControls.Button btnVer3;
+        protected global::System.Web.UI.WebControls.Repeater rptCategorias;
+        protected global::System.Web.UI.WebControls.Repeater rptProductos;
     }
 }

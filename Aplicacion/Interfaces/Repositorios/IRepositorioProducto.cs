@@ -17,6 +17,7 @@ namespace Aplicacion.Interfaces.Repositorios
         Task<Producto> CapturarProducto(int id);
 
         Task Actualizar(Producto obj);
-       
+        Task Eliminar(int id);
+
     }
 }

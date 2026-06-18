@@ -44,6 +44,15 @@ namespace Infraestructura.Repositorios
             Producto aut = Eaut.ToDomain();
             return aut;
         }
+        public async Task Eliminar(int id)
+        {
+            var entity = await context.Producto.FindAsync(id);
+            if (entity != null)
+            {
+                context.Producto.Remove(entity);
+                await context.SaveChangesAsync();
+            }
+        }
         public async Task Actualizar(Producto obj)
         {
             var entity = await context.Producto.FindAsync(obj.IdProducto);

@@ -13,6 +13,7 @@ namespace Aplicacion.Interfaces.Repositorios
         Task InsertarCategoria(Categoria aut);
         Task<Categoria> CapturarCategoria(int id);
         Task Actualizar(Categoria obj);
-        
+        Task Eliminar(int id);
+
     }
 }

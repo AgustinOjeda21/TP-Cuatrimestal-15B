@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarProducto.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Producto.ModificarProducto" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarProducto.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Producto.ModificarProducto" Async="true" %>
 
 <!DOCTYPE html>
 
@@ -22,7 +22,7 @@
     <div class="buscar">
         <label>ID:</label>
         <asp:TextBox ID="txtIdBuscar" runat="server" CssClass="form-control"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btnBuscar_Click" />
     </div>
 
     <div class="formulario">
@@ -30,41 +30,26 @@
         <div class="fila">
             <label>Nombre:</label>
             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="btnModificarNombre"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
         </div>
 
         <div class="fila">
             <label>Descripción:</label>
             <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="btnModificarDescripcion"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
         </div>
 
         <div class="fila">
             <label>Precio:</label>
             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="Button1"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
         </div>
 
         <div class="fila">
             <label>Stock:</label>
             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="Button2"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
         </div>
 
         <div class="fila">
             <label>Marca:</label>
             <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control campo"> </asp:DropDownList>
-            <asp:Button ID="Button4"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
         </div>
 
         
@@ -176,11 +161,8 @@
         
 
         <div class="fila">
-            <asp:Button
-                ID="btnCancelar"
-                runat="server"
-                Text="Cancelar"
-                PostBackUrl="~/Admin/Producto/Productos.aspx" CssClass="btn btn-default" />
+            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-default" OnClick="btnGuardar_Click" />
+            <asp:Button ID="btnCancelar" runat="server" Text="Volver" PostBackUrl="~/Admin/Producto/Productos.aspx" CssClass="btn btn-default" />
         </div>
         </div>
 

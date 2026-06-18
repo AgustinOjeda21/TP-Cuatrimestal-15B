@@ -41,7 +41,7 @@
                 <asp:TextBox ID="txtBuscar" runat="server" placeholder="Buscar producto..." CssClass="form-control"></asp:TextBox>
                 <asp:TextBox ID="txtCategoria" runat="server" placeholder="Categoría..." CssClass="form-control"></asp:TextBox>
                 <asp:TextBox ID="txtEstado" runat="server" placeholder="Estado..." CssClass="form-control"></asp:TextBox>
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" />
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="btnBuscar_Click" />
             </div>
             <asp:Button ID="btnAgregar" runat="server" Text="+ Agregar producto"  PostBackUrl="~/Admin/Producto/AgregarProducto.aspx" CssClass="btn btn-default" />
              <asp:Button ID="btnModificar" runat="server" Text="Modificar producto"  PostBackUrl="~/Admin/Producto/ModificarProducto.aspx" CssClass="btn btn-default" />
@@ -56,10 +56,11 @@
                     <th>Stock</th>
                     <th>Marca</th>
                     <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <asp:Repeater ID="rptProducto" runat="server">
+                <asp:Repeater ID="rptProducto" runat="server" OnItemCommand="rptProducto_ItemCommand">
                     <ItemTemplate>
                         <tr>
                             <td><%# Eval("IdProducto") %></td>
@@ -69,6 +70,7 @@
                             <td><%# Eval("Stock") %></td>
                             <td><%# Eval("Marca.Nombre") %></td>
                             <td><%# Eval("Estado") %></td>
+                            <td><asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("IdProducto") %>' CssClass="btn btn-default" /></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

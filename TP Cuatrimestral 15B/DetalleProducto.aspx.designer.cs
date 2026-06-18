@@ -11,8 +11,6 @@ namespace TP_Cuatrimestral_15B
         protected global::System.Web.UI.WebControls.Button btnCarrito;
         protected global::System.Web.UI.WebControls.TextBox txtCantidad;
         protected global::System.Web.UI.WebControls.Button btnAgregarCarrito;
-        protected global::System.Web.UI.WebControls.Button btnVer1;
-        protected global::System.Web.UI.WebControls.Button btnVer2;
-        protected global::System.Web.UI.WebControls.Button btnVer3;
+        protected global::System.Web.UI.WebControls.Repeater rptRelacionados;
     }
 }

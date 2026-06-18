@@ -24,7 +24,8 @@ namespace Aplicacion.Interfaces.Gestores
         Task<bool> ValidarCategoria(int id);
 
         Task<Result<Categoria>> ExisteCategoria(int id);
-        
+        Task EliminarCategoria(int id);
+
     }
 }
 

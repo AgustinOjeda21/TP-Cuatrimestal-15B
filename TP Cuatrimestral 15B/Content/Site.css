@@ -345,6 +345,21 @@ a:hover .carouselSlide {
     background: #2d3a4b;
 }
 
+.carouselRow {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: min(1120px, calc(100% - 32px));
+    margin: 14px auto;
+}
+
+.carouselRow .carouselSlide {
+    flex: 1;
+    min-width: 140px;
+    width: auto;
+    margin: 0;
+}
+
 .categorias div {
     display: flex;
     gap: 10px;

@@ -73,6 +73,10 @@ namespace Aplicacion.Gestores
             }
             return Result<Categoria>.Ok(obj);
         }
+        public async Task EliminarCategoria(int id)
+        {
+            await repo.Eliminar(id);
+        }
     }
         
 }

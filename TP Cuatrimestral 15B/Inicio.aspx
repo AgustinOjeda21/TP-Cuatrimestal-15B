@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="TP_Cuatrimestral_15B.Inicio" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="TP_Cuatrimestral_15B.Inicio" Async="true" %>
 
 <!DOCTYPE html>
 
@@ -25,37 +25,31 @@
                    <asp:Button ID ="btnCarrito" runat="server" Text="Mi carrito" CssClass="btn btn-default"></asp:Button>
             </nav>
         </div>
-        <a href="ListaProducto.aspx"><div id ="Ofertas" class = "carouselSlide">OFERTAS DEL MES</div></a>
-        <a href="ListaProducto.aspx"><div id ="Categoria1" class = "carouselSlide">CATEGORÍA 1</div></a>
-        <a href="ListaProducto.aspx"><div id ="Categoria2" class = "carouselSlide">CATEGORÍA 2</div></a>
-        <a href="ListaProducto.aspx"><div id ="Categoria3" class = "carouselSlide">CATEGORÍA 3</div></a>
-        <a href="ListaProducto.aspx"><div id ="TodasCategorias" class = "carouselSlide">TODAS LAS CATEGORÍAS</div></a>
+        <div class="carouselRow">
+            <a href="ListaProducto.aspx"><div id ="Ofertas" class = "carouselSlide">OFERTAS DEL MES</div></a>
+            <asp:Repeater ID="rptCategorias" runat="server">
+                <ItemTemplate>
+                    <a href="ListaProducto.aspx"><div class="carouselSlide"><%# Eval("Nombre") %></div></a>
+                </ItemTemplate>
+            </asp:Repeater>
+            <a href="ListaProducto.aspx"><div id ="TodasCategorias" class = "carouselSlide">TODAS LAS CATEGORÍAS</div></a>
+        </div>
         <div class="productosDestacados">
     
     <h2>Productos Destacados</h2>
 
     <div class="contenedorProductos">
 
-        <div class="producto">
-            <img src="https://via.placeholder.com/250x180" />
-            <h3>Notebook HP</h3>
-            <p>$850.000</p>
-            <asp:Button ID="btnVer1" runat="server" Text="Ver Detalle" PostBackUrl="~/DetalleProducto.aspx" CssClass="btn btn-default" />
-        </div>
-
-        <div class="producto">
-            <img src="https://via.placeholder.com/250x180" />
-            <h3>Mouse Gamer</h3>
-            <p>$25.000</p>
-            <asp:Button ID="btnVer2" runat="server" Text="Ver Detalle" PostBackUrl="~/DetalleProducto.aspx" CssClass="btn btn-default" />
-        </div>
-
-        <div class="producto">
-            <img src="https://via.placeholder.com/250x180" />
-            <h3>Teclado Mecánico</h3>
-            <p>$70.000</p>
-            <asp:Button ID="btnVer3" runat="server" Text="Ver Detalle" PostBackUrl="~/DetalleProducto.aspx" CssClass="btn btn-default" />
-        </div>
+        <asp:Repeater ID="rptProductos" runat="server">
+            <ItemTemplate>
+                <div class="producto">
+                    <img src="https://via.placeholder.com/250x180" />
+                    <h3><%# Eval("Nombre") %></h3>
+                    <p>$<%# Eval("Precio") %></p>
+                    <asp:Button ID="btnVer" runat="server" Text="Ver Detalle" PostBackUrl="~/DetalleProducto.aspx" CssClass="btn btn-default" />
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
 
     </div>
 
