@@ -43,7 +43,7 @@
         <asp:Repeater ID="rptProductos" runat="server">
             <ItemTemplate>
                 <div class="producto">
-                    <img src="https://via.placeholder.com/250x180" />
+                    <img src='<%# Eval("ImagenUrl") %>' />
                     <h3><%# Eval("Nombre") %></h3>
                     <p>$<%# Eval("Precio") %></p>
                     <asp:Button ID="btnVer" runat="server" Text="Ver Detalle" PostBackUrl="~/DetalleProducto.aspx" CssClass="btn btn-default" />

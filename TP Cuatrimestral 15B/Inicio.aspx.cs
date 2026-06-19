@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.UI;
 using Aplicacion.Gestores;
@@ -31,7 +32,14 @@ namespace TP_Cuatrimestral_15B
 
         private async Task CargarProductos()
         {
-            var resultado = await gestorProducto.DevolverProductos();
+            var productos = await gestorProducto.DevolverProductos();
+            var resultado = productos.Select(producto => new
+            {
+                producto.IdProducto,
+                producto.Nombre,
+                producto.Precio,
+                ImagenUrl = producto.Imagenes != null && producto.Imagenes.Count > 0 ? producto.Imagenes[0].URL : "https://via.placeholder.com/250x180"
+            }).ToList();
             rptProductos.DataSource = resultado;
             rptProductos.DataBind();
         }
