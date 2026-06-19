@@ -17,5 +17,20 @@ namespace TP_Cuatrimestral_15B
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        void Application_AcquireRequestState(object sender, EventArgs e)
+        {
+            string ruta = Request.AppRelativeCurrentExecutionFilePath;
+
+            if (ruta.StartsWith("~/Admin/", StringComparison.OrdinalIgnoreCase))
+            {
+                var usuario = Session["Usuario"] as Dominio.Entidades.Usuario;
+
+                if (usuario == null || usuario.Rol != Dominio.Entidades.Usuario.Roles.Administrador)
+                {
+                    Response.Redirect("~/Log_in.aspx");
+                }
+            }
+        }
     }
 }
