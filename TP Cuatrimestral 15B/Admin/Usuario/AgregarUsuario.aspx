@@ -22,34 +22,43 @@
         <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
         <asp:Label ID="lblConfirmacion" runat="server" ForeColor="Green" Visible="false"></asp:Label>
 
-        <label>Nombre</label>
+        <asp:Label ID="lblNombreError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Nombre *</label>
         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control campo" />
 
-        <label>Apellido</label>
+        <asp:Label ID="lblApellidoError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Apellido *</label>
         <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control campo" />
     
-        <label>Mail</label>
+        <asp:Label ID="lblMailError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Mail *</label>
         <asp:TextBox ID="txtMail" runat="server" CssClass="form-control campo" />
      
-        <label>Teléfono</label>
+        <asp:Label ID="lblTelefonoError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Teléfono *</label>
         <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control campo" />
     
-        <label>Contraseña</label>
+        <asp:Label ID="lblContrasenaError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Contraseña *</label>
         <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control campo" />
     
 
       <h2>Agregar Dirección</h2>
 
-        <label>Calle</label>
+        <asp:Label ID="lblCalleError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Calle *</label>
         <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control campo" />
 
-        <label>Número</label>
+        <asp:Label ID="lblNumeroError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Número *</label>
         <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control campo" />
 
-        <label>Localidad</label>
+        <asp:Label ID="lblLocalidadError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Localidad *</label>
         <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control campo" />
 
-        <label>Código Postal</label>
+        <asp:Label ID="lblCodigoError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Código Postal *</label>
         <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control campo" />
 
         <label>Observaciones</label>
@@ -65,7 +74,8 @@
                 Text="Agregar Dirección"
                 OnClick="btnAgregarDireccion_Click" CssClass="btn btn-default" />
 
-        <h2>Direcciones Agregadas</h2>
+        <asp:Label ID="lblDireccionesError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <h2>Direcciones Agregadas *</h2>
 
         <asp:GridView
             ID="gvDirecciones"

@@ -22,19 +22,24 @@
         <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
         <asp:Label ID="lblConfirmacion" runat="server" ForeColor="Green" Visible="false"></asp:Label>
 
-        <label>Nombre</label>
+        <asp:Label ID="lblNombreError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Nombre *</label>
         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control campo" />
 
-        <label>Precio</label>
+        <asp:Label ID="lblPrecioError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Precio *</label>
         <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control campo" />
 
-        <label>Stock</label>
+        <asp:Label ID="lblStockError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Stock *</label>
         <asp:TextBox ID="txtStock" runat="server" CssClass="form-control campo" />
 
-        <label>Marca</label>
+        <asp:Label ID="lblMarcaError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Marca *</label>
         <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control campo"> </asp:DropDownList>
 
-        <label>Categoría</label>
+        <asp:Label ID="lblCategoriaError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Categoría *</label>
         <div class="selector">
             <asp:DropDownList ID="ddlCategorias" runat="server" CssClass="form-control campo"> </asp:DropDownList>
             <asp:Button ID="btnAgregarCategoria" runat="server" Text="Agregar" OnClick="btnAgregarCategoria_Click" CssClass="btn btn-default" />
@@ -53,7 +58,8 @@
         </asp:GridView>
 
         <label>Imagen</label>
-                    <label>Nombre de la imagen</label>
+                    <asp:Label ID="lblNombreImagenError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+                    <label>Nombre de la imagen *</label>
             <asp:TextBox ID="txtNombreImagen"
                 runat="server"
                 CssClass="form-control campo" />
@@ -63,7 +69,8 @@
                 runat="server"
                 CssClass="form-control campo" />
 
-            <label>URL</label>
+            <asp:Label ID="lblUrlImagenError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+            <label>URL *</label>
             <asp:TextBox ID="txtUrlImagen"
                 runat="server"
                 CssClass="form-control campo"
@@ -110,7 +117,8 @@
 
             </asp:GridView>
 
-        <label>Proveedor</label>
+        <asp:Label ID="lblProveedorError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Proveedor *</label>
         <div class="selector">
             <asp:DropDownList ID="ddlProveedores" runat="server" CssClass="form-control campo"> </asp:DropDownList>
 
@@ -129,7 +137,8 @@
             </Columns>
         </asp:GridView>
 
-        <label>Descripción</label>
+        <asp:Label ID="lblDescripcionError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Descripción *</label>
         <asp:TextBox ID="txtDescripcion"
             runat="server"
             CssClass="form-control campo"

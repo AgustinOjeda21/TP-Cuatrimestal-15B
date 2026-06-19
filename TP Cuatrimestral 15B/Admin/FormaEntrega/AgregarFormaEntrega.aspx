@@ -19,10 +19,12 @@
     <div class="formulario-admin">
         <h2>Agregar Forma de Entrega</h2>
 
-        <label>Nombre</label>
+        <asp:Label ID="lblNombreError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Nombre *</label>
         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control campo" />
 
-        <label>Descripción</label>
+        <asp:Label ID="lblDescripcionError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Descripción *</label>
         <asp:TextBox ID="txtDescripcion"
             runat="server"
             CssClass="form-control campo"

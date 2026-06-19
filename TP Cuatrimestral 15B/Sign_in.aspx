@@ -16,6 +16,7 @@
     <form id="form1" runat="server">
         <div class = "registro">
             <h1>Crear Cuenta</h1>
+            <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
 
             <nav>
             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control campo" placeholder="Nombre"></asp:TextBox>

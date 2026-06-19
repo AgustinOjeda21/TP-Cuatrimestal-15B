@@ -19,7 +19,8 @@
     <div class="formulario-admin">
         <h2>Agregar Estado de carrito</h2>
 
-        <label>Nombre</label>
+        <asp:Label ID="lblNombreError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Nombre *</label>
         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control campo" />
 
         <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false"></asp:Label>

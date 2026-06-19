@@ -15,6 +15,16 @@ namespace TP_Cuatrimestral_15B.Admin.Usuario
     {
         protected Label lblError;
         protected Label lblConfirmacion;
+        protected Label lblNombreError;
+        protected Label lblApellidoError;
+        protected Label lblMailError;
+        protected Label lblTelefonoError;
+        protected Label lblContrasenaError;
+        protected Label lblCalleError;
+        protected Label lblNumeroError;
+        protected Label lblLocalidadError;
+        protected Label lblCodigoError;
+        protected Label lblDireccionesError;
         private readonly mydbEntities1 context;
         private readonly RepositorioUsuario repositorioUsuario;
         private readonly GestorUsuario gestorUsuario;
@@ -56,19 +66,55 @@ namespace TP_Cuatrimestral_15B.Admin.Usuario
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
+            lblNombreError.Visible = false;
+            lblApellidoError.Visible = false;
+            lblMailError.Visible = false;
+            lblTelefonoError.Visible = false;
+            lblContrasenaError.Visible = false;
+            lblCalleError.Visible = false;
+            lblNumeroError.Visible = false;
+            lblLocalidadError.Visible = false;
+            lblCodigoError.Visible = false;
+            lblDireccionesError.Visible = false;
             var direcciones = Session["Direcciones"] as List<Dominio.Entidades.Direccion> ?? new List<Dominio.Entidades.Direccion>();
-            if (txtNombre.Text == "" || txtApellido.Text == "" || txtMail.Text == "" || txtTelefono.Text == "" || txtContrasena.Text == "")
+            bool hayError = false;
+            if (txtNombre.Text == "")
             {
-                lblError.Text = "Completá nombre, apellido, mail, teléfono y contraseña";
-                lblError.Visible = true;
-                return;
+                lblNombreError.Text = "Ingresá el nombre";
+                lblNombreError.Visible = true;
+                hayError = true;
+            }
+            if (txtApellido.Text == "")
+            {
+                lblApellidoError.Text = "Ingresá el apellido";
+                lblApellidoError.Visible = true;
+                hayError = true;
+            }
+            if (txtMail.Text == "")
+            {
+                lblMailError.Text = "Ingresá el mail";
+                lblMailError.Visible = true;
+                hayError = true;
+            }
+            if (txtTelefono.Text == "")
+            {
+                lblTelefonoError.Text = "Ingresá el teléfono";
+                lblTelefonoError.Visible = true;
+                hayError = true;
+            }
+            if (txtContrasena.Text == "")
+            {
+                lblContrasenaError.Text = "Ingresá la contraseña";
+                lblContrasenaError.Visible = true;
+                hayError = true;
             }
             if (direcciones.Count == 0)
             {
-                lblError.Text = "Agregá al menos una dirección";
-                lblError.Visible = true;
-                return;
+                lblDireccionesError.Text = "Agregá al menos una dirección";
+                lblDireccionesError.Visible = true;
+                hayError = true;
             }
+            if (hayError) return;
             Dominio.Entidades.Usuario Usuario = new Dominio.Entidades.Usuario
             {
                 NombreUsuario = txtMail.Text,
@@ -102,12 +148,42 @@ namespace TP_Cuatrimestral_15B.Admin.Usuario
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
-            if (txtCalle.Text == "" || txtNumero.Text == "" || txtLocalidad.Text == "" || txtCodigo.Text == "")
+            lblNombreError.Visible = false;
+            lblApellidoError.Visible = false;
+            lblMailError.Visible = false;
+            lblTelefonoError.Visible = false;
+            lblContrasenaError.Visible = false;
+            lblCalleError.Visible = false;
+            lblNumeroError.Visible = false;
+            lblLocalidadError.Visible = false;
+            lblCodigoError.Visible = false;
+            lblDireccionesError.Visible = false;
+            bool hayError = false;
+            if (txtCalle.Text == "")
             {
-                lblError.Text = "Completá calle, número, localidad y código postal";
-                lblError.Visible = true;
-                return;
+                lblCalleError.Text = "Ingresá la calle";
+                lblCalleError.Visible = true;
+                hayError = true;
             }
+            if (txtNumero.Text == "")
+            {
+                lblNumeroError.Text = "Ingresá el número";
+                lblNumeroError.Visible = true;
+                hayError = true;
+            }
+            if (txtLocalidad.Text == "")
+            {
+                lblLocalidadError.Text = "Ingresá la localidad";
+                lblLocalidadError.Visible = true;
+                hayError = true;
+            }
+            if (txtCodigo.Text == "")
+            {
+                lblCodigoError.Text = "Ingresá el código postal";
+                lblCodigoError.Visible = true;
+                hayError = true;
+            }
+            if (hayError) return;
             var direcciones = Session["Direcciones"] as List<Dominio.Entidades.Direccion> ?? new List<Dominio.Entidades.Direccion>();
             Dominio.Entidades.Direccion direccion = new Dominio.Entidades.Direccion
             {

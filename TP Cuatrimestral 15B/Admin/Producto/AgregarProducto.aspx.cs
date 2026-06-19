@@ -15,6 +15,15 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
     {
         protected Label lblError;
         protected Label lblConfirmacion;
+        protected Label lblNombreError;
+        protected Label lblPrecioError;
+        protected Label lblStockError;
+        protected Label lblMarcaError;
+        protected Label lblCategoriaError;
+        protected Label lblNombreImagenError;
+        protected Label lblUrlImagenError;
+        protected Label lblProveedorError;
+        protected Label lblDescripcionError;
         private readonly mydbEntities1 context;
         private readonly RepositorioProducto repositorioProducto;
         private readonly GestorProducto gestorProducto;
@@ -79,47 +88,76 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
+            lblNombreError.Visible = false;
+            lblPrecioError.Visible = false;
+            lblStockError.Visible = false;
+            lblMarcaError.Visible = false;
+            lblCategoriaError.Visible = false;
+            lblNombreImagenError.Visible = false;
+            lblUrlImagenError.Visible = false;
+            lblProveedorError.Visible = false;
+            lblDescripcionError.Visible = false;
             var imagenes = Session["Imagenes"] as List<Dominio.Entidades.Imagen> ?? new List<Dominio.Entidades.Imagen>();
             var categorias = Session["Categorias"] as List<Dominio.Entidades.Categoria> ?? new List<Dominio.Entidades.Categoria>();
             var proveedores = Session["Proveedores"] as List<Dominio.Entidades.Proveedor> ?? new List<Dominio.Entidades.Proveedor>();
-            decimal precio;
-            int stock;
-            if (txtNombre.Text == "" || txtPrecio.Text == "" || txtStock.Text == "" || txtDescripcion.Text == "")
+            decimal precio = 0;
+            int stock = 0;
+            bool hayError = false;
+            if (txtNombre.Text == "")
             {
-                lblError.Text = "Completá nombre, precio, stock y descripción";
-                lblError.Visible = true;
-                return;
+                lblNombreError.Text = "Ingresá el nombre";
+                lblNombreError.Visible = true;
+                hayError = true;
             }
-            if (!decimal.TryParse(txtPrecio.Text, out precio))
+            if (txtPrecio.Text == "")
             {
-                lblError.Text = "El precio debe ser un número";
-                lblError.Visible = true;
-                return;
+                lblPrecioError.Text = "Ingresá el precio";
+                lblPrecioError.Visible = true;
+                hayError = true;
             }
-            if (!int.TryParse(txtStock.Text, out stock))
+            else if (!decimal.TryParse(txtPrecio.Text, out precio))
             {
-                lblError.Text = "El stock debe ser un número";
-                lblError.Visible = true;
-                return;
+                lblPrecioError.Text = "El precio debe ser un número";
+                lblPrecioError.Visible = true;
+                hayError = true;
+            }
+            if (txtStock.Text == "")
+            {
+                lblStockError.Text = "Ingresá el stock";
+                lblStockError.Visible = true;
+                hayError = true;
+            }
+            else if (!int.TryParse(txtStock.Text, out stock))
+            {
+                lblStockError.Text = "El stock debe ser un número";
+                lblStockError.Visible = true;
+                hayError = true;
             }
             if (ddlMarca.SelectedValue == "")
             {
-                lblError.Text = "Seleccioná una marca";
-                lblError.Visible = true;
-                return;
+                lblMarcaError.Text = "Seleccioná una marca";
+                lblMarcaError.Visible = true;
+                hayError = true;
             }
             if (categorias.Count == 0)
             {
-                lblError.Text = "Agregá al menos una categoría";
-                lblError.Visible = true;
-                return;
+                lblCategoriaError.Text = "Agregá al menos una categoría";
+                lblCategoriaError.Visible = true;
+                hayError = true;
             }
             if (proveedores.Count == 0)
             {
-                lblError.Text = "Agregá al menos un proveedor";
-                lblError.Visible = true;
-                return;
+                lblProveedorError.Text = "Agregá al menos un proveedor";
+                lblProveedorError.Visible = true;
+                hayError = true;
             }
+            if (txtDescripcion.Text == "")
+            {
+                lblDescripcionError.Text = "Ingresá la descripción";
+                lblDescripcionError.Visible = true;
+                hayError = true;
+            }
+            if (hayError) return;
             var marca = await gestorMarca.CapturarMarca(int.Parse(ddlMarca.SelectedValue));
             Dominio.Entidades.Producto Producto = new Dominio.Entidades.Producto
             {
@@ -171,12 +209,29 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
-            if (txtNombreImagen.Text == "" || txtUrlImagen.Text == "")
+            lblNombreError.Visible = false;
+            lblPrecioError.Visible = false;
+            lblStockError.Visible = false;
+            lblMarcaError.Visible = false;
+            lblCategoriaError.Visible = false;
+            lblNombreImagenError.Visible = false;
+            lblUrlImagenError.Visible = false;
+            lblProveedorError.Visible = false;
+            lblDescripcionError.Visible = false;
+            bool hayError = false;
+            if (txtNombreImagen.Text == "")
             {
-                lblError.Text = "Completá nombre y URL de la imagen";
-                lblError.Visible = true;
-                return;
+                lblNombreImagenError.Text = "Ingresá el nombre de la imagen";
+                lblNombreImagenError.Visible = true;
+                hayError = true;
             }
+            if (txtUrlImagen.Text == "")
+            {
+                lblUrlImagenError.Text = "Ingresá la URL";
+                lblUrlImagenError.Visible = true;
+                hayError = true;
+            }
+            if (hayError) return;
             var imagenes = Session["Imagenes"] as List<Dominio.Entidades.Imagen> ?? new List<Dominio.Entidades.Imagen>();
             Dominio.Entidades.Imagen imagen = new Dominio.Entidades.Imagen
             {
@@ -197,10 +252,19 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
+            lblNombreError.Visible = false;
+            lblPrecioError.Visible = false;
+            lblStockError.Visible = false;
+            lblMarcaError.Visible = false;
+            lblCategoriaError.Visible = false;
+            lblNombreImagenError.Visible = false;
+            lblUrlImagenError.Visible = false;
+            lblProveedorError.Visible = false;
+            lblDescripcionError.Visible = false;
             if (ddlProveedores.SelectedValue == "")
             {
-                lblError.Text = "Seleccioná un proveedor";
-                lblError.Visible = true;
+                lblProveedorError.Text = "Seleccioná un proveedor";
+                lblProveedorError.Visible = true;
                 return;
             }
             var proveedores = Session["Proveedores"] as List<Dominio.Entidades.Proveedor> ?? new List<Dominio.Entidades.Proveedor>();
@@ -216,10 +280,19 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
+            lblNombreError.Visible = false;
+            lblPrecioError.Visible = false;
+            lblStockError.Visible = false;
+            lblMarcaError.Visible = false;
+            lblCategoriaError.Visible = false;
+            lblNombreImagenError.Visible = false;
+            lblUrlImagenError.Visible = false;
+            lblProveedorError.Visible = false;
+            lblDescripcionError.Visible = false;
             if (ddlCategorias.SelectedValue == "")
             {
-                lblError.Text = "Seleccioná una categoría";
-                lblError.Visible = true;
+                lblCategoriaError.Text = "Seleccioná una categoría";
+                lblCategoriaError.Visible = true;
                 return;
             }
             var categorias = Session["Categorias"] as List<Dominio.Entidades.Categoria> ?? new List<Dominio.Entidades.Categoria>();

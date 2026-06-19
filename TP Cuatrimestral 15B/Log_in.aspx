@@ -18,10 +18,10 @@
             <h2>Iniciar sesión</h2>
 
             <nav>
-            <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="form-control campo" placeholder="Nombre usuario"></asp:TextBox>
+            <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="form-control campo" placeholder="Email"></asp:TextBox>
             </nav>
             <nav>
-            <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control campo" placeholder="Contraseña"></asp:TextBox>
+            <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control campo" TextMode="Password" placeholder="Contraseña"></asp:TextBox>
             </nav>
         </div>
         <div class =" botones">

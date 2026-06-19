@@ -15,6 +15,7 @@ namespace TP_Cuatrimestral_15B.Admin.EstadoCarrito
     {
         protected Label lblError;
         protected Label lblConfirmacion;
+        protected Label lblNombreError;
         private readonly mydbEntities1 context;
         private readonly RepositorioEstadoCarrito repositorioEstadoCarrito;
         private readonly GestorEstadoCarrito gestorEstadoCarrito;
@@ -33,10 +34,11 @@ namespace TP_Cuatrimestral_15B.Admin.EstadoCarrito
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
+            lblNombreError.Visible = false;
             if (txtNombre.Text == "")
             {
-                lblError.Text = "Completá el nombre";
-                lblError.Visible = true;
+                lblNombreError.Text = "Ingresá el nombre";
+                lblNombreError.Visible = true;
                 return;
             }
             Dominio.Entidades.EstadoCarrito estadoCarrito = new Dominio.Entidades.EstadoCarrito

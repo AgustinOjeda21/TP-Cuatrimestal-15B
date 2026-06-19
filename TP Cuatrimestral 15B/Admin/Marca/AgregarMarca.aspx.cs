@@ -15,6 +15,9 @@ namespace TP_Cuatrimestral_15B.Admin.Marca
     {
         protected Label lblError;
         protected Label lblConfirmacion;
+        protected Label lblNombreError;
+        protected Label lblNombreImagenError;
+        protected Label lblUrlImagenError;
         private readonly mydbEntities1 context;
         private readonly RepositorioMarca repositorioMarca;
         private readonly GestorMarca gestorMarca;
@@ -49,10 +52,13 @@ namespace TP_Cuatrimestral_15B.Admin.Marca
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
+            lblNombreError.Visible = false;
+            lblNombreImagenError.Visible = false;
+            lblUrlImagenError.Visible = false;
             if (txtNombre.Text == "")
             {
-                lblError.Text = "Completá el nombre";
-                lblError.Visible = true;
+                lblNombreError.Text = "Ingresá el nombre";
+                lblNombreError.Visible = true;
                 return;
             }
             var imagenes = Session["Imagenes"] as List<Dominio.Entidades.Imagen> ?? new List<Dominio.Entidades.Imagen>();
@@ -75,12 +81,23 @@ namespace TP_Cuatrimestral_15B.Admin.Marca
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
-            if (txtNombreImagen.Text == "" || txtUrlImagen.Text == "")
+            lblNombreError.Visible = false;
+            lblNombreImagenError.Visible = false;
+            lblUrlImagenError.Visible = false;
+            bool hayError = false;
+            if (txtNombreImagen.Text == "")
             {
-                lblError.Text = "Completá nombre y URL de la imagen";
-                lblError.Visible = true;
-                return;
+                lblNombreImagenError.Text = "Ingresá el nombre de la imagen";
+                lblNombreImagenError.Visible = true;
+                hayError = true;
             }
+            if (txtUrlImagen.Text == "")
+            {
+                lblUrlImagenError.Text = "Ingresá la URL";
+                lblUrlImagenError.Visible = true;
+                hayError = true;
+            }
+            if (hayError) return;
             var imagenes = Session["Imagenes"] as List<Dominio.Entidades.Imagen> ?? new List<Dominio.Entidades.Imagen>();
             Dominio.Entidades.Imagen imagen = new Dominio.Entidades.Imagen
             {

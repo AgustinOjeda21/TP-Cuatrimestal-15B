@@ -15,6 +15,13 @@ namespace TP_Cuatrimestral_15B.Admin.Proveedor
     {
         protected Label lblError;
         protected Label lblConfirmacion;
+        protected Label lblNombreError;
+        protected Label lblTelefonoError;
+        protected Label lblMailError;
+        protected Label lblCalleError;
+        protected Label lblNumeroError;
+        protected Label lblLocalidadError;
+        protected Label lblCodigoError;
         private readonly mydbEntities1 context;
         private readonly RepositorioProveedor repositorioProveedor;
         private readonly GestorProveedor gestorProveedor;
@@ -39,12 +46,57 @@ namespace TP_Cuatrimestral_15B.Admin.Proveedor
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
-            if (txtNombre.Text == "" || txtTelefono.Text == "" || txtMail.Text == "" || txtCalle.Text == "" || txtNumero.Text == "" || txtLocalida.Text == "" || txtCodigo.Text == "")
+            lblNombreError.Visible = false;
+            lblTelefonoError.Visible = false;
+            lblMailError.Visible = false;
+            lblCalleError.Visible = false;
+            lblNumeroError.Visible = false;
+            lblLocalidadError.Visible = false;
+            lblCodigoError.Visible = false;
+            bool hayError = false;
+            if (txtNombre.Text == "")
             {
-                lblError.Text = "Completá los datos del proveedor y la dirección";
-                lblError.Visible = true;
-                return;
+                lblNombreError.Text = "Ingresá el nombre";
+                lblNombreError.Visible = true;
+                hayError = true;
             }
+            if (txtTelefono.Text == "")
+            {
+                lblTelefonoError.Text = "Ingresá el teléfono";
+                lblTelefonoError.Visible = true;
+                hayError = true;
+            }
+            if (txtMail.Text == "")
+            {
+                lblMailError.Text = "Ingresá el mail";
+                lblMailError.Visible = true;
+                hayError = true;
+            }
+            if (txtCalle.Text == "")
+            {
+                lblCalleError.Text = "Ingresá la calle";
+                lblCalleError.Visible = true;
+                hayError = true;
+            }
+            if (txtNumero.Text == "")
+            {
+                lblNumeroError.Text = "Ingresá el número";
+                lblNumeroError.Visible = true;
+                hayError = true;
+            }
+            if (txtLocalida.Text == "")
+            {
+                lblLocalidadError.Text = "Ingresá la localidad";
+                lblLocalidadError.Visible = true;
+                hayError = true;
+            }
+            if (txtCodigo.Text == "")
+            {
+                lblCodigoError.Text = "Ingresá el código postal";
+                lblCodigoError.Visible = true;
+                hayError = true;
+            }
+            if (hayError) return;
             Dominio.Entidades.Direccion direccion = new Dominio.Entidades.Direccion
             {
                 Calle = txtCalle.Text,

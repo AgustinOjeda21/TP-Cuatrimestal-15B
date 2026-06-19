@@ -22,11 +22,13 @@
         <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
         <asp:Label ID="lblConfirmacion" runat="server" ForeColor="Green" Visible="false"></asp:Label>
 
-        <label>Nombre</label>
+        <asp:Label ID="lblNombreError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <label>Nombre *</label>
         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control campo" />
 
         <label>Imagen</label>
-                    <label>Nombre de la imagen</label>
+                    <asp:Label ID="lblNombreImagenError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+                    <label>Nombre de la imagen *</label>
             <asp:TextBox ID="txtNombreImagen"
                 runat="server"
                 CssClass="form-control campo" />
@@ -36,7 +38,8 @@
                 runat="server"
                 CssClass="form-control campo" />
 
-            <label>URL</label>
+            <asp:Label ID="lblUrlImagenError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+            <label>URL *</label>
             <asp:TextBox ID="txtUrlImagen"
                 runat="server"
                 CssClass="form-control campo"

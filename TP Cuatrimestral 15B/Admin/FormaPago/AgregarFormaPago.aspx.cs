@@ -15,6 +15,8 @@ namespace TP_Cuatrimestral_15B.Admin.FormaPago
     {
         protected Label lblError;
         protected Label lblConfirmacion;
+        protected Label lblNombreError;
+        protected Label lblDescripcionError;
         private readonly mydbEntities1 context;
         private readonly RepositorioFormaPago repositorioFormaPago;
         private readonly GestorFormaPago gestorFormaPago;
@@ -32,12 +34,22 @@ namespace TP_Cuatrimestral_15B.Admin.FormaPago
         {
             lblError.Visible = false;
             lblConfirmacion.Visible = false;
-            if (txtNombre.Text == "" || txtDescripcion.Text == "")
+            lblNombreError.Visible = false;
+            lblDescripcionError.Visible = false;
+            bool hayError = false;
+            if (txtNombre.Text == "")
             {
-                lblError.Text = "Completá nombre y descripción";
-                lblError.Visible = true;
-                return;
+                lblNombreError.Text = "Ingresá el nombre";
+                lblNombreError.Visible = true;
+                hayError = true;
             }
+            if (txtDescripcion.Text == "")
+            {
+                lblDescripcionError.Text = "Ingresá la descripción";
+                lblDescripcionError.Visible = true;
+                hayError = true;
+            }
+            if (hayError) return;
             Dominio.Entidades.FormaPago formaPago = new Dominio.Entidades.FormaPago
             {
                 Nombre = txtNombre.Text,
