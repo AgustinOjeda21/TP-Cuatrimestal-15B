@@ -26,13 +26,13 @@
             </nav>
         </div>
         <div class="carouselRow">
-            <a href="ListaProducto.aspx"><div id ="Ofertas" class = "carouselSlide">OFERTAS DEL MES</div></a>
+            <a href="ListaProducto.aspx" class="categoriaLink"><div id ="Ofertas" class = "carouselSlide ofertaSlide">OFERTAS DEL MES</div></a>
             <asp:Repeater ID="rptCategorias" runat="server">
                 <ItemTemplate>
-                    <a href="ListaProducto.aspx"><div class="carouselSlide"><%# Eval("Nombre") %></div></a>
+                    <a href="ListaProducto.aspx" class="categoriaLink"><div class="carouselSlide"><%# Eval("Nombre") %></div></a>
                 </ItemTemplate>
             </asp:Repeater>
-            <a href="ListaProducto.aspx"><div id ="TodasCategorias" class = "carouselSlide">TODAS LAS CATEGORÍAS</div></a>
+            <a href="ListaProducto.aspx" class="categoriaLink"><div id ="TodasCategorias" class = "carouselSlide todasSlide">TODAS LAS CATEGORÍAS</div></a>
         </div>
         <div class="productosDestacados">
     
@@ -43,10 +43,10 @@
         <asp:Repeater ID="rptProductos" runat="server">
             <ItemTemplate>
                 <div class="producto">
-                    <img src='<%# Eval("ImagenUrl") %>' />
+                    <img src='<%# Eval("ImagenUrl") %>' alt='<%# Eval("Nombre") %>' />
                     <h3><%# Eval("Nombre") %></h3>
                     <p>$<%# Eval("Precio") %></p>
-                    <asp:Button ID="btnVer" runat="server" Text="Ver Detalle" PostBackUrl="~/DetalleProducto.aspx" CssClass="btn btn-default" />
+                    <asp:HyperLink ID="lnkVer" runat="server" NavigateUrl='<%# "~/DetalleProducto.aspx?id=" + Eval("IdProducto") %>' CssClass="btn btn-default">Ver Detalle</asp:HyperLink>
                 </div>
             </ItemTemplate>
         </asp:Repeater>

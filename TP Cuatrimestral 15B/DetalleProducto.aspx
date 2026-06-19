@@ -27,7 +27,7 @@
         </div>
         <div id ="Producto" class = "detalleProducto">
             <div class = "productoimg">
-                IMAGEN
+                <img src="<%= imagenUrl %>" alt="Producto" />
             </div>
             <div class = "infoProducto">
                 <h1><%= producto != null ? producto.Nombre : "" %></h1>
@@ -61,7 +61,7 @@
         <asp:Repeater ID="rptRelacionados" runat="server">
             <ItemTemplate>
                 <div class="producto">
-                    <img src="https://via.placeholder.com/250x180" />
+                    <img src='<%# Eval("ImagenUrl") %>' alt='<%# Eval("Nombre") %>' />
                     <h3><%# Eval("Nombre") %></h3>
                     <p>$<%# Eval("Precio") %></p>
                     <asp:HyperLink ID="lnkVer" runat="server" NavigateUrl='<%# "~/DetalleProducto.aspx?id=" + Eval("IdProducto") %>' CssClass="btn btn-default">Ver Detalle</asp:HyperLink>

@@ -38,7 +38,7 @@ namespace TP_Cuatrimestral_15B
                 producto.IdProducto,
                 producto.Nombre,
                 producto.Precio,
-                ImagenUrl = producto.Imagenes != null && producto.Imagenes.Count > 0 ? producto.Imagenes[0].URL : "https://via.placeholder.com/250x180"
+                ImagenUrl = producto.Imagenes != null && producto.Imagenes.Count > 0 && producto.Imagenes[0].URL != "" ? producto.Imagenes[0].URL : "https://via.placeholder.com/250x180"
             }).ToList();
             rptProductos.DataSource = resultado;
             rptProductos.DataBind();

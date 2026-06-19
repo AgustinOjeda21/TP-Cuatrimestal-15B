@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.UI;
 using Aplicacion.Gestores;
@@ -20,6 +21,7 @@ namespace TP_Cuatrimestral_15B
         private static readonly GestorProducto gestorProducto = new GestorProducto(repositorioProducto, gestorMarca, gestorImagen);
 
         protected Producto producto;
+        protected string imagenUrl = "https://via.placeholder.com/420x320";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,12 +38,23 @@ namespace TP_Cuatrimestral_15B
             if (int.TryParse(Request.QueryString["id"], out id))
             {
                 producto = await gestorProducto.CapturarProducto(id);
+                if (producto != null && producto.Imagenes != null && producto.Imagenes.Count > 0 && producto.Imagenes[0].URL != "")
+                {
+                    imagenUrl = producto.Imagenes[0].URL;
+                }
             }
         }
 
         private async Task CargarRelacionados()
         {
-            var resultado = await gestorProducto.DevolverProductos();
+            var productos = await gestorProducto.DevolverProductos();
+            var resultado = productos.Select(productoRelacionado => new
+            {
+                productoRelacionado.IdProducto,
+                productoRelacionado.Nombre,
+                productoRelacionado.Precio,
+                ImagenUrl = productoRelacionado.Imagenes != null && productoRelacionado.Imagenes.Count > 0 && productoRelacionado.Imagenes[0].URL != "" ? productoRelacionado.Imagenes[0].URL : "https://via.placeholder.com/250x180"
+            }).ToList();
             rptRelacionados.DataSource = resultado;
             rptRelacionados.DataBind();
         }

@@ -14,18 +14,19 @@
 
 <body>
     <form id="form1" runat="server">
-        <div class = "registro">
+        <div class="authPage">
+        <div class = "registro authBox">
             <h2>Iniciar sesión</h2>
+            <p class="authSubtitulo">Entrá con tu cuenta para seguir comprando.</p>
 
-            <nav>
+            <div class="campoAuth">
             <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="form-control campo" placeholder="Email"></asp:TextBox>
-            </nav>
-            <nav>
+            </div>
+            <div class="campoAuth">
             <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control campo" TextMode="Password" placeholder="Contraseña"></asp:TextBox>
-            </nav>
-        </div>
-        <div class =" botones">
+            </div>
             <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false" Text="Usuario o contraseña incorrectos"></asp:Label>
+            <div class ="botones authBotones">
             <asp:Button
             ID="btnRegistrarse"
             runat="server"
@@ -46,6 +47,8 @@
             CssClass="btn btn-default">
             Volver a tienda
             </asp:HyperLink>
+            </div>
+        </div>
         </div>
     </form>
 </body>
