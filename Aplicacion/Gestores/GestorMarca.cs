@@ -32,6 +32,15 @@ namespace Aplicacion.Gestores
             var edi = await repo.CapturarMarca(id);
             return edi;
         }
+
+        public async Task QuitarImagen(int idMarca, int idImagen)
+        {
+            await repo.QuitarImagen(idMarca, idImagen);
+        }
+        public async Task AgregarImagen(int idMarca, Imagen imagen)
+        {
+            await repo.AgregarImagen(idMarca, imagen);
+        }
         public async Task<List<Marca>> DevolverMarcas()
         {
             return await repo.ObtenerMarcas();

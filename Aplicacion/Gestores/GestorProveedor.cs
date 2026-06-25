@@ -74,23 +74,7 @@ namespace Aplicacion.Gestores
             await repo.Actualizar(edi);
             return Result<Proveedor>.EjecucionCorrecta();
         }
-        public async Task<Result<Proveedor>> ModificarDireccion(Direccion direccion, int id)
-        {
-            var resultado = await ExisteProveedor(id);
-            if (!resultado.Success)
-            {
-                return resultado;
-            }
-            var edi = resultado.Value;
-            await gestorDireccion.ModificarCalle(direccion.Calle, edi.Direccion.IdDireccion);
-            await gestorDireccion.ModificarLocalidad(direccion.Localidad, edi.Direccion.IdDireccion);
-            await gestorDireccion.ModificarCodigoPostal(direccion.CodigoPostal, edi.Direccion.IdDireccion);
-            await gestorDireccion.ModificarNumero(direccion.Numero, edi.Direccion.IdDireccion);
-            await gestorDireccion.ModificarObservaciones(direccion.Observaciones, edi.Direccion.IdDireccion);
-            await repo.Actualizar(edi);
-            return Result<Proveedor>.EjecucionCorrecta();
-        }
-
+       
         public async Task<bool> ValidarProveedor(int id)
         {
             return await repo.CapturarProveedor(id) != null;

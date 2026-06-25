@@ -51,7 +51,16 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
-        /// Control btnModificarNombre.
+        /// Control btnNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNombre;
+
+        /// <summary>
+        /// Control txtDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
@@ -60,17 +69,67 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control btnDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.Button btnDescripcion;
 
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        /// <summary>
+        /// Control txtPrecio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrecio;
 
+        /// <summary>
+        /// Control btnPrecio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPrecio;
+
+        /// <summary>
+        /// Control txtStock.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStock;
+
+        /// <summary>
+        /// Control btnStock.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnStock;
+
+        /// <summary>
+        /// Control ddlMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
+
+        /// <summary>
+        /// Control btnMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMarca;
 
         /// <summary>
         /// Control ddlCategorias.
@@ -145,31 +204,31 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         protected global::System.Web.UI.WebControls.GridView gvImagenes;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control ddlProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProveedor;
 
         /// <summary>
-        /// Control Button3.
+        /// Control btnAgregarProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button btnAgregarProveedor;
 
         /// <summary>
-        /// Control GridView1.
+        /// Control gvProveedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView gvProveedores;
 
         /// <summary>
         /// Control btnCancelar.
@@ -178,8 +237,6 @@ namespace TP_Cuatrimestral_15B.Admin.Producto
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
-
         protected global::System.Web.UI.WebControls.Button btnCancelar;
     }
 }

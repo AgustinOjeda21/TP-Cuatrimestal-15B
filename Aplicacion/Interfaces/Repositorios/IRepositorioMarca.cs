@@ -13,8 +13,10 @@ namespace Aplicacion.Interfaces.Repositorios
 
         Task InsertarMarca(Marca aut);
 
+        Task QuitarImagen(int marca, int IdImagen);
+        Task AgregarImagen(int marca, Imagen imagen);
 
-        Task<Marca> CapturarMarca(int id);
+        Task <Marca> CapturarMarca(int id);
 
         Task Actualizar(Marca obj);
         

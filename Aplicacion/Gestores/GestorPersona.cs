@@ -37,6 +37,15 @@ namespace Aplicacion.Gestores
             return await repo.ObtenerPersonas();
         }
 
+        public async Task AgregarDireccion(int idPersona, Direccion direccion)
+        {
+            await repo.AgregarDireccion(idPersona, direccion);
+        }
+        public async Task QuitarDireccion(int idPersona, int idDireccion)
+        {
+            await repo.QuitarDireccion(idPersona, idDireccion);
+        }
+
         public async Task<Result<Persona>> ModificarNombre(string Nombre, int id)
         {
             var resultado = await ExistePersona(id);

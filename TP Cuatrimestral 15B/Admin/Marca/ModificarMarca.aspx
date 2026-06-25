@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarMarca.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Marca.ModificarMarca" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarMarca.aspx.cs" Async ="true" Inherits="TP_Cuatrimestral_15B.Admin.Marca.ModificarMarca" %>
 
 <!DOCTYPE html>
 
@@ -22,46 +22,34 @@
     <div class="buscar">
         <label>ID:</label>
         <asp:TextBox ID="txtIdBuscar" runat="server" CssClass="form-control"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick ="btnBuscar_Click" />
     </div>
 
     <div class="formulario">
 
         <div class="fila">
             <label>Nombre:</label>
-            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="btnModificarNombre"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
+            <asp:TextBox ID="txtNombre" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnModificarNombre" runat="server" Text="Modificar" Enabled="false" CssClass="btn btn-default" OnClick ="btnModificarNombre_Click" />
         </div>
 
         <div class="fila">
-            <label>Imagen:</label>
-             <label>Nombre de la imagen</label>
-            <asp:TextBox ID="txtNombreImagen"
-                runat="server"
-                CssClass="form-control campo" />
+            <label>Agregar Imagen:</label>
+            <label>Nombre de la imagen</label>
+            <asp:TextBox ID="txtNombreImagen" runat="server" Enabled="false" CssClass="form-control campo" />
         </div>
 
-        <div class="fila">
-            <label>Descripción</label>
-            <asp:TextBox ID="txtDescripcionImagen"
-                runat="server"
-                CssClass="form-control campo" />
+        <div class="fila"> 
+        <label>Descripción</label> 
+        <asp:TextBox ID="txtDescripcionImagen" runat="server" Enabled="false" CssClass="form-control campo" />
         </div>
 
         <div class="fila">
             <label>URL</label>
-            <asp:TextBox ID="txtUrlImagen"
-                runat="server"
-                CssClass="form-control campo"
-                placeholder="https://..."/>
+            <asp:TextBox ID="txtUrlImagen" runat="server" Enabled="false" CssClass="form-control campo" placeholder="https://..."/>
 
         <div class="fila">
-            <asp:Button
-                ID="btnAgregarImagen"
-                runat="server"
-                Text="Agregar Imagen" CssClass="btn btn-default" />
+            <asp:Button ID="btnAgregarImagen" runat="server" Text="Agregar Imagen" Enabled="false" CssClass="btn btn-default" OnClick ="btnAgregarImagen_Click" />
         </div>
 
             <br /><br />
@@ -70,12 +58,13 @@
                 ID="gvImagenes"
                 runat="server"
                 AutoGenerateColumns="False"
-                CssClass="tablaSeleccion">
+                CssClass="tablaSeleccion"
+                OnRowCommand = "gvImagenes_RowCommand">
 
                 <Columns>
 
                     <asp:ImageField
-                        DataImageUrlField="Url"
+                        DataImageUrlField="URL"
                         HeaderText="Vista"
                         ControlStyle-Width="80"
                         ControlStyle-Height="80" />
@@ -100,19 +89,7 @@
         </div>
 
         <div class ="fila">
-            <asp:Button
-                ID="Button1"
-                runat="server"
-                Text="Cancelar"
-                PostBackUrl="~/Admin/Categoria/Categorias.aspx" CssClass="btn btn-default" />
-        </div>
-
-        <div>
-            <asp:Button
-                ID="btnCancelar"
-                runat="server"
-                Text="Cancelar"
-                PostBackUrl="~/Admin/Marca/Marcas.aspx" CssClass="btn btn-default" />
+            <asp:Button ID="Button1" runat="server" Text="Cancelar" PostBackUrl="~/Admin/Marca/Marcas.aspx" CssClass="btn btn-default" />
         </div>
 
     </div>

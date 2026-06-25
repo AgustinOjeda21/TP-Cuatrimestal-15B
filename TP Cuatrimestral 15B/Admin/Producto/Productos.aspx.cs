@@ -11,39 +11,46 @@ namespace TP_Cuatrimestral_15B.Admin
 {
     public partial class AdminProductos : Page
     {
-        private static readonly mydbEntities1 context = new mydbEntities1();
-
-        private static readonly RepositorioImagen repositorioImagen = new RepositorioImagen(context);
-        private static readonly RepositorioDireccion repositorioDireccion = new RepositorioDireccion(context);
-        private static readonly RepositorioEstadoCarrito repositorioEstadoCarrito = new RepositorioEstadoCarrito(context);
-        private static readonly RepositorioCarrito repositorioCarrito = new RepositorioCarrito(context);
-        private static readonly RepositorioFormaPago repositorioFormaPago = new RepositorioFormaPago(context);
-        private static readonly RepositorioFormaEntrega repositorioFormaEntrega = new RepositorioFormaEntrega(context);
-        private static readonly RepositorioEstadoPedido repositorioEstadoPedido = new RepositorioEstadoPedido(context);
-        private static readonly RepositorioDetallePedido repositorioDetallePedido = new RepositorioDetallePedido(context);
-        private static readonly RepositorioPedido repositorioPedido = new RepositorioPedido(context);
-        private static readonly RepositorioPersona repositorioPersona = new RepositorioPersona(context);
-        private static readonly RepositorioMarca repositorioMarca = new RepositorioMarca(context);
-        private static readonly RepositorioProveedor repositorioProveedor = new RepositorioProveedor(context);
-        private static readonly RepositorioUsuario repositorioUsuario = new RepositorioUsuario(context);
-        private static readonly RepositorioProducto repositorioProducto = new RepositorioProducto(context);
-
-        private static readonly GestorImagen gestorImagen = new GestorImagen(repositorioImagen);
-        private static readonly GestorDireccion gestorDireccion = new GestorDireccion(repositorioDireccion);
-        private static readonly GestorEstadoCarrito gestorEstadoCarrito = new GestorEstadoCarrito(repositorioEstadoCarrito);
-        private static readonly GestorFormaPago gestorFormaPago = new GestorFormaPago(repositorioFormaPago);
-        private static readonly GestorFormaEntrega gestorFormaEntrega = new GestorFormaEntrega(repositorioFormaEntrega);
-        private static readonly GestorEstadoPedido gestorEstadoPedido = new GestorEstadoPedido(repositorioEstadoPedido);
-        private static readonly GestorMarca gestorMarca = new GestorMarca(repositorioMarca, gestorImagen);
-
-        private static readonly GestorCarrito gestorCarrito = new GestorCarrito(repositorioCarrito, gestorEstadoCarrito);
-        private static readonly GestorPersona gestorPersona = new GestorPersona(repositorioPersona, gestorDireccion);
-        private static readonly GestorUsuario gestorUsuario = new GestorUsuario(repositorioUsuario, gestorPersona);
-        private static readonly GestorProveedor gestorProveedor = new GestorProveedor(repositorioProveedor, gestorDireccion);
-        private static readonly GestorProducto gestorProducto = new GestorProducto(repositorioProducto, gestorMarca, gestorImagen);
-
-        private static readonly GestorDetallePedido gestorDetallePedido = new GestorDetallePedido(repositorioDetallePedido, gestorPedido, gestorFormaPago, gestorFormaEntrega, gestorDireccion);
-        private static readonly GestorPedido gestorPedido = new GestorPedido(repositorioPedido, gestorCarrito, gestorEstadoPedido, gestorPersona, gestorDetallePedido);
+        protected Label lblError;
+        protected Label lblConfirmacion;
+        protected Label lblNombreError;
+        protected Label lblPrecioError;
+        protected Label lblStockError;
+        protected Label lblMarcaError;
+        protected Label lblCategoriaError;
+        protected Label lblNombreImagenError;
+        protected Label lblUrlImagenError;
+        protected Label lblProveedorError;
+        protected Label lblDescripcionError;
+        private readonly mydbEntities1 context;
+        private readonly RepositorioProducto repositorioProducto;
+        private readonly GestorProducto gestorProducto;
+        private readonly RepositorioMarca repositorioMarca;
+        private readonly GestorMarca gestorMarca;
+        private readonly RepositorioImagen repositorioImagen;
+        private readonly GestorImagen gestorImagen;
+        private readonly RepositorioProveedor repositorioProveedor;
+        private readonly GestorProveedor gestorProveedor;
+        private readonly RepositorioDireccion repositorioDireccion;
+        private readonly GestorDireccion gestorDireccion;
+        private readonly RepositorioCategoria repositorioCategoria;
+        private readonly GestorCategoria gestorCategoria;
+        public AdminProductos()
+        {
+            context = new mydbEntities1();
+            repositorioImagen = new RepositorioImagen(context);
+            gestorImagen = new GestorImagen(repositorioImagen);
+            repositorioMarca = new RepositorioMarca(context);
+            gestorMarca = new GestorMarca(repositorioMarca, gestorImagen);
+            repositorioProducto = new RepositorioProducto(context);
+            repositorioProveedor = new RepositorioProveedor(context);
+            repositorioDireccion = new RepositorioDireccion(context);
+            gestorDireccion = new GestorDireccion(repositorioDireccion);
+            gestorProveedor = new GestorProveedor(repositorioProveedor, gestorDireccion);
+            repositorioCategoria = new RepositorioCategoria(context);
+            gestorCategoria = new GestorCategoria(repositorioCategoria);
+            gestorProducto = new GestorProducto(repositorioProducto, gestorMarca, gestorImagen);
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {

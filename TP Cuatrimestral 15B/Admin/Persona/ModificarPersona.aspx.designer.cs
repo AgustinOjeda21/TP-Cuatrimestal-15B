@@ -60,103 +60,103 @@ namespace TP_Cuatrimestral_15B.Admin.Persona
         protected global::System.Web.UI.WebControls.Button btnModificarNombre;
 
         /// <summary>
-        /// Control txtDescripcion.
+        /// Control txtApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+        protected global::System.Web.UI.WebControls.TextBox txtApellido;
 
         /// <summary>
-        /// Control btnModificarDescripcion.
+        /// Control btnModificarApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarDescripcion;
+        protected global::System.Web.UI.WebControls.Button btnModificarApellido;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtMail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtMail;
 
         /// <summary>
-        /// Control Button1.
+        /// Control btnModificarMail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnModificarMail;
 
         /// <summary>
-        /// Control TextBox2.
+        /// Control txtTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
 
         /// <summary>
-        /// Control Button2.
+        /// Control btnModificarTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnModificarTelefono;
 
         /// <summary>
-        /// Control TextBox6.
+        /// Control txtCalle.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.WebControls.TextBox txtCalle;
 
         /// <summary>
-        /// Control TextBox7.
+        /// Control txtNumero.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.TextBox txtNumero;
 
         /// <summary>
-        /// Control TextBox8.
+        /// Control txtLocalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox8;
+        protected global::System.Web.UI.WebControls.TextBox txtLocalidad;
 
         /// <summary>
-        /// Control TextBox9.
+        /// Control txtCodigoPostal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox9;
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoPostal;
 
         /// <summary>
-        /// Control TextBox10.
+        /// Control txtObservaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
 
         /// <summary>
         /// Control btnAgregarDireccion.

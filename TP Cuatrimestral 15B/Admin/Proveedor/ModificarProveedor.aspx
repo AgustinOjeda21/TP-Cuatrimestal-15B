@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarProveedor.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Proveedor.ModificarProveedor" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarProveedor.aspx.cs" Async = "true" Inherits="TP_Cuatrimestral_15B.Admin.Proveedor.ModificarProveedor" %>
 
 <!DOCTYPE html>
 
@@ -22,102 +22,60 @@
     <div class="buscar">
         <label>ID:</label>
         <asp:TextBox ID="txtIdBuscar" runat="server" CssClass="form-control"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick ="btnBuscar_Click" />
     </div>
 
     <div class="formulario">
 
         <div class="fila">
             <label>Nombre:</label>
-            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="btnModificarNombre"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
+            <asp:TextBox ID="txtNombre" runat="server" Enabled ="false" CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnModificarNombre" runat="server" Text="Modificar" Enabled ="false" CssClass="btn btn-default" OnClick ="btnModificarNombre_Click"/>
         </div>
 
         <div class="fila">
             <label>Teléfono:</label>
-            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="btnModificarDescripcion"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
+            <asp:TextBox ID="txtTelefono" runat="server" Enabled ="false" CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnModificarTelefono" runat="server" Text="Modificar" Enabled ="false" CssClass="btn btn-default" OnClick ="btnModificarTelefono_Click"/>
         </div>
 
         <div class="fila">
             <label>Mail:</label>
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="Button1"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
+            <asp:TextBox ID="txtMail" runat="server" Enabled ="false" CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnModificarMail" runat="server" Text="Modificar" Enabled ="false" CssClass="btn btn-default" OnClick ="btnModificarMail_Click"/>
         </div>
 
         <div class="fila">
-            <label>Estado:</label>
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="Button2"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
-        </div>
-
-        <div class="fila">
-        <h2>Agregar Dirección</h2>
+        <h2>Dirección</h2>
         </div>
         
         <div class="fila">
         <label>Calle</label>
-        <asp:TextBox ID="TextBox6" runat="server" CssClass="form-control campo" />
+        <asp:TextBox ID="txtCalle" runat="server" Enabled ="false" CssClass="form-control campo" />
+        <asp:Button ID="btnModificarCalle" runat="server" Text="Modificar" Enabled ="false" CssClass="btn btn-default" OnClick ="btnModificarCalle_Click" />
         </div>
 
         <div class="fila">
         <label>Número</label>
-        <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control campo" />
+        <asp:TextBox ID="txtNumero" runat="server" Enabled ="false" CssClass="form-control campo" />
+        <asp:Button ID="btnModificarNumero" runat="server" Text="Modificar" Enabled ="false" CssClass="btn btn-default" OnClick ="btnModificarNumero_Click"/>
         </div>
 
         <div class="fila">
         <label>Localidad</label>
-        <asp:TextBox ID="TextBox8" runat="server" CssClass="form-control campo" />
+        <asp:TextBox ID="txtLocalidad" runat="server" Enabled ="false" CssClass="form-control campo" />
+        <asp:Button ID="btnLocalidad" runat="server" Text="Modificar" Enabled ="false" CssClass="btn btn-default" OnClick ="btnLocalidad_Click"/>
         </div>
 
         <div class="fila">
         <label>Código Postal</label>
-        <asp:TextBox ID="TextBox9" runat="server" CssClass="form-control campo" />
+        <asp:TextBox ID="txtCodigoPostal" runat="server" Enabled ="false" CssClass="form-control campo" />
+        <asp:Button ID="btnCodigoPostal" runat="server" Text="Modificar" Enabled ="false" CssClass="btn btn-default" OnClick ="btnCodigoPostal_Click" />
         </div>
 
         <div class="fila">
-        <label>Observaciones</label>
-        <asp:TextBox ID="TextBox10"
-            runat="server"
-            CssClass="form-control campo"
-            TextMode="MultiLine"
-            Rows="4" />
-        </div>
-
-        <div class="fila">
-        <asp:Button
-                ID="btnAgregarDireccion"
-                runat="server"
-                Text="Agregar Dirección" CssClass="btn btn-default" />
-        </div>
-
-        <div class="fila">
-        <h2>Direcciones Agregadas</h2>
-        </div>
-
-        <div class="fila">
-        <asp:GridView
-            ID="gvDirecciones"
-            runat="server"
-            AutoGenerateColumns="False"
-            CssClass="tablaSeleccion">
-
-            <Columns>
-                <asp:BoundField DataField="Calle" HeaderText="Calle" />
-                <asp:BoundField DataField="Numero" HeaderText="Número" />
-                <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
-                <asp:BoundField DataField="CodigoPostal" HeaderText="Código Postal" />
-                <asp:ButtonField Text="Quitar" CommandName="Quitar" />
-            </Columns>
-        </asp:GridView>
+        <label>Observaciones</label> <asp:TextBox ID="txtObservaciones" Enabled ="false"  runat="server" CssClass="form-control campo" TextMode="MultiLine" Rows="4" />
+        <asp:Button ID="btnObservaciones" runat="server" Text="Modificar" Enabled ="false" CssClass="btn btn-default" OnClick ="btnObservaciones_Click" />
         </div>
 
         <div>

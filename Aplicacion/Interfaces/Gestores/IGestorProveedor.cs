@@ -15,7 +15,6 @@ namespace Aplicacion.Interfaces.Gestores
         Task<Result<Proveedor>> ModificarNombre(string Nombre, int id);
         Task<Result<Proveedor>> ModificarTelefono(string Telefono, int id);
         Task<Result<Proveedor>> ModificarMail(string Mail, int id);
-        Task<Result<Proveedor>> ModificarDireccion(Direccion direccion, int id);
         Task<bool> ValidarProveedor(int id);
         Task<Result<Proveedor>> DarDeBajaAlta(int ID, bool Estado);
         Task<Result<Proveedor>> ExisteProveedor(int id);

@@ -107,7 +107,7 @@ namespace Aplicacion.Gestores
             }
             var edi = resultado.Value;
             edi.Marca = marca;
-            await repo.Actualizar(edi);
+            await repo.ActualizarMarca(edi);
             return Result<Producto>.EjecucionCorrecta();
         }
         public async Task<Result<Producto>> DarDeBajaAlta(int ID, bool Estado)
@@ -156,6 +156,33 @@ namespace Aplicacion.Gestores
         public async Task EliminarProducto(int id)
         {
             await repo.Eliminar(id);
+        }
+
+        public async Task AgregarCategoria(int idPersona, Categoria Categoria)
+        {
+            await repo.AgregarCategoria(idPersona, Categoria);
+        }
+        public async Task QuitarCategoria(int idPersona, int idCategoria)
+        {
+            await repo.QuitarCategoria(idPersona, idCategoria);
+        }
+
+        public async Task AgregarImagen(int idPersona, Imagen Imagen)
+        {
+            await repo.AgregarImagen(idPersona, Imagen);
+        }
+        public async Task QuitarImagen(int idPersona, int idImagen)
+        {
+            await repo.QuitarImagen(idPersona, idImagen);
+        }
+
+        public async Task AgregarProveedor(int idPersona, Proveedor Proveedor)
+        {
+            await repo.AgregarProveedor(idPersona, Proveedor);
+        }
+        public async Task QuitarProveedor(int idPersona, int idProveedor)
+        {
+            await repo.QuitarProveedor(idPersona, idProveedor);
         }
     }
 }

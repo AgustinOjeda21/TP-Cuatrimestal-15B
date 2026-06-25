@@ -18,6 +18,13 @@ namespace Aplicacion.Interfaces.Repositorios
 
         Task Actualizar(Producto obj);
         Task Eliminar(int id);
+        Task QuitarImagen(int Producto, int IdImagen);
+        Task AgregarImagen(int Producto, Imagen Imagen);
+        Task QuitarProveedor(int Producto, int IdProveedor);
+        Task AgregarProveedor(int Producto, Proveedor Proveedor);
+        Task QuitarCategoria(int Producto, int IdCategoria);
+        Task AgregarCategoria(int Producto, Categoria Categoria);
+        Task ActualizarMarca(Producto obj);
 
     }
 }

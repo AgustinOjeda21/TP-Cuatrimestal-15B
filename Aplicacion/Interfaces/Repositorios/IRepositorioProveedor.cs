@@ -12,7 +12,7 @@ namespace Aplicacion.Interfaces.Repositorios
         Task<List<Proveedor>> ObtenerProveedores();
 
         Task InsertarProveedor(Proveedor aut);
-
+        
 
         Task<Proveedor> CapturarProveedor(int id);
 

@@ -54,6 +54,29 @@ namespace Infraestructura.Repositorios
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
         }
+        public async Task QuitarDireccion(int persona, int IdDireccion)
+        {
+            var entity = await context.Persona
+                              .Include("Direccion")
+                              .FirstOrDefaultAsync(m => m.IdPersona == persona);
+            if (entity == null) return;
+
+            var DireccionEntity = entity.Direccion.FirstOrDefault(i => i.IdDireccion == IdDireccion);
+            if (DireccionEntity == null) return;
+
+            entity.Direccion.Remove(DireccionEntity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task AgregarDireccion(int persona, Direccion Direccion)
+        {
+            var entity = await context.Persona
+                              .Include("Direccion")
+                              .FirstOrDefaultAsync(m => m.IdPersona == persona);
+            if (entity == null) return;
+            entity.Direccion.Add(Direccion.ToEntity());
+            await context.SaveChangesAsync();
+        }
         public async Task<List<Persona>> Buscar<Tprop>(Busqueda<Persona> busqueda)
         {
             IMapper mapper = config();

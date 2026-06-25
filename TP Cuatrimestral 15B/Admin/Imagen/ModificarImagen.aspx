@@ -51,8 +51,7 @@
                 ID="imgVistaPrevia"
                 runat="server"
                 Width="300px"
-                Height="300px"
-                ImageUrl="URL" />
+                Height="300px"/>
         </div>
 
         <div>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarPersona.aspx.cs" Inherits="TP_Cuatrimestral_15B.Admin.Persona.ModificarPersona" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarPersona.aspx.cs" Async = "true" Inherits="TP_Cuatrimestral_15B.Admin.Persona.ModificarPersona" %>
 
 <!DOCTYPE html>
 
@@ -22,41 +22,33 @@
     <div class="buscar">
         <label>ID:</label>
         <asp:TextBox ID="txtIdBuscar" runat="server" CssClass="form-control"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick ="btnBuscar_Click" />
     </div>
 
     <div class="formulario">
 
-        <div class="fila">
-            <label>Nombre:</label>
-            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="btnModificarNombre"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
+        <div class="fila"> 
+        <label>Nombre:</label>
+            <asp:TextBox ID="txtNombre" runat="server" Enabled = "true"  CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnModificarNombre" runat="server" Text="Modificar" Enabled = "false"  CssClass="btn btn-default" OnClick ="btnModificarNombre_Click" />
         </div>
 
-        <div class="fila">
-            <label>Apellido:</label>
-            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="btnModificarDescripcion"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
+        <div class="fila"> 
+        <label>Apellido:</label>
+            <asp:TextBox ID="txtApellido" runat="server" Enabled = "true"  CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnModificarApellido" runat="server" Text="Modificar" Enabled = "false"  CssClass="btn btn-default" OnClick ="btnModificarApellido_Click"/>
         </div>
 
         <div class="fila">
             <label>Mail:</label>
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="Button1"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
+            <asp:TextBox ID="txtMail" runat="server" Enabled = "true"  CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnModificarMail" runat="server" Text="Modificar" Enabled = "false"  CssClass="btn btn-default" OnClick ="btnModificarMail_Click"/>
         </div>
 
         <div class="fila">
             <label>Teléfono:</label>
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:Button ID="Button2"
-                runat="server"
-                Text="Modificar" CssClass="btn btn-default" />
+            <asp:TextBox ID="txtTelefono" runat="server" Enabled = "true"  CssClass="form-control"></asp:TextBox>
+            <asp:Button ID="btnModificarTelefono" runat="server" Enabled = "false" Text="Modificar" CssClass="btn btn-default" OnClick ="btnModificarTelefono_Click"/>
         </div>
 
         <div class="fila">
@@ -65,38 +57,31 @@
         
         <div class="fila">
         <label>Calle</label>
-        <asp:TextBox ID="TextBox6" runat="server" CssClass="form-control campo" />
+        <asp:TextBox ID="txtCalle" runat="server" Enabled = "false" CssClass="form-control campo" />
         </div>
 
         <div class="fila">
         <label>Número</label>
-        <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control campo" />
+        <asp:TextBox ID="txtNumero" runat="server" Enabled = "false" CssClass="form-control campo" />
         </div>
 
         <div class="fila">
         <label>Localidad</label>
-        <asp:TextBox ID="TextBox8" runat="server" CssClass="form-control campo" />
+        <asp:TextBox ID="txtLocalidad" runat="server" Enabled = "false" CssClass="form-control campo" />
         </div>
 
         <div class="fila">
         <label>Código Postal</label>
-        <asp:TextBox ID="TextBox9" runat="server" CssClass="form-control campo" />
+        <asp:TextBox ID="txtCodigoPostal" runat="server" Enabled = "false" CssClass="form-control campo" />
         </div>
 
         <div class="fila">
         <label>Observaciones</label>
-        <asp:TextBox ID="TextBox10"
-            runat="server"
-            CssClass="form-control campo"
-            TextMode="MultiLine"
-            Rows="4" />
+        <asp:TextBox ID="txtObservaciones" runat="server" Enabled = "false" CssClass="form-control campo" TextMode="MultiLine" Rows="4" />
         </div>
 
         <div class="fila">
-        <asp:Button
-                ID="btnAgregarDireccion"
-                runat="server"
-                Text="Agregar Dirección" CssClass="btn btn-default" />
+        <asp:Button ID="btnAgregarDireccion" runat="server" Text="Agregar Dirección" Enabled = "false" CssClass="btn btn-default" OnClick ="btnAgregarDireccion_Click"/>
         </div>
 
         <div class="fila">
@@ -108,7 +93,8 @@
             ID="gvDirecciones"
             runat="server"
             AutoGenerateColumns="False"
-            CssClass="tablaSeleccion">
+            CssClass="tablaSeleccion"
+            OnRowCommand = "gvImagenes_RowCommand">
 
             <Columns>
                 <asp:BoundField DataField="Calle" HeaderText="Calle" />

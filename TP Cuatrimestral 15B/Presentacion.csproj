@@ -279,7 +279,6 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -299,6 +298,7 @@
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\TP Cuatrimestral 15B.dll.config" />
+    <Content Include="Global.asax" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\Presentacion.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\TP Cuatrimestral 15B.csproj.AssemblyReference.cache" />

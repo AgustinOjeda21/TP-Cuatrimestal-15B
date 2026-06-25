@@ -54,6 +54,30 @@ namespace Infraestructura.Repositorios
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
         }
+
+        public async Task QuitarImagen(int marca, int IdImagen)
+        {
+            var entity = await context.Marca
+                              .Include("Imagen")
+                              .FirstOrDefaultAsync(m => m.IdMarca == marca);
+            if (entity == null) return;
+
+            var imagenEntity = entity.Imagen.FirstOrDefault(i => i.IdImagen == IdImagen);
+            if (imagenEntity == null) return;
+
+            entity.Imagen.Remove(imagenEntity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task AgregarImagen(int marca,Imagen imagen)
+        {
+            var entity = await context.Marca
+                              .Include("Imagen")
+                              .FirstOrDefaultAsync(m => m.IdMarca == marca);
+            if (entity == null) return;
+            entity.Imagen.Add(imagen.ToEntity());
+            await context.SaveChangesAsync();
+        }
         public async Task<List<Marca>> Buscar<Tprop>(Busqueda<Marca> busqueda)
         {
             IMapper mapper = config();

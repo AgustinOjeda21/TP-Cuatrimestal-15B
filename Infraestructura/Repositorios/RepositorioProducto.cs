@@ -63,6 +63,95 @@ namespace Infraestructura.Repositorios
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
         }
+
+        public async Task ActualizarMarca(Producto obj)
+        {
+            var entity = await context.Producto.FindAsync(obj.IdProducto);
+            if (entity == null) return;
+
+            context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
+            entity.Marca_idMarca = obj.Marca.IdMarca; 
+            await context.SaveChangesAsync();
+        }
+
+        public async Task QuitarCategoria(int Producto, int IdCategoria)
+        {
+            var entity = await context.Producto
+                              .Include("Categoria")
+                              .FirstOrDefaultAsync(m => m.IdProducto == Producto);
+            if (entity == null) return;
+
+            var CategoriaEntity = entity.Categoria.FirstOrDefault(i => i.IdCategoria == IdCategoria);
+            if (CategoriaEntity == null) return;
+
+            entity.Categoria.Remove(CategoriaEntity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task AgregarCategoria(int Producto, Categoria Categoria)
+        {
+            var entity = await context.Producto
+                              .Include("Categoria")
+                              .FirstOrDefaultAsync(m => m.IdProducto == Producto);
+            if (entity == null) return;
+            var categoriaEntity = await context.Categoria
+                                       .FirstOrDefaultAsync(p => p.IdCategoria == Categoria.IdCategoria);
+            if (categoriaEntity == null) return;
+            entity.Categoria.Add(categoriaEntity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task QuitarProveedor(int Producto, int IdProveedor)
+        {
+            var entity = await context.Producto
+                              .Include("Proveedor")
+                              .FirstOrDefaultAsync(m => m.IdProducto == Producto);
+            if (entity == null) return;
+
+            var ProveedorEntity = entity.Proveedor.FirstOrDefault(i => i.IdProveedor == IdProveedor);
+            if (ProveedorEntity == null) return;
+
+            entity.Proveedor.Remove(ProveedorEntity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task AgregarProveedor(int Producto, Proveedor Proveedor)
+        {
+            var entity = await context.Producto
+                              .Include("Proveedor")
+                              .FirstOrDefaultAsync(m => m.IdProducto == Producto);
+            if (entity == null) return;
+            var proveedorEntity = await context.Proveedor
+                                       .FirstOrDefaultAsync(p => p.IdProveedor == Proveedor.IdProveedor);
+            if (proveedorEntity == null) return;
+
+            entity.Proveedor.Add(proveedorEntity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task QuitarImagen(int Producto, int IdImagen)
+        {
+            var entity = await context.Producto
+                              .Include("Imagen")
+                              .FirstOrDefaultAsync(m => m.IdProducto == Producto);
+            if (entity == null) return;
+
+            var ImagenEntity = entity.Imagen.FirstOrDefault(i => i.IdImagen == IdImagen);
+            if (ImagenEntity == null) return;
+
+            entity.Imagen.Remove(ImagenEntity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task AgregarImagen(int Producto, Imagen Imagen)
+        {
+            var entity = await context.Producto
+                              .Include("Imagen")
+                              .FirstOrDefaultAsync(m => m.IdProducto == Producto);
+            if (entity == null) return;
+            entity.Imagen.Add(Imagen.ToEntity());
+            await context.SaveChangesAsync();
+        }
         public async Task<List<Producto>> Buscar<Tprop>(Busqueda<Producto> busqueda)
         {
             IMapper mapper = config();

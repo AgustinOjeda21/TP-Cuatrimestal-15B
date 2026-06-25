@@ -12,6 +12,7 @@ namespace Infraestructura
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
     public partial class EntityPersona
     {
         public EntityPersona() { }
@@ -26,6 +27,7 @@ namespace Infraestructura
             Direccion = Direcciones;
         }
 
+        [Key]
         [Column("idPersona")]
         public int IdPersona { get; set; }
         public string Nombre { get; set; }

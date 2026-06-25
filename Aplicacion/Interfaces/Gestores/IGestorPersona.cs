@@ -19,6 +19,8 @@ namespace Aplicacion.Interfaces.Gestores
 
         Task<Result<Persona>> ModificarNombre(string Nombre, int id);
 
+        Task AgregarDireccion(int idPersona, Direccion direccion);
+        Task QuitarDireccion(int idPersona, int idDireccion);
 
         Task<Result<Persona>> ModificarApellido(string Apellido, int id);
 

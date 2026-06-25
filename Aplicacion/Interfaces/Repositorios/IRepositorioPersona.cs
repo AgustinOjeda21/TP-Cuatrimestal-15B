@@ -12,8 +12,8 @@ namespace Aplicacion.Interfaces.Repositorios
         Task<List<Persona>> ObtenerPersonas();
 
         Task InsertarPersona(Persona aut);
-
-
+        Task QuitarDireccion(int persona, int IdDireccion);
+        Task AgregarDireccion(int persona, Direccion Direccion);
         Task<Persona> CapturarPersona(int id);
 
         Task Actualizar(Persona obj);
