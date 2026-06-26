@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Aplicacion.Interfaces.Gestores;
 using Dominio.Entidades;
+using Aplicacion.Busqueda;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
 
@@ -108,6 +109,10 @@ namespace Aplicacion.Gestores
                 return Result<Direccion>.Fail("La Direccion ingresada no existe");
             }
             return Result<Direccion>.Ok(obj);
+        }
+        public async Task<List<Direccion>> Buscar(Busqueda<Direccion> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

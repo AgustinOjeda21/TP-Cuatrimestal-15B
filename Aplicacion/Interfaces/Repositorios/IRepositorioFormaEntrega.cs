@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Dominio.Entidades;
 using System.Threading.Tasks;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Interfaces.Repositorios
 {
@@ -13,7 +14,7 @@ namespace Aplicacion.Interfaces.Repositorios
 
         Task InsertarFormaEntrega(FormaEntrega aut);
 
-
+        Task<List<FormaEntrega>> Buscar(Busqueda<FormaEntrega> busqueda);
         Task<FormaEntrega> CapturarFormaEntrega(int id);
 
         Task Actualizar(FormaEntrega obj);

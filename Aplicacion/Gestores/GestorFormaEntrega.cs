@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.Entidades;
+using Aplicacion.Busqueda;
 using Aplicacion.Interfaces.Repositorios;
 using Aplicacion.Interfaces.Gestores;
 
@@ -72,6 +73,10 @@ namespace Aplicacion.Gestores
                 return Result<FormaEntrega>.Fail("La Forma de Entrega ingresada no existe");
             }
             return Result<FormaEntrega>.Ok(obj);
+        }
+        public async Task<List<FormaEntrega>> Buscar(Busqueda<FormaEntrega> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

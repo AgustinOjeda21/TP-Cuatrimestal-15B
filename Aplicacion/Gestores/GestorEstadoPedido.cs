@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Gestores
 {
@@ -72,6 +73,10 @@ namespace Aplicacion.Gestores
                 return Result<EstadoPedido>.Fail("El Estado de Pedido ingresado no existe");
             }
             return Result<EstadoPedido>.Ok(obj);
+        }
+        public async Task<List<EstadoPedido>> Buscar(Busqueda<EstadoPedido> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

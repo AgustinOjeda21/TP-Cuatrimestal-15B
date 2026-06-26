@@ -42,12 +42,12 @@ namespace TP_Cuatrimestral_15B.Admin
         private static readonly GestorMarca gestorMarca = new GestorMarca(repositorioMarca, gestorImagen);
 
         // Gestores con dependencias de otros gestores
-        private static readonly GestorCarrito gestorCarrito = new GestorCarrito(repositorioCarrito, gestorEstadoCarrito);
         private static readonly GestorPersona gestorPersona = new GestorPersona(repositorioPersona, gestorDireccion);
         private static readonly GestorUsuario gestorUsuario = new GestorUsuario(repositorioUsuario, gestorPersona);
         private static readonly GestorProveedor gestorProveedor = new GestorProveedor(repositorioProveedor, gestorDireccion);
         private static readonly GestorProducto gestorProducto = new GestorProducto(repositorioProducto, gestorMarca, gestorImagen);
-        private static readonly GestorProductoCarrito gestorProductoCarrito = new GestorProductoCarrito(repositorioProductoCarrito, gestorCarrito,gestorProducto);
+        private static readonly GestorProductoCarrito gestorProductoCarrito = new GestorProductoCarrito(repositorioProductoCarrito,gestorProducto);
+        private static readonly GestorCarrito gestorCarrito = new GestorCarrito(repositorioCarrito, gestorEstadoCarrito,gestorProductoCarrito);
 
         // Gestores con dependencias de múltiples gestores
         private static readonly GestorDetallePedido gestorDetallePedido = new GestorDetallePedido(repositorioDetallePedido, gestorPedido, gestorFormaPago, gestorFormaEntrega, gestorDireccion);

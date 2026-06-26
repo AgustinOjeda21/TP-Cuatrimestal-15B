@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Dominio.Entidades;
 using System.Threading.Tasks;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Interfaces.Repositorios
 {
@@ -13,7 +14,7 @@ namespace Aplicacion.Interfaces.Repositorios
 
         Task InsertarEstadoCarrito(EstadoCarrito aut);
 
-
+        Task<List<EstadoCarrito>> Buscar(Busqueda<EstadoCarrito> busqueda);
         Task<EstadoCarrito> CapturarEstadoCarrito(int id);
 
         Task Actualizar(EstadoCarrito obj);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Dominio.Entidades;
 using System.Threading.Tasks;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Interfaces.Repositorios
 {
@@ -13,6 +14,7 @@ namespace Aplicacion.Interfaces.Repositorios
         Task InsertarDetallePedido(DetallePedido aut);
         Task<DetallePedido> CapturarDetallePedido(int id);
         Task Actualizar(DetallePedido obj);
-        
+        Task<List<DetallePedido>> Buscar(Busqueda<DetallePedido> busqueda);
+
     }
 }

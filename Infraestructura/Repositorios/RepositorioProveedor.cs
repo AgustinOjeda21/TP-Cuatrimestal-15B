@@ -54,7 +54,7 @@ namespace Infraestructura.Repositorios
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
         }
-        public async Task<List<Proveedor>> Buscar<Tprop>(Busqueda<Proveedor> busqueda)
+        public async Task<List<Proveedor>> Buscar(Busqueda<Proveedor> busqueda)
         {
             IMapper mapper = config();
             Especificacion<EntityProveedor> Spec = null;
@@ -73,22 +73,24 @@ namespace Infraestructura.Repositorios
             {
                 cfg.AddExpressionMapping();
 
+                // Dominio -> Entidad
                 cfg.CreateMap<Proveedor, EntityProveedor>()
-                   .ForMember(
-                       dest => dest.Direccion_idDireccion,
-                       opt => opt.MapFrom(src => src.Direccion.IdDireccion)
-                   )
+                   .ForMember(dest => dest.Direccion_idDireccion, opt => opt.MapFrom(src => src.Direccion.IdDireccion))
                    .ForMember(dest => dest.Direccion, opt => opt.Ignore())
                    .ForMember(dest => dest.Producto, opt => opt.Ignore());
 
+                cfg.CreateMap<Direccion, EntityDireccion>();
+
+                // Entidad -> Dominio
+                cfg.CreateMap<EntityDireccion, Direccion>();
+
                 cfg.CreateMap<EntityProveedor, Proveedor>()
-                   .ForMember(
-                       dest => dest.Direccion,
-                       opt => opt.MapFrom(src => src.Direccion.ToDomain())
-                   );
+                   .ForMember(dest => dest.Direccion, opt => opt.MapFrom(src => src.Direccion));
             });
+
             return config.CreateMapper();
         }
+
     }
 }
 

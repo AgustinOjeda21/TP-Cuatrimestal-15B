@@ -6,6 +6,7 @@ using Dominio.Entidades;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Gestores;
 using Aplicacion.Interfaces.Repositorios;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Gestores
 {
@@ -183,6 +184,10 @@ namespace Aplicacion.Gestores
         public async Task QuitarProveedor(int idPersona, int idProveedor)
         {
             await repo.QuitarProveedor(idPersona, idProveedor);
+        }
+        public async Task<List<Producto>> Buscar(Busqueda<Producto> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

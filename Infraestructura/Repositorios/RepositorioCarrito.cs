@@ -34,17 +34,22 @@ namespace Infraestructura.Repositorios
             EntityCarrito Eaut = aut.ToEntity();
             context.Carrito.Add(Eaut);
             await context.SaveChangesAsync();
+            aut.IdCarrito = Eaut.IdCarrito;
         }
 
         public async Task<Carrito> CapturarCarrito(int id)
         {
-            EntityCarrito Eaut = await context.Carrito.FindAsync(id);
-            if (Eaut == null)
-            {
+            var entity = await context.Carrito
+                .Include(x => x.EstadoCarrito)
+                .FirstOrDefaultAsync(x => x.IdCarrito == id);
+
+            if (entity == null)
                 return null;
-            }
-            Carrito aut = Eaut.ToDomain();
-            return aut;
+
+            if (entity.EstadoCarrito == null)
+                throw new Exception("EstadoCarrito viene NULL desde EF");
+
+            return entity.ToDomain();
         }
         public async Task Actualizar(Carrito obj)
         {
@@ -57,7 +62,7 @@ namespace Infraestructura.Repositorios
             await context.SaveChangesAsync();
         }
 
-       public async Task<List<Carrito>> Buscar<Tprop>(Busqueda<Carrito> busqueda)
+       public async Task<List<Carrito>> Buscar(Busqueda<Carrito> busqueda)
         {
             IMapper mapper = config();
             Especificacion<EntityCarrito> Spec = null;
@@ -85,11 +90,9 @@ namespace Infraestructura.Repositorios
                    .ForMember(dest => dest.Pedido, opt => opt.Ignore())
                    .ForMember(dest => dest.ProductoCarrito, opt => opt.Ignore());
 
+                cfg.CreateMap<EntityEstadoCarrito, EstadoCarrito>();
                 cfg.CreateMap<EntityCarrito, Carrito>()
-                   .ForMember(
-                       dest => dest.EstadoCarrito,
-                       opt => opt.MapFrom(src => src.EstadoCarrito.ToDomain())
-                   );
+                   .ForMember(dest => dest.EstadoCarrito, opt => opt.MapFrom(src => src.EstadoCarrito));
             });
             return config.CreateMapper();
         }

@@ -152,7 +152,7 @@ namespace Infraestructura.Repositorios
             entity.Imagen.Add(Imagen.ToEntity());
             await context.SaveChangesAsync();
         }
-        public async Task<List<Producto>> Buscar<Tprop>(Busqueda<Producto> busqueda)
+        public async Task<List<Producto>> Buscar(Busqueda<Producto> busqueda)
         {
             IMapper mapper = config();
             Especificacion<EntityProducto> Spec = null;
@@ -171,47 +171,41 @@ namespace Infraestructura.Repositorios
             {
                 cfg.AddExpressionMapping();
 
+                // Dominio -> Entidad
                 cfg.CreateMap<Producto, EntityProducto>()
-                   .ForMember(
-                       dest => dest.Marca_idMarca,
-                       opt => opt.MapFrom(src => src.Marca.IdMarca)
-                   )
-                   .ForMember(
-                       dest => dest.Categoria,
-                       opt => opt.MapFrom(src => src.Categorias.Select(obj => obj.ToEntity()).ToList())
-                   )
-                   .ForMember(
-                       dest => dest.Imagen,
-                       opt => opt.MapFrom(src => src.Imagenes.Select(obj => obj.ToEntity()).ToList())
-                   )
-                   .ForMember(
-                       dest => dest.Proveedor,
-                       opt => opt.MapFrom(src => src.Proveedores.Select(obj => obj.ToEntity()).ToList())
-                   )
+                   .ForMember(dest => dest.Marca_idMarca, opt => opt.MapFrom(src => src.Marca.IdMarca))
                    .ForMember(dest => dest.Marca, opt => opt.Ignore())
                    .ForMember(dest => dest.ProductoCarrito, opt => opt.Ignore());
 
+                cfg.CreateMap<Marca, EntityMarca>();
+                cfg.CreateMap<Categoria, EntityCategoria>();
+                cfg.CreateMap<Imagen, EntityImagen>();
+                cfg.CreateMap<Proveedor, EntityProveedor>();
+                cfg.CreateMap<Direccion, EntityDireccion>();
+
+                // Entidad -> Dominio
+                cfg.CreateMap<EntityMarca, Marca>()
+                   .ForMember(dest => dest.Imagenes, opt => opt.MapFrom(src => src.Imagen));
+
+                cfg.CreateMap<EntityCategoria, Categoria>();
+                cfg.CreateMap<EntityImagen, Imagen>();
+
+                cfg.CreateMap<EntityProveedor, Proveedor>()
+                   .ForMember(dest => dest.Direccion, opt => opt.MapFrom(src => src.Direccion));
+
+                cfg.CreateMap<EntityDireccion, Direccion>();
 
                 cfg.CreateMap<EntityProducto, Producto>()
-                   .ForMember(
-                       dest => dest.Marca,
-                       opt => opt.MapFrom(src => src.Marca.ToDomain())
-                   )
-                    .ForMember(
-                       dest => dest.Categorias,
-                       opt => opt.MapFrom(src => src.Categoria.Select(obj => obj.ToDomain()).ToList())
-                   )
-                   .ForMember(
-                       dest => dest.Imagenes,
-                       opt => opt.MapFrom(src => src.Imagen.Select(obj => obj.ToDomain()).ToList())
-                   )
-                   .ForMember(
-                       dest => dest.Proveedores,
-                       opt => opt.MapFrom(src => src.Proveedor.Select(obj => obj.ToDomain()).ToList())
-                   );
+                   .ForMember(dest => dest.Marca, opt => opt.MapFrom(src => src.Marca))
+                   .ForMember(dest => dest.Categorias, opt => opt.MapFrom(src => src.Categoria))
+                   .ForMember(dest => dest.Imagenes, opt => opt.MapFrom(src => src.Imagen))
+                   .ForMember(dest => dest.Proveedores, opt => opt.MapFrom(src => src.Proveedor));
             });
+
             return config.CreateMapper();
         }
+
+
     }
 }
 

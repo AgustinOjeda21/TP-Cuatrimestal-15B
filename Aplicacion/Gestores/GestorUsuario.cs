@@ -5,6 +5,7 @@ using System.Text;
 using Dominio.Entidades;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
@@ -107,6 +108,10 @@ namespace Aplicacion.Gestores
                 return Result<Usuario>.Fail("El Usuario ingresado no existe");
             }
             return Result<Usuario>.Ok(obj);
+        }
+        public async Task<List<Usuario>> Buscar(Busqueda<Usuario> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

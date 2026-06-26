@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dominio.Entidades;
 using Aplicacion.Interfaces.Repositorios;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Gestores
 {
@@ -60,6 +61,10 @@ namespace Aplicacion.Gestores
                 return Result<EstadoCarrito>.Fail("El Estado de Carrito ingresado no existe");
             }
             return Result<EstadoCarrito>.Ok(obj);
+        }
+        public async Task<List<EstadoCarrito>> Buscar(Busqueda<EstadoCarrito> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

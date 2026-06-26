@@ -22,7 +22,7 @@
             <nav class =" LinkLabel">
                    <asp:HyperLink ID="linkLogin" runat="server" NavigateUrl="~/Log_in.aspx">Log in</asp:HyperLink>
                    <asp:HyperLink ID="linkSignin" runat="server" NavigateUrl="~/Sign_in.aspx">Sign in</asp:HyperLink>
-                   <asp:Button ID ="btnCarrito" runat="server" Text="Mi carrito" CssClass="btn btn-default"></asp:Button>
+                   <asp:Button ID ="btnCarrito" runat="server" Text="Mi carrito" CssClass="btn btn-default" PostBackUrl="~/Usuario/Carrito.aspx"></asp:Button>
             </nav>
         </div>
         <div id ="Producto" class = "detalleProducto">
@@ -49,7 +49,7 @@
                 <asp:Button
                     ID="btnAgregarCarrito"
                     runat="server"
-                    Text="Agregar al carrito" CssClass="btn btn-default" />
+                    Text="Agregar al carrito" CssClass="btn btn-default" OnClick ="btnAgregarCarrito_Click"/>
             </div>
         </div>
         <div class="productosDestacados">

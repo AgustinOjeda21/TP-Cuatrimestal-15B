@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Gestores
 {
@@ -108,6 +109,10 @@ namespace Aplicacion.Gestores
                 return Result<Persona>.Fail("La Persona ingresada no existe");
             }
             return Result<Persona>.Ok(obj);
+        }
+        public async Task<List<Persona>> Buscar(Busqueda<Persona> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

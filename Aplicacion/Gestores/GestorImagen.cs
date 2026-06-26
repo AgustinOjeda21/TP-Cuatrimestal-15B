@@ -5,6 +5,7 @@ using System.Text;
 using Dominio.Entidades;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
+using Aplicacion.Busqueda;
 using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
@@ -84,6 +85,10 @@ namespace Aplicacion.Gestores
                 return Result<Imagen>.Fail("La Imagen ingresada no existe");
             }
             return Result<Imagen>.Ok(obj);
+        }
+        public async Task<List<Imagen>> Buscar(Busqueda<Imagen> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

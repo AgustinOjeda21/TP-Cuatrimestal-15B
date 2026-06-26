@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Gestores
 {
@@ -72,5 +73,11 @@ namespace Aplicacion.Gestores
             }
             return Result<Marca>.Ok(obj);
         }
+
+        public async Task<List<Marca>> Buscar(Busqueda<Marca>busqueda)
+        {
+            return await repo.Buscar(busqueda);
+        }
+
     }
 }

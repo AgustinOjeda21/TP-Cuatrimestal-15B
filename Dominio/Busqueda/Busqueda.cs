@@ -9,5 +9,9 @@ namespace Aplicacion.Busqueda
     public class Busqueda<T>
     {
         public List<IFiltroBusqueda<T>> Filtros { get; set; }
+        public Busqueda()
+        {
+            Filtros = new List<IFiltroBusqueda<T>>();
+        }
     }
 }

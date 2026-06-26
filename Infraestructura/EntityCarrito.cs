@@ -21,7 +21,7 @@ namespace Infraestructura
         {
             IdCarrito = idCarrito;
             Total = total;
-            EstadoCarrito_idEstadoCarrito = idCarrito;
+            EstadoCarrito_idEstadoCarrito = idEstado;
         }
 
         [Column("idCarrito")]

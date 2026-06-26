@@ -6,29 +6,23 @@ using System.Threading.Tasks;
 using Dominio.Entidades;
 using Aplicacion.Interfaces.Repositorios;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Gestores
 {
     public class GestorProductoCarrito : IGestorProductoCarrito
     {
         IRepositorioProductoCarrito repo;
-        IGestorCarrito gestorCarrito;
         IGestorProducto gestorProducto;
 
-        public GestorProductoCarrito(IRepositorioProductoCarrito repo,IGestorCarrito gestorCarrito,IGestorProducto gestorProducto)
+        public GestorProductoCarrito(IRepositorioProductoCarrito repo,IGestorProducto gestorProducto)
         {
             this.repo = repo;
             this.gestorProducto = gestorProducto;
-            this.gestorCarrito = gestorCarrito;
         }
 
         public async Task<Result<ProductoCarrito>> AgregarProductoCarrito(ProductoCarrito edi)
         {
-            var resultadoCarrito = await gestorCarrito.ValidarCarritoActivo(edi.Carrito.IdCarrito);
-            if(!resultadoCarrito.Success)
-            {
-                return Result<ProductoCarrito>.Fail(resultadoCarrito.Message);
-            }
             var resultadoProducto = await gestorProducto.ValidarProductoActivo(edi.Producto.IdProducto);
             if(!resultadoProducto.Success)
             {
@@ -60,21 +54,20 @@ namespace Aplicacion.Gestores
             await repo.Actualizar(edi);
             return Result<ProductoCarrito>.EjecucionCorrecta();
         }
-        public async Task<Result<ProductoCarrito>> EliminarProducto(int Cantidad, int idCarrito, int idProducto)
+        public async Task<Result<ProductoCarrito>> EliminarProducto(int idCarrito, int idProducto)
         {
-            var resultado = await ExisteProductoCarrito(idCarrito, idProducto);
-            if (!resultado.Success)
-            {
-                return resultado;
-            }
-            var obj = resultado.Value;
-            await repo.EliminarProductoCarrito(obj);
+            await repo.Eliminar(idCarrito, idProducto);
             return Result<ProductoCarrito>.EjecucionCorrecta();
         }
 
         public async Task<bool> ValidarProductoCarrito(int idCarrito, int idProducto)
         {
             return await repo.CapturarProductoCarrito(idCarrito,idProducto) != null;
+        }
+
+        public async Task Eliminar(int idCarrito, int idProducto)
+        {
+            await repo.Eliminar(idCarrito, idProducto);
         }
 
         public async Task<Result<ProductoCarrito>> ExisteProductoCarrito(int idCarrito, int idProducto)
@@ -85,6 +78,23 @@ namespace Aplicacion.Gestores
                 return Result<ProductoCarrito>.Fail("No existe el producto ingresado en ese carrito ");
             }
             return Result<ProductoCarrito>.Ok(obj);
+        }
+
+        public async Task<List<ProductoCarrito>> DevolverProductoCarrito(int idCarrito)
+        {
+            Busqueda<ProductoCarrito> busqueda = new Busqueda<ProductoCarrito>();
+            FiltroBusqueda<ProductoCarrito, int> filtroBusqueda = new FiltroBusqueda<ProductoCarrito, int>
+            {
+                Selector = obj => obj.Carrito.IdCarrito,
+                Operador = OperadorBusqueda.Igual,
+                Valor = idCarrito
+            };
+            busqueda.Filtros.Add(filtroBusqueda);
+            return await repo.Buscar(busqueda);
+        }
+        public async Task<List<ProductoCarrito>> Buscar(Busqueda<ProductoCarrito> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

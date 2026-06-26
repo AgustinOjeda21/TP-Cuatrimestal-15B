@@ -6,6 +6,7 @@ using Dominio.Entidades;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Gestores
 {
@@ -72,6 +73,10 @@ namespace Aplicacion.Gestores
                 return Result<FormaPago>.Fail("La Forma de Pago ingresada no existe");
             }
             return Result<FormaPago>.Ok(obj);
+        }
+        public async Task<List<FormaPago>> Buscar(Busqueda<FormaPago> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

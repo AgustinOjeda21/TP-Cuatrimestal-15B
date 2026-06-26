@@ -54,7 +54,9 @@ namespace Infraestructura.Repositorios
             entity = obj.ToEntity();
             await context.SaveChangesAsync();
         }
-        public async Task<List<DetallePedido>> Buscar<Tprop>(Busqueda<DetallePedido> busqueda)
+
+        
+        public async Task<List<DetallePedido>> Buscar(Busqueda<DetallePedido> busqueda)
         {
             IMapper mapper = config();
             Especificacion<EntityDetallePedido> Spec = null;
@@ -94,6 +96,8 @@ namespace Infraestructura.Repositorios
                    .ForMember(dest => dest.Pedido, opt => opt.Ignore())
                    .ForMember(dest => dest.FormaPago, opt => opt.Ignore())
                    .ForMember(dest => dest.FormaEntrega, opt => opt.Ignore());
+
+
 
                 cfg.CreateMap<EntityDetallePedido, DetallePedido>()
                    .ForMember(

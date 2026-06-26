@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Gestores
 {
@@ -13,11 +14,13 @@ namespace Aplicacion.Gestores
     {
         IRepositorioCarrito repo;
         IGestorEstadoCarrito gestorEstadoCarrito;
+        IGestorProductoCarrito gestorProductoCarrito;
 
-        public GestorCarrito(IRepositorioCarrito repo, IGestorEstadoCarrito gestorEstadoCarrito)
+        public GestorCarrito(IRepositorioCarrito repo, IGestorEstadoCarrito gestorEstadoCarrito, IGestorProductoCarrito gestorProductoCarrito)
         {
             this.repo = repo;
             this.gestorEstadoCarrito = gestorEstadoCarrito;
+            this.gestorProductoCarrito = gestorProductoCarrito;
         }
 
         public async Task<Result<Carrito>> CargarCarrito(Carrito edi)
@@ -137,15 +140,20 @@ namespace Aplicacion.Gestores
             return Result<Carrito>.EjecucionCorrecta();
         }
 
-        /*public async Task<Result<Carrito>> ActualizarTotal(int id)
+        public async Task ActualizarTotal(int id)
         {
             var resultado = await ExisteCarrito(id);
             if (!resultado.Success)
             {
-                return resultado;
+                return;
             }
-            
-        }*/
+            var carrito = resultado.Value;
+            var lista = await gestorProductoCarrito.DevolverProductoCarrito(carrito.IdCarrito);
+            if (lista is null) return;
+            carrito.Total = lista.Sum(det => det.Cantidad * det.Producto.Precio);
+            await repo.Actualizar(carrito);
+        }
+        
         public async Task<Result<Carrito>> ExisteCarrito(int id)
         {
             Carrito obj = await repo.CapturarCarrito(id);
@@ -184,6 +192,10 @@ namespace Aplicacion.Gestores
                 return Result<Carrito>.Fail("El Carrito no se encuentra pagado");
             }
             return Result<Carrito>.Ok(obj);
+        }
+        public async Task<List<Carrito>> Buscar(Busqueda<Carrito> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
 
     }

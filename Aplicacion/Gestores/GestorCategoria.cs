@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Gestores
 {
@@ -76,6 +77,10 @@ namespace Aplicacion.Gestores
         public async Task EliminarCategoria(int id)
         {
             await repo.Eliminar(id);
+        }
+        public async Task<List<Categoria>> Buscar(Busqueda<Categoria> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
         

@@ -77,7 +77,7 @@ namespace Infraestructura.Repositorios
             entity.Direccion.Add(Direccion.ToEntity());
             await context.SaveChangesAsync();
         }
-        public async Task<List<Persona>> Buscar<Tprop>(Busqueda<Persona> busqueda)
+        public async Task<List<Persona>> Buscar(Busqueda<Persona> busqueda)
         {
             IMapper mapper = config();
             Especificacion<EntityPersona> Spec = null;
@@ -96,30 +96,29 @@ namespace Infraestructura.Repositorios
             {
                 cfg.AddExpressionMapping();
 
+                // Dominio -> Entidad
                 cfg.CreateMap<Persona, EntityPersona>()
-                   .ForMember(
-                       dest => dest.Usuario_idUsuario,
-                       opt => opt.MapFrom(src => src.Usuario)
-                   )
-                   .ForMember(
-                       dest => dest.Direccion,
-                       opt => opt.MapFrom(src => src.Direcciones.Select(obj=>obj.ToEntity()).ToList())
-                   )
+                   .ForMember(dest => dest.Usuario_idUsuario, opt => opt.MapFrom(src => src.Usuario.IdUsuario))
                    .ForMember(dest => dest.Usuario, opt => opt.Ignore())
                    .ForMember(dest => dest.Pedido, opt => opt.Ignore());
 
+                cfg.CreateMap<Usuario, EntityUsuario>();
+                cfg.CreateMap<Direccion, EntityDireccion>();
+                cfg.CreateMap<Pedido, EntityPedido>();
+
+                // Entidad -> Dominio
+                cfg.CreateMap<EntityUsuario, Usuario>();
+                cfg.CreateMap<EntityDireccion, Direccion>();
+                cfg.CreateMap<EntityPedido, Pedido>();
+
                 cfg.CreateMap<EntityPersona, Persona>()
-                   .ForMember(
-                       dest => dest.Usuario,
-                       opt => opt.MapFrom(src => src.Usuario.ToDomain())
-                   )
-                   .ForMember(
-                       dest => dest.Direcciones,
-                       opt => opt.MapFrom(src => src.Direccion.Select(obj => obj.ToDomain()).ToList())
-                   );
+                   .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Usuario))
+                   .ForMember(dest => dest.Direcciones, opt => opt.MapFrom(src => src.Direccion));
             });
+
             return config.CreateMapper();
         }
+
     }
 }
 

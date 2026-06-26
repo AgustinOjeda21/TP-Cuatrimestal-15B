@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Dominio.Entidades;
 using System.Threading.Tasks;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Interfaces.Repositorios
 {
@@ -15,7 +16,7 @@ namespace Aplicacion.Interfaces.Repositorios
         Task QuitarDireccion(int persona, int IdDireccion);
         Task AgregarDireccion(int persona, Direccion Direccion);
         Task<Persona> CapturarPersona(int id);
-
+        Task<List<Persona>> Buscar(Busqueda<Persona> busqueda);
         Task Actualizar(Persona obj);
        
     }

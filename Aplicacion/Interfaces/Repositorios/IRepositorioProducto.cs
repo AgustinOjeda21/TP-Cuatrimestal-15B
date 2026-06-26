@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Dominio.Entidades;
 using System.Threading.Tasks;
+using Aplicacion.Busqueda;
 
 namespace Aplicacion.Interfaces.Repositorios
 {
@@ -25,6 +26,7 @@ namespace Aplicacion.Interfaces.Repositorios
         Task QuitarCategoria(int Producto, int IdCategoria);
         Task AgregarCategoria(int Producto, Categoria Categoria);
         Task ActualizarMarca(Producto obj);
+        Task<List<Producto>> Buscar(Busqueda<Producto> busqueda);
 
     }
 }

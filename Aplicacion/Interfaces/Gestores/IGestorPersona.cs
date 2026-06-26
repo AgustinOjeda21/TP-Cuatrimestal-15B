@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Dominio.Entidades;
+using Aplicacion.Busqueda;
 using System.Threading.Tasks;
 
 namespace Aplicacion.Interfaces.Gestores

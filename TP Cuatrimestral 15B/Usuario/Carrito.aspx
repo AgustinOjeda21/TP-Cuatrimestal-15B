@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="TP_Cuatrimestral_15B.Usuario.Carrito" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="TP_Cuatrimestral_15B.Usuario.Carrito"  Async="true"%>
 
 <!DOCTYPE html>
 
@@ -14,27 +14,61 @@
 <body>
     <form id="form2" runat="server">
     <div class =" navbar">Mi Carrito</div>
-        <div class="tarjetaCarrito">
+     <asp:Repeater ID="rptCarrito" runat="server" OnItemCommand="rptCarrito_ItemCommand">
+    <ItemTemplate>
 
-    <div class="imagenProducto">
-        IMAGEN
-    </div>
+        <div class="tarjetaCarrito card mb-3 p-3">
 
-    <div class="infoProducto">
-        <h3>Notebook HP 15"</h3>
-        <p>Precio: $850.000</p>
-        <p>Cantidad: 1</p>
-        <p>Subtotal: $850.000</p>
-    </div>
+            <div class="row align-items-center">
 
-    <div class="acciones">
-        <asp:Button
-            ID="btnEliminar1"
-            runat="server"
-            Text="Eliminar" CssClass="btn btn-default" />
-    </div>
+                <div class="col-md-2">
+                    <img src='<%# Eval("Producto.Imagenes[0].URL") %>'
+                         class="img-fluid"
+                         style="max-height:100px;" />
+                </div>
+
+                <div class="col-md-6">
+                    <h5><%# Eval("Producto.Nombre") %></h5>
+                    <p>Precio: $<%# Eval("Producto.Precio") %></p>
+                    <p>Cantidad: <%# Eval("Cantidad") %></p>
+                    <p>Subtotal: $<%# CalcularSubtotal(Container.DataItem) %></p>
+                </div>
+
+                <div class="col-md-4 text-end">
+                    <asp:Button
+                        CommandName="Eliminar"
+                        CommandArgument='<%# Eval("Producto.IdProducto") %>'
+                        runat="server"
+                        Text="Eliminar"
+                        CssClass="btn btn-danger" />
+                </div>
+
+            </div>
+        </div>
+
+    </ItemTemplate>
+</asp:Repeater>
+    <div class="text-center mt-4">
+
+    <asp:Button ID="btnVolver"
+        runat="server"
+        Text="Volver"
+        PostBackUrl="~/Inicio.aspx"
+        CssClass="btn btn-secondary mx-2" />
+
+    <asp:Button ID="btnCancelar"
+        runat="server"
+        Text="Cancelar Carrito"
+        CssClass="btn btn-danger mx-2"
+        OnClick="btnCancelar_Click" />
+
+    <asp:Button ID="btnConfirmar"
+        runat="server"
+        Text="Confirmar Compra"
+        CssClass="btn btn-success mx-2" />
 
 </div>
+        
     </form>
 </body>
 </html>

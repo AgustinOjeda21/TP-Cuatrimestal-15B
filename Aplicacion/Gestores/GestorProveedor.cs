@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio.Entidades;
 using Aplicacion.Interfaces.Gestores;
+using Aplicacion.Busqueda;
 using Aplicacion.Interfaces.Repositorios;
 
 namespace Aplicacion.Gestores
@@ -103,6 +104,10 @@ namespace Aplicacion.Gestores
                 return Result<Proveedor>.Fail("El Proveedor ingresado no existe");
             }
             return Result<Proveedor>.Ok(obj);
+        }
+        public async Task<List<Proveedor>> Buscar(Busqueda<Proveedor> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

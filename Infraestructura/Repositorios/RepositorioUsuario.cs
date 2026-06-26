@@ -55,7 +55,7 @@ namespace Infraestructura.Repositorios
             context.Entry(entity).CurrentValues.SetValues(obj.ToEntity());
             await context.SaveChangesAsync();
         }
-        public async Task<List<Usuario>> Buscar<Tprop>(Busqueda<Usuario> busqueda)
+        public async Task<List<Usuario>> Buscar(Busqueda<Usuario> busqueda)
         {
             IMapper mapper = config();
             Especificacion<EntityUsuario> Spec = null;

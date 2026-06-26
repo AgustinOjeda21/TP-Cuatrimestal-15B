@@ -15,7 +15,7 @@ namespace Infraestructura.Mappers
         }
         public static EntityProductoCarrito ToEntity(this ProductoCarrito productoCarrito)
         {
-            return new EntityProductoCarrito(productoCarrito.Cantidad, productoCarrito.Carrito.IdCarrito, productoCarrito.Producto.IdProducto);
+            return new EntityProductoCarrito(productoCarrito.Producto.IdProducto,productoCarrito.Cantidad, productoCarrito.Carrito.IdCarrito);
         }
     }
 }

@@ -5,6 +5,7 @@ using Dominio.Entidades;
 using System.Text;
 using System.Threading.Tasks;
 using Aplicacion.Interfaces.Repositorios;
+using Aplicacion.Busqueda;
 using Aplicacion.Interfaces.Gestores;
 
 namespace Aplicacion.Gestores
@@ -155,6 +156,10 @@ namespace Aplicacion.Gestores
                 return Result<DetallePedido>.Fail("El Pedido ingresado no existe");
             }
             return Result<DetallePedido>.Ok(obj);
+        }
+        public async Task<List<DetallePedido>> Buscar(Busqueda<DetallePedido> busqueda)
+        {
+            return await repo.Buscar(busqueda);
         }
     }
 }

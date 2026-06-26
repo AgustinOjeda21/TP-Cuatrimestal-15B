@@ -1,10 +1,10 @@
-//------------------------------------------------------------------------------
-// <generado autom·ticamente>
-//     Este cÛdigo fue generado por una herramienta.
+Ôªø//------------------------------------------------------------------------------
+// <generado autom√°ticamente>
+//     Este c√≥digo fue generado por una herramienta.
 //
-//     Los cambios en este archivo podr˙}n causar un comportamiento incorrecto y se perder·n si
-//     se vuelve a generar el cÛdigo. 
-// </generado autom·ticamente>
+//     Los cambios en este archivo podr√≠an causar un comportamiento incorrecto y se perder√°n si
+//     se vuelve a generar el c√≥digo. 
+// </generado autom√°ticamente>
 //------------------------------------------------------------------------------
 
 namespace TP_Cuatrimestral_15B
@@ -18,8 +18,8 @@ namespace TP_Cuatrimestral_15B
         /// Control form1.
         /// </summary>
         /// <remarks>
-        /// Campo generado autom·ticamente.
-        /// Para modificarlo, mueva la declaraciÛn del campo del archivo del diseÒador al archivo de cÛdigo subyacente.
+        /// Campo generado autom√°ticamente.
+        /// Para modificarlo, mueva la declaraci√≥n del campo del archivo del dise√±ador al archivo de c√≥digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
@@ -27,8 +27,8 @@ namespace TP_Cuatrimestral_15B
         /// Control linkHome.
         /// </summary>
         /// <remarks>
-        /// Campo generado autom·ticamente.
-        /// Para modificarlo, mueva la declaraciÛn del campo del archivo del diseÒador al archivo de cÛdigo subyacente.
+        /// Campo generado autom√°ticamente.
+        /// Para modificarlo, mueva la declaraci√≥n del campo del archivo del dise√±ador al archivo de c√≥digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink linkHome;
 
@@ -36,8 +36,8 @@ namespace TP_Cuatrimestral_15B
         /// Control txtBuscar.
         /// </summary>
         /// <remarks>
-        /// Campo generado autom·ticamente.
-        /// Para modificarlo, mueva la declaraciÛn del campo del archivo del diseÒador al archivo de cÛdigo subyacente.
+        /// Campo generado autom√°ticamente.
+        /// Para modificarlo, mueva la declaraci√≥n del campo del archivo del dise√±ador al archivo de c√≥digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBuscar;
 
@@ -45,8 +45,8 @@ namespace TP_Cuatrimestral_15B
         /// Control btnBuscar.
         /// </summary>
         /// <remarks>
-        /// Campo generado autom·ticamente.
-        /// Para modificarlo, mueva la declaraciÛn del campo del archivo del diseÒador al archivo de cÛdigo subyacente.
+        /// Campo generado autom√°ticamente.
+        /// Para modificarlo, mueva la declaraci√≥n del campo del archivo del dise√±ador al archivo de c√≥digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
@@ -54,8 +54,8 @@ namespace TP_Cuatrimestral_15B
         /// Control linkLogin.
         /// </summary>
         /// <remarks>
-        /// Campo generado autom·ticamente.
-        /// Para modificarlo, mueva la declaraciÛn del campo del archivo del diseÒador al archivo de cÛdigo subyacente.
+        /// Campo generado autom√°ticamente.
+        /// Para modificarlo, mueva la declaraci√≥n del campo del archivo del dise√±ador al archivo de c√≥digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink linkLogin;
 
@@ -63,8 +63,8 @@ namespace TP_Cuatrimestral_15B
         /// Control linkSignin.
         /// </summary>
         /// <remarks>
-        /// Campo generado autom·ticamente.
-        /// Para modificarlo, mueva la declaraciÛn del campo del archivo del diseÒador al archivo de cÛdigo subyacente.
+        /// Campo generado autom√°ticamente.
+        /// Para modificarlo, mueva la declaraci√≥n del campo del archivo del dise√±ador al archivo de c√≥digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink linkSignin;
 
@@ -72,8 +72,8 @@ namespace TP_Cuatrimestral_15B
         /// Control btnCarrito.
         /// </summary>
         /// <remarks>
-        /// Campo generado autom·ticamente.
-        /// Para modificarlo, mueva la declaraciÛn del campo del archivo del diseÒador al archivo de cÛdigo subyacente.
+        /// Campo generado autom√°ticamente.
+        /// Para modificarlo, mueva la declaraci√≥n del campo del archivo del dise√±ador al archivo de c√≥digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCarrito;
 
@@ -81,8 +81,8 @@ namespace TP_Cuatrimestral_15B
         /// Control rptCategorias.
         /// </summary>
         /// <remarks>
-        /// Campo generado autom·ticamente.
-        /// Para modificarlo, mueva la declaraciÛn del campo del archivo del diseÒador al archivo de cÛdigo subyacente.
+        /// Campo generado autom√°ticamente.
+        /// Para modificarlo, mueva la declaraci√≥n del campo del archivo del dise√±ador al archivo de c√≥digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptCategorias;
 
@@ -90,8 +90,8 @@ namespace TP_Cuatrimestral_15B
         /// Control rptProductos.
         /// </summary>
         /// <remarks>
-        /// Campo generado autom·ticamente.
-        /// Para modificarlo, mueva la declaraciÛn del campo del archivo del diseÒador al archivo de cÛdigo subyacente.
+        /// Campo generado autom√°ticamente.
+        /// Para modificarlo, mueva la declaraci√≥n del campo del archivo del dise√±ador al archivo de c√≥digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptProductos;
     }

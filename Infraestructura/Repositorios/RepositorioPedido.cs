@@ -55,7 +55,7 @@ namespace Infraestructura.Repositorios
             entity = obj.ToEntity();
             await context.SaveChangesAsync();
         }
-        public async Task<List<Pedido>> Buscar<Tprop>(Busqueda<Pedido> busqueda)
+        public async Task<List<Pedido>> Buscar(Busqueda<Pedido> busqueda)
         {
             IMapper mapper = config();
             Especificacion<EntityPedido> Spec = null;

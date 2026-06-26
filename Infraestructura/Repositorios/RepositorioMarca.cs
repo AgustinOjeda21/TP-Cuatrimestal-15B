@@ -78,7 +78,7 @@ namespace Infraestructura.Repositorios
             entity.Imagen.Add(imagen.ToEntity());
             await context.SaveChangesAsync();
         }
-        public async Task<List<Marca>> Buscar<Tprop>(Busqueda<Marca> busqueda)
+        public async Task<List<Marca>> Buscar(Busqueda<Marca> busqueda)
         {
             IMapper mapper = config();
             Especificacion<EntityMarca> Spec = null;
@@ -100,11 +100,12 @@ namespace Infraestructura.Repositorios
                 cfg.CreateMap<Marca, EntityMarca>()
                    .ForMember(dest => dest.Producto, opt => opt.Ignore())
                    .ForMember(dest => dest.Imagen, opt => opt.Ignore());
-
                 cfg.CreateMap<EntityMarca, Marca>();
             });
             return config.CreateMapper();
         }
+
+
     }
 }
 
