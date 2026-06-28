@@ -22,7 +22,7 @@
             <div class="row align-items-center">
 
                 <div class="col-md-2">
-                    <img src='<%# Eval("Producto.Imagenes[0].URL") %>'
+                    <img src='<%# ObtenerImagenProducto(Container.DataItem) %>'
                          class="img-fluid"
                          style="max-height:100px;" />
                 </div>
@@ -65,7 +65,8 @@
     <asp:Button ID="btnConfirmar"
         runat="server"
         Text="Confirmar Compra"
-        CssClass="btn btn-success mx-2" />
+        CssClass="btn btn-success mx-2"
+        PostBackUrl="~/Usuario/Checkout.aspx" />
 
 </div>
         

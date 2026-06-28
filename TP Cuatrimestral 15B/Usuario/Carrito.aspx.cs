@@ -50,6 +50,7 @@ namespace TP_Cuatrimestral_15B.Usuario
             gestorCategoria = new GestorCategoria(repositorioCategoria);
             repositorioEstadoCarrito = new RepositorioEstadoCarrito(context);
             gestorEstadoCarrito = new GestorEstadoCarrito(repositorioEstadoCarrito);
+            repositorioCarrito = new RepositorioCarrito(context);
             gestorProducto = new GestorProducto(repositorioProducto, gestorMarca, gestorImagen);
             gestorProductoCarrito = new GestorProductoCarrito(repositorioProductoCarrito, gestorProducto);
             gestorCarrito = new GestorCarrito(repositorioCarrito, gestorEstadoCarrito, gestorProductoCarrito);
@@ -74,6 +75,19 @@ namespace TP_Cuatrimestral_15B.Usuario
         {
             var pc = item as Dominio.Entidades.ProductoCarrito;
             return pc.Producto.Precio * pc.Cantidad;
+        }
+
+        public string ObtenerImagenProducto(object item)
+        {
+            var pc = item as Dominio.Entidades.ProductoCarrito;
+            if (pc?.Producto?.Imagenes != null &&
+                pc.Producto.Imagenes.Count > 0 &&
+                !string.IsNullOrWhiteSpace(pc.Producto.Imagenes[0].URL))
+            {
+                return pc.Producto.Imagenes[0].URL;
+            }
+
+            return "https://via.placeholder.com/100x100";
         }
 
         protected void rptCarrito_ItemCommand(object source, RepeaterCommandEventArgs e)
