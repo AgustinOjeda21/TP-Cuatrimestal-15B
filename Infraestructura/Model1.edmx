@@ -198,9 +198,9 @@
           </Key>
           <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Contraseña" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Contrase&#x00C3;&#x00B1;a" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
-          <Property Name="Rol" Type="int" Nullable="false" />
+          <Property Name="Rol_idRol" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="fk_Carrito_EstadoCarrito1">
           <End Role="EstadoCarrito" Type="Self.EstadoCarrito" Multiplicity="1" />
@@ -1232,9 +1232,9 @@
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="IdUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
-                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contrase&#x00C3;&#x00B1;a" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Rol" ColumnName="Rol_idRol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -50,9 +50,10 @@ namespace TP_Cuatrimestral_15B
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RegisterAsyncTask(new PageAsyncTask(CargarProducto));
+
             if (!IsPostBack)
             {
-                RegisterAsyncTask(new PageAsyncTask(CargarProducto));
                 RegisterAsyncTask(new PageAsyncTask(CargarRelacionados));
             }
             var usuario = Session["Usuario"] as Dominio.Entidades.Usuario;
@@ -103,7 +104,16 @@ namespace TP_Cuatrimestral_15B
 
         protected async Task AgregarAlCarrito()
         {
-            var usuario = Session["Usuario"] as Dominio.Entidades.Usuario;
+            int idProducto;
+            int cantidad;
+
+            if (!int.TryParse(Request.QueryString["id"], out idProducto) ||
+                !int.TryParse(txtCantidad.Text, out cantidad) ||
+                cantidad <= 0)
+            {
+                return;
+            }
+
             var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
             if(carrito is null)
             {
@@ -111,7 +121,7 @@ namespace TP_Cuatrimestral_15B
                 await gestorCarrito.CargarCarrito(carrito);
                 Session["Carrito"] = carrito;
             }
-            var producto = await gestorProducto.CapturarProducto(int.Parse(Request.QueryString["id"]));
+            var producto = await gestorProducto.CapturarProducto(idProducto);
             if(producto is null)
             {
                 return;
@@ -120,7 +130,7 @@ namespace TP_Cuatrimestral_15B
             {
                 Carrito = carrito,
                 Producto = producto,
-                Cantidad = int.Parse(txtCantidad.Text)
+                Cantidad = cantidad
             };
             var pro = await gestorProductoCarrito.CapturarProductoCarrito(carrito.IdCarrito, producto.IdProducto);
             if (pro is null)

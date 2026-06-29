@@ -473,27 +473,32 @@ a:hover .todasSlide {
     border: 1px solid #d8dee8;
     border-radius: 8px;
     box-shadow: 0 10px 28px rgba(31, 41, 51, 0.08);
-    display: block;
-    width: 100%;
+    width: min(1120px, calc(100% - 32px));
     position: relative;
-    margin: 0;
+    margin: 28px auto;
+}
+
+.tarjetaCarrito {
+    display: block;
 }
 
 .productoimg,
 .imagenProducto {
     flex: 0 0 320px;
+    max-width: 320px;
     min-height: 260px;
 }
 
 .productoimg {
     overflow: hidden;
+    height: 320px;
 }
 
 .productoimg img {
     width: 100%;
     height: 100%;
-    min-height: 260px;
     object-fit: cover;
+    display: block;
 }
 
 .infoProducto {
@@ -603,8 +608,15 @@ a:hover .todasSlide {
 
     .productoimg,
     .imagenProducto {
+        max-width: 100%;
+        height: auto;
         min-height: 180px;
         margin-bottom: 16px;
+    }
+
+    .productoimg img {
+        height: auto;
+        max-height: 320px;
     }
 
     .carouselSlide {

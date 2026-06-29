@@ -22,7 +22,7 @@
             <div class="row align-items-center">
 
                 <div class="col-md-2">
-                    <img src='<%# Eval("Producto.Imagenes[0].URL") %>'
+                    <img src='<%# ObtenerImagenProducto(Container.DataItem) %>'
                          class="img-fluid"
                          style="max-height:100px;" />
                 </div>
