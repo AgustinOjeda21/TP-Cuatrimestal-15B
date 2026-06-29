@@ -25,5 +25,6 @@ namespace Dominio.Entidades
         public string Localidad { get; set; }
         public string CodigoPostal { get; set; }
         public string Observaciones { get; set; }
+        public string Descripcion => $"{Calle} {Numero}, {Localidad}";
     }
 }

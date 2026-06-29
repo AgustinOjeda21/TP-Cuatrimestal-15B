@@ -180,16 +180,16 @@ namespace Aplicacion.Gestores
             }
             return Result<Carrito>.Ok(obj);
         }
-        public async Task<Result<Carrito>> ValidarCarritoPagado(int id)
+        public async Task<Result<Carrito>> ValidarCarritoConfirmado(int id)
         {
             Carrito obj = await repo.CapturarCarrito(id);
             if (obj is null)
             {
                 return Result<Carrito>.Fail("El Carrito ingresado no existe");
             }
-            if (obj.EstadoCarrito.Nombre != "Pagado")
+            if (obj.EstadoCarrito.Nombre != "Confirmado")
             {
-                return Result<Carrito>.Fail("El Carrito no se encuentra pagado");
+                return Result<Carrito>.Fail("El Carrito no se encuentra Confirmado");
             }
             return Result<Carrito>.Ok(obj);
         }

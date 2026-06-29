@@ -47,7 +47,7 @@ namespace TP_Cuatrimestral_15B.Admin
         private static readonly GestorCarrito gestorCarrito = new GestorCarrito(repositorioCarrito, gestorEstadoCarrito,gestorProductoCarrito);
 
         // Gestores con dependencias de múltiples gestores
-        private static readonly GestorDetallePedido gestorDetallePedido = new GestorDetallePedido(repositorioDetallePedido, gestorPedido, gestorFormaPago, gestorFormaEntrega, gestorDireccion);
+        private static readonly GestorDetallePedido gestorDetallePedido = new GestorDetallePedido(repositorioDetallePedido, gestorFormaPago, gestorFormaEntrega, gestorDireccion);
         private static readonly GestorPedido gestorPedido = new GestorPedido(repositorioPedido, gestorCarrito, gestorEstadoPedido, gestorPersona, gestorDetallePedido);
         protected void Page_Load(object sender, EventArgs e)
         {

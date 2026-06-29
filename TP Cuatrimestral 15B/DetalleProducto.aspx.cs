@@ -11,20 +11,39 @@ namespace TP_Cuatrimestral_15B
 {
     public partial class DetalleProducto : System.Web.UI.Page
     {
-        private static readonly mydbEntities1 context = new mydbEntities1();
-        private static readonly RepositorioImagen repositorioImagen = new RepositorioImagen(context);
-        private static readonly RepositorioMarca repositorioMarca = new RepositorioMarca(context);
-        private static readonly RepositorioProducto repositorioProducto = new RepositorioProducto(context);
-        private static readonly RepositorioCarrito repositorioCarrito = new RepositorioCarrito(context);
-        private static readonly RepositorioProductoCarrito repositorioProductoCarrito = new RepositorioProductoCarrito(context);
-        private static readonly RepositorioEstadoCarrito repositorioEstadoCarrito = new RepositorioEstadoCarrito(context);
+        private readonly mydbEntities1 context;
+        private readonly RepositorioImagen repositorioImagen;
+        private readonly RepositorioMarca repositorioMarca;
+        private readonly RepositorioProducto repositorioProducto;
+        private readonly RepositorioCarrito repositorioCarrito;
+        private readonly RepositorioProductoCarrito repositorioProductoCarrito;
+        private readonly RepositorioEstadoCarrito repositorioEstadoCarrito;
 
-        private static readonly GestorEstadoCarrito gestorEstadoCarrito = new GestorEstadoCarrito(repositorioEstadoCarrito);
-        private static readonly GestorImagen gestorImagen = new GestorImagen(repositorioImagen);
-        private static readonly GestorMarca gestorMarca = new GestorMarca(repositorioMarca, gestorImagen);
-        private static readonly GestorProducto gestorProducto = new GestorProducto(repositorioProducto, gestorMarca, gestorImagen);
-        private static readonly GestorProductoCarrito gestorProductoCarrito = new GestorProductoCarrito(repositorioProductoCarrito,gestorProducto);
-        private static readonly GestorCarrito gestorCarrito = new GestorCarrito(repositorioCarrito,gestorEstadoCarrito,gestorProductoCarrito);
+        private readonly GestorEstadoCarrito gestorEstadoCarrito;
+        private readonly GestorImagen gestorImagen;
+        private readonly GestorMarca gestorMarca;
+        private readonly GestorProducto gestorProducto;
+        private readonly GestorProductoCarrito gestorProductoCarrito;
+        private readonly GestorCarrito gestorCarrito; 
+
+        public DetalleProducto()
+        {
+            context = new mydbEntities1();
+            repositorioImagen = new RepositorioImagen(context);
+            repositorioMarca = new RepositorioMarca(context);
+            repositorioProducto = new RepositorioProducto(context);
+            repositorioCarrito = new RepositorioCarrito(context);
+            repositorioProductoCarrito = new RepositorioProductoCarrito(context);
+            repositorioEstadoCarrito = new RepositorioEstadoCarrito(context);
+
+            gestorEstadoCarrito = new GestorEstadoCarrito(repositorioEstadoCarrito);
+            gestorImagen = new GestorImagen(repositorioImagen);
+            gestorMarca = new GestorMarca(repositorioMarca, gestorImagen);
+            gestorProducto = new GestorProducto(repositorioProducto, gestorMarca, gestorImagen);
+            gestorProductoCarrito = new GestorProductoCarrito(repositorioProductoCarrito, gestorProducto);
+            gestorCarrito = new GestorCarrito(repositorioCarrito, gestorEstadoCarrito, gestorProductoCarrito);
+    }
+
 
         protected Producto producto;
         protected string imagenUrl = "https://via.placeholder.com/420x320";
@@ -35,6 +54,18 @@ namespace TP_Cuatrimestral_15B
             {
                 RegisterAsyncTask(new PageAsyncTask(CargarProducto));
                 RegisterAsyncTask(new PageAsyncTask(CargarRelacionados));
+            }
+            var usuario = Session["Usuario"] as Dominio.Entidades.Usuario;
+            if (usuario != null)
+            {
+                linkLogin.Visible = false;
+                linkSignin.Visible = false;
+                linkPerfil.Visible = true;
+            }
+            var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
+            if (carrito is null)
+            {
+                btnCarrito.Visible = false;
             }
         }
 
@@ -91,7 +122,16 @@ namespace TP_Cuatrimestral_15B
                 Producto = producto,
                 Cantidad = int.Parse(txtCantidad.Text)
             };
-            await gestorProductoCarrito.AgregarProductoCarrito(productoCarrito);
+            var pro = await gestorProductoCarrito.CapturarProductoCarrito(carrito.IdCarrito, producto.IdProducto);
+            if (pro is null)
+            {
+                await gestorProductoCarrito.AgregarProductoCarrito(productoCarrito);
+            }
+            else
+            {
+                pro.Cantidad += productoCarrito.Cantidad;
+                await gestorProductoCarrito.ModificarCantidad(pro.Cantidad, carrito.IdCarrito, producto.IdProducto);
+            }
             await gestorCarrito.ActualizarTotal(carrito.IdCarrito);
         }
     }

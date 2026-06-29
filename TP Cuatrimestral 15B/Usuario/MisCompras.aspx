@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisCompras.aspx.cs" Inherits="TP_Cuatrimestral_15B.Usuario.WebForm2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisCompras.aspx.cs" Inherits="TP_Cuatrimestral_15B.Usuario.WebForm2" Async="true" %>
 
 <!DOCTYPE html>
 
@@ -15,39 +15,56 @@
     <form id="form3" runat="server">
         <div class ="navbar"></div>
         <h1>Mis Compras</h1>
+        <asp:Repeater ID="rptPedidos" runat="server" OnItemCommand="rptPedidos_ItemCommand">
+            <ItemTemplate>
 
-        <div class="compra">
+                <div class="compra">
 
-            <h3>Pedido #1001</h3>
+                    <div class="row">
 
-            <p>Fecha: 15/06/2026</p>
+                        <div class="col-md-9">
+                            <h3>Pedido #<%# Eval("IdPedido") %></h3>
 
-            <p>Estado: Entregado</p>
+                            <p>
+                                <strong>Fecha:</strong>
+                                <%# Convert.ToDateTime(Eval("DetallePedido.FechaPedido")).ToString("dd/MM/yyyy") %>
+                            </p>
 
-            <p>Total: $875.000</p>
+                            <p>
+                                <strong>Estado:</strong>
+                                <%# Eval("EstadoPedido.Nombre") %>
+                            </p>
 
-            <asp:Button
-                ID="btnDetalle1"
-                runat="server"
-                Text="Ver detalle" CssClass="btn btn-default" />
+                            <p>
+                                <strong>Total:</strong>
+                                $ <%# Eval("Carrito.Total") %>
+                            </p>
+                        </div>
 
+                        <div class="col-md-3 text-right">
+                            <asp:Button
+                                runat="server"
+                                CommandName="Detalle"
+                                Text ="Ver Detalle"
+                                CssClass="btn btn-primary"
+                                CommandArgument='<%# Eval("IdPedido") %>' />
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </ItemTemplate>
+        </asp:Repeater>
+
+        <div class="text-center mt-4">
+        <asp:Button ID="btnVolver"
+        runat="server"
+        Text="Volver"
+        PostBackUrl="~/Usuario/MiPerfil.aspx"
+        CssClass="btn btn-secondary mx-2" />
         </div>
 
-        <div class="compra">
-
-            <h3>Pedido #1002</h3>
-
-            <p>Fecha: 20/06/2026</p>
-
-            <p>Estado: En preparación</p>
-
-            <p>Total: $120.000</p>
-
-            <asp:Button
-                ID="btnDetalle2"
-                runat="server"
-                Text="Ver detalle" CssClass="btn btn-default" />
-        </div>
     </form>
 </body>
 </html>

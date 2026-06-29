@@ -24,48 +24,21 @@ namespace TP_Cuatrimestral_15B.Usuario
         protected global::System.Web.UI.HtmlControls.HtmlForm form4;
 
         /// <summary>
-        /// Control btnEditar1.
+        /// Control rptDirecciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditar1;
+        protected global::System.Web.UI.WebControls.Repeater rptDirecciones;
 
         /// <summary>
-        /// Control btnEliminar1.
+        /// Control btnVolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminar1;
-
-        /// <summary>
-        /// Control btnEditar2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditar2;
-
-        /// <summary>
-        /// Control btnEliminar2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminar2;
-
-        /// <summary>
-        /// Control btnAgregarDireccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarDireccion;
+        protected global::System.Web.UI.WebControls.Button btnVolver;
     }
 }

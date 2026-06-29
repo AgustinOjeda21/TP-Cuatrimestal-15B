@@ -69,6 +69,15 @@ namespace TP_Cuatrimestral_15B
         protected global::System.Web.UI.WebControls.HyperLink linkSignin;
 
         /// <summary>
+        /// Control linkPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink linkPerfil;
+
+        /// <summary>
         /// Control btnCarrito.
         /// </summary>
         /// <remarks>

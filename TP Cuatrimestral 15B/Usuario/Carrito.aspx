@@ -42,7 +42,24 @@
                         Text="Eliminar"
                         CssClass="btn btn-danger" />
                 </div>
+                <div class="d-flex align-items-center gap-2 mb-2">
 
+                    <asp:Button
+                        runat="server"
+                        Text="-"
+                        CssClass="btn btn-outline-secondary btn-sm"
+                        CommandName="Restar"
+                        CommandArgument='<%# Eval("Producto.IdProducto") %>' />
+
+                    <span><strong><%# Eval("Cantidad") %></strong></span>
+
+                    <asp:Button
+                        runat="server"
+                        Text="+"
+                        CssClass="btn btn-outline-secondary btn-sm"
+                        CommandName="Sumar"
+                        CommandArgument='<%# Eval("Producto.IdProducto") %>' />
+                </div>
             </div>
         </div>
 
@@ -60,14 +77,17 @@
         runat="server"
         Text="Cancelar Carrito"
         CssClass="btn btn-danger mx-2"
+        Visible ="false"
         OnClick="btnCancelar_Click" />
 
     <asp:Button ID="btnConfirmar"
         runat="server"
-        Text="Confirmar Compra"
-        CssClass="btn btn-success mx-2" />
+        Text="Confirmar Carrito"
+        CssClass="btn btn-success mx-2"
+        Visible="false"
+        OnClick="btnConfirmarCarrito_Click"/>
 
-</div>
+    </div>
         
     </form>
 </body>

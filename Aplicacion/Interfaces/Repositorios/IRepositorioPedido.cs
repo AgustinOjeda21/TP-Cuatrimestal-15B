@@ -13,7 +13,7 @@ namespace Aplicacion.Interfaces.Repositorios
         Task<List<Pedido>> ObtenerPedidoes();
 
 
-        Task InsertarPedido(Pedido aut);
+        Task<int> InsertarPedido(Pedido aut);
 
         Task<List<Pedido>> Buscar(Busqueda<Pedido> busqueda);
 

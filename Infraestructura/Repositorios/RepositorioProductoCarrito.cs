@@ -58,12 +58,14 @@ namespace Infraestructura.Repositorios
         }
         public async Task Actualizar(ProductoCarrito obj)
         {
-            var entity = await context.ProductoCarrito.FindAsync(obj.Carrito.IdCarrito,obj.Producto.IdProducto);
+            var entity = await context.ProductoCarrito.FirstOrDefaultAsync(pro => pro.Producto_idProducto == obj.Producto.IdProducto && pro.Carrito_idCarrito == obj.Carrito.IdCarrito);
             if (entity == null)
             {
                 return;
             }
-            entity = obj.ToEntity();
+            entity.Cantidad = obj.Cantidad;
+            entity.Carrito_idCarrito = obj.Carrito.IdCarrito;
+            entity.Producto_idProducto = obj.Producto.IdProducto;
             await context.SaveChangesAsync();
         }
         public async Task<List<ProductoCarrito>> Buscar(Busqueda<ProductoCarrito> busqueda)

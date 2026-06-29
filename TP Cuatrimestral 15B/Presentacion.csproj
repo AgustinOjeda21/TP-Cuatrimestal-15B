@@ -349,6 +349,8 @@
     <Content Include="Usuario\DetallePedido.aspx" />
     <Content Include="Usuario\MisDirecciones.aspx" />
     <Content Include="Usuario\MiPerfil.aspx" />
+    <Content Include="Usuario\ModificarDireccion.aspx" />
+    <Content Include="Usuario\ModificarPerfil.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -662,6 +664,20 @@
     </Compile>
     <Compile Include="Usuario\MiPerfil.aspx.designer.cs">
       <DependentUpon>MiPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\ModificarDireccion.aspx.cs">
+      <DependentUpon>ModificarDireccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario\ModificarDireccion.aspx.designer.cs">
+      <DependentUpon>ModificarDireccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\ModificarPerfil.aspx.cs">
+      <DependentUpon>ModificarPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario\ModificarPerfil.aspx.designer.cs">
+      <DependentUpon>ModificarPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

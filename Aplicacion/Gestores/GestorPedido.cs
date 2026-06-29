@@ -28,7 +28,7 @@ namespace Aplicacion.Gestores
         }
         public async Task<Result<Pedido>> CargarPedido(Pedido edi,DetallePedido det)
         {
-            var resultadoCarrito = await gestorCarrito.ValidarCarritoPagado(edi.Carrito.IdCarrito);
+            var resultadoCarrito = await gestorCarrito.ValidarCarritoConfirmado(edi.Carrito.IdCarrito);
             if(!resultadoCarrito.Success)
             {
                 return Result<Pedido>.Fail(resultadoCarrito.Message);
@@ -39,13 +39,13 @@ namespace Aplicacion.Gestores
                 return Result<Pedido>.Fail(resultadoPersona.Message);
             }
             var ListaEstadoPedido = await gestorEstadoPedido.DevolverEstadosPedido();
-            var IdEstadoPedido = ListaEstadoPedido.FirstOrDefault(obj => obj.Nombre == "Pendiente de entrega");
+            var IdEstadoPedido = ListaEstadoPedido.FirstOrDefault(obj => obj.Nombre == "Confirmado");
             if(IdEstadoPedido is null)
             {
-                return Result<Pedido>.Fail("Fatal error: no existe el estado de pedido pagado");
+                return Result<Pedido>.Fail("Fatal error: no existe el estado de pedido Confirmado");
             }
             edi.EstadoPedido = IdEstadoPedido; 
-            await repo.InsertarPedido(edi);
+            edi.IdPedido = await repo.InsertarPedido(edi);
             det.Pedido = edi;
             var resultadoDetalle = await gestorDetallePedido.CargarDetallePedido(det);
             if (!resultadoDetalle.Success)
@@ -73,7 +73,7 @@ namespace Aplicacion.Gestores
                 return resultado;
             }
             var edi = resultado.Value;
-            var resultadoCarrito = await gestorCarrito.ValidarCarritoPagado(edi.Carrito.IdCarrito);
+            var resultadoCarrito = await gestorCarrito.ValidarCarritoConfirmado(edi.Carrito.IdCarrito);
             if (!resultadoCarrito.Success)
             {
                 return Result<Pedido>.Fail(resultadoCarrito.Message);
@@ -99,7 +99,7 @@ namespace Aplicacion.Gestores
             await repo.Actualizar(edi);
             return Result<Pedido>.EjecucionCorrecta();
         }
-        public async Task<Result<Pedido>> EntregarPedido(Persona persona, int id)
+        public async Task<Result<Pedido>> EntregarPedido(int id)
         {
             var resultado = await ExistePedido(id);
             if (!resultado.Success)
@@ -107,11 +107,84 @@ namespace Aplicacion.Gestores
                 return resultado;
             }
             var edi = resultado.Value;
-            if(edi.EstadoPedido.Nombre!="Pendiente de pago")
+            if(edi.EstadoPedido.Nombre!="Pagado")
             {
-
+                return Result<Pedido>.Fail("El pedido no ha sido pagado");
             }
-            edi.Persona = persona;
+            var ListaEstadoPedido = await gestorEstadoPedido.DevolverEstadosPedido();
+            var EstadoPedido = ListaEstadoPedido.FirstOrDefault(obj => obj.Nombre == "Pagado");
+            if (EstadoPedido is null)
+            {
+                return Result<Pedido>.Fail("Fatal error: no existe el estado de pedido Pagado");
+            }
+            edi.EstadoPedido = EstadoPedido;
+            await repo.Actualizar(edi);
+            return Result<Pedido>.EjecucionCorrecta();
+        }
+
+        public async Task<Result<Pedido>> CancelarPedido(int id)
+        {
+            var resultado = await ExistePedido(id);
+            if (!resultado.Success)
+            {
+                return resultado;
+            }
+            var edi = resultado.Value;
+            if (edi.EstadoPedido.Nombre != "Confirmado")
+            {
+                return Result<Pedido>.Fail("El pedido ya ha sido pagado o entregado");
+            }
+            var ListaEstadoPedido = await gestorEstadoPedido.DevolverEstadosPedido();
+            var EstadoPedido = ListaEstadoPedido.FirstOrDefault(obj => obj.Nombre == "Cancelado");
+            if (EstadoPedido is null)
+            {
+                return Result<Pedido>.Fail("Fatal error: no existe el estado de pedido Cancelado");
+            }
+            edi.EstadoPedido = EstadoPedido;
+            await repo.Actualizar(edi);
+            return Result<Pedido>.EjecucionCorrecta();
+        }
+        public async Task<Result<Pedido>> PagarPedido(int id)
+        {
+            var resultado = await ExistePedido(id);
+            if (!resultado.Success)
+            {
+                return resultado;
+            }
+            var edi = resultado.Value;
+            if (edi.EstadoPedido.Nombre != "Confirmado")
+            {
+                return Result<Pedido>.Fail("El pedido no ha sido confirmado");
+            }
+            var ListaEstadoPedido = await gestorEstadoPedido.DevolverEstadosPedido();
+            var EstadoPedido = ListaEstadoPedido.FirstOrDefault(obj => obj.Nombre == "Pagado");
+            if (EstadoPedido is null)
+            {
+                return Result<Pedido>.Fail("Fatal error: no existe el estado de pedido Pagado");
+            }
+            edi.EstadoPedido = EstadoPedido;
+            await repo.Actualizar(edi);
+            return Result<Pedido>.EjecucionCorrecta();
+        }
+        public async Task<Result<Pedido>> ReestablecerPedido(int id)
+        {
+            var resultado = await ExistePedido(id);
+            if (!resultado.Success)
+            {
+                return resultado;
+            }
+            var edi = resultado.Value;
+            if (edi.EstadoPedido.Nombre != "Cancelado")
+            {
+                return Result<Pedido>.Fail("El pedido no ha sido cancelado");
+            }
+            var ListaEstadoPedido = await gestorEstadoPedido.DevolverEstadosPedido();
+            var EstadoPedido = ListaEstadoPedido.FirstOrDefault(obj => obj.Nombre == "Confirmado");
+            if (EstadoPedido is null)
+            {
+                return Result<Pedido>.Fail("Fatal error: no existe el estado de pedido Confirmado");
+            }
+            edi.EstadoPedido = EstadoPedido;
             await repo.Actualizar(edi);
             return Result<Pedido>.EjecucionCorrecta();
         }

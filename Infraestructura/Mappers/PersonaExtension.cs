@@ -11,7 +11,7 @@ namespace Infraestructura.Mappers
     {
         public static Persona ToDomain(this EntityPersona persona)
         {
-            return new Persona(persona.IdPersona, persona.Nombre, persona.Apellido, persona.Mail, persona.Telefono, persona.Usuario.ToDomain(),persona.Direccion.Select(obj=>obj.ToDomain()).ToList());
+            return new Persona(persona.IdPersona,persona.Nombre, persona.Apellido, persona.Mail, persona.Telefono, persona.Usuario.ToDomain(),persona.Direccion.Select(obj=>obj.ToDomain()).ToList());
         }
         public static EntityPersona ToEntity(this Persona persona)
         {

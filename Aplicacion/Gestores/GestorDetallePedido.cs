@@ -13,15 +13,13 @@ namespace Aplicacion.Gestores
     public class GestorDetallePedido : IGestorDetallePedido
     {
         IRepositorioDetallePedido repo;
-        IGestorPedido gestorPedido;
         IGestorFormaPago gestorFormaPago;
         IGestorFormaEntrega gestorFormaEntrega;
         IGestorDireccion gestorDireccion;
 
-        public GestorDetallePedido(IRepositorioDetallePedido repo,IGestorPedido gestorPedido,IGestorFormaPago gestorFormaPago,IGestorFormaEntrega gestorFormaEntrega,IGestorDireccion gestorDireccion)
+        public GestorDetallePedido(IRepositorioDetallePedido repo,IGestorFormaPago gestorFormaPago,IGestorFormaEntrega gestorFormaEntrega,IGestorDireccion gestorDireccion)
         {
             this.repo = repo;
-            this.gestorPedido = gestorPedido;
             this.gestorFormaPago = gestorFormaPago;
             this.gestorFormaEntrega = gestorFormaEntrega;
             this.gestorDireccion = gestorDireccion;

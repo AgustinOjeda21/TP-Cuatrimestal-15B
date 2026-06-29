@@ -40,7 +40,7 @@ namespace Infraestructura.Repositorios
         public async Task<Carrito> CapturarCarrito(int id)
         {
             var entity = await context.Carrito
-                .Include(x => x.EstadoCarrito)
+                .Include("EstadoCarrito")
                 .FirstOrDefaultAsync(x => x.IdCarrito == id);
 
             if (entity == null)
@@ -58,11 +58,12 @@ namespace Infraestructura.Repositorios
             {
                 return;
             }
-            entity = obj.ToEntity();
+            entity.Total = obj.Total;
+            entity.EstadoCarrito_idEstadoCarrito = obj.EstadoCarrito.IdEstadoCarrito;
             await context.SaveChangesAsync();
         }
 
-       public async Task<List<Carrito>> Buscar(Busqueda<Carrito> busqueda)
+        public async Task<List<Carrito>> Buscar(Busqueda<Carrito> busqueda)
         {
             IMapper mapper = config();
             Especificacion<EntityCarrito> Spec = null;

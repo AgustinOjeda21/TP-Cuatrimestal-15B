@@ -152,8 +152,9 @@ h3 {
 }
 
 h1 {
-    width: min(1120px, calc(100% - 32px));
-    margin: 28px auto 18px;
+    font-size: 36px;
+    margin-bottom: 25px;
+    text-align: center;
 }
 
 .contenido > h2,
@@ -233,6 +234,7 @@ textarea.campo {
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
+    margin-bottom: 15px;
 }
 
 .botones,

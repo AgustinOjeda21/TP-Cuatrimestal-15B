@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisDirecciones.aspx.cs" Inherits="TP_Cuatrimestral_15B.Usuario.WebForm4" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisDirecciones.aspx.cs" Inherits="TP_Cuatrimestral_15B.Usuario.WebForm4" Async="true" %>
 
 <!DOCTYPE html>
 
@@ -17,46 +17,67 @@
         </div>
         <h1>Mis Direcciones</h1>
 
-        <div class="direccion">
-            <h3>Casa</h3>
-            <p>Av. Siempre Viva 742</p>
-            <p>Springfield</p>
-            <p>Código Postal: 1234</p>
+         <asp:Repeater ID="rptDirecciones" runat="server" OnItemCommand="rptDirecciones_ItemCommand">
+            <ItemTemplate>
 
-            <asp:Button
-                ID="btnEditar1"
-                runat="server"
-                Text="Editar" CssClass="btn btn-default" />
+                <div class="compra">
 
-            <asp:Button
-                ID="btnEliminar1"
-                runat="server"
-                Text="Eliminar" CssClass="btn btn-default" />
-        </div>
+                    <div class="row">
 
-        <div class="direccion">
-            <h3>Trabajo</h3>
-            <p>Calle Falsa 123</p>
-            <p>Buenos Aires</p>
-            <p>Código Postal: 5678</p>
+                        <div class="col-md-9">
+                            <h3>#<%# Eval("Observaciones") %></h3>
 
-            <asp:Button
-                ID="btnEditar2"
-                runat="server"
-                Text="Editar" CssClass="btn btn-default" />
+                            <p>
+                                <strong>Calle:</strong>
+                                <%# Eval("Calle") %>
+                            </p>
 
-            <asp:Button
-                ID="btnEliminar2"
-                runat="server"
-                Text="Eliminar" CssClass="btn btn-default" />
-        </div>
+                            <p>
+                                <strong>Numero:</strong>
+                                <%# Eval("Numero") %>
+                            </p>
 
-        <br />
+                            <p>
+                                <strong>Localidad:</strong>
+                                <%# Eval("Localidad") %>
+                            </p>
+                            <p>
+                                <strong>Codigo Postal:</strong>
+                                <%# Eval("CodigoPostal") %>
+                            </p>
+                        </div>
 
-        <asp:Button
-            ID="btnAgregarDireccion"
+                        <div class="col-md-3 text-right">
+                            <asp:Button
+                                runat="server"
+                                CommandName="Modificar"
+                                Text ="Modificar"
+                                CssClass="btn btn-primary"
+                                CommandArgument='<%# Eval("IdDireccion") %>' />
+                        </div>
+
+                        <div class="col-md-3 text-right">
+                            <asp:Button
+                                runat="server"
+                                CommandName="Eliminar"
+                                Text ="Eliminar"
+                                CssClass="btn btn-primary"
+                                CommandArgument='<%# Eval("IdDireccion") %>' />
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </ItemTemplate>
+        </asp:Repeater>
+        <div class="text-center mt-4">
+        <asp:Button ID="btnVolver"
             runat="server"
-            Text="Agregar dirección" CssClass="btn btn-default" />
+            Text="Volver"
+            PostBackUrl="~/Usuario/MisCompras.aspx"
+            CssClass="btn btn-secondary mx-2" />
+        </div>
     </form>
 </body>
 </html>

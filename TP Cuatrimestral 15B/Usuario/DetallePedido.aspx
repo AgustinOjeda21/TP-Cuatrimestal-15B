@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallePedido.aspx.cs" Inherits="TP_Cuatrimestral_15B.Usuario.WebForm3" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallePedido.aspx.cs" Inherits="TP_Cuatrimestral_15B.Usuario.WebForm3" Async="true" %>
 
 <!DOCTYPE html>
 
@@ -14,50 +14,78 @@
 <body>
     <form id="form1" runat="server">
         <div class="navbar"> Detalle Pedido
-        </div>
+        </div >
+        <div class ="compra">
         <h1>Detalle del Pedido</h1>
 
-        <p><strong>Número de pedido:</strong> #1001</p>
-        <p><strong>Fecha:</strong> 15/06/2026</p>
-        <p><strong>Estado:</strong> Entregado</p>
-
-        <h2>Dirección de entrega</h2>
-        <p>Av. Siempre Viva 742</p>
-
-        <h2>Forma de entrega</h2>
-        <p>Envío a domicilio</p>
-
-        <h2>Forma de pago</h2>
-        <p>Tarjeta de crédito</p>
-
+        <p><strong>Número de pedido:</strong> <asp:Label ID="lblNumero" runat="server" /></p>
+        <p><strong>Fecha:</strong> <asp:Label ID="lblFecha" runat="server" /></p>
+        <p><strong>Estado:</strong> <asp:Label ID="lblEstado" runat="server" /></p>
+        <p><strong>Direccion de la entrega:</strong> <asp:Label ID="lblDireccion" runat="server" /></p>
+        <p><strong>Forma de entrega:</strong> <asp:Label ID="lblEntrega" runat="server" /></p>
+        <p><strong>Forma de pago:</strong> <asp:Label ID="lblPago" runat="server" /></p>
         <h2>Productos</h2>
 
-        <div class="productoPedido">
-            <div class="imagenProducto">IMAGEN</div>
-            <div class="infoProducto">
-                <h3>Notebook HP 15"</h3>
-                <p>Cantidad: 1</p>
-                <p>Precio unitario: $850.000</p>
-                <p>Subtotal: $850.000</p>
+           
+    <div class =" navbar">Mi Carrito</div>
+     <asp:Repeater ID="rptCarrito" runat="server" >
+    <ItemTemplate>
+
+        <div class="tarjetaCarrito card mb-3 p-3">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-2">
+                    <img src='<%# Eval("Producto.Imagenes[0].URL") %>'
+                         class="img-fluid"
+                         style="max-height:100px;" />
+                </div>
+
+               <div class="col-md-6">
+                    <h5><%# Eval("Producto.Nombre") %></h5>
+                    <p>Precio: $<%# Eval("Producto.Precio") %></p>
+                    <p>Cantidad: <%# Eval("Cantidad") %></p>
+                
+                </div>
+
             </div>
         </div>
 
-        <div class="productoPedido">
-            <div class="imagenProducto">IMAGEN</div>
-            <div class="infoProducto">
-                <h3>Mouse Gamer</h3>
-                <p>Cantidad: 2</p>
-                <p>Precio unitario: $25.000</p>
-                <p>Subtotal: $50.000</p>
-            </div>
-        </div>
+    </ItemTemplate>
+    </asp:Repeater>
+    <p><strong>Total:</strong> <asp:Label ID="lblTotal" runat="server" /></p>
+    </div>
 
-        <h2>Total: $900.000</h2>
+        <div class="text-center mt-4">
 
-        <asp:Button
-            ID="btnVolver"
+        <asp:Button ID="btnVolver"
             runat="server"
-            Text="Volver a Mis Compras" CssClass="btn btn-default" />
+            Text="Volver"
+            PostBackUrl="~/Usuario/MisCompras.aspx"
+            CssClass="btn btn-secondary mx-2" />
+
+        <asp:Button ID="btnPagar"
+            runat="server"
+            Text="Pagar Pedido"
+            visible="false"
+            CssClass="btn btn-success mx-2"
+            OnClick="btnPagar_Click"/>
+
+        <asp:Button ID="btnCancelar"
+            runat="server"
+            Text="Cancelar Pedido"
+            visible="false"
+            CssClass="btn btn-danger mx-2" 
+            OnClick="btnCancelar_Click"/>
+
+         <asp:Button ID="btnReestablecer"
+            runat="server"
+            Text="Reestablecer Pedido"
+            visible="false"
+            CssClass="btn btn-success mx-2"
+            OnClick="btnReestablecer_Click"/>
+
+        </div>
     </form>
 </body>
 </html>

@@ -42,6 +42,7 @@ namespace TP_Cuatrimestral_15B.Usuario
             repositorioMarca = new RepositorioMarca(context);
             gestorMarca = new GestorMarca(repositorioMarca, gestorImagen);
             repositorioProducto = new RepositorioProducto(context);
+            repositorioCarrito = new RepositorioCarrito(context);
             repositorioProveedor = new RepositorioProveedor(context);
             repositorioDireccion = new RepositorioDireccion(context);
             gestorDireccion = new GestorDireccion(repositorioDireccion);
@@ -66,6 +67,8 @@ namespace TP_Cuatrimestral_15B.Usuario
             {
                 return;
             }
+            btnCancelar.Visible = true;
+            btnConfirmar.Visible = true;
             var productos = await gestorProductoCarrito.DevolverProductoCarrito(carrito.IdCarrito);
             rptCarrito.DataSource = productos;
             rptCarrito.DataBind();
@@ -84,12 +87,46 @@ namespace TP_Cuatrimestral_15B.Usuario
                 Session["ProductoEliminar"] = pro;
                 RegisterAsyncTask(new PageAsyncTask(EliminarProducto));
             }
+            if (e.CommandName == "Sumar")
+            {
+                var pro = Convert.ToInt32(e.CommandArgument);
+                Session["ProductoEliminar"] = pro;
+                RegisterAsyncTask(new PageAsyncTask(SumarCantidad));
+            }
+            if (e.CommandName == "Restar")
+            {
+                var pro = Convert.ToInt32(e.CommandArgument);
+                Session["ProductoEliminar"] = pro;
+                RegisterAsyncTask(new PageAsyncTask(RestarCantidad));
+            }
         }
         protected async Task EliminarProducto()
         {
             var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
             var producto = (int)Session["ProductoEliminar"];
+            var productoCarrito = await gestorProductoCarrito.CapturarProductoCarrito(carrito.IdCarrito, producto);
             await gestorProductoCarrito.Eliminar(carrito.IdCarrito, producto);
+            await CargarCarrito();
+        }
+        protected async Task SumarCantidad()
+        {
+            var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
+            var producto = (int)Session["ProductoEliminar"];
+            var productoCarrito = await gestorProductoCarrito.CapturarProductoCarrito(carrito.IdCarrito, producto);
+            await gestorProductoCarrito.ModificarCantidad(productoCarrito.Cantidad+1,carrito.IdCarrito,producto);
+            await CargarCarrito();
+        }
+        protected async Task RestarCantidad()
+        {
+            var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
+            var producto = (int)Session["ProductoEliminar"];
+            var productoCarrito = await gestorProductoCarrito.CapturarProductoCarrito(carrito.IdCarrito, producto);
+            if(productoCarrito.Cantidad==1)
+            {
+                RegisterAsyncTask(new PageAsyncTask(EliminarProducto));
+                return;
+            }
+            await gestorProductoCarrito.ModificarCantidad(productoCarrito.Cantidad - 1, carrito.IdCarrito, producto);
             await CargarCarrito();
         }
 
@@ -102,9 +139,28 @@ namespace TP_Cuatrimestral_15B.Usuario
         {
             var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
             if (carrito == null) return;
+
             await gestorCarrito.CancelarCarrito(carrito.IdCarrito);
             Session["Carrito"] = null;
-            await CargarCarrito();
+            Response.Redirect("~/Inicio.aspx");
         }
+
+        protected void btnConfirmarCarrito_Click(object source, EventArgs e)
+        {
+            RegisterAsyncTask(new PageAsyncTask(ConfirmarCarrito));
+        }
+
+        protected async Task ConfirmarCarrito()
+        {
+            var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
+            if(carrito is null)
+            {
+                return;
+            }
+            await gestorCarrito.ConfirmarCarrito(carrito.IdCarrito);
+            Response.Redirect("Checkout");
+        }
+
+
     }
 }

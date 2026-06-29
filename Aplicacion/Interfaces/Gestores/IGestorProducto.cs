@@ -25,7 +25,7 @@ namespace Aplicacion.Interfaces.Gestores
         Task EliminarProducto(int id);
         Task AgregarProveedor(int idPersona, Proveedor Proveedor);
         Task QuitarProveedor(int idPersona, int idProveedor);
-
+        Task<bool> ConsultarStock(int idProducto, int cantidad);
         Task AgregarCategoria(int idPersona, Categoria Categoria);
         Task QuitarCategoria(int idPersona, int idCategoria);
         Task AgregarImagen(int idPersona, Imagen Imagen);

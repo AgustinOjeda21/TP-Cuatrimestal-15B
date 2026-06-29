@@ -27,6 +27,18 @@ namespace TP_Cuatrimestral_15B
                 RegisterAsyncTask(new PageAsyncTask(CargarProductos));
                 RegisterAsyncTask(new PageAsyncTask(CargarCategorias));
             }
+            var usuario = Session["Usuario"] as Dominio.Entidades.Usuario;
+            if (usuario != null)
+            {
+                linkLogin.Visible = false;
+                linkSignin.Visible = false;
+                linkPerfil.Visible = true;
+            }
+            var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
+            if (carrito is null)
+            {
+                btnCarrito.Visible = false;
+            }
         }
 
         private async Task CargarProductos()

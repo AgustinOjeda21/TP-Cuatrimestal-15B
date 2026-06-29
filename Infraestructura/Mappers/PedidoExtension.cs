@@ -15,7 +15,7 @@ namespace Infraestructura.Mappers
         }
         public static EntityPedido ToEntity(this Pedido pedido)
         {
-            return new EntityPedido(pedido.IdPedido, pedido.Carrito.IdCarrito, pedido.EstadoPedido.IdEstadoPedido, pedido.Persona.IdPersona);
+            return new EntityPedido(pedido.IdPedido, pedido.Persona.IdPersona, pedido.EstadoPedido.IdEstadoPedido,pedido.Carrito.IdCarrito);
         }
     }
 }

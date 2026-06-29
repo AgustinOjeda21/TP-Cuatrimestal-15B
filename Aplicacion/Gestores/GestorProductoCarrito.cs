@@ -28,6 +28,10 @@ namespace Aplicacion.Gestores
             {
                 return Result<ProductoCarrito>.Fail(resultadoProducto.Message);
             }
+            if(!await gestorProducto.ConsultarStock(edi.Producto.IdProducto,edi.Cantidad))
+            {
+                return Result<ProductoCarrito>.Fail("No hay Stock suficiente");
+            }
             await repo.InsertarProductoCarrito(edi);
             return Result<ProductoCarrito>.EjecucionCorrecta();
         }
@@ -51,6 +55,10 @@ namespace Aplicacion.Gestores
             }
             var edi = resultado.Value;
             edi.Cantidad = Cantidad;
+            if (!await gestorProducto.ConsultarStock(edi.Producto.IdProducto, edi.Cantidad))
+            {
+                return Result<ProductoCarrito>.Fail("No hay Stock suficiente");
+            }
             await repo.Actualizar(edi);
             return Result<ProductoCarrito>.EjecucionCorrecta();
         }

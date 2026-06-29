@@ -189,5 +189,14 @@ namespace Aplicacion.Gestores
         {
             return await repo.Buscar(busqueda);
         }
+        public async Task<bool> ConsultarStock(int idProducto,int cantidad)
+        {
+            Producto obj = await repo.CapturarProducto(idProducto);
+            if(obj.Stock-cantidad<0)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -22,6 +22,7 @@
             <nav class =" LinkLabel">
                    <asp:HyperLink ID="linkLogin" runat="server" NavigateUrl="~/Log_in.aspx">Log in</asp:HyperLink>
                    <asp:HyperLink ID="linkSignin" runat="server" NavigateUrl="~/Sign_in.aspx">Sign in</asp:HyperLink>
+                <asp:HyperLink ID="linkPerfil" runat="server" NavigateUrl="~/Usuario/MiPerfil" Visible="false">Mi Perfil</asp:HyperLink>
                    <asp:Button ID ="btnCarrito" runat="server" Text="Mi carrito" CssClass="btn btn-default"></asp:Button>
             </nav>
         </div>

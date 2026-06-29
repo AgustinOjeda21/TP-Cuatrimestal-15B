@@ -9,14 +9,13 @@ namespace Dominio.Entidades
     public class DetallePedido
     {
         public DetallePedido() { }
-        public DetallePedido(DateTime Fechapedido, DateTime Fechaentrega,Direccion direccion, FormaEntrega formaEntrega,FormaPago formaPago, Pedido pedido)
+        public DetallePedido(DateTime Fechapedido, DateTime Fechaentrega,Direccion direccion, FormaEntrega formaEntrega,FormaPago formaPago)
         {
             FechaPedido = Fechapedido;
             FechaEntrega = Fechaentrega;
             Direccion = direccion;
             FormaEntrega = formaEntrega;
             FormaPago = formaPago;
-            Pedido = pedido;
         }
         public DateTime FechaPedido { get; set; }
         public DateTime FechaEntrega { get; set; }

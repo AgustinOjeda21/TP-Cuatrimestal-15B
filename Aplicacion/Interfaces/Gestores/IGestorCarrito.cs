@@ -19,7 +19,7 @@ namespace Aplicacion.Interfaces.Gestores
         Task<Result<Carrito>> PagarCarrito(int id);
         Task<Result<Carrito>> ExisteCarrito(int id);
         Task<bool> ValidarCarrito(int id);
-        Task<Result<Carrito>> ValidarCarritoPagado(int id);
+        Task<Result<Carrito>> ValidarCarritoConfirmado(int id);
         Task<Result<Carrito>> ValidarCarritoActivo(int id);
 
 

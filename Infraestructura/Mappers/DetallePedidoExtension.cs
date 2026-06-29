@@ -11,11 +11,11 @@ namespace Infraestructura.Mappers
     {
         public static DetallePedido ToDomain(this EntityDetallePedido detallePedido)
         {
-            return new DetallePedido(detallePedido.FechaPedido, detallePedido.FechaEntrega, detallePedido.Direccion.ToDomain(), detallePedido.FormaEntrega.ToDomain(), detallePedido.FormaPago.ToDomain(), detallePedido.Pedido.ToDomain());
+            return new DetallePedido(detallePedido.FechaPedido, detallePedido.FechaEntrega, detallePedido.Direccion.ToDomain(), detallePedido.FormaEntrega.ToDomain(), detallePedido.FormaPago.ToDomain());
         }
         public static EntityDetallePedido ToEntity(this DetallePedido detallePedido)
         {
-            return new EntityDetallePedido(detallePedido.FechaPedido, detallePedido.FechaEntrega, detallePedido.Direccion.IdDireccion, detallePedido.FormaEntrega.IdFormaEntrega, detallePedido.FormaPago.IdFormaPago, detallePedido.Pedido.IdPedido);
+            return new EntityDetallePedido(detallePedido.FechaPedido, detallePedido.FechaEntrega, detallePedido.FormaEntrega.IdFormaEntrega, detallePedido.FormaPago.IdFormaPago, detallePedido.Direccion.IdDireccion, detallePedido.Pedido.IdPedido);
         }
     }
 }
