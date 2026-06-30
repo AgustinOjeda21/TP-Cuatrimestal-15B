@@ -66,21 +66,25 @@ namespace Infraestructura.Repositorios
                 Especificacion<EntityPedido> SpecActual = EspecificacionFactory<EntityPedido>.CrearSpec(filtroEntity);
                 Spec = Spec == null ? SpecActual : new AndEspecificacion<EntityPedido>(Spec, SpecActual);
             }
-            var Resultado = await context.Pedido
-                                                .Include("EstadoPedido")
-                                                .Include("Carrito")
-                                                .Include("DetallePedido")
-                                                .Include("Persona")
-                                                .Where(Spec.ToExpression())
-                                                .ToListAsync();
-            return Resultado.Select(e => e.ToDomain()).ToList();
+            IQueryable<EntityPedido> query = context.Pedido
+                                                    .Include("EstadoPedido")
+                                                    .Include("Carrito")
+                                                    .Include("DetallePedido")
+                                                    .Include("Persona");
+
+            if (Spec != null)
+            {
+                query = query.Where(Spec.ToExpression());
+            }
+
+            var resultado = await query.ToListAsync();
+            return resultado.Select(e => e.ToDomain()).ToList();
         }
         private IMapper config()
         {
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddExpressionMapping();
-
                 cfg.CreateMap<Pedido, EntityPedido>()
                    .ForMember(dest => dest.EstadoPedido_idEstadoPedido, opt => opt.MapFrom(src => src.EstadoPedido.IdEstadoPedido))
                    .ForMember(dest => dest.Carrito_idCarrito, opt => opt.MapFrom(src => src.Carrito.IdCarrito))
@@ -102,6 +106,23 @@ namespace Infraestructura.Repositorios
 
                 cfg.CreateMap<EntityPersona, Persona>()
                    .ForMember(dest => dest.Usuario, opt => opt.Ignore());
+
+                cfg.CreateMap<EstadoPedido, EntityEstadoPedido>();
+                cfg.CreateMap<EntityEstadoPedido, EstadoPedido>();
+
+                cfg.CreateMap<Carrito, EntityCarrito>()
+                   .ForMember(dest => dest.EstadoCarrito_idEstadoCarrito, opt => opt.MapFrom(src => src.EstadoCarrito.IdEstadoCarrito))
+                   .ForMember(dest => dest.EstadoCarrito, opt => opt.Ignore())
+                   .ForMember(dest => dest.Pedido, opt => opt.Ignore())
+                   .ForMember(dest => dest.ProductoCarrito, opt => opt.Ignore());
+
+                cfg.CreateMap<EntityCarrito, Carrito>()
+                   .ForMember(dest => dest.EstadoCarrito, opt => opt.Ignore());
+
+                cfg.CreateMap<EstadoCarrito, EntityEstadoCarrito>();
+                cfg.CreateMap<EntityEstadoCarrito, EstadoCarrito>();
+                cfg.CreateMap<Usuario, EntityUsuario>();
+                cfg.CreateMap<EntityUsuario, Usuario>();
             });
             return config.CreateMapper();
         }

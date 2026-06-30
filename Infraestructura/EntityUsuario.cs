@@ -27,13 +27,9 @@ namespace Infraestructura
         [Column("idUsuario")]
         public int IdUsuario { get; set; }
         public string NombreUsuario { get; set; }
-
-        [Column("Contrase\u00C3\u00B1a")]
         public string Contraseña { get; set; }
         public bool Estado { get; set; }
-    
         public virtual ICollection<EntityPersona> Persona { get; set; }
-        [Column("Rol_idRol")]
         public int Rol { get; set; }
     }
 }

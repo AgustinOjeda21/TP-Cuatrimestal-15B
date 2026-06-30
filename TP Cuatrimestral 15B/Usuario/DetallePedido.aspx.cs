@@ -104,14 +104,23 @@ namespace TP_Cuatrimestral_15B.Usuario
             lblNumero.Text = pedido.IdPedido.ToString();
             lblPago.Text = pedido.DetallePedido.FormaPago.Nombre;
             lblTotal.Text = pedido.Carrito.Total.ToString("N2");
-            if(pedido.EstadoPedido.Nombre=="Confirmado")
+            switch(pedido.EstadoPedido.Nombre)
             {
-                btnCancelar.Visible = true;
-                btnPagar.Visible = true;
-            }
-            if (pedido.EstadoPedido.Nombre == "Cancelado")
-            {
-                btnReestablecer.Visible = true;
+                case "Confirmado":
+                    btnCancelar.Visible = true;
+                    btnPagar.Visible = true;
+                    btnReestablecer.Visible = false;
+                    break;
+                case "Cancelado":
+                    btnCancelar.Visible = false;
+                    btnPagar.Visible = false;
+                    btnReestablecer.Visible = true;
+                    break;
+                case "Pagado":
+                    btnCancelar.Visible = false;
+                    btnPagar.Visible = false;
+                    btnReestablecer.Visible = false;
+                    break;
             }
         }
         public async Task CargarCarrito()
@@ -172,6 +181,7 @@ namespace TP_Cuatrimestral_15B.Usuario
             var productos = await gestorProductoCarrito.DevolverProductoCarrito(pedido.Carrito.IdCarrito);
             foreach (var pro in productos)
             {
+                await gestorProducto.ConsultarStock(pro.Producto.IdProducto, pro.Cantidad);
                 await gestorProducto.ModificarStock((pro.Producto.Stock - pro.Cantidad), pro.Producto.IdProducto);
             }
             await gestorPedido.ReestablecerPedido(id);

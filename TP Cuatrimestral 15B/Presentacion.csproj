@@ -200,6 +200,11 @@
     <Content Include="Admin\Proveedor\ModificarProveedor.aspx" />
     <Content Include="Admin\Proveedor\Proveedores.aspx" />
     <Content Include="Admin\Proveedor\AgregarProveedor.aspx" />
+    <Content Include="Admin\Reportes\Clientes.aspx" />
+    <Content Include="Admin\Reportes\Inicio.aspx" />
+    <Content Include="Admin\Reportes\Pedidos.aspx" />
+    <Content Include="Admin\Reportes\Productos.aspx" />
+    <Content Include="Admin\Reportes\Ventas.aspx" />
     <Content Include="Admin\Usuario\ModificarUsuario.aspx" />
     <Content Include="Admin\Usuario\Usuarios.aspx" />
     <Content Include="Admin\ProductoCarrito\ProductosCarrito.aspx" />
@@ -552,6 +557,41 @@
     </Compile>
     <Compile Include="Admin\Proveedor\AgregarProveedor.aspx.designer.cs">
       <DependentUpon>AgregarProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Reportes\Clientes.aspx.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Reportes\Clientes.aspx.designer.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Reportes\Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Reportes\Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Reportes\Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Reportes\Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Reportes\Productos.aspx.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Reportes\Productos.aspx.designer.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Reportes\Ventas.aspx.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Reportes\Ventas.aspx.designer.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Usuario\ModificarUsuario.aspx.cs">
       <DependentUpon>ModificarUsuario.aspx</DependentUpon>

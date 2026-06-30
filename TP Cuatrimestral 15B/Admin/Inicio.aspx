@@ -28,6 +28,7 @@
             <asp:HyperLink ID="linkProveedores" runat="server" NavigateUrl="~/Admin/Proveedor/Proveedores.aspx">Proveedores</asp:HyperLink>
             <asp:HyperLink ID="linkUsuarios" runat="server" NavigateUrl="~/Admin/Usuario/Usuarios.aspx">Usuarios</asp:HyperLink>
             <asp:HyperLink ID="linkProductosCarrito" runat="server" NavigateUrl="~/Admin/ProductoCarrito/ProductosCarrito.aspx">Productos Carrito</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Admin/ProductoCarrito/ProductosCarrito.aspx">Productos Carrito</asp:HyperLink>
         </div>
         <div class="nav-right">
             <asp:HyperLink ID="linkTienda" runat="server" NavigateUrl="~/Inicio.aspx">Ver Tienda</asp:HyperLink>
@@ -52,6 +53,7 @@
             <a href="Proveedor/Proveedores.aspx" class="card"><h3>Proveedores</h3><p>Gestionar proveedores</p></a>
             <a href="Usuario/Usuarios.aspx" class="card"><h3>Usuarios</h3><p>Gestionar usuarios</p></a>
             <a href="ProductoCarrito/ProductosCarrito.aspx" class="card"><h3>Productos Carrito</h3><p>Gestionar los productos de un carrito</p></a>
+            <a href="Reportes/Inicio.aspx" class="card"><h3>Reportes</h3><p>Reportes parametrizados del negocio</p></a>
         </div>
     </div>
 </form>

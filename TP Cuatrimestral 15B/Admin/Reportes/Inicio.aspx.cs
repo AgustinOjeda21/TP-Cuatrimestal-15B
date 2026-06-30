@@ -1,21 +1,20 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using Infraestructura.Repositorios;
 using Aplicacion.Gestores;
 using Infraestructura;
+using Infraestructura.Repositorios;
 using System.Threading.Tasks;
 using Aplicacion.Busqueda;
 using Dominio.Entidades;
 using System.Web.UI.WebControls;
 
-namespace TP_Cuatrimestral_15B.Usuario
+namespace TP_Cuatrimestral_15B.Admin.Reportes
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Inicio : System.Web.UI.Page
     {
-
         private readonly mydbEntities1 context;
         private readonly RepositorioProducto repositorioProducto;
         private readonly GestorProducto gestorProducto;
@@ -47,9 +46,10 @@ namespace TP_Cuatrimestral_15B.Usuario
         private readonly GestorDetallePedido gestorDetallePedido;
         private readonly RepositorioEstadoPedido repositorioEstadoPedido;
         private readonly GestorEstadoPedido gestorEstadoPedido;
+        private readonly GestorReporte gestorReporte;
 
 
-        public WebForm1()
+        public Inicio()
         {
             context = new mydbEntities1();
             repositorioImagen = new RepositorioImagen(context);
@@ -79,99 +79,48 @@ namespace TP_Cuatrimestral_15B.Usuario
             repositorioEstadoPedido = new RepositorioEstadoPedido(context);
             gestorEstadoPedido = new GestorEstadoPedido(repositorioEstadoPedido);
             repositorioDetallePedido = new RepositorioDetallePedido(context);
-            gestorDetallePedido = new GestorDetallePedido(repositorioDetallePedido,gestorFormaPago,gestorFormaEntrega,gestorDireccion);
+            gestorDetallePedido = new GestorDetallePedido(repositorioDetallePedido, gestorFormaPago, gestorFormaEntrega, gestorDireccion);
             repositorioPedido = new RepositorioPedido(context);
-            gestorPedido = new GestorPedido(repositorioPedido, gestorCarrito,gestorEstadoPedido,gestorPersona,gestorDetallePedido);
+            gestorPedido = new GestorPedido(repositorioPedido, gestorCarrito, gestorEstadoPedido, gestorPersona, gestorDetallePedido);
+            gestorReporte = new GestorReporte(repositorioPedido, repositorioProductoCarrito);
 
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterAsyncTask(new PageAsyncTask(CargarCarrito));
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
-                RegisterAsyncTask(new PageAsyncTask(CargarFormasPago));
-                RegisterAsyncTask(new PageAsyncTask(CargarFormasEntrega));
-                RegisterAsyncTask(new PageAsyncTask(CargarDirecciones));
+                RegisterAsyncTask(new PageAsyncTask(CargarDashBoard));
             }
         }
-        public async Task CargarCarrito()
+        private async Task CargarDashBoard()
         {
-            var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
-            if (carrito is null) return;
-            var productos = await gestorProductoCarrito.DevolverProductoCarrito(carrito.IdCarrito);
-            rptCarrito.DataSource = productos;
-            rptCarrito.DataBind();
-            lblTotal.Text = productos.Sum(obj => obj.Cantidad * obj.Producto.Precio).ToString();
-        }
-        public async Task CargarFormasPago()
-        {
-            var formas = await gestorFormaPago.DevolverFormasPago();
-            ddlFormaPago.DataSource = formas;
-            ddlFormaPago.DataTextField = "Nombre";
-            ddlFormaPago.DataValueField = "IdFormaPago";
-            ddlFormaPago.DataBind();
-        }
-        public async Task CargarFormasEntrega()
-        {
-            var formas = await gestorFormaEntrega.DevolverFormasEntrega();
-            ddlFormaEntrega.DataSource = formas;
-            ddlFormaEntrega.DataTextField = "Nombre";
-            ddlFormaEntrega.DataValueField = "IdFormaEntrega";
-            ddlFormaEntrega.DataBind();
-        }
+            var busqueda = new Busqueda<Dominio.Entidades.Pedido>();
 
-        public async Task CargarDirecciones()
-        {
-            var usuario = Session["Usuario"] as Dominio.Entidades.Usuario;
-            var busqueda = new Busqueda<Dominio.Entidades.Persona>();
-            var filtro = new FiltroBusqueda<Dominio.Entidades.Persona, int>
-            {
-                Selector = obj => obj.Usuario.IdUsuario,
-                Operador = OperadorBusqueda.Igual,
-                Valor = usuario.IdUsuario,
-            };
-            busqueda.Filtros.Add(filtro);
-            var lista = await gestorPersona.Buscar(busqueda);
-            var persona = lista[0];
-            ddlDirecciones.DataSource = persona.Direcciones;
-            ddlDirecciones.DataTextField = "Descripcion";
-            ddlDirecciones.DataValueField = "IdDireccion";
-            ddlDirecciones.DataBind();
-            Session["PersonaUsuario"] = persona;
-        }
+            var resultado = await gestorReporte.DevolverDashboard(busqueda);
 
-        protected void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            RegisterAsyncTask(new PageAsyncTask(ConfirmarPedido));
-        }
-        protected async Task ConfirmarPedido()
-        {
-            var carrito = Session["Carrito"] as Dominio.Entidades.Carrito;
-            if (carrito is null) return;
-            var persona = Session["PersonaUsuario"] as Dominio.Entidades.Persona;
-            Pedido pedido = new Pedido
-            {
-                Carrito = carrito,
-                Persona = persona
-            };
-            DetallePedido detallePedido = new DetallePedido
-            {
-                FechaPedido = DateTime.Now,
-                FechaEntrega = DateTime.Now,
-                FormaEntrega = await gestorFormaEntrega.CapturarFormaEntrega(int.Parse(ddlFormaEntrega.SelectedValue)),
-                FormaPago = await gestorFormaPago.CapturarFormaPago(int.Parse(ddlFormaPago.SelectedValue)),
-                Direccion = await gestorDireccion.CapturarDireccion(int.Parse(ddlDirecciones.SelectedValue)),
+            if (resultado == null)
+                return;
 
-            };
-            var productos = await gestorProductoCarrito.DevolverProductoCarrito(carrito.IdCarrito);
-            foreach (var pro in productos)
-            {
-                await gestorProducto.ConsultarStock(pro.Producto.IdProducto, pro.Cantidad);
-                await gestorProducto.ModificarStock((pro.Producto.Stock - pro.Cantidad), pro.Producto.IdProducto);
-            }
-            await gestorPedido.CargarPedido(pedido, detallePedido);
-            Session["Carrito"] = null;
-            Response.Redirect("MisCompras");
+            lblPedidos.Text = resultado.PedidosTotales.ToString();
+            lblVentas.Text = resultado.FacuturacionTotal.ToString();
+            lblClientes.Text = resultado.CantidadClientes.ToString();
+            lblTicket.Text = resultado.FacturacioPromedio.ToString();
+            lblCancelados.Text = resultado.Cancelados.ToString();
+            lblPagados.Text = resultado.Pagados.ToString();
+            lblEntregados.Text = resultado.Entregados.ToString();
+            lblConfirmados.Text = resultado.Confirmados.ToString();
+
+            rptTopProductos.DataSource = resultado.Productos;
+            rptTopProductos.DataBind();
+
+            rptTopClientes.DataSource = resultado.Personas;
+            rptTopClientes.DataBind();
+
+            rptFormasPago.DataSource = resultado.FormaPagos;
+            rptFormasPago.DataBind();
+
+            rptFormasEntrega.DataSource = resultado.FormaEntregas;
+            rptFormasEntrega.DataBind();
         }
     }
 }

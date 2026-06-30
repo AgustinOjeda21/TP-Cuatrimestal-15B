@@ -628,4 +628,40 @@ a:hover .todasSlide {
     .authGrid {
         grid-template-columns: 1fr;
     }
+    .filaDashboard {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #d8dee8;
+    }
+
+        .filaDashboard:last-child {
+            border-bottom: none;
+        }
+
+    .estadoCard {
+        text-align: center;
+    }
+
+        .estadoCard p {
+            font-size: 32px;
+            margin-top: 10px;
+        }
+
+    .pagado {
+        border-top: 5px solid #22c55e;
+    }
+
+    .confirmado {
+        border-top: 5px solid #2563eb;
+    }
+
+    .entregado {
+        border-top: 5px solid #06b6d4;
+    }
+
+    .cancelado {
+        border-top: 5px solid #ef4444;
+    }
 }

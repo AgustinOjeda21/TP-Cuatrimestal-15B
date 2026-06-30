@@ -42,6 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\ReportesClientesDTO.cs" />
+    <Compile Include="DTOs\ReportesDashboardDTO.cs" />
+    <Compile Include="DTOs\ReportesFomasPagoDTO.cs" />
+    <Compile Include="DTOs\ReportesFormasEntregaDTO.cs" />
+    <Compile Include="DTOs\ReportesPedidoDTO.cs" />
+    <Compile Include="DTOs\ReportesProductosDTO.cs" />
+    <Compile Include="DTOs\ReportesVentasDTO.cs" />
     <Compile Include="Gestores\GestorCarrito.cs" />
     <Compile Include="Gestores\GestorCategoria.cs" />
     <Compile Include="Gestores\GestorDetallePedido.cs" />
@@ -57,6 +64,7 @@
     <Compile Include="Gestores\GestorProducto.cs" />
     <Compile Include="Gestores\GestorProductoCarrito.cs" />
     <Compile Include="Gestores\GestorProveedor.cs" />
+    <Compile Include="Gestores\GestorReporte.cs" />
     <Compile Include="Gestores\GestorUsuario.cs" />
     <Compile Include="Interfaces\Gestores\IGestorCategoria.cs" />
     <Compile Include="Interfaces\Gestores\IGestorCarrito.cs" />
